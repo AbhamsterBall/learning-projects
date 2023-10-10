@@ -1,4 +1,5 @@
-# mybatis-learning-projects
-the projects snapshots of my mybatis learning process.
-for detail(Chinese Edition): mail.hampster.work
-中文介绍：mail.hampster.work
+# mybatis-learning-projects  
+JAVA mybatis 学习记录projects
+the projects snapshots of my mybatis learning process.  
+for detail(Chinese Edition): mail.hampster.work  
+中文介绍：mail.hampster.work  
