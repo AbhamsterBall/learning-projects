@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Textarea Click Event</title>
+</head>
+<body>
+<textarea id="myTextarea" rows="4" cols="50">点击这里触发点击事件</textarea>
+
+<script>
+    // 获取<textarea>元素
+    var textarea = document.getElementById("myTextarea");
+
+    // 添加点击事件监听器
+    textarea.addEventListener("click", function() {
+        alert("Textarea被点击了！");
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,19 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-war" name="myBatisGenerator:war exploded">
+    <output-path>$PROJECT_DIR$/out/artifacts/myBatisGenerator_war_exploded</output-path>
+    <root id="root">
+      <element id="javaee-facet-resources" facet="myBatisGenerator/web/Web" />
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="module-output" name="myBatisGenerator" />
+        </element>
+        <element id="directory" name="lib">
+          <element id="library" level="project" name="Maven: org.mybatis.dynamic-sql:mybatis-dynamic-sql:1.5.0" />
+          <element id="library" level="project" name="Maven: org.mybatis:mybatis-spring:2.0.1" />
+          <element id="library" level="project" name="Maven: org.mybatis:mybatis:3.5.8" />
+          <element id="library" level="project" name="Maven: com.oracle.database.jdbc:ojdbc8:19.11.0.0" />
+        </element>
+      </element>
+    </root>
+  </artifact>
+</component>

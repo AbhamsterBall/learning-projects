@@ -1,0 +1,26 @@
+<!--
+    Run in command line:
+        if you want to run it in command line, do put your driver dependency files into mybatis-generator-core-x.x.x.jar
+-->
+<!DOCTYPE generatorConfiguration PUBLIC
+        "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<generatorConfiguration>
+    <context id="dsql" targetRuntime="MyBatis3DynamicSql">
+        <jdbcConnection driverClass="oracle.jdbc.driver.OracleDriver"
+                        connectionURL="jdbc:oracle:thin:@localhost:1521:orcl"
+                        userId="scott"
+                        password="123456"/>
+
+
+        <javaModelGenerator targetPackage="example.model" targetProject="src/main/java"/>
+
+        <javaClientGenerator targetPackage="example.mapper" targetProject="src/main/java"/>
+
+        <table schema="scott" tableName="EMP" /> <!--name the user(schema) for emp or it might match multiple tables-->
+    </context>
+</generatorConfiguration>
+<!--
+    for this project cmd simply use:
+        java -jar .\src\main\resources\mybatis-generator-core-1.4.2.jar -configfile F:\JAVA\20231010\myBatisGenerator\src\main\resources\MyBatis3DynamicSql.xml -overwrite
+-->

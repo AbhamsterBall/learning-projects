@@ -1,0 +1,15 @@
+<!DOCTYPE generatorConfiguration PUBLIC
+        "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<generatorConfiguration>
+    <context id="dsql" targetRuntime="MyBatis3DynamicSql">
+        <jdbcConnection driverClass="oracle.jdbc.driver.OracleDriver"
+                        connectionURL="jdbc:oracle:thin:@localhost:1521:orcl" />
+
+        <javaModelGenerator targetPackage="example.model" targetProject="src/main/java"/>
+
+        <javaClientGenerator targetPackage="example.mapper" targetProject="src/main/java"/>
+
+        <table tableName="emp" />
+    </context>
+</generatorConfiguration>
