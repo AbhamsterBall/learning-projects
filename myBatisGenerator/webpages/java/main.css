@@ -169,3 +169,19 @@ textarea::-webkit-scrollbar-thumb{
 img{
     width: 100%;
 }
+.hljs{
+    border-radius: 6px;
+    font-family: "Microsoft YaHei";
+}
+.simi-mark{
+    border-radius: 6px;
+    background-color: #f1f1f1;
+    padding: 1em;
+}
+.markdown{
+
+}
+
+
+
+

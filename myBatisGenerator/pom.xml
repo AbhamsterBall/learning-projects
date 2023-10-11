@@ -47,6 +47,28 @@
             <version>19.11.0.0</version> <!-- 根据您的Oracle版本选择合适的版本 -->
         </dependency>
 
+        <!--生成工具类注解包-->
+        <dependency>
+            <groupId>jakarta.platform</groupId>
+            <artifactId>jakarta.jakartaee-api</artifactId>
+            <version>9.1.0</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.12</version>
+            <scope>compile</scope>
+        </dependency>
+
+        <!-- MyBatis 生成器 -->
+        <dependency>
+            <groupId>org.mybatis.generator</groupId>
+            <artifactId>mybatis-generator-core</artifactId>
+            <version>1.4.0</version>
+        </dependency>
+
+
     </dependencies>
 
     <!-- 控制Maven在构建过程中相关配置 -->

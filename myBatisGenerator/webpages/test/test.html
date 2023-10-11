@@ -1,19 +1,38 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-    <title>Textarea Click Event</title>
+    <title>highlight.js example</title>
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.7/styles/darkula.min.css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.7/highlight.min.js"></script>
+    <script>
+        hljs.initHighlightingOnLoad();
+    </script>
 </head>
+
 <body>
-<textarea id="myTextarea" rows="4" cols="50">点击这里触发点击事件</textarea>
+<pre><code class="markdown">
+# hello world
 
-<script>
-    // 获取<textarea>元素
-    var textarea = document.getElementById("myTextarea");
+you can write text [with links](http://example.com) inline or [link references][1].
 
-    // 添加点击事件监听器
-    textarea.addEventListener("click", function() {
-        alert("Textarea被点击了！");
-    });
-</script>
+* one _thing_ has *em*phasis
+* two __things__ are **bold**
+
+[1]: http://example.com
+
+---
+
+hello world
+===========
+
+> markdown is so cool
+
+so are code segments
+
+1. one thing (yeah!)
+2. two thing `i can write code`, and `more` wipee!
+</code></pre>
 </body>
+
 </html>

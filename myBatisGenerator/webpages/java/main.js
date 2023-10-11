@@ -1,4 +1,25 @@
 // 获取<textarea>元素
+marked.setOptions({
+    renderer: new marked.Renderer(),
+    gfm: false,
+    tables: false,
+    breaks: false,
+    pedantic: false,
+    sanitize: false,
+    smartLists: false,
+    smartypants: false,
+    highlight: function (code,lang) {
+        //使用 highlight 插件解析文档中代码部分
+        return hljs.highlightAuto(code,[lang]).value;
+    }
+});
+
+console.log($(".markdown").length)
+for (var i = 0 ; i < $(".markdown").length ; i++) {
+    console.log($(".markdown").eq(i))
+    let text = marked.parse($(".markdown").eq(i).text());
+    $(".markdown").eq(i).html(text);
+}
 var textarea = document.getElementsByClassName('code');
 for (var i = 0 ; i < textarea.length ; i++) {
     textarea[i].style.height = textarea[i].scrollHeight - 150 + "px";

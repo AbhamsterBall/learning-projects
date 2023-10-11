@@ -7,15 +7,16 @@
         "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
 <generatorConfiguration>
     <context id="dsql" targetRuntime="MyBatis3DynamicSql">
-        <jdbcConnection driverClass="oracle.jdbc.driver.OracleDriver"
-                        connectionURL="jdbc:oracle:thin:@localhost:1521:orcl"
-                        userId="scott"
-                        password="123456"/>
 
+        <!--${oracle.jdbc.driver.OracleDriver}原样传入包含${}-->
+        <jdbcConnection driverClass="${oracle_driver}"
+                        connectionURL="${oracle_url}"
+                        userId="${oracle_username}"
+                        password="${oracle_password}"/>
 
-        <javaModelGenerator targetPackage="example.model" targetProject="src/main/java"/>
+        <javaModelGenerator targetPackage="example.model0" targetProject="src/main/java"/>
 
-        <javaClientGenerator targetPackage="example.mapper" targetProject="src/main/java"/>
+        <javaClientGenerator targetPackage="example.mapper0" targetProject="src/main/java"/>
 
         <table schema="scott" tableName="EMP" /> <!--name the user(schema) for emp or it might match multiple tables-->
     </context>

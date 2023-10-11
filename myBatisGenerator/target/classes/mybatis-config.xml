@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<!--官方日志3.5.2Page3-->
+<configuration>
+    <properties resource="db.properties"/>
+    <environments default="development">
+        <environment id="development">
+            <transactionManager type="JDBC"/>
+            <dataSource type="POOLED">
+                <property name="driver" value="${oracle_driver}"/>
+                <property name="url" value="${oracle_url}"/>
+                <property name="username" value="${oracle_username}"/>
+                <property name="password" value="${oracle_password}"/>
+            </dataSource>
+        </environment>
+    </environments>
+    <mappers>
+        <mapper resource="exampleM3/mapper/EmpMapper.xml"/> <!--maven结构中 对xml的识别只能使用读取资源文件的方式，否则根本不会读取资源里的内容-->
+        <package name="exampleSimple.mapper"/>
+        <package name="example.mapper0"/>
+    </mappers>
+</configuration>

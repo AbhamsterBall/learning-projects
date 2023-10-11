@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>mybatis</title>
     <link href="main.css" rel="stylesheet"/>
+    <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0">
 </head>
 <body>
 <div class="main-title">MYBATIS-1 BY HYH <a href="#" onclick="hideAll()" class="expand">代码全部收起</a></div>
@@ -1245,30 +1246,54 @@ public class DBCPDataSourceFactory extends PooledDataSourceFactory {
 
                 <!--初始化连接:连接池启动时创建的初始化连接数量-->
                 <property name="initialSize" value="3"/>
+
+                <!--最大活跃数-->
+                <property name="maxActive" value="20"/>
+
                 <!--最大空闲连接:连接池中容许保持空闲状态的最大连接数量,超过的空闲连接将被释放,如果设置为负数表示不限制-->
                 <property name="maxIdle" value="10"/>
+
                 <!--最小空闲连接:连接池中容许保持空闲状态的最小连接数量,负数表示没有现在-->
-                    <!--如果空闲连接的数量设置的太少且系统负载高，有可能导致实际的空闲连接超过最大空闲连接的限制，因为关闭连接的速度比打开连接的速度快，所以有许多被关闭的连接保持空闲等待被打开的连接，这就导致了实际空闲连接会大于最大空闲连接-->
+                <!--如果空闲连接的数量设置的太少且系统负载高，有可能导致实际的空闲连接超过最大空闲连接的限制，因为关闭连接的速度比打开连接的速度快，所以有许多被关闭的连接保持空闲等待被打开的连接，这就导致了实际空闲连接会大于最大空闲连接-->
                 <property name="minIdle" value="2"/>
+
                 <!--最大等待时间:当没有可用连接时,连接池等待连接被归还的最大时间(以毫秒计数),超过时间则抛出异常,如果设置为-1表示无限等待-->
                 <property name="maxWait" value="10000"/>
+
                 <!--在将连接返回给调用者之前，一个用来验证从连接池取出连接的可用性的SQL查询，如果指定,则查询必须是一个SELECT语句并且必须返回至少一行记录-->
                 <property name="validationQuery" value="select * from mybatis_user where id = 1"/>
+
                 <!--指明是否在从池中取出连接前进行检验,如果检验失败,则从池中去除连接并尝试取出另一个.注意:设置为true后如果要生效,validationQuery参数必须设置为非空字符串-->
                 <property name="testOnBorrow" value="true"/>
+
                 <!--指明是否在归还到池中前进行检验-->
                 <property name="testOnReturn" value="true"/>
+
                 <!--指明连接是否被空闲连接排错器(如果有)进行检验.如果检测失败,则连接将被从池中去除.注意:设置为true后如果要生效,validationQuery参数必须设置为非空字符串-->
                 <property name="testWhileIdle" value="true"/>
+
                 <!--在每次空闲连接排错器线程(如果有)运行时检查的连接数量-->
                 <property name="numTestsPerEvictionRun" value="3"/>
+
                 <!--开启prepared statement池 开启需要添加包：commons-pool-1.6.jar-->
                 <property name="poolPreparedStatements" value="true"/>
+
                 <!--statement池在同一时间能够分配的活跃prepared statements的最大数量,如果设置为0表示不限制
                         为了避免最大活跃prepared statements超过最大开启游标数而导致的游标耗尽，请保证最大活跃数小于最大开启游标数-->
                 <property name="maxOpenPreparedStatements" value="1000"/>
+
                 <!--控制PoolGuard是否容许获取底层连接 默认false不开启, 这是一个有潜在危险的功能, 不适当的编码会造成危险.(可能关闭底层连接或者在守护连接已经关闭的情况下继续使用连接).请谨慎使用,并且仅当需要直接访问驱动的扩展功能时使用.注意:不要直接关闭底层连接,只能关闭原本的连接.-->
                 <property name="accessToUnderlyingConnectionAllowed" value="true"/>
+
+                <!--标记是否删除超过removeAbandonedTimout时长连接，如果连接超过时长就会被视作被抛弃的连接。设置该项可以让服务器有空闲去恢复配置糟糕的应用连接-->
+                    <!--如果开启则连接在被抛弃时可能被回收，当空闲数<2，活跃数>最大活跃数 - 3时且空闲时间大于removeAbandonedTimeout，就会被回收，但如果一旦创建了动态或者静态的statement或者执行了任何一个查询，空闲时间就会清空。-->
+                <property name="removeAbandoned" value="true"/>
+
+                <!--定义为被抛弃并删除的连接前的最大时长-->
+                <property name="removeAbandonedTimeout" value="500"/>
+
+                <!--是否为被抛弃的连接或者Statement生成日志，该日志会在每个连接或者Statement开启的时候不断叠加，因为日志的生成依赖于堆栈信息的生成。-->
+                <property name="logAbandoned" value="true"/>
 
             </dataSource>
 </textarea>

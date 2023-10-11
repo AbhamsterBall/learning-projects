@@ -1,8 +1,10 @@
 package example.model;
 
 import jakarta.annotation.Generated;
+
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.function.Supplier;
 
 public class Emp {
     @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2023-10-10T11:48:19.6466808+08:00", comments="Source field: SCOTT.EMP.EMPNO")
@@ -107,5 +109,19 @@ public class Emp {
     @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2023-10-10T11:48:19.6515282+08:00", comments="Source field: SCOTT.EMP.DEPTNO")
     public void setDeptno(Short deptno) {
         this.deptno = deptno;
+    }
+
+    @Override
+    public String toString() {
+        return "Emp{" +
+                "empno=" + empno +
+                ", ename='" + ename + '\'' +
+                ", job='" + job + '\'' +
+                ", mgr=" + mgr +
+                ", hiredate=" + hiredate +
+                ", sal=" + sal +
+                ", comm=" + comm +
+                ", deptno=" + deptno +
+                '}';
     }
 }
