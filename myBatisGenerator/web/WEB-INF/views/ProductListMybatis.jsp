@@ -16,18 +16,20 @@
     <table width="80%" border="1" style="border-collapse: collapse;">
         <tr>
             <th>No</th>
-            <th>Product Name</th>
-            <th>Description</th>
-            <th>Price</th>
+            <th>dName</th>
+            <th>rank</th>
+            <th>page</th>
         </tr>
         <s:iterator value="productList" status="stat"> <!--struct-tags-->
             <tr>
-                <td><s:property value="#stat.count" /></td>  <%--#stat.count是指当前行是第几个而不是id值--%>
-                <td><s:property value="name" /></td>
-                <td><s:property value="description" /></td>
-                <td><s:property value="price" /></td>
+                <td><s:property value="empno" /></td>  <%--#stat.count是指当前行是第几个而不是id值--%>
+                <td><s:property value="dname" /></td>
+                <td><s:property value="rank" /></td>
+                <td><s:property value="page" /> </td>
             </tr>
         </s:iterator>
     </table>
-</div></body>
+</div>
+<div style="text-align: center"><a href=<s:property value="url" />> next </a></div>
+</body>
 </html>

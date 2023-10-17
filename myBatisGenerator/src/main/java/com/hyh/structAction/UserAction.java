@@ -1,7 +1,6 @@
 package com.hyh.structAction;
 
 import com.hyh.dao.ProductDAO;
-import com.hyh.pojo.Product;
 import com.hyh.pojo.User;
 import com.opensymphony.xwork2.ActionSupport;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,25 +1,25 @@
 package com.hyh.dao.impl;
 
+import com.github.pagehelper.PageHelper;
 import com.hyh.dao.ProductDAO;
+import com.hyh.pojo.Dleft;
 import com.hyh.pojo.Product;
 import com.hyh.pojo.User;
-import com.hyh.transaction.impl.TransactionImpl;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import org.hibernate.Criteria;
 import org.hibernate.SessionFactory;
+import org.mybatis.dynamic.sql.insert.render.InsertStatementProvider;
 import org.mybatis.logging.Logger;
 import org.mybatis.logging.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.persistence.criteria.CriteriaBuilder;
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.ArrayList;
 import java.util.List;
 
 @Repository("productDAO")
@@ -47,10 +47,10 @@ public class ProductDAOImpl implements ProductDAO {
 
     @Override
     @Transactional
-    public List<Product> mybatisList() {
+    public List<Dleft> mybatisList() {
         SqlSessionFactory factory = giveFactory();
         SqlSession sqlSession = factory.openSession();
-        List<Product> productList = sqlSession.getMapper(ProductDAO.class).mybatisList();
+        List<Dleft> productList = sqlSession.getMapper(ProductDAO.class).findUserList(1, 4);
         return productList;
     }
 
@@ -74,9 +74,18 @@ public class ProductDAOImpl implements ProductDAO {
     }
 
     @Override
+    public List<Dleft> findUserList(int start, int size) {
+        return null;
+    }
+
+    @Override
     public boolean update(int id, String name, String sex, int age) {
         //do nothing for mybatis processed method
         return false;
+    }
+
+    @Override
+    public void insert(InsertStatementProvider<Product> insertStatement) {
     }
 
     @Override

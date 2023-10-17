@@ -6,6 +6,16 @@ public class Product {
     private String description;
     private float price;
 
+    public Product(long id, String name, String description, float price) {
+        this.id = id;
+        this.name = name;
+        this.description = description;
+        this.price = price;
+    }
+
+    public Product() {
+    }
+
     public long getId() {
         return id;
     }

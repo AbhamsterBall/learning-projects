@@ -2,10 +2,8 @@ package exampleSimple.mapper;
 
 import exampleSimple.model.EmpSimple;
 import java.util.List;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Result;
-import org.apache.ibatis.annotations.Results;
-import org.apache.ibatis.annotations.Select;
+
+import org.apache.ibatis.annotations.*;
 import org.apache.ibatis.type.JdbcType;
 
 public interface EmpMapperSimple {
@@ -47,4 +45,10 @@ public interface EmpMapperSimple {
         @Result(column="DEPTNO", property="deptno", jdbcType=JdbcType.NUMERIC)
     })
     List<EmpSimple> selectAll();
+
+
+    List<EmpSimple> selectByPageNumSize(
+            @Param("user") EmpSimple user,
+            @Param("pageNumKey") int pageNum,
+            @Param("pageSizeKey") int pageSize);
 }

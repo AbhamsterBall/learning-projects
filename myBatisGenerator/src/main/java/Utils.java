@@ -7,7 +7,7 @@ import java.io.IOException;
 import java.io.InputStream;
 
 public class Utils {
-    public static SqlSession sessionUtil() {
+    public final static SqlSession sessionUtil() {
         InputStream is = null;
         try {
             is = Resources.getResourceAsStream("mybatis-config.xml");
@@ -20,4 +20,5 @@ public class Utils {
 
         return sqlSession;
     }
+
 }

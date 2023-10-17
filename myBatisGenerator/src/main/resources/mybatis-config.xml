@@ -5,6 +5,50 @@
 <!--官方日志3.5.2Page3-->
 <configuration>
     <properties resource="db.properties"/>
+    <plugins>
+        <plugin interceptor="com.hyh.plugin.ExamplePlugin"></plugin>
+        <!--
+        <select id="findUserList" resultMap="BaseResultMap">
+    SELECT e.empno, dept.dname FROM emp AS e LEFT JOIN dept AS dept ON e.`deptno` = dept.`deptno` ORDER BY u.id
+  </select>
+  <resultMap id="userList" type="exampleM3.model.EmpM3">
+    <id column="EMPNO" property="empno" jdbcType="INTEGER" />
+    <result column="DNAME" property="dname" jdbcType="VARCHAR" />
+    <association property="rank" column="GRADE" select="getRankBySal"></association>
+  </resultMap>
+  <select id="getRankBySal" resultType="com.hyh.pojo.Rank">
+    SELECT GRADE FROM salgrade s WHERE s.losal &lt; (select sal from emp where empno=#{userId}) and s.hisal> (select sal from emp where empno=#{userId})
+  </select>
+
+        -->
+        <plugin interceptor="com.github.pagehelper.PageInterceptor">
+
+            <property name="supportMethodsArguments" value="true"/>
+            <property name="params" value="pageNum=pageNumKey;pageSize=pageSizeKey;"/>
+
+<!--            <property name="reasonable" value="true"/>-->
+<!--            &lt;!&ndash;默认值为 false ，pageSizezero会被忽略&ndash;&gt;-->
+<!--            <property name="supportMethodsArguments" value="true"/>-->
+<!--            &lt;!&ndash;默认值为 false ，参数映射支持 arg0,arg1, arg2... argN 的形式 &ndash;&gt;-->
+<!--            <property name="params" value=""/>-->
+<!--            &lt;!&ndash;默认为空 ，参数映射键值对，key 对应参数名，value 对应实际参数值&ndash;&gt;-->
+<!--            <property name="autoRuntimeDialect" value="true"/>-->
+<!--            &lt;!&ndash;根据数据库类型自动识别数据库方言，默认 false &ndash;&gt;-->
+<!--            &lt;!&ndash; 当设置为 true 时，默认使用 Oracle 数据库方言。默认值为 false ，默认使用该配置的值&ndash;&gt;-->
+<!--            <property name="dialect" value="null"/>-->
+<!--            &lt;!&ndash; 指定数据库方言，默认值为 null ，当 autoRuntimeDialect=true 时，该配置无效。&ndash;&gt;-->
+<!--            <property name="offsetAsPageNum" value="false"/>-->
+<!--            &lt;!&ndash;pageNum 属于分页参数，默认将 offset 的值作为页码，默认值为 false &ndash;&gt;-->
+<!--            <property name="rowBoundsWithCount" value="false"/>-->
+<!--            &lt;!&ndash;支持通过 RowBound 对象来控制分页参数，配合 limit() 方法使用，默认值为 false &ndash;&gt;-->
+<!--            <property name="pageSizeZero" value="false"/>-->
+<!--            &lt;!&ndash;pageSize 等于 0 或 less than 0 时，返回空集合，默认值为 false &ndash;&gt;-->
+<!--            <property name="countSql" value="null"/>-->
+<!--            &lt;!&ndash;默认自动优化 COUNT 查询，默认值为 null 。若设置非空，则按照该语句进行 count 查询 &ndash;&gt;-->
+<!--            <property name="helperDialect" value="mysql"/>-->
+<!--            &lt;!&ndash;分页插件的方言，默认值为 "mysql" 。自动根据数据库类型识别，目前支持 mysql、oracle、sqlite、hsqldb、postgresql、db2 四种方言。&ndash;&gt;-->
+        </plugin>
+    </plugins>
     <environments default="development">
         <environment id="development">
             <transactionManager type="JDBC"/>
@@ -17,8 +61,11 @@
         </environment>
     </environments>
     <mappers>
+        <mapper resource="TestInterfaceMapper.xml"/> <!--都只能在resources文件夹-->
         <mapper resource="exampleM3/mapper/EmpMapper.xml"/> <!--maven结构中 对xml的识别只能使用读取资源文件的方式，否则根本不会读取资源里的内容-->
         <package name="exampleSimple.mapper"/>
         <package name="example.mapper0"/>
+        <package name="exampleDetail"/>
+        <package name="exampleExtra"/>
     </mappers>
 </configuration>

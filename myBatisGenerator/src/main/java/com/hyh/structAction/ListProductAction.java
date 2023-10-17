@@ -21,6 +21,7 @@ public class ListProductAction extends ActionSupport {
 
     @Override
     public String execute() {
+
         listProduct = productDAO.list();
         return SUCCESS;
     }
