@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="main.css" rel="stylesheet"/>
+    <script src="marked.min.js"></script>
+<!--    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.7/styles/darkula.min.css">-->
+    <script src="highlight.min.js"></script>
+    <link href="hljs.css" rel="stylesheet">
+    <meta property="og:title" content="mybatis逆向工程">
+    <script>
+        hljs.initHighlightingOnLoad();
+    </script>
+    <meta name="viewport" content="width=device-width,user-scalable=yes,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0">
+</head>
+<body>
+<div class="main-title">MYBATIS-plus BY HYH <a href="#" onclick="hideAll()" class="expand">代码全部收起</a></div>
+<div class="text"  style="border-radius: 0px 0px 20px 20px;">
+        <h3 style="margin-top:-15px">MyBatis-plus</h3>
+    <a href="https://baomidou.com/">https://baomidou.com/</a>
+    <br>代码见(mybatis-plus-quick-start)：<a href="https://github.com/AbhamsterBall/mybatis-learning-projects">https://github.com/AbhamsterBall/mybatis-learning-projects</a>
+<mark class="markdown preText">
+
+### 所用包
+```
+- 搜索mybatis-plus in IDEA maven library 3.5.0
+jsqlparser | mybatis | mybatis-plus | mybatis-plus-annotation | mybatis-plus-core | mybatis-plus-extension
+```
+- 版本号为：mybatis-plus 3.5.0 时才能解析BaseMapper
+    - 最新版本会一直让绑定Mapper，3.5.0版本不会让绑定mapper
+
+#### 消除笛卡尔积
+- "消除笛卡尔积" 是一种数据库查询和优化技术，用于减小数据库操作的开销，特别是在多表查询中。它有助于提高查询性能，减少不必要的数据传输和处理，同时减少数据库的负载。
+使用内连接（INNER JOIN）： 内连接只返回满足连接条件的行，而不是返回两个表的笛卡尔积。这样可以避免生成大量的中间数据。
+
+    - 使用索引： 确保您的数据库表上有适当的索引。索引可以加速连接操作，减小查询的执行时间。
+    - 限制结果集大小： 只检索您实际需要的数据，而不是所有行。可以使用WHERE子句来过滤结果集。
+    - 使用子查询： 使用子查询来限制每个表的数据，然后再连接它们。这可以减少连接的数据量。
+    - 使用分页和分块查询： 如果可能，只检索部分数据，以分批处理。
+
+### MGB属性
+```
+<textarea>
+<table tableName="emp" schema="scott">
+    <columnRenamingRule searchString="^" replaceString="emp_"/> <!--^开头添加 会自动转换成emp后大写-->
+</table>
+</textarea>
+```
+- 取消bigdecimald的生成必须使用columnOverride，只设置JDBCTypeResolver forceBigDecimal是不够的
+### 连接池补充
+关键配置
+_ | DBCP | C3P0 | DRUID
+-------|-------|-------|-------
+最小连接数|minldle(0)|miniPoolSize(3)|minldle(0)
+初始化连接数|innitialSize(0)|initialPoolSize(3)|initialSize
+最大连接数|maxTotal(8)|maxPoolSize(15)|maxActive(8)
+最大等待时间|maxWaitMillis(毫秒)|maxIdleTime(0秒)|maxWait(毫秒)
+
+<textarea>
+<https://blog.51cto.com/u_15553139/5205148>
+</textarea>
+- 基于上表重新总结：DBCP和C3P0属性上的最大区别在于C3P0没有maxIdle属性，也就是说不会手动设置最大空闲数，C3P0的空闲数是自动管理的。
+
+#### DRUID常用属性：initialSize maxActive maxIdle poolPreparedStatements maxOpenPreparedStatement
+
+### 遇到的问题于总结
+
+- autowired的数据在第一次类加载的时候拿不到，要等appContext加载完，下一次才可以拿到值
+- MBG生成的动态sql和mybatis xml可能造成冲突，也就说xml的内容最好自己写
+</mark>
+</div>
+
+<script src="jquery.js"></script>
+<script src="main.js"></script>
+</body>
+</html>

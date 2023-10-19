@@ -124,7 +124,7 @@ public class Tests {
         session.commit();
 
         List record = new ArrayList<Product>();
-        for (int i = 11 ; i < 21 ; i++) {
+        for (int i = 22 ; i < 31 ; i++) {
             record.add(new Product(i, "popo", "mimi", 9000));
         }
 
@@ -141,7 +141,7 @@ public class Tests {
 
         batchInsert0.insertStatements().forEach(productMapper::insert);
 
-        session.commit();
+//        session.commit();
 
 //        PageHelper.startPage(2, 2);
 //        List<EmpSimple> l = mapperSimple.selectAll();
