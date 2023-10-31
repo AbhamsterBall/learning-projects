@@ -2,36 +2,49 @@ package com.hyh.pojo;
 
 //import com.baomidou.mybatisplus.annotation.TableId;
 //import com.baomidou.mybatisplus.annotation.TableName;
-import lombok.Data;
+import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableName;
+import org.springframework.context.annotation.Bean;
+//import lombok.Data;
 
 import java.util.Date;
 import javax.annotation.Generated;
 
-@Data
-//@TableName("emp")
+//@Data
+@TableName(value="emp", schema="scott",
+        keepGlobalPrefix = false, autoResultMap = true) //com.baomidou.mybatisplus.core.exceptions.MybatisPlusException: com.hyh.pojo.Emp Not Found TableInfoCache.
 public class Emp {
-//    @TableId
+    @TableId("empno")
+    @TableField("empno")
     @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2023-10-18T15:58:43.511+08:00", comments="Source field: SCOTT.EMP.EMPNO")
     private Short empEmpno;
 
+    @TableField("ename")
     @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2023-10-18T15:58:43.524+08:00", comments="Source field: SCOTT.EMP.ENAME")
     private String empEname;
 
+    @TableField("job")
     @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2023-10-18T15:58:43.525+08:00", comments="Source field: SCOTT.EMP.JOB")
     private String empJob;
 
+    @TableField("mgr")
     @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2023-10-18T15:58:43.526+08:00", comments="Source field: SCOTT.EMP.MGR")
     private Short empMgr;
 
+    @TableField("hiredate")
     @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2023-10-18T15:58:43.527+08:00", comments="Source field: SCOTT.EMP.HIREDATE")
     private Date empHiredate;
 
+    @TableField("sal")
     @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2023-10-18T15:58:43.528+08:00", comments="Source field: SCOTT.EMP.SAL")
     private long empSal;
 
+    @TableField("comm")
     @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2023-10-18T15:58:43.529+08:00", comments="Source field: SCOTT.EMP.COMM")
     private long empComm;
 
+    @TableField("deptno")
     @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2023-10-18T15:58:43.529+08:00", comments="Source field: SCOTT.EMP.DEPTNO")
     private Short empDeptno;
 

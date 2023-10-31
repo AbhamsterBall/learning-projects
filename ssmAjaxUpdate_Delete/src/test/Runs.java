@@ -2,31 +2,28 @@ package test;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.baomidou.mybatisplus.core.metadata.IPage;
-import com.baomidou.mybatisplus.core.toolkit.support.SFunction;
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 //import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageHelper;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.hyh.mapper.EmpMapper;
 import com.hyh.model.Emp;
 import com.hyh.service.EmpService;
+import com.hyh.service.EntityService;
+import com.hyh.service.impl.EntityServiceImpl;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mybatis.dynamic.sql.SqlColumn;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mock.web.MockHttpServletRequest;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import javax.servlet.http.HttpServletRequest;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.sql.Date;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.List;
-import java.util.concurrent.atomic.AtomicBoolean;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("classpath:ApplicationContext.xml")
@@ -35,8 +32,8 @@ public class Runs {
     @Autowired
     private EmpService empService;
 
-    @Autowired
-    private EmpMapper empMapper;
+//    @Autowired
+//    private EntityMapper<Emp> empMapper;
 
     private static boolean isGetter(Method method) {
         String name = method.getName();
@@ -114,6 +111,43 @@ public class Runs {
         gsonbuilder.serializeNulls();
         Gson gson = gsonbuilder.create();
 //        empService.cQuery(request, new Emp(), 1);
-        System.out.println(gson.toJson(empService.cQuery(request, new Emp(), 1)));
+        System.out.println(gson.toJson(empService.cQuery(request, 1)));
+
+        request = new MockHttpServletRequest();
+//        request.setParameter("ename", "a");
+        request.setParameter("sal", "1000");
+        request.setParameter("job", "new");
+        request.setParameter("comm", "");
+        gsonbuilder = new GsonBuilder();
+        gsonbuilder.serializeNulls();
+        gson = gsonbuilder.create();
+//        empService.cQuery(request, new Emp(), 1);
+        System.out.println(gson.toJson(empService.cQuery(request, 1)));
     }
+
+    @Test
+    public void testUpdate() {
+        MockHttpServletRequest mocked = new MockHttpServletRequest();
+        mocked.setParameter("ename", "King Down");
+        mocked.setParameter("hiredate", "Oct 1, 2023 12:00:00 AM");
+        mocked.setParameter("job", "Manager");
+        mocked.setParameter("mgr", "0");
+        empService.cQueryById(1);
+        empService.cUpdateById(mocked, 1);
+    }
+
+    @Test
+    public void testDate() throws ParseException {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("MMM dd, yyyy hh:mm:ss a");
+        dateFormat.parse("Oct 1, 2023 12:00:00 AM");
+
+        Emp emp = new Emp();
+        emp.setHiredate(new Date(123123123));
+    }
+
+    @Test
+    public void testDelete() {
+        System.out.println(empService.cDeleteById(18));
+    }
+
 }

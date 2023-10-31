@@ -1,0 +1,162 @@
+DEBUG [http-nio-8080-exec-10] - ==>  Preparing: UPDATE scott.emp SET ename=?, job=?, mgr=?, hiredate=?, sal=?, deptno=? WHERE empno=?
+DEBUG [http-nio-8080-exec-10] - ==>  Preparing: UPDATE scott.emp SET ename=?, job=?, mgr=?, hiredate=?, sal=?, deptno=? WHERE empno=?
+DEBUG [http-nio-8080-exec-10] - ==> Parameters: defffffffff(String), Manager(String), 1(Integer), 1970-01-01(Date), 8099(Long), 11(Integer), 1(Integer)
+DEBUG [http-nio-8080-exec-10] - ==> Parameters: defffffffff(String), Manager(String), 1(Integer), 1970-01-01(Date), 8099(Long), 11(Integer), 1(Integer)
+DEBUG [http-nio-8080-exec-1] - ==>  Preparing: UPDATE scott.emp SET ename=?, job=?, mgr=?, hiredate=?, sal=?, deptno=? WHERE empno=?
+DEBUG [http-nio-8080-exec-1] - ==>  Preparing: UPDATE scott.emp SET ename=?, job=?, mgr=?, hiredate=?, sal=?, deptno=? WHERE empno=?
+DEBUG [http-nio-8080-exec-1] - ==> Parameters: defffffffff(String), Manager(String), 1(Integer), 1970-01-01(Date), 8099(Long), 11(Integer), 1(Integer)
+DEBUG [http-nio-8080-exec-1] - ==> Parameters: defffffffff(String), Manager(String), 1(Integer), 1970-01-01(Date), 8099(Long), 11(Integer), 1(Integer)
+DEBUG [main] - ==>  Preparing: SELECT empno,ename,job,mgr,hiredate,sal,comm,deptno FROM scott.emp WHERE empno=?
+DEBUG [main] - ==>  Preparing: SELECT empno,ename,job,mgr,hiredate,sal,comm,deptno FROM scott.emp WHERE empno=?
+DEBUG [main] - ==> Parameters: 1(Integer)
+DEBUG [main] - ==> Parameters: 1(Integer)
+TRACE [main] - <==    Columns: EMPNO, ENAME, JOB, MGR, HIREDATE, SAL, COMM, DEPTNO
+TRACE [main] - <==    Columns: EMPNO, ENAME, JOB, MGR, HIREDATE, SAL, COMM, DEPTNO
+TRACE [main] - <==        Row: 1, de, Manager, 1, 1970-01-01 00:00:00, 8099, null, 11
+TRACE [main] - <==        Row: 1, de, Manager, 1, 1970-01-01 00:00:00, 8099, null, 11
+DEBUG [main] - <==      Total: 1
+DEBUG [main] - <==      Total: 1
+DEBUG [main] - ==>  Preparing: UPDATE scott.emp SET ename=?, job=?, mgr=?, hiredate=?, sal=?, deptno=? WHERE empno=?
+DEBUG [main] - ==>  Preparing: UPDATE scott.emp SET ename=?, job=?, mgr=?, hiredate=?, sal=?, deptno=? WHERE empno=?
+DEBUG [main] - ==> Parameters: defffffffffffffff(String), Manager(String), 1(Integer), 1970-01-01(Date), 8099(Long), 11(Integer), 1(Integer)
+DEBUG [main] - ==> Parameters: defffffffffffffff(String), Manager(String), 1(Integer), 1970-01-01(Date), 8099(Long), 11(Integer), 1(Integer)
+DEBUG [main] - ==>  Preparing: SELECT empno,ename,job,mgr,hiredate,sal,comm,deptno FROM scott.emp WHERE empno=?
+DEBUG [main] - ==>  Preparing: SELECT empno,ename,job,mgr,hiredate,sal,comm,deptno FROM scott.emp WHERE empno=?
+DEBUG [main] - ==> Parameters: 1(Integer)
+DEBUG [main] - ==> Parameters: 1(Integer)
+TRACE [main] - <==    Columns: EMPNO, ENAME, JOB, MGR, HIREDATE, SAL, COMM, DEPTNO
+TRACE [main] - <==    Columns: EMPNO, ENAME, JOB, MGR, HIREDATE, SAL, COMM, DEPTNO
+TRACE [main] - <==        Row: 1, de, Manager, 1, 1970-01-01 00:00:00, 8099, null, 11
+TRACE [main] - <==        Row: 1, de, Manager, 1, 1970-01-01 00:00:00, 8099, null, 11
+DEBUG [main] - <==      Total: 1
+DEBUG [main] - <==      Total: 1
+DEBUG [main] - ==>  Preparing: UPDATE scott.emp SET ename=?, job=?, mgr=?, hiredate=?, sal=?, deptno=? WHERE empno=?
+DEBUG [main] - ==>  Preparing: UPDATE scott.emp SET ename=?, job=?, mgr=?, hiredate=?, sal=?, deptno=? WHERE empno=?
+DEBUG [main] - ==> Parameters: defffffffffffffff(String), Manager(String), 1(Integer), 1970-01-01(Date), 8099(Long), 11(Integer), 1(Integer)
+DEBUG [main] - ==> Parameters: defffffffffffffff(String), Manager(String), 1(Integer), 1970-01-01(Date), 8099(Long), 11(Integer), 1(Integer)
+DEBUG [main] - ==>  Preparing: SELECT empno,ename,job,mgr,hiredate,sal,comm,deptno FROM scott.emp WHERE empno=?
+DEBUG [main] - ==>  Preparing: SELECT empno,ename,job,mgr,hiredate,sal,comm,deptno FROM scott.emp WHERE empno=?
+DEBUG [main] - ==> Parameters: 1(Integer)
+DEBUG [main] - ==> Parameters: 1(Integer)
+TRACE [main] - <==    Columns: EMPNO, ENAME, JOB, MGR, HIREDATE, SAL, COMM, DEPTNO
+TRACE [main] - <==    Columns: EMPNO, ENAME, JOB, MGR, HIREDATE, SAL, COMM, DEPTNO
+TRACE [main] - <==        Row: 1, de, Manager, 1, 1970-01-01 00:00:00, 8099, null, 11
+TRACE [main] - <==        Row: 1, de, Manager, 1, 1970-01-01 00:00:00, 8099, null, 11
+DEBUG [main] - <==      Total: 1
+DEBUG [main] - <==      Total: 1
+DEBUG [main] - ==>  Preparing: UPDATE scott.emp SET ename=?, job=?, mgr=?, hiredate=?, sal=?, deptno=? WHERE empno=?
+DEBUG [main] - ==>  Preparing: UPDATE scott.emp SET ename=?, job=?, mgr=?, hiredate=?, sal=?, deptno=? WHERE empno=?
+DEBUG [main] - ==> Parameters: defffffffffffffff(String), Manager(String), 1(Integer), 1970-01-01(Date), 8099(Long), 11(Integer), 1(Integer)
+DEBUG [main] - ==> Parameters: defffffffffffffff(String), Manager(String), 1(Integer), 1970-01-01(Date), 8099(Long), 11(Integer), 1(Integer)
+DEBUG [main] - ==>  Preparing: SELECT empno,ename,job,mgr,hiredate,sal,comm,deptno FROM scott.emp WHERE empno=?
+DEBUG [main] - ==>  Preparing: SELECT empno,ename,job,mgr,hiredate,sal,comm,deptno FROM scott.emp WHERE empno=?
+DEBUG [main] - ==> Parameters: 1(Integer)
+DEBUG [main] - ==> Parameters: 1(Integer)
+TRACE [main] - <==    Columns: EMPNO, ENAME, JOB, MGR, HIREDATE, SAL, COMM, DEPTNO
+TRACE [main] - <==    Columns: EMPNO, ENAME, JOB, MGR, HIREDATE, SAL, COMM, DEPTNO
+TRACE [main] - <==        Row: 1, de, Manager, 1, 1970-01-01 00:00:00, 8099, null, 11
+TRACE [main] - <==        Row: 1, de, Manager, 1, 1970-01-01 00:00:00, 8099, null, 11
+DEBUG [main] - <==      Total: 1
+DEBUG [main] - <==      Total: 1
+DEBUG [main] - ==>  Preparing: UPDATE scott.emp SET ename=?, job=?, mgr=?, hiredate=?, sal=?, deptno=? WHERE empno=?
+DEBUG [main] - ==>  Preparing: UPDATE scott.emp SET ename=?, job=?, mgr=?, hiredate=?, sal=?, deptno=? WHERE empno=?
+DEBUG [main] - ==> Parameters: defffffffffffffff(String), Manager(String), 1(Integer), 1970-01-01(Date), 8099(Long), 11(Integer), 1(Integer)
+DEBUG [main] - ==> Parameters: defffffffffffffff(String), Manager(String), 1(Integer), 1970-01-01(Date), 8099(Long), 11(Integer), 1(Integer)
+DEBUG [main] - ==>  Preparing: SELECT empno,ename,job,mgr,hiredate,sal,comm,deptno FROM scott.emp WHERE empno=?
+DEBUG [main] - ==>  Preparing: SELECT empno,ename,job,mgr,hiredate,sal,comm,deptno FROM scott.emp WHERE empno=?
+DEBUG [main] - ==> Parameters: 1(Integer)
+DEBUG [main] - ==> Parameters: 1(Integer)
+TRACE [main] - <==    Columns: EMPNO, ENAME, JOB, MGR, HIREDATE, SAL, COMM, DEPTNO
+TRACE [main] - <==    Columns: EMPNO, ENAME, JOB, MGR, HIREDATE, SAL, COMM, DEPTNO
+TRACE [main] - <==        Row: 1, de, Manager, 1, 1970-01-01 00:00:00, 8099, null, 11
+TRACE [main] - <==        Row: 1, de, Manager, 1, 1970-01-01 00:00:00, 8099, null, 11
+DEBUG [main] - <==      Total: 1
+DEBUG [main] - <==      Total: 1
+DEBUG [main] - ==>  Preparing: UPDATE scott.emp SET ename=?, job=?, mgr=?, hiredate=?, sal=?, deptno=? WHERE empno=?
+DEBUG [main] - ==>  Preparing: UPDATE scott.emp SET ename=?, job=?, mgr=?, hiredate=?, sal=?, deptno=? WHERE empno=?
+DEBUG [main] - ==> Parameters: defffffffffffffff(String), Manager(String), 1(Integer), 1970-01-01(Date), 8099(Long), 11(Integer), 1(Integer)
+DEBUG [main] - ==> Parameters: defffffffffffffff(String), Manager(String), 1(Integer), 1970-01-01(Date), 8099(Long), 11(Integer), 1(Integer)
+DEBUG [main] - ==>  Preparing: SELECT empno,ename,job,mgr,hiredate,sal,comm,deptno FROM scott.emp WHERE empno=?
+DEBUG [main] - ==>  Preparing: SELECT empno,ename,job,mgr,hiredate,sal,comm,deptno FROM scott.emp WHERE empno=?
+DEBUG [main] - ==> Parameters: 1(Integer)
+DEBUG [main] - ==> Parameters: 1(Integer)
+TRACE [main] - <==    Columns: EMPNO, ENAME, JOB, MGR, HIREDATE, SAL, COMM, DEPTNO
+TRACE [main] - <==    Columns: EMPNO, ENAME, JOB, MGR, HIREDATE, SAL, COMM, DEPTNO
+TRACE [main] - <==        Row: 1, de, Manager, 1, 1970-01-01 00:00:00, 8099, null, 11
+TRACE [main] - <==        Row: 1, de, Manager, 1, 1970-01-01 00:00:00, 8099, null, 11
+DEBUG [main] - <==      Total: 1
+DEBUG [main] - <==      Total: 1
+DEBUG [main] - ==>  Preparing: UPDATE scott.emp SET ename=?, job=?, mgr=?, hiredate=?, sal=?, deptno=? WHERE empno=?
+DEBUG [main] - ==>  Preparing: UPDATE scott.emp SET ename=?, job=?, mgr=?, hiredate=?, sal=?, deptno=? WHERE empno=?
+DEBUG [main] - ==> Parameters: defffffffffffffff(String), Manager(String), 1(Integer), 1970-01-01(Date), 8099(Long), 11(Integer), 1(Integer)
+DEBUG [main] - ==> Parameters: defffffffffffffff(String), Manager(String), 1(Integer), 1970-01-01(Date), 8099(Long), 11(Integer), 1(Integer)
+DEBUG [main] - ==>  Preparing: SELECT empno,ename,job,mgr,hiredate,sal,comm,deptno FROM scott.emp WHERE empno=?
+DEBUG [main] - ==>  Preparing: SELECT empno,ename,job,mgr,hiredate,sal,comm,deptno FROM scott.emp WHERE empno=?
+DEBUG [main] - ==> Parameters: 1(Integer)
+DEBUG [main] - ==> Parameters: 1(Integer)
+TRACE [main] - <==    Columns: EMPNO, ENAME, JOB, MGR, HIREDATE, SAL, COMM, DEPTNO
+TRACE [main] - <==    Columns: EMPNO, ENAME, JOB, MGR, HIREDATE, SAL, COMM, DEPTNO
+TRACE [main] - <==        Row: 1, de, Manager, 1, 1970-01-01 00:00:00, 8099, null, 11
+TRACE [main] - <==        Row: 1, de, Manager, 1, 1970-01-01 00:00:00, 8099, null, 11
+DEBUG [main] - <==      Total: 1
+DEBUG [main] - <==      Total: 1
+DEBUG [main] - ==>  Preparing: UPDATE scott.emp SET ename=?, job=?, mgr=?, hiredate=?, sal=?, deptno=? WHERE empno=?
+DEBUG [main] - ==>  Preparing: UPDATE scott.emp SET ename=?, job=?, mgr=?, hiredate=?, sal=?, deptno=? WHERE empno=?
+DEBUG [main] - ==> Parameters: defffffffffffffff(String), Manager(String), 1(Integer), 1970-01-01(Date), 8099(Long), 11(Integer), 1(Integer)
+DEBUG [main] - ==> Parameters: defffffffffffffff(String), Manager(String), 1(Integer), 1970-01-01(Date), 8099(Long), 11(Integer), 1(Integer)
+DEBUG [main] - ==>  Preparing: SELECT empno,ename,job,mgr,hiredate,sal,comm,deptno FROM scott.emp WHERE empno=?
+DEBUG [main] - ==>  Preparing: SELECT empno,ename,job,mgr,hiredate,sal,comm,deptno FROM scott.emp WHERE empno=?
+DEBUG [main] - ==> Parameters: 1(Integer)
+DEBUG [main] - ==> Parameters: 1(Integer)
+TRACE [main] - <==    Columns: EMPNO, ENAME, JOB, MGR, HIREDATE, SAL, COMM, DEPTNO
+TRACE [main] - <==    Columns: EMPNO, ENAME, JOB, MGR, HIREDATE, SAL, COMM, DEPTNO
+TRACE [main] - <==        Row: 1, de, Manager, 1, 1970-01-01 00:00:00, 8099, null, 11
+TRACE [main] - <==        Row: 1, de, Manager, 1, 1970-01-01 00:00:00, 8099, null, 11
+DEBUG [main] - <==      Total: 1
+DEBUG [main] - <==      Total: 1
+DEBUG [main] - ==>  Preparing: UPDATE scott.emp SET ename=?, job=?, mgr=?, hiredate=?, sal=?, deptno=? WHERE empno=?
+DEBUG [main] - ==>  Preparing: UPDATE scott.emp SET ename=?, job=?, mgr=?, hiredate=?, sal=?, deptno=? WHERE empno=?
+DEBUG [main] - ==> Parameters: defffffffffffffff(String), Manager(String), 1(Integer), 1970-01-01(Date), 8099(Long), 11(Integer), 1(Integer)
+DEBUG [main] - ==> Parameters: defffffffffffffff(String), Manager(String), 1(Integer), 1970-01-01(Date), 8099(Long), 11(Integer), 1(Integer)
+DEBUG [main] - ==>  Preparing: SELECT empno,ename,job,mgr,hiredate,sal,comm,deptno FROM scott.emp WHERE empno=?
+DEBUG [main] - ==>  Preparing: SELECT empno,ename,job,mgr,hiredate,sal,comm,deptno FROM scott.emp WHERE empno=?
+DEBUG [main] - ==> Parameters: 1(Integer)
+DEBUG [main] - ==> Parameters: 1(Integer)
+TRACE [main] - <==    Columns: EMPNO, ENAME, JOB, MGR, HIREDATE, SAL, COMM, DEPTNO
+TRACE [main] - <==    Columns: EMPNO, ENAME, JOB, MGR, HIREDATE, SAL, COMM, DEPTNO
+TRACE [main] - <==        Row: 1, de, Manager, 1, 1970-01-01 00:00:00, 8099, null, 11
+TRACE [main] - <==        Row: 1, de, Manager, 1, 1970-01-01 00:00:00, 8099, null, 11
+DEBUG [main] - <==      Total: 1
+DEBUG [main] - <==      Total: 1
+DEBUG [main] - ==>  Preparing: UPDATE scott.emp SET ename=?, job=?, mgr=?, hiredate=?, sal=?, deptno=? WHERE empno=?
+DEBUG [main] - ==>  Preparing: UPDATE scott.emp SET ename=?, job=?, mgr=?, hiredate=?, sal=?, deptno=? WHERE empno=?
+DEBUG [main] - ==> Parameters: defffffffffffffff(String), Manager(String), 1(Integer), 1970-01-01(Date), 8099(Long), 11(Integer), 1(Integer)
+DEBUG [main] - ==> Parameters: defffffffffffffff(String), Manager(String), 1(Integer), 1970-01-01(Date), 8099(Long), 11(Integer), 1(Integer)
+DEBUG [main] - ==>  Preparing: SELECT empno,ename,job,mgr,hiredate,sal,comm,deptno FROM scott.emp WHERE empno=?
+DEBUG [main] - ==>  Preparing: SELECT empno,ename,job,mgr,hiredate,sal,comm,deptno FROM scott.emp WHERE empno=?
+DEBUG [main] - ==> Parameters: 1(Integer)
+DEBUG [main] - ==> Parameters: 1(Integer)
+TRACE [main] - <==    Columns: EMPNO, ENAME, JOB, MGR, HIREDATE, SAL, COMM, DEPTNO
+TRACE [main] - <==    Columns: EMPNO, ENAME, JOB, MGR, HIREDATE, SAL, COMM, DEPTNO
+TRACE [main] - <==        Row: 1, de, Manager, 1, 1970-01-01 00:00:00, 8099, null, 11
+TRACE [main] - <==        Row: 1, de, Manager, 1, 1970-01-01 00:00:00, 8099, null, 11
+DEBUG [main] - <==      Total: 1
+DEBUG [main] - <==      Total: 1
+DEBUG [main] - ==>  Preparing: UPDATE scott.emp SET ename=?, job=?, mgr=?, hiredate=?, sal=?, deptno=? WHERE empno=?
+DEBUG [main] - ==>  Preparing: UPDATE scott.emp SET ename=?, job=?, mgr=?, hiredate=?, sal=?, deptno=? WHERE empno=?
+DEBUG [main] - ==> Parameters: defffffffffffffff(String), Manager(String), 1(Integer), 1970-01-01(Date), 8099(Long), 11(Integer), 1(Integer)
+DEBUG [main] - ==> Parameters: defffffffffffffff(String), Manager(String), 1(Integer), 1970-01-01(Date), 8099(Long), 11(Integer), 1(Integer)
+DEBUG [main] - ==>  Preparing: SELECT empno,ename,job,mgr,hiredate,sal,comm,deptno FROM scott.emp WHERE empno=?
+DEBUG [main] - ==>  Preparing: SELECT empno,ename,job,mgr,hiredate,sal,comm,deptno FROM scott.emp WHERE empno=?
+DEBUG [main] - ==> Parameters: 1(Integer)
+DEBUG [main] - ==> Parameters: 1(Integer)
+TRACE [main] - <==    Columns: EMPNO, ENAME, JOB, MGR, HIREDATE, SAL, COMM, DEPTNO
+TRACE [main] - <==    Columns: EMPNO, ENAME, JOB, MGR, HIREDATE, SAL, COMM, DEPTNO
+TRACE [main] - <==        Row: 1, de, Manager, 1, 1970-01-01 00:00:00, 8099, null, 11
+TRACE [main] - <==        Row: 1, de, Manager, 1, 1970-01-01 00:00:00, 8099, null, 11
+DEBUG [main] - <==      Total: 1
+DEBUG [main] - <==      Total: 1
+DEBUG [main] - ==>  Preparing: UPDATE scott.emp SET ename=?, job=?, mgr=?, hiredate=?, sal=?, deptno=? WHERE empno=?
+DEBUG [main] - ==>  Preparing: UPDATE scott.emp SET ename=?, job=?, mgr=?, hiredate=?, sal=?, deptno=? WHERE empno=?
+DEBUG [main] - ==> Parameters: defffffffffffffff(String), Manager(String), 1(Integer), 1970-01-01(Date), 8099(Long), 11(Integer), 1(Integer)
+DEBUG [main] - ==> Parameters: defffffffffffffff(String), Manager(String), 1(Integer), 1970-01-01(Date), 8099(Long), 11(Integer), 1(Integer)

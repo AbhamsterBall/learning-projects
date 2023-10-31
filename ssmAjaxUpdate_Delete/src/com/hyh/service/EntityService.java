@@ -10,8 +10,9 @@ import java.lang.reflect.Method;
 import java.util.List;
 import java.util.Map;
 
-public interface EmpService<T> extends IService<T> {
-    Map<String, Object> cQuery(HttpServletRequest rq, Object model, int page);
+public interface EntityService<T> {
+    Map<String, Object> cQuery(HttpServletRequest rq, int page);
     Map<String, Object> cQueryById(int pk);
-    String cUpdateById(HttpServletRequest rq, Object model, int pk);
+    String cUpdateById(HttpServletRequest rq, int pk);
+    String cDeleteById(int pk);
 }

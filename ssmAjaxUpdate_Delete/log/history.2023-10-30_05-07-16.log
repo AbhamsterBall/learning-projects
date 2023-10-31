@@ -1,0 +1,56 @@
+DEBUG [http-nio-8080-exec-9] - ==>  Preparing: SELECT count(0) FROM emp
+DEBUG [http-nio-8080-exec-9] - ==>  Preparing: SELECT count(0) FROM emp
+DEBUG [http-nio-8080-exec-9] - ==> Parameters: 
+DEBUG [http-nio-8080-exec-9] - ==> Parameters: 
+TRACE [http-nio-8080-exec-9] - <==    Columns: COUNT(0)
+TRACE [http-nio-8080-exec-9] - <==    Columns: COUNT(0)
+TRACE [http-nio-8080-exec-9] - <==        Row: 4974
+TRACE [http-nio-8080-exec-9] - <==        Row: 4974
+DEBUG [http-nio-8080-exec-9] - <==      Total: 1
+DEBUG [http-nio-8080-exec-9] - <==      Total: 1
+DEBUG [http-nio-8080-exec-9] - ==>  Preparing: SELECT * FROM ( SELECT TMP_PAGE.*, ROWNUM PAGEHELPER_ROW_ID FROM ( select * from emp ) TMP_PAGE) WHERE PAGEHELPER_ROW_ID <= ? AND PAGEHELPER_ROW_ID > ?
+DEBUG [http-nio-8080-exec-9] - ==>  Preparing: SELECT * FROM ( SELECT TMP_PAGE.*, ROWNUM PAGEHELPER_ROW_ID FROM ( select * from emp ) TMP_PAGE) WHERE PAGEHELPER_ROW_ID <= ? AND PAGEHELPER_ROW_ID > ?
+DEBUG [http-nio-8080-exec-9] - ==> Parameters: 10(Long), 5(Long)
+DEBUG [http-nio-8080-exec-9] - ==> Parameters: 10(Long), 5(Long)
+TRACE [http-nio-8080-exec-9] - <==    Columns: EMPNO, ENAME, JOB, MGR, HIREDATE, SAL, COMM, DEPTNO, PAGEHELPER_ROW_ID
+TRACE [http-nio-8080-exec-9] - <==    Columns: EMPNO, ENAME, JOB, MGR, HIREDATE, SAL, COMM, DEPTNO, PAGEHELPER_ROW_ID
+TRACE [http-nio-8080-exec-9] - <==        Row: 4623, default, new, 1, 2023-10-23 18:19:43, 1000, 100, 20, 6
+TRACE [http-nio-8080-exec-9] - <==        Row: 4623, default, new, 1, 2023-10-23 18:19:43, 1000, 100, 20, 6
+TRACE [http-nio-8080-exec-9] - <==        Row: 4624, default, new, 1, 2023-10-23 18:19:43, 1000, 100, 20, 7
+TRACE [http-nio-8080-exec-9] - <==        Row: 4624, default, new, 1, 2023-10-23 18:19:43, 1000, 100, 20, 7
+TRACE [http-nio-8080-exec-9] - <==        Row: 4625, default, new, 1, 2023-10-23 18:19:43, 1000, 100, 20, 8
+TRACE [http-nio-8080-exec-9] - <==        Row: 4625, default, new, 1, 2023-10-23 18:19:43, 1000, 100, 20, 8
+TRACE [http-nio-8080-exec-9] - <==        Row: 4626, default, new, 1, 2023-10-23 18:19:43, 1000, 100, 20, 9
+TRACE [http-nio-8080-exec-9] - <==        Row: 4626, default, new, 1, 2023-10-23 18:19:43, 1000, 100, 20, 9
+TRACE [http-nio-8080-exec-9] - <==        Row: 4627, default, new, 1, 2023-10-23 18:19:43, 1000, 100, 20, 10
+TRACE [http-nio-8080-exec-9] - <==        Row: 4627, default, new, 1, 2023-10-23 18:19:43, 1000, 100, 20, 10
+DEBUG [http-nio-8080-exec-9] - <==      Total: 5
+DEBUG [http-nio-8080-exec-9] - <==      Total: 5
+DEBUG [http-nio-8080-exec-2] - ==>  Preparing: SELECT count(0) FROM emp
+DEBUG [http-nio-8080-exec-2] - ==>  Preparing: SELECT count(0) FROM emp
+DEBUG [http-nio-8080-exec-2] - ==> Parameters: 
+DEBUG [http-nio-8080-exec-2] - ==> Parameters: 
+TRACE [http-nio-8080-exec-2] - <==    Columns: COUNT(0)
+TRACE [http-nio-8080-exec-2] - <==    Columns: COUNT(0)
+TRACE [http-nio-8080-exec-2] - <==        Row: 4974
+TRACE [http-nio-8080-exec-2] - <==        Row: 4974
+DEBUG [http-nio-8080-exec-2] - <==      Total: 1
+DEBUG [http-nio-8080-exec-2] - <==      Total: 1
+DEBUG [http-nio-8080-exec-2] - ==>  Preparing: SELECT * FROM ( SELECT TMP_PAGE.*, ROWNUM PAGEHELPER_ROW_ID FROM ( select * from emp ) TMP_PAGE) WHERE PAGEHELPER_ROW_ID <= ? AND PAGEHELPER_ROW_ID > ?
+DEBUG [http-nio-8080-exec-2] - ==>  Preparing: SELECT * FROM ( SELECT TMP_PAGE.*, ROWNUM PAGEHELPER_ROW_ID FROM ( select * from emp ) TMP_PAGE) WHERE PAGEHELPER_ROW_ID <= ? AND PAGEHELPER_ROW_ID > ?
+DEBUG [http-nio-8080-exec-2] - ==> Parameters: 15(Long), 10(Long)
+DEBUG [http-nio-8080-exec-2] - ==> Parameters: 15(Long), 10(Long)
+TRACE [http-nio-8080-exec-2] - <==    Columns: EMPNO, ENAME, JOB, MGR, HIREDATE, SAL, COMM, DEPTNO, PAGEHELPER_ROW_ID
+TRACE [http-nio-8080-exec-2] - <==    Columns: EMPNO, ENAME, JOB, MGR, HIREDATE, SAL, COMM, DEPTNO, PAGEHELPER_ROW_ID
+TRACE [http-nio-8080-exec-2] - <==        Row: 4628, default, new, 1, 2023-10-23 18:19:43, 1000, 100, 20, 11
+TRACE [http-nio-8080-exec-2] - <==        Row: 4628, default, new, 1, 2023-10-23 18:19:43, 1000, 100, 20, 11
+TRACE [http-nio-8080-exec-2] - <==        Row: 4629, default, new, 1, 2023-10-23 18:19:43, 1000, 100, 20, 12
+TRACE [http-nio-8080-exec-2] - <==        Row: 4629, default, new, 1, 2023-10-23 18:19:43, 1000, 100, 20, 12
+TRACE [http-nio-8080-exec-2] - <==        Row: 4630, default, new, 1, 2023-10-23 18:19:43, 1000, 100, 20, 13
+TRACE [http-nio-8080-exec-2] - <==        Row: 4630, default, new, 1, 2023-10-23 18:19:43, 1000, 100, 20, 13
+TRACE [http-nio-8080-exec-2] - <==        Row: 4631, default, new, 1, 2023-10-23 18:19:43, 1000, 100, 20, 14
+TRACE [http-nio-8080-exec-2] - <==        Row: 4631, default, new, 1, 2023-10-23 18:19:43, 1000, 100, 20, 14
+TRACE [http-nio-8080-exec-2] - <==        Row: 4632, default, new, 1, 2023-10-23 18:19:43, 1000, 100, 20, 15
+TRACE [http-nio-8080-exec-2] - <==        Row: 4632, default, new, 1, 2023-10-23 18:19:43, 1000, 100, 20, 15
+DEBUG [http-nio-8080-exec-2] - <==      Total: 5
+DEBUG [http-nio-8080-exec-2] - <==      Total: 5

@@ -1,0 +1,106 @@
+DEBUG [http-nio-8080-exec-4] - ==>  Preparing: SELECT count(0) FROM scott.emp
+DEBUG [http-nio-8080-exec-4] - ==>  Preparing: SELECT count(0) FROM scott.emp
+DEBUG [http-nio-8080-exec-4] - ==> Parameters: 
+DEBUG [http-nio-8080-exec-4] - ==> Parameters: 
+TRACE [http-nio-8080-exec-4] - <==    Columns: COUNT(0)
+TRACE [http-nio-8080-exec-4] - <==    Columns: COUNT(0)
+TRACE [http-nio-8080-exec-4] - <==        Row: 5100
+TRACE [http-nio-8080-exec-4] - <==        Row: 5100
+DEBUG [http-nio-8080-exec-4] - <==      Total: 1
+DEBUG [http-nio-8080-exec-4] - <==      Total: 1
+DEBUG [http-nio-8080-exec-4] - ==>  Preparing: SELECT * FROM ( SELECT TMP_PAGE.*, ROWNUM PAGEHELPER_ROW_ID FROM ( SELECT empno,ename,job,mgr,hiredate,sal,comm,deptno FROM scott.emp ORDER BY empno ASC ) TMP_PAGE) WHERE PAGEHELPER_ROW_ID <= ? AND PAGEHELPER_ROW_ID > ?
+DEBUG [http-nio-8080-exec-4] - ==>  Preparing: SELECT * FROM ( SELECT TMP_PAGE.*, ROWNUM PAGEHELPER_ROW_ID FROM ( SELECT empno,ename,job,mgr,hiredate,sal,comm,deptno FROM scott.emp ORDER BY empno ASC ) TMP_PAGE) WHERE PAGEHELPER_ROW_ID <= ? AND PAGEHELPER_ROW_ID > ?
+DEBUG [http-nio-8080-exec-4] - ==> Parameters: 15(Long), 0(Long)
+DEBUG [http-nio-8080-exec-4] - ==> Parameters: 15(Long), 0(Long)
+TRACE [http-nio-8080-exec-4] - <==    Columns: EMPNO, ENAME, JOB, MGR, HIREDATE, SAL, COMM, DEPTNO, PAGEHELPER_ROW_ID
+TRACE [http-nio-8080-exec-4] - <==    Columns: EMPNO, ENAME, JOB, MGR, HIREDATE, SAL, COMM, DEPTNO, PAGEHELPER_ROW_ID
+TRACE [http-nio-8080-exec-4] - <==        Row: 1, King Down, Manager, 1, 2024-10-01 00:00:00, 5000, null, 10, 1
+TRACE [http-nio-8080-exec-4] - <==        Row: 1, King Down, Manager, 1, 2024-10-01 00:00:00, 5000, null, 10, 1
+TRACE [http-nio-8080-exec-4] - <==        Row: 2, Prince Fly, Analyst, 1, 2023-09-15 00:00:00, 4000, 300, 20, 2
+TRACE [http-nio-8080-exec-4] - <==        Row: 2, Prince Fly, Analyst, 1, 2023-09-15 00:00:00, 4000, 300, 20, 2
+TRACE [http-nio-8080-exec-4] - <==        Row: 3, Bob Johnsn, Clerk, 2, 2023-08-20 00:00:00, 2500, null, 30, 3
+TRACE [http-nio-8080-exec-4] - <==        Row: 3, Bob Johnsn, Clerk, 2, 2023-08-20 00:00:00, 2500, null, 30, 3
+TRACE [http-nio-8080-exec-4] - <==        Row: 4, Ali Brown, Manager, null, 2023-07-10 00:00:00, 5500, null, 10, 4
+TRACE [http-nio-8080-exec-4] - <==        Row: 4, Ali Brown, Manager, null, 2023-07-10 00:00:00, 5500, null, 10, 4
+TRACE [http-nio-8080-exec-4] - <==        Row: 5, Ella Davis, Analyst, 4, 2023-06-05 00:00:00, 4200, 200, 20, 5
+TRACE [http-nio-8080-exec-4] - <==        Row: 5, Ella Davis, Analyst, 4, 2023-06-05 00:00:00, 4200, 200, 20, 5
+TRACE [http-nio-8080-exec-4] - <==        Row: 6, David Lee, Clerk, 4, 2023-05-15 00:00:00, 2700, null, 30, 6
+TRACE [http-nio-8080-exec-4] - <==        Row: 6, David Lee, Clerk, 4, 2023-05-15 00:00:00, 2700, null, 30, 6
+TRACE [http-nio-8080-exec-4] - <==        Row: 7, Sar Wilsn, Manager, null, 2023-04-20 00:00:00, 5200, null, 10, 7
+TRACE [http-nio-8080-exec-4] - <==        Row: 7, Sar Wilsn, Manager, null, 2023-04-20 00:00:00, 5200, null, 10, 7
+TRACE [http-nio-8080-exec-4] - <==        Row: 8, Michl Wite, Analyst, 7, 2023-03-10 00:00:00, 4300, 150, 20, 8
+TRACE [http-nio-8080-exec-4] - <==        Row: 8, Michl Wite, Analyst, 7, 2023-03-10 00:00:00, 4300, 150, 20, 8
+TRACE [http-nio-8080-exec-4] - <==        Row: 9, Oliv Josn, Clerk, 7, 2023-02-25 00:00:00, 2600, null, 30, 9
+TRACE [http-nio-8080-exec-4] - <==        Row: 9, Oliv Josn, Clerk, 7, 2023-02-25 00:00:00, 2600, null, 30, 9
+TRACE [http-nio-8080-exec-4] - <==        Row: 10, Rbert, Manager, null, 2023-01-15 00:00:00, 5100, null, 10, 10
+TRACE [http-nio-8080-exec-4] - <==        Row: 10, Rbert, Manager, null, 2023-01-15 00:00:00, 5100, null, 10, 10
+TRACE [http-nio-8080-exec-4] - <==        Row: 11, Shia, Analyst, 10, 2022-12-10 00:00:00, 4100, 100, 20, 11
+TRACE [http-nio-8080-exec-4] - <==        Row: 11, Shia, Analyst, 10, 2022-12-10 00:00:00, 4100, 100, 20, 11
+TRACE [http-nio-8080-exec-4] - <==        Row: 12, Wilm Davis, Clerk, 10, 2022-11-05 00:00:00, 2800, null, 30, 12
+TRACE [http-nio-8080-exec-4] - <==        Row: 12, Wilm Davis, Clerk, 10, 2022-11-05 00:00:00, 2800, null, 30, 12
+TRACE [http-nio-8080-exec-4] - <==        Row: 13, Emma, Manager, null, 2022-10-20 00:00:00, 5300, null, 10, 13
+TRACE [http-nio-8080-exec-4] - <==        Row: 13, Emma, Manager, null, 2022-10-20 00:00:00, 5300, null, 10, 13
+TRACE [http-nio-8080-exec-4] - <==        Row: 14, dfualt, new, 1, 2023-10-19 00:00:00, 1000, 10, 20, 14
+TRACE [http-nio-8080-exec-4] - <==        Row: 14, dfualt, new, 1, 2023-10-19 00:00:00, 1000, 10, 20, 14
+TRACE [http-nio-8080-exec-4] - <==        Row: 15, defualt, new, 1, 2023-10-19 07:24:35, 1000, 10, 20, 15
+TRACE [http-nio-8080-exec-4] - <==        Row: 15, defualt, new, 1, 2023-10-19 07:24:35, 1000, 10, 20, 15
+DEBUG [http-nio-8080-exec-4] - <==      Total: 15
+DEBUG [http-nio-8080-exec-4] - <==      Total: 15
+DEBUG [http-nio-8080-exec-6] - ==>  Preparing: SELECT empno,ename,job,mgr,hiredate,sal,comm,deptno FROM scott.emp WHERE empno=?
+DEBUG [http-nio-8080-exec-6] - ==>  Preparing: SELECT empno,ename,job,mgr,hiredate,sal,comm,deptno FROM scott.emp WHERE empno=?
+DEBUG [http-nio-8080-exec-6] - ==> Parameters: 1(Integer)
+DEBUG [http-nio-8080-exec-6] - ==> Parameters: 1(Integer)
+TRACE [http-nio-8080-exec-6] - <==    Columns: EMPNO, ENAME, JOB, MGR, HIREDATE, SAL, COMM, DEPTNO
+TRACE [http-nio-8080-exec-6] - <==    Columns: EMPNO, ENAME, JOB, MGR, HIREDATE, SAL, COMM, DEPTNO
+TRACE [http-nio-8080-exec-6] - <==        Row: 1, King Down, Manager, 1, 2024-10-01 00:00:00, 5000, null, 10
+TRACE [http-nio-8080-exec-6] - <==        Row: 1, King Down, Manager, 1, 2024-10-01 00:00:00, 5000, null, 10
+DEBUG [http-nio-8080-exec-6] - <==      Total: 1
+DEBUG [http-nio-8080-exec-6] - <==      Total: 1
+DEBUG [http-nio-8080-exec-8] - ==>  Preparing: SELECT count(0) FROM scott.emp
+DEBUG [http-nio-8080-exec-8] - ==>  Preparing: SELECT count(0) FROM scott.emp
+DEBUG [http-nio-8080-exec-8] - ==> Parameters: 
+DEBUG [http-nio-8080-exec-8] - ==> Parameters: 
+TRACE [http-nio-8080-exec-8] - <==    Columns: COUNT(0)
+TRACE [http-nio-8080-exec-8] - <==    Columns: COUNT(0)
+TRACE [http-nio-8080-exec-8] - <==        Row: 5100
+TRACE [http-nio-8080-exec-8] - <==        Row: 5100
+DEBUG [http-nio-8080-exec-8] - <==      Total: 1
+DEBUG [http-nio-8080-exec-8] - <==      Total: 1
+DEBUG [http-nio-8080-exec-8] - ==>  Preparing: SELECT * FROM ( SELECT TMP_PAGE.*, ROWNUM PAGEHELPER_ROW_ID FROM ( SELECT empno,ename,job,mgr,hiredate,sal,comm,deptno FROM scott.emp ORDER BY empno ASC ) TMP_PAGE) WHERE PAGEHELPER_ROW_ID <= ? AND PAGEHELPER_ROW_ID > ?
+DEBUG [http-nio-8080-exec-8] - ==>  Preparing: SELECT * FROM ( SELECT TMP_PAGE.*, ROWNUM PAGEHELPER_ROW_ID FROM ( SELECT empno,ename,job,mgr,hiredate,sal,comm,deptno FROM scott.emp ORDER BY empno ASC ) TMP_PAGE) WHERE PAGEHELPER_ROW_ID <= ? AND PAGEHELPER_ROW_ID > ?
+DEBUG [http-nio-8080-exec-8] - ==> Parameters: 15(Long), 0(Long)
+DEBUG [http-nio-8080-exec-8] - ==> Parameters: 15(Long), 0(Long)
+TRACE [http-nio-8080-exec-8] - <==    Columns: EMPNO, ENAME, JOB, MGR, HIREDATE, SAL, COMM, DEPTNO, PAGEHELPER_ROW_ID
+TRACE [http-nio-8080-exec-8] - <==    Columns: EMPNO, ENAME, JOB, MGR, HIREDATE, SAL, COMM, DEPTNO, PAGEHELPER_ROW_ID
+TRACE [http-nio-8080-exec-8] - <==        Row: 1, King Down, Manager, 1, 2024-10-01 00:00:00, 5000, null, 10, 1
+TRACE [http-nio-8080-exec-8] - <==        Row: 1, King Down, Manager, 1, 2024-10-01 00:00:00, 5000, null, 10, 1
+TRACE [http-nio-8080-exec-8] - <==        Row: 2, Prince Fly, Analyst, 1, 2023-09-15 00:00:00, 4000, 300, 20, 2
+TRACE [http-nio-8080-exec-8] - <==        Row: 2, Prince Fly, Analyst, 1, 2023-09-15 00:00:00, 4000, 300, 20, 2
+TRACE [http-nio-8080-exec-8] - <==        Row: 3, Bob Johnsn, Clerk, 2, 2023-08-20 00:00:00, 2500, null, 30, 3
+TRACE [http-nio-8080-exec-8] - <==        Row: 3, Bob Johnsn, Clerk, 2, 2023-08-20 00:00:00, 2500, null, 30, 3
+TRACE [http-nio-8080-exec-8] - <==        Row: 4, Ali Brown, Manager, null, 2023-07-10 00:00:00, 5500, null, 10, 4
+TRACE [http-nio-8080-exec-8] - <==        Row: 4, Ali Brown, Manager, null, 2023-07-10 00:00:00, 5500, null, 10, 4
+TRACE [http-nio-8080-exec-8] - <==        Row: 5, Ella Davis, Analyst, 4, 2023-06-05 00:00:00, 4200, 200, 20, 5
+TRACE [http-nio-8080-exec-8] - <==        Row: 5, Ella Davis, Analyst, 4, 2023-06-05 00:00:00, 4200, 200, 20, 5
+TRACE [http-nio-8080-exec-8] - <==        Row: 6, David Lee, Clerk, 4, 2023-05-15 00:00:00, 2700, null, 30, 6
+TRACE [http-nio-8080-exec-8] - <==        Row: 6, David Lee, Clerk, 4, 2023-05-15 00:00:00, 2700, null, 30, 6
+TRACE [http-nio-8080-exec-8] - <==        Row: 7, Sar Wilsn, Manager, null, 2023-04-20 00:00:00, 5200, null, 10, 7
+TRACE [http-nio-8080-exec-8] - <==        Row: 7, Sar Wilsn, Manager, null, 2023-04-20 00:00:00, 5200, null, 10, 7
+TRACE [http-nio-8080-exec-8] - <==        Row: 8, Michl Wite, Analyst, 7, 2023-03-10 00:00:00, 4300, 150, 20, 8
+TRACE [http-nio-8080-exec-8] - <==        Row: 8, Michl Wite, Analyst, 7, 2023-03-10 00:00:00, 4300, 150, 20, 8
+TRACE [http-nio-8080-exec-8] - <==        Row: 9, Oliv Josn, Clerk, 7, 2023-02-25 00:00:00, 2600, null, 30, 9
+TRACE [http-nio-8080-exec-8] - <==        Row: 9, Oliv Josn, Clerk, 7, 2023-02-25 00:00:00, 2600, null, 30, 9
+TRACE [http-nio-8080-exec-8] - <==        Row: 10, Rbert, Manager, null, 2023-01-15 00:00:00, 5100, null, 10, 10
+TRACE [http-nio-8080-exec-8] - <==        Row: 10, Rbert, Manager, null, 2023-01-15 00:00:00, 5100, null, 10, 10
+TRACE [http-nio-8080-exec-8] - <==        Row: 11, Shia, Analyst, 10, 2022-12-10 00:00:00, 4100, 100, 20, 11
+TRACE [http-nio-8080-exec-8] - <==        Row: 11, Shia, Analyst, 10, 2022-12-10 00:00:00, 4100, 100, 20, 11
+TRACE [http-nio-8080-exec-8] - <==        Row: 12, Wilm Davis, Clerk, 10, 2022-11-05 00:00:00, 2800, null, 30, 12
+TRACE [http-nio-8080-exec-8] - <==        Row: 12, Wilm Davis, Clerk, 10, 2022-11-05 00:00:00, 2800, null, 30, 12
+TRACE [http-nio-8080-exec-8] - <==        Row: 13, Emma, Manager, null, 2022-10-20 00:00:00, 5300, null, 10, 13
+TRACE [http-nio-8080-exec-8] - <==        Row: 13, Emma, Manager, null, 2022-10-20 00:00:00, 5300, null, 10, 13
+TRACE [http-nio-8080-exec-8] - <==        Row: 14, dfualt, new, 1, 2023-10-19 00:00:00, 1000, 10, 20, 14
+TRACE [http-nio-8080-exec-8] - <==        Row: 14, dfualt, new, 1, 2023-10-19 00:00:00, 1000, 10, 20, 14
+TRACE [http-nio-8080-exec-8] - <==        Row: 15, defualt, new, 1, 2023-10-19 07:24:35, 1000, 10, 20, 15
+TRACE [http-nio-8080-exec-8] - <==        Row: 15, defualt, new, 1, 2023-10-19 07:24:35, 1000, 10, 20, 15
+DEBUG [http-nio-8080-exec-8] - <==      Total: 15
+DEBUG [http-nio-8080-exec-8] - <==      Total: 15

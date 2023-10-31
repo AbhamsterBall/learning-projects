@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="main.css" rel="stylesheet"/>
+    <script src="marked.min.js"></script>
+    <!--    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.7/styles/darkula.min.css">-->
+    <script src="highlight.min.js"></script>
+    <link href="hljs.css" rel="stylesheet">
+    <meta property="og:title" content="mybatis逆向工程">
+    <script>
+        hljs.initHighlightingOnLoad();
+    </script>
+    <meta name="viewport" content="width=device-width,user-scalable=yes,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0">
+</head>
+<body>
+<div class="main-title">ajax | vue BY HYH <a href="#" onclick="hideAll()" class="expand">代码全部收起</a></div>
+<div class="text"  style="border-radius: 0px 0px 20px 20px;">
+    <h3 style="margin-top:-15px">ajax | vue</h3>
+    <a href="https://baomidou.com/">https://baomidou.com/</a>
+    <br>代码见(ssmAjaxUpdate_Delete)：<a href="https://github.com/AbhamsterBall/mybatis-learning-projects">https://github.com/AbhamsterBall/mybatis-learning-projects</a>
+<mark class="markdown preText">
+Ajax（Asynchronous JavaScript and XML）是一种用于创建异步Web应用程序的技术，它允许在不刷新整个页面的情况下向服务器发送请求并接收响应。传递值或数据给服务器或从服务器接收数据的过程通常需要使用Ajax来实现。下面是使用Ajax传递值的一般步骤：
+
+1. 创建XMLHttpRequest对象：
+在JavaScript中，你可以创建一个XMLHttpRequest对象来与服务器通信。这是实现Ajax的基本步骤之一。
+
+```javascript
+var xhr = new XMLHttpRequest();
+```
+
+2. 设置请求方法和URL：
+使用`xhr.open()`方法来指定HTTP请求的方法（例如，GET或POST）和要请求的URL。
+
+```javascript
+xhr.open("GET", "your_server_endpoint.php", true);
+```
+
+3. 设置回调函数：
+你需要定义一个回调函数，以便在请求完成时处理服务器的响应数据。这个函数通常在`xhr.onload`事件中定义。
+
+```javascript
+xhr.onload = function() {
+if (xhr.status === 200) {
+// 在这里处理服务器响应数据
+var response = xhr.responseText;
+console.log(response);
+}
+};
+```
+
+4. 发送请求：
+使用`xhr.send()`方法来发送请求。如果你需要向服务器传递数据，可以将数据作为参数传递给`send()`方法。
+
+```javascript
+xhr.send();
+```
+
+5. 传递值：
+如果你需要向服务器传递特定的值，可以在`xhr.send()`方法中传递数据，通常是作为查询字符串（GET请求）或请求体（POST请求）的一部分。例如：
+
+```javascript
+var data = "param1=value1&param2=value2";
+xhr.send(data);
+```
+
+在服务器端，你需要处理这些传递的值并根据它们执行相应的操作。具体的服务器端处理方式取决于你使用的后端技术，如PHP、Node.js、Python等。
+
+这是使用Ajax传递值的基本步骤。根据你的具体需求和后端技术，你可能需要进行进一步的定制和处理。
+
+总的来说，如果使用jquery将会简单很多：
+```
+// function loadDoc() {
+//     var xhttp = new XMLHttpRequest();
+//     xhttp.onreadystatechange = function() {
+//         if (this.readyState == 4 && this.status == 200) {
+//             document.getElementById("demo").innerHTML = this.responseText;
+//         }
+//     };
+//     xhttp.open("GET", "/values/text", true);
+//     xhttp.send();
+// }
+function loadDoc() {
+    $.get("/values/text", function(data) {
+        $("#demo").html(data);
+    });
+}
+```
+### 注意
+- 内部application爆红：调整项目设置
+- session和request的地址永远不会变，变的是里面的数据
+
+### log4j
+- 无法set log file
+    - 添加改文件夹夹的写入权限
+    - 使用绝对路径
+- tomcat和测试文件同时执行可能让测试文件没有权限修改该文件，也就是文件被占用
+
+### 原子性
+这是因为 AtomicBoolean 使用了底层的 CPU 指令来实现这些操作，而不是简单的 Java 语言级别的同步。
+
+AtomicBoolean 的原子性基于 Java 中的 java.util.concurrent 包，该包提供了用于多线程编程的工具和类。它使用了底层的硬件支持，如 CAS（Compare and Swap）操作，以确保操作的原子性。
+
+CAS 是一种基本的原子操作，它可以用于更新一个变量的值，但仅在该变量的当前值等于一个期望值时才执行更新操作。如果当前值不等于期望值，CAS 操作会失败，并且不会执行更新。这确保了在多线程环境中，只有一个线程能够成功更新变量的值，其他线程会重试或等待。
+
+### VUE
+动态生成html似乎用vue比js和ajax快一万倍
+- vue中的箭头函数可用于捕获父域，忽略自己的域，从而保持变量的一致性，实现同步更新
+- :xxx语法为:xxx="'expression' + var + 'expression '"
+- html父标签要正确，否则无法映射相应关系
+- html form传值 必须要有name
+- $(() => {}) 页面加载后执行
+#### VUE数据定义
+- 如果处理列表或数组，可以定义为空数组
+- 如果处理单个对象，可以定义为空对象
+- html页面上输出的数据要检查是否为空，不为空才输出，这样可以等待数据拉取而不报错
+- 表单提交到VUE: @submit.prevent="updateRow"
+```
+<textarea>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+</textarea>
+```
+</mark>
+</div>
+
+<script src="jquery.js"></script>
+<script src="main.js"></script>
+</body>
+</html>

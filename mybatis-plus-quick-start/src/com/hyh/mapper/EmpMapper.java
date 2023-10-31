@@ -28,7 +28,7 @@ import org.mybatis.dynamic.sql.util.SqlProviderAdapter;
 import org.mybatis.dynamic.sql.util.mybatis3.MyBatis3Utils;
 
 @Mapper
-public interface EmpMapper extends BaseMapper<Emp> {
+public interface EmpMapper {
 
     @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2023-10-17T21:55:11.658+08:00", comments="Source Table: SCOTT.EMP")
     BasicColumn[] selectList = BasicColumn.columnList(empEmpno, empEname, empJob, empMgr, empHiredate, empSal, empComm, empDeptno);
@@ -97,18 +97,9 @@ public interface EmpMapper extends BaseMapper<Emp> {
     }
 
     @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2023-10-17T21:55:11.65+08:00", comments="Source Table: SCOTT.EMP")
-    default int insertMultiple(Collection<Emp> records) {
-        return MyBatis3Utils.insertMultiple(this::insertMultiple, records, emp, c ->
-            c.map(empEmpno).toProperty("empEmpno")
-            .map(empEname).toProperty("empEname")
-            .map(empJob).toProperty("empJob")
-            .map(empMgr).toProperty("empMgr")
-            .map(empHiredate).toProperty("empHiredate")
-            .map(empSal).toProperty("empSal")
-            .map(empComm).toProperty("empComm")
-            .map(empDeptno).toProperty("empDeptno")
-        );
-    }
+    int insertMultiple(Collection<Emp> records);
+
+    int inMultiple(@Param("records") Collection<Emp> records);
 
     @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2023-10-17T21:55:11.652+08:00", comments="Source Table: SCOTT.EMP")
     default int insertSelective(Emp record) {

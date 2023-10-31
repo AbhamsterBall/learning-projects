@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="main.css" rel="stylesheet"/>
+    <script src="marked.min.js"></script>
+    <!--    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.7/styles/darkula.min.css">-->
+    <script src="highlight.min.js"></script>
+    <link href="hljs.css" rel="stylesheet">
+    <meta property="og:title" content="mybatis逆向工程">
+    <script>
+        hljs.initHighlightingOnLoad();
+    </script>
+    <meta name="viewport" content="width=device-width,user-scalable=yes,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0">
+</head>
+<body>
+<div class="main-title">vue BY HYH <a href="#" onclick="hideAll()" class="expand">代码全部收起</a></div>
+<div class="text"  style="border-radius: 0px 0px 20px 20px;">
+    <h3 style="margin-top:-15px">vue</h3>
+    <a href="https://cli.vuejs.org/zh/guide/installation.html">https://cli.vuejs.org/zh/guide/installation.html</a>
+    <br>代码见：<a href="https://github.com/AbhamsterBall/mybatis-learning-projects">https://github.com/AbhamsterBall/mybatis-learning-projects</a>
+<mark class="markdown preText">
+### RESTful风格
+- 资源（Resources）：在 REST 中，一切都被视为资源，例如文档、图像、视频、数据等。每个资源都有一个唯一的标识符（通常是URL）。
+- 表现层（Representation）：资源的状态可以以不同的表现形式呈现，如JSON、XML、HTML 等。客户端可以通过适当的表现形式来访问和操作资源。
+- 状态无关（Stateless）：每个请求客户端向服务器发出的请求都必须包含足够的信息，以便服务器能够理解该请求。服务器不应该依赖于客户端的上下文或状态信息。
+- 统一接口（Uniform Interface）：RESTful 系统应该具有一致的接口，以简化客户端的操作。这包括使用标准的HTTP方法（GET、POST、PUT、DELETE）来执行各种操作，并使用标准的状态码来表示操作结果。
+- 客户端-服务器分离（Client-Server Separation）：客户端和服务器应该是相互独立的，它们可以独立地进行演化和扩展，而不会相互影响。
+- 层次结构（Layered System）：RESTful 架构支持分层系统，其中每一层执行特定的功能。这种分层可以提高系统的可扩展性和性能。
+- 可缓存性（Caching）：RESTful 支持响应的缓存，从而减少对服务器的负载，提高性能。
+- 无状态（Stateless）：每个请求都应该包含足够的信息，服务器不应该保存客户端的上下文。这有助于简化服务器的实现，并提高可伸缩性。
+ - HTTP 方法中的 "PUT" 是一种用于更新或创建资源的方法。PUT 请求允许客户端指定要更新的资源的标识符，并提供新的资源表示，以替代现有资源或创建一个新资源。这是RESTful API中常见的操作之一。
+```
+~/.vuerc
+
+被保存的 preset 将会存在用户的 home 目录下一个名为 .vuerc 的 JSON 文件里。如果你想要修改被保存的 preset / 选项，可以编辑这个文件。
+```
+### cli的安装是分开的，包括vue add，如果要安装，要在特定目录下安装，且不选择权限限制多的C盘
+```
+PS F:\> cd F:\JAVA\20231010
+PS F:\JAVA\20231010> cd vue-hello
+PS F:\JAVA\20231010\vue-hello> npm run serve
+```
+</mark>
+</div>
+
+<script src="jquery.js"></script>
+<script src="main.js"></script>
+</body>
+</html>

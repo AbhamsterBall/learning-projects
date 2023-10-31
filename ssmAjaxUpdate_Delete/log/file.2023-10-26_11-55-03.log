@@ -1,0 +1,48 @@
+DEBUG [http-nio-8080-exec-5] - ==>  Preparing: SELECT count(0) FROM scott.emp WHERE (Ename LIKE ?)
+DEBUG [http-nio-8080-exec-5] - ==>  Preparing: SELECT count(0) FROM scott.emp WHERE (Ename LIKE ?)
+DEBUG [http-nio-8080-exec-5] - ==> Parameters: %de%(String)
+DEBUG [http-nio-8080-exec-5] - ==> Parameters: %de%(String)
+TRACE [http-nio-8080-exec-5] - <==    Columns: COUNT(0)
+TRACE [http-nio-8080-exec-5] - <==    Columns: COUNT(0)
+TRACE [http-nio-8080-exec-5] - <==        Row: 5087
+TRACE [http-nio-8080-exec-5] - <==        Row: 5087
+DEBUG [http-nio-8080-exec-5] - <==      Total: 1
+DEBUG [http-nio-8080-exec-5] - <==      Total: 1
+DEBUG [http-nio-8080-exec-5] - ==>  Preparing: SELECT * FROM ( SELECT TMP_PAGE.*, ROWNUM PAGEHELPER_ROW_ID FROM ( SELECT empno,ename,job,mgr,hiredate,sal,comm,deptno FROM scott.emp WHERE (Ename LIKE ?) ORDER BY empno ASC ) TMP_PAGE) WHERE PAGEHELPER_ROW_ID <= ? AND PAGEHELPER_ROW_ID > ?
+DEBUG [http-nio-8080-exec-5] - ==>  Preparing: SELECT * FROM ( SELECT TMP_PAGE.*, ROWNUM PAGEHELPER_ROW_ID FROM ( SELECT empno,ename,job,mgr,hiredate,sal,comm,deptno FROM scott.emp WHERE (Ename LIKE ?) ORDER BY empno ASC ) TMP_PAGE) WHERE PAGEHELPER_ROW_ID <= ? AND PAGEHELPER_ROW_ID > ?
+DEBUG [http-nio-8080-exec-5] - ==> Parameters: %de%(String), 15(Long), 0(Long)
+DEBUG [http-nio-8080-exec-5] - ==> Parameters: %de%(String), 15(Long), 0(Long)
+TRACE [http-nio-8080-exec-5] - <==    Columns: EMPNO, ENAME, JOB, MGR, HIREDATE, SAL, COMM, DEPTNO, PAGEHELPER_ROW_ID
+TRACE [http-nio-8080-exec-5] - <==    Columns: EMPNO, ENAME, JOB, MGR, HIREDATE, SAL, COMM, DEPTNO, PAGEHELPER_ROW_ID
+TRACE [http-nio-8080-exec-5] - <==        Row: 14, defualt, new, 1, 2023-10-19 07:24:35, 1000, 10, 20, 1
+TRACE [http-nio-8080-exec-5] - <==        Row: 14, defualt, new, 1, 2023-10-19 07:24:35, 1000, 10, 20, 1
+TRACE [http-nio-8080-exec-5] - <==        Row: 15, defualt, new, 1, 2023-10-19 07:24:35, 1000, 10, 20, 2
+TRACE [http-nio-8080-exec-5] - <==        Row: 15, defualt, new, 1, 2023-10-19 07:24:35, 1000, 10, 20, 2
+TRACE [http-nio-8080-exec-5] - <==        Row: 16, defualt, new, 1, 2023-10-19 07:24:35, 1000, 10, 20, 3
+TRACE [http-nio-8080-exec-5] - <==        Row: 16, defualt, new, 1, 2023-10-19 07:24:35, 1000, 10, 20, 3
+TRACE [http-nio-8080-exec-5] - <==        Row: 17, defualt, new, 1, 2023-10-19 07:24:35, 1000, 10, 20, 4
+TRACE [http-nio-8080-exec-5] - <==        Row: 17, defualt, new, 1, 2023-10-19 07:24:35, 1000, 10, 20, 4
+TRACE [http-nio-8080-exec-5] - <==        Row: 18, defualt, new, 1, 2023-10-19 07:24:35, 1000, 10, 20, 5
+TRACE [http-nio-8080-exec-5] - <==        Row: 18, defualt, new, 1, 2023-10-19 07:24:35, 1000, 10, 20, 5
+TRACE [http-nio-8080-exec-5] - <==        Row: 19, defualt, new, 1, 2023-10-19 07:24:35, 1000, 10, 20, 6
+TRACE [http-nio-8080-exec-5] - <==        Row: 19, defualt, new, 1, 2023-10-19 07:24:35, 1000, 10, 20, 6
+TRACE [http-nio-8080-exec-5] - <==        Row: 20, defualt, new, 1, 2023-10-19 07:24:35, 1000, 10, 20, 7
+TRACE [http-nio-8080-exec-5] - <==        Row: 20, defualt, new, 1, 2023-10-19 07:24:35, 1000, 10, 20, 7
+TRACE [http-nio-8080-exec-5] - <==        Row: 21, defualt, new, 1, 2023-10-19 07:24:35, 1000, 10, 20, 8
+TRACE [http-nio-8080-exec-5] - <==        Row: 21, defualt, new, 1, 2023-10-19 07:24:35, 1000, 10, 20, 8
+TRACE [http-nio-8080-exec-5] - <==        Row: 22, defualt, new, 1, 2023-10-19 07:24:35, 1000, 10, 20, 9
+TRACE [http-nio-8080-exec-5] - <==        Row: 22, defualt, new, 1, 2023-10-19 07:24:35, 1000, 10, 20, 9
+TRACE [http-nio-8080-exec-5] - <==        Row: 23, defualt, new, 1, 2023-10-19 07:24:35, 1000, 10, 20, 10
+TRACE [http-nio-8080-exec-5] - <==        Row: 23, defualt, new, 1, 2023-10-19 07:24:35, 1000, 10, 20, 10
+TRACE [http-nio-8080-exec-5] - <==        Row: 24, defualt, new, 1, 2023-10-19 07:24:35, 1000, 10, 20, 11
+TRACE [http-nio-8080-exec-5] - <==        Row: 24, defualt, new, 1, 2023-10-19 07:24:35, 1000, 10, 20, 11
+TRACE [http-nio-8080-exec-5] - <==        Row: 25, defualt, new, 1, 2023-10-19 07:24:35, 1000, 10, 20, 12
+TRACE [http-nio-8080-exec-5] - <==        Row: 25, defualt, new, 1, 2023-10-19 07:24:35, 1000, 10, 20, 12
+TRACE [http-nio-8080-exec-5] - <==        Row: 26, defualt, new, 1, 2023-10-19 07:24:35, 1000, 10, 20, 13
+TRACE [http-nio-8080-exec-5] - <==        Row: 26, defualt, new, 1, 2023-10-19 07:24:35, 1000, 10, 20, 13
+TRACE [http-nio-8080-exec-5] - <==        Row: 27, defualt, new, 1, 2023-10-19 07:24:35, 1000, 10, 20, 14
+TRACE [http-nio-8080-exec-5] - <==        Row: 27, defualt, new, 1, 2023-10-19 07:24:35, 1000, 10, 20, 14
+TRACE [http-nio-8080-exec-5] - <==        Row: 28, defualt, new, 1, 2023-10-19 07:24:35, 1000, 10, 20, 15
+TRACE [http-nio-8080-exec-5] - <==        Row: 28, defualt, new, 1, 2023-10-19 07:24:35, 1000, 10, 20, 15
+DEBUG [http-nio-8080-exec-5] - <==      Total: 15
+DEBUG [http-nio-8080-exec-5] - <==      Total: 15

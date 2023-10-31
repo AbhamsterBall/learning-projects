@@ -1,0 +1,6 @@
+DEBUG [http-nio-8080-exec-2] - ==>  Preparing: SELECT empno,ename,job,mgr,hiredate,sal,comm,deptno FROM scott.emp WHERE empno=?
+DEBUG [http-nio-8080-exec-2] - ==>  Preparing: SELECT empno,ename,job,mgr,hiredate,sal,comm,deptno FROM scott.emp WHERE empno=?
+DEBUG [http-nio-8080-exec-2] - ==> Parameters: 0(Integer)
+DEBUG [http-nio-8080-exec-2] - ==> Parameters: 0(Integer)
+DEBUG [http-nio-8080-exec-2] - <==      Total: 0
+DEBUG [http-nio-8080-exec-2] - <==      Total: 0

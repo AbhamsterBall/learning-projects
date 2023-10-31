@@ -11,16 +11,16 @@
         <property name="url" value="${oracle_url}"/>
         <property name="username" value="${oracle_username}"/>
         <property name="password" value="${oracle_password}"/>
-<!--        <property name="initialSize" value="5"/>-->
-<!--        <property name="maxActive" value="20"/>-->
-<!--        <property name="maxWait" value="10000"/> &lt;!&ndash;缺省启用公平锁，并发效率下降&ndash;&gt;-->
-<!--        <property name="poolPreparedStatements" value="true"/> &lt;!&ndash;缓存动态语句，对于可以使用游标来查询避免内存溢出很有用&ndash;&gt;-->
-<!--        <property name="maxOpenPreparedStatements" value="100"/>-->
-<!--        <property name="testWhileIdle" value="true"/> &lt;!&ndash;申请连接的时候保证连接有效&ndash;&gt;-->
+        <property name="initialSize" value="5"/>
+        <property name="maxActive" value="20"/>
+        <property name="maxWait" value="10000"/> <!--缺省启用公平锁，并发效率下降-->
+        <property name="poolPreparedStatements" value="true"/> <!--缓存动态语句，对于可以使用游标来查询避免内存溢出很有用-->
+        <property name="maxOpenPreparedStatements" value="100"/>
+        <property name="testWhileIdle" value="true"/> <!--申请连接的时候保证连接有效-->
     </bean>
 
-<!--    <bean id="sessionFactory" class="com.baomidou.mybatisplus.extension.spring.MybatisSqlSessionFactoryBean">-->
-    <bean id="sessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+    <bean id="sessionFactory" class="com.baomidou.mybatisplus.extension.spring.MybatisSqlSessionFactoryBean">
+<!--    <bean id="sessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">-->
         <property name="dataSource" ref="dataSource"/>
         <property name="configLocation" value="classpath:mybatis-config.xml"/>
         <property name="typeAliasesPackage" value="com.hyh.pojo"/>
