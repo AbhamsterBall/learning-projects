@@ -1,0 +1,20 @@
+ INFO [main] - Starting Boot on DESKTOP-HKKVAV2 with PID 32048 (F:\JAVA\20231010\ssmAjax_vue\test\out\production\test started by AJH41 in F:\JAVA\20231010\ssmAjax_vue\test)
+ INFO [main] - Starting Boot on DESKTOP-HKKVAV2 with PID 32048 (F:\JAVA\20231010\ssmAjax_vue\test\out\production\test started by AJH41 in F:\JAVA\20231010\ssmAjax_vue\test)
+DEBUG [main] - Running with Spring Boot v2.2.5.RELEASE, Spring v5.2.5.RELEASE
+DEBUG [main] - Running with Spring Boot v2.2.5.RELEASE, Spring v5.2.5.RELEASE
+ INFO [main] - No active profile set, falling back to default profiles: default
+ INFO [main] - No active profile set, falling back to default profiles: default
+ERROR [main] - 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Web server failed to start. Port 8080 was already in use.
+
+Action:
+
+Identify and stop the process that's listening on port 8080 or configure this application to listen on another port.
+

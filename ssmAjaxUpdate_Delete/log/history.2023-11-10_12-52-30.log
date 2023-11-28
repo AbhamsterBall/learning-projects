@@ -1,0 +1,21 @@
+ INFO [main] - Starting Boot on DESKTOP-HKKVAV2 with PID 12376 (F:\JAVA\20231010\ssmAjax_vue\test\out\production\test started by AJH41 in F:\JAVA\20231010\ssmAjax_vue\test)
+ INFO [main] - Starting Boot on DESKTOP-HKKVAV2 with PID 12376 (F:\JAVA\20231010\ssmAjax_vue\test\out\production\test started by AJH41 in F:\JAVA\20231010\ssmAjax_vue\test)
+DEBUG [main] - Running with Spring Boot v2.2.5.RELEASE, Spring v5.2.5.RELEASE
+DEBUG [main] - Running with Spring Boot v2.2.5.RELEASE, Spring v5.2.5.RELEASE
+ INFO [main] - No active profile set, falling back to default profiles: default
+ INFO [main] - No active profile set, falling back to default profiles: default
+ERROR [main] - 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Parameter 0 of method addCorsMappings in com.hyh.Config required a bean of type 'org.springframework.web.servlet.config.annotation.CorsRegistry' that could not be found.
+
+
+Action:
+
+Consider defining a bean of type 'org.springframework.web.servlet.config.annotation.CorsRegistry' in your configuration.
+

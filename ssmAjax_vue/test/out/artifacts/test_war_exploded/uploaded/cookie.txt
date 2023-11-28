@@ -1,0 +1,2 @@
+#LWP-Cookies-2.0
+Set-Cookie3: empno=3; path="/"; domain=".example.com"; path_spec; domain_dot; secure; expires="1698186600";

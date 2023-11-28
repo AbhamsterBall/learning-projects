@@ -30,7 +30,7 @@
 - 层次结构（Layered System）：RESTful 架构支持分层系统，其中每一层执行特定的功能。这种分层可以提高系统的可扩展性和性能。
 - 可缓存性（Caching）：RESTful 支持响应的缓存，从而减少对服务器的负载，提高性能。
 - 无状态（Stateless）：每个请求都应该包含足够的信息，服务器不应该保存客户端的上下文。这有助于简化服务器的实现，并提高可伸缩性。
- - HTTP 方法中的 "PUT" 是一种用于更新或创建资源的方法。PUT 请求允许客户端指定要更新的资源的标识符，并提供新的资源表示，以替代现有资源或创建一个新资源。这是RESTful API中常见的操作之一。
+    - HTTP 方法中的 "PUT" 是一种用于更新或创建资源的方法。PUT 请求允许客户端指定要更新的资源的标识符，并提供新的资源表示，以替代现有资源或创建一个新资源。这是RESTful API中常见的操作之一。
 ```
 ~/.vuerc
 
@@ -39,9 +39,437 @@
 ### cli的安装是分开的，包括vue add，如果要安装，要在特定目录下安装，且不选择权限限制多的C盘
 ```
 PS F:\> cd F:\JAVA\20231010
+PS F:\JAVA\20231010> vue create vue-hello
+default
+npm
 PS F:\JAVA\20231010> cd vue-hello
 PS F:\JAVA\20231010\vue-hello> npm run serve
 ```
+- Polyfill: Polyfill（多数用法为复数形式：polyfills）是一种用于填补浏览器或JavaScript引擎中功能不支持或不完全支持的缺陷的代码。它的主要作用是在旧版本的浏览器或环境中模拟新的JavaScript特性、API或方法，以便使现代的JavaScript代码能够在这些环境中运行。
+### 一些特点
+- 通过~./vuerc管理配置，插件
+- 通过不同的更简便的语法使用html
+- 通过默认设置的方法加载CSS
+- webpack:
+    - Webpack 是一个开源的前端模块打包工具，它是现代前端开发中非常重要的工具之一。Webpack 的主要功能是将多个前端资源，如 JavaScript、CSS、图像等，打包成一个或多个静态文件，以便用于部署到生产环境。
+    - 链式的最大特点是使用方法构建，应用更加灵活
+- 变量：环境变量，客户端变量（只有 NODE_ENV，BASE_URL 和以 VUE_APP_ 开头的变量将通过 webpack.DefinePlugin 静态地嵌入到客户端侧的代码中。这是为了避免意外公开机器上可能具有相同名称的私钥）和本地变量（local）
+- 导出包使用
+- 组件注册
+- 异步 Web Components 组件：部分功能小入口组件
+- 根据不同的云平台进行部署
+- 保存preset配置，例如try，使用时
+- 添加插件 vue add xxxx
+```
+vue create my-new-project --preset try
+```
+* vue还可以使用vant创建
+#### 问题记录
+- ERROR Error loading vue.config.js: ERROR TypeError: defineConfig is not a function
+- 安装vue的url处理并导入包后项目报错无法打开
+    - npm install vue-file-upload --save  # 推测原因vue版本出现问题 -- 解决方式重新安装vue -- 因为vue的颜色不再改变
+- 无法上传文件
+    - 断点测试传来的文件为null: 原因之一：资料有问题 之二：查看F12Preview
+- 编译速度过慢
+    - 打开并行，增加heap size [ "File" > "Settings" > "Build, Execution, Deployment" > "Compiler" ]
+```
+npm upgrade
+```
+- vue-cli无法正常打开：直接改自带的 hello
+- tomcat和vue-cli运行在不同端口上：tomcat支持跨域请求
+```
+<textarea>
+<filter>
+    <filter-name>CorsFilter</filter-name>
+    <filter-class>org.apache.catalina.filters.CorsFilter</filter-class>
+</filter>
+<filter-mapping>
+    <filter-name>CorsFilter</filter-name>
+    <url-pattern>/*</url-pattern>
+</filter-mapping>
+</textarea>
+```
+- jquery引入：
+```
+npm add jquery
+-----------------------
+import $ from 'jquery';
+```
+- 更换主页：框架Vue中的name属性需要和import中引用的名称一致，**否则不知道引入的是什么**
+- 测试**注意**：尝试清除浏览器缓存并重启开发服务器，以确保新的代码生效。
+```
+vue-cli-service build
+```
+会在 dist/ 目录产生一个可用于生产环境的包，带有 JS/CSS/HTML 的压缩，和为更好的缓存而做的自动的 vendor chunk splitting。它的 chunk manifest 会内联在 HTML 里。
+### 启动
+```
+npx vue-cli-service serve
+```
+- 在生产环境下：运行 npm run build 命令，Vue CLI 将使用动态资源入口进行构建，并生成用于生产环境的文件。
+- 在开发环境下：运行 npm run serve 命令，Vue CLI 将使用静态资源入口，并启动开发服务器，以便你可以快速开发和调试静态资源。
+
+##### 跨域请求（Cross-Origin Request）
+指的是通过一个域名的网页去请求另一个域名下的资源的过程。当你的前端应用运行在一个域名（或端口）下，而需要从另一个域名的服务器上获取数据或资源时，浏览器会执行跨域请求。这是为了确保安全性，以防止潜在的恶意跨域请求。
+```
+public class CorsFilterServlet extends HttpServlet {
+@Override
+protected void doOptions(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    ...
+}
+}
+```
+
+### 整合
+使用Tomcat和Spring作为后端，以及Vue.js作为前端，你可以实现后端数据提供、前端数据获取，并实现动态和静态资源分离的完整Web应用程序。这是一种常见的Web应用程序架构，通常被称为"前后端分离"。
+
+#### ajax库
+vue中常见的ajax库有：
+- axios (流行且广泛使用)
+- vue-resource
+- fetch API
+- jQuery
+
+<textarea><https://vuejsdevelopers.com/2017/08/28/vue-js-ajax-recipes/></textarea>
+
+### ROUTER
+<textarea><https://router.vuejs.org/installation.html></textarea>
+
+### 信息孤岛
+- 数据孤立：数据存储在不同的系统、应用程序或组织中，由于缺乏互操作性或数据标准，这些数据无法被整合或共享。
+- 技术障碍：技术限制或不适当的技术工具可能导致信息孤岛问题，使信息难以获取或共享。
+- 组织文化：某些组织内部的文化和结构问题可能导致信息孤岛问题，因为不同部门或团队之间不愿意共享信息。
+
+### 多文件上传下载
+- 添加包：
+    - commons-fileupload
+    - commons-io **该报错信息可以F12 -> Network -> RED PACKAGE -> Preview**
+<textarea>
+在Web应用程序中实现多文件上传和下载通常涉及到服务器端和客户端的代码。下面我将为你提供一个简单的示例，展示如何在一个典型的Vue.js前端应用和Node.js后端服务器中实现多文件上传和下载。
+
+**多文件上传（前端部分 - Vue.js）：**
+
+1. 在Vue组件中，添加一个HTML表单元素用于文件上传，通常包括一个`<input type="file">`元素，可以处理多个文件：
+
+```vue
+<template>
+  <div>
+    <form method="post" @submit.prevent="uploadFiles" enctype="multipart/form-data">
+      <input type="file" ref="fileInput" multiple>
+      <input type="submit" value="提交"/>
+    </form>
+
+    <span id="re"></span>
+  </div>
+</template>
+
+<script>
+// import $ from 'jquery';
+import axios from 'axios';
+export default {
+  name: "uploadComp",
+  methods: {
+    async uploadFiles() {
+      const files = this.$refs.fileInput.files;
+      const formData = new FormData();
+
+      for (let i = 0; i < files.length; i++) {
+        formData.append("files", files[i]);
+      }
+
+      try {
+        let response = await axios
+            .post("http://localhost:8080/return/upload", formData, {
+              "Content-Type": "multipart/form-data;charset=utf-8",
+            })
+            .then((res) => {
+              return res.data.data;
+            })
+            .catch((error) => {
+              console.error("上传失败", error);
+            });
+
+        // console.log(response);
+        // 处理服务器的响应
+      } catch (error) {
+        console.error("上传失败", error);
+      }
+    }
+  }
+}
+</script>
+```
+
+2. 在`uploadFiles`方法中，我们获取文件的引用，并使用`FormData`对象创建一个包含所有文件的表单数据。然后，你可以使用HTTP库（如Axios）将FormData对象发送到服务器。
+
+**多文件上传（后端部分 - SSM）：**
+
+1. 在Node.js服务器端，你可以使用Express.js作为服务器框架，来处理文件上传请求：
+
+```java
+String s = "上传成功";
+for (MultipartFile file : files) {
+    String classpath = "F:\\JAVA\\20231010\\ssmAjax_vue\\test";
+    File f = new File(classpath + "\\uploaded", file.getOriginalFilename());
+    System.out.println(f.getAbsolutePath());
+
+    try {
+        if (!f.getParentFile().exists()) f.getParentFile().mkdirs();
+        if (!f.exists()) f.createNewFile();
+
+        file.transferTo(f);
+    } catch (IOException e) {
+        s = "上传失败";
+        e.printStackTrace();
+    }
+}
+```
+
+**文件下载：**
+
+npm install --save-dev copy-webpack-plugin
+- 文件下载的时候无法识别文件名，不能使用PathVariable要用RequestParam否则可能会忽略.之后的值
+- 多文件下载：要允许弹窗
+
+##### 前端
+```
+for (let index in files) {
+        try {
+          window.open("http://localhost:8080/download?file=" + files[index])
+
+          $("#re").html("下载成功")
+          setTimeout(() => {
+            $("#re").html("")
+          }, 3000)
+        } catch (error) {
+          $("#re").html(error)
+          console.log(error)
+        }
+      }
+```
+##### 后端
+```
+String s = "下载成功";
+File f = new File(currentPath + innerUploadPath + file);
+
+try {
+    if (f.exists()) {
+        rs.setContentType("multipart/form-data");
+        rs.setCharacterEncoding("utf-8");
+        rs.setHeader("Content-Disposition", "attachment;filename=" + f.getName());
+
+        // 读取文件内容并写入响应输出流
+        FileInputStream fileInputStream = new FileInputStream(f);
+        ServletOutputStream out = rs.getOutputStream();
+        rs.setCharacterEncoding("UTF-8");
+        byte[] buffer = new byte[4096];
+        int bytesRead;
+        while ((bytesRead = fileInputStream.read(buffer)) != -1) {
+            out.write(buffer, 0, bytesRead);
+        }
+
+        fileInputStream.close();
+        out.flush();
+        out.close();
+    }
+} catch (Exception e) {
+    s = "下载失败：" + e.getCause().getMessage();
+    System.out.println("用户选择");
+}
+```
+### Spring Boot
+- 自动配置：Spring Boot提供了许多自动配置类，可以根据项目的依赖和需求自动配置Spring应用程序的各个方面，如数据源、Web服务器、安全等。这些配置类通常在Spring Boot的启动类上使用@SpringBootApplication注解来启用。
+- 类路径扫描：Spring Boot会自动扫描应用程序的类路径，查找标有@Component、@Service、@Repository等注解的Bean，并将它们注册到Spring容器。
+- 外部化配置：Spring Boot支持将应用程序的配置从application.properties或application.yml文件中加载。你可以在这些配置文件中定义应用程序的属性，而不需要显式配置Bean。Spring Boot会自动加载这些属性并应用它们。
+- 注解驱动（**不使用**）：Spring Boot鼓励使用注解来配置Bean、依赖注入和其他Spring功能，而不需要XML配置文件。
+
+- **优势**：使用springBoot之后可以不再创建web，springboot会帮你创建
+
+- 所用包
+    - assertj-core
+    - commons-fileupload
+    - gson
+    - hamcrest
+    - jakarta.annotation
+    - jakarta.xml.bind-api
+    - junit-jupiter
+    - mockito-junit-jupiter-3.1.0.jar
+    - spring-boot-2.2.5.RELEASE.jar
+    spring-boot-autoconfigure-2.2.5.RELEASE.jar
+    spring-boot-starter-2.2.5.RELEASE.jar
+    spring-boot-starter-json-2.2.5.RELEASE.jar
+    spring-boot-starter-logging-2.2.5.RELEASE.jar
+    spring-boot-starter-test-2.2.5.RELEASE.jar
+    spring-boot-starter-tomcat-2.2.5.RELEASE.jar
+    spring-boot-starter-validation-2.2.5.RELEASE.jar
+    spring-boot-starter-web-2.2.5.RELEASE.jar
+    spring-boot-test-2.2.5.RELEASE.jar
+    tomcat-annotations-api-9.0.48.jar
+    tomcat-api-9.0.48.jar
+    tomcat-catalina-9.0.48.jar
+    tomcat-coyote-9.0.48.jar
+    tomcat-el-api-9.0.48.jar
+    tomcat-embed-core-9.0.31.jar
+    tomcat-embed-el-9.0.31.jar
+    tomcat-embed-websocket-9.0.31.jar
+    tomcat-jaspic-api-9.0.48.jar
+    tomcat-jni-9.0.48.jar
+    tomcat-jsp-api-9.0.48.jar
+    tomcat-juli-9.0.48.jar
+    tomcat-servlet-api-9.0.48.jar
+    tomcat-util-9.0.48.jar
+    tomcat-util-scan-9.0.48.jar
+    xmlunit-core-2.6.3.jar
+    spring-test-5.2.4.RELEASE.jar
+- maven
+    <dependency>
+            <groupId>org.apache.tomcat</groupId>
+            <artifactId>tomcat-catalina</artifactId>
+            <version>9.0.48</version> <!-- 使用你需要的 Tomcat 版本 -->
+<!--            <scope>provided</scope> &lt;!&ndash; provided 表示在运行时由容器提供 &ndash;&gt;-->
+        </dependency>
+        <dependency>
+            <groupId>commons-fileupload</groupId>
+            <artifactId>commons-fileupload</artifactId>
+            <version>1.4</version> <!-- 使用你需要的版本 -->
+        </dependency>
+        <dependency>
+            <groupId>com.google.code.gson</groupId>
+            <artifactId>gson</artifactId>
+            <version>2.8.6</version> <!-- Use the version that includes setLenient() -->
+        </dependency>
+    <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter</artifactId>
+            <version>2.2.5.RELEASE</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <version>2.2.5.RELEASE</version>
+<!--            <scope>test</scope>-->
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+            <version>2.2.5.RELEASE</version>
+        </dependency>
+
+#### Spring Boot启动示例
+```
+@SpringBootApplication
+public class Boot {
+    public static void main(String[] args) {
+        SpringApplication.run(Config.class, args);
+    }
+}
+```
+- config dataSource等参数的平替
+```
+@Configuration
+@ComponentScan("com.hyh")
+public class Config extends WebMvcConfigurerAdapter {
+    @Bean(name = "dataSource")
+    @ConfigurationProperties(prefix = "spring.datasource")
+    public DataSource dataSource() {
+        DruidDataSource druidDataSource = new DruidDataSource();
+        druidDataSource.setUrl("jdbc:oracle:thin:@localhost:1521:orcl");
+        druidDataSource.setDriverClassName("oracle.jdbc.driver.OracleDriver");
+        druidDataSource.setUsername("scott");
+        druidDataSource.setPassword("123456");
+        return druidDataSource;
+    }
+
+    @Bean(name = "sessionFactory")
+    public MybatisSqlSessionFactoryBean sessionFactory(DataSource dataSource) {
+        MybatisSqlSessionFactoryBean sessionFactory = new MybatisSqlSessionFactoryBean();
+        sessionFactory.setDataSource(dataSource);
+        sessionFactory.setConfigLocation(new ClassPathResource("mybatis-config.xml"));
+        sessionFactory.setTypeAliasesPackage("com.hyh.model");
+        return sessionFactory;
+    }
+
+    @Bean(name = "mapperScanner")
+    public MapperScannerConfigurer mapperScanner(MybatisSqlSessionFactoryBean sessionFactory) {
+        MapperScannerConfigurer mapperScanner = new MapperScannerConfigurer();
+        mapperScanner.setSqlSessionFactoryBeanName("sessionFactory");
+        mapperScanner.setBasePackage("com.hyh.mapper");
+        return mapperScanner;
+    }
+
+    @Bean
+    public ServletWebServerFactory servletContainer() {
+        TomcatServletWebServerFactory factory = new TomcatServletWebServerFactory();
+        // 在这里可以进行额外的配置
+        // factory.setPort(8080);
+        return factory;
+    }
+
+    @Override
+    public void addCorsMappings(CorsRegistry registry) {
+        registry.addMapping("/**")
+                .allowedOrigins("http://localhost:8081")
+                .allowedMethods("GET", "POST", "PUT", "DELETE")
+                .allowCredentials(true)
+                .maxAge(3600);
+    }
+}
+```
+#### 拦截器
+- 为什么多文件的上传和下载要使用拦截器：
+多文件的上传下载要使用拦截器是因为拦截器可以拦截HTTP请求和响应，并在请求到达控制器之前或之后执行一些操作，例如身份验证、日志记录、响应缓存等。对于多文件上传下载，使用拦截器可以方便地添加额外的功能，例如检查文件类型、大小、权限等，或者在文件上传下载完成后进行清理、统计等操作。
+另外，拦截器还可以用于实现一些通用的功能，例如记录请求和响应的信息、处理异常等。通过使用拦截器，可以将这些通用的功能封装起来，避免在每个控制器方法中重复编写代码。
+总之，使用拦截器可以方便地添加额外的功能和实现一些通用的操作，提高代码的可维护性和可重用性。
+
+##### 简单示例：检测session不允许访问
+    @Around("this(com.hyh.controller.UploadController)") //* class的通配符
+    public Object restrainBeforeUpload(ProceedingJoinPoint jp) throws Throwable {
+        HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.currentRequestAttributes()).getRequest();
+        HttpSession session = request.getSession();
+
+        if (session.getAttribute("hello") != null)
+            return jp.proceed();
+        else
+            return null;
+    }
+
+#### 静态对象
+    public static void main(String[] args) { // 这里面创建的对象是静态对象，也只有这里面的对象可以调用静态方法且地址不同
+        MyClass myObject1 = new MyClass();
+        MyClass myObject2 = new MyClass();
+    }
+
+#### tomcat快速重启
+    edit-configuration -> on update -> hot swap classes
+
+#### 获取本机ip
+```
+        String hostIp = "";
+
+        try {
+            Enumeration<NetworkInterface> interfaces = NetworkInterface.getNetworkInterfaces();
+            while (interfaces.hasMoreElements()) {
+                NetworkInterface iface = interfaces.nextElement();
+                if (iface.isLoopback() || !iface.isUp()) {
+                    continue;
+                }
+
+                Enumeration<InetAddress> addresses = iface.getInetAddresses();
+                while (addresses.hasMoreElements()) {
+                    InetAddress addr = addresses.nextElement();
+                    if (iface.getDisplayName().contains("Intel(R) Wireless-AC 9560 160MHz")
+                    && addr.getHostAddress().split("\\.").length == 4) {
+                        hostIp = addr.getHostAddress();
+                    }
+
+                }
+            }
+        } catch (SocketException e) {
+            e.printStackTrace();
+        }
+```
+
+
+</textarea>
 </mark>
 </div>
 

@@ -1,0 +1,41 @@
+// new Vue({
+//   el: "#update",
+//   data: function () {
+//     return {
+//       data: {},
+//       pkStr: "id",
+//       pk: 1,
+//     };
+//   },
+//   mounted() {
+//     this.getData();
+//   },
+//   methods: {
+//     getData() {
+//       $.get("/entity/", (data) => {
+//         this.data = data.data;
+//         this.pkStr = data.pkStr;
+//         this.pk = data.pk;
+//
+//         $(() => {
+//           $("#" + this.pkStr).prop("readonly", true);
+//           $("#" + this.pkStr).prop("style", "border-bottom:0px");
+//         });
+//       });
+//     },
+//     updateData() {
+//       $.ajax({
+//         type: "GET",
+//         url: "/return/update",
+//         data: $("#form").serializeArray(),
+//         success: (data) => {
+//           $("#re").html(data);
+//           console.log(data);
+//         },
+//         error: (error) => {
+//           console.log(error);
+//         },
+//       });
+//     },
+//   },
+// });
