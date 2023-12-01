@@ -17,7 +17,7 @@
 <body>
 <div class="main-title">ajax BY HYH <a href="#" onclick="hideAll()" class="expand">代码全部收起</a></div>
 <div class="text"  style="border-radius: 0px 0px 20px 20px;">
-    <h3 style="margin-top:-15px">solr</h3>
+    <h3 style="margin-top:-15px">solr & ...</h3>
     <a href="https://baomidou.com/">https://baomidou.com/</a>
     <br>代码见(ssmAjaxUpdate_Delete)：<a href="https://github.com/AbhamsterBall/mybatis-learning-projects">https://github.com/AbhamsterBall/mybatis-learning-projects</a>
 <mark class="markdown preText">
@@ -74,6 +74,153 @@
 
 ### 支付宝
 <https://blog.csdn.net/weixin_45394086/article/details/121843483>
+<https://zhuanlan.zhihu.com/p/596771147>具体见git项目leetcode -> tries -> springboot模块
+
+#### xml文件处理
+xml
+```
+<?xml version="1.0" encoding="UTF-8"?>
+<library>
+    <book id="001">
+        <title>Java Programming</title>
+        <author>John Doe</author>
+        <genre>Programming</genre>
+    </book>
+    <book id="002">
+        <title>Data Structures and Algorithms</title>
+        <author>Jane Smith</author>
+        <genre>Computer Science</genre>
+    </book>
+</library>
+```
+```
+try {
+            // 指定要解析的 XML 文件路径
+            File inputFile = new File("src\\main\\java\\tries\\xml\\test.xml");
+
+            // 创建一个 DocumentBuilderFactory 实例
+            DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
+
+            // 创建一个 DocumentBuilder 实例，用于构建 Document 对象
+            DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
+
+            // 使用 DocumentBuilder 解析 XML 文件，得到一个表示整个 XML 文档的 Document 对象
+            Document doc = dBuilder.parse(inputFile);
+
+            // 对文档进行标准化，使其易于处理
+            doc.getDocumentElement().normalize();
+
+            // 打印根元素的名称
+            System.out.println("Root element: " + doc.getDocumentElement().getNodeName());
+
+            // 获取文档中所有名为 "book" 的元素
+            NodeList bookList = doc.getElementsByTagName("book");
+
+            // 循环遍历所有 "book" 元素
+            for (int temp = 0; temp < bookList.getLength(); temp++) {
+                // 获取当前遍历到的 "book" 元素
+                Node bookNode = bookList.item(temp);
+
+                // 确保当前节点是元素节点
+                if (bookNode.getNodeType() == Node.ELEMENT_NODE) {
+                    // 将当前节点转换为 Element 类型
+                    Element bookElement = (Element) bookNode;
+
+                    // 输出当前书籍的 ID
+                    System.out.println("\nBook ID: " + bookElement.getAttribute("id"));
+
+                    // 输出当前书籍的标题
+                    System.out.println("Title: " + bookElement.getElementsByTagName("title").item(0).getTextContent());
+
+                    // 输出当前书籍的作者
+                    System.out.println("Author: " + bookElement.getElementsByTagName("author").item(0).getTextContent());
+
+                    // 输出当前书籍的流派
+                    System.out.println("Genre: " + bookElement.getElementsByTagName("genre").item(0).getTextContent());
+                }
+            }
+        } catch (Exception e) {
+            // 捕获可能出现的异常并打印异常信息
+            e.printStackTrace();
+        }
+```
+
+#### 通过会话和消息对象发送邮件示例 tries leetcode 加载动画
+```
+ public String sendMail(String mail) {
+        // 配置邮件服务器属性
+        Properties properties = new Properties();
+        properties.put("mail.smtp.host", "smtp.163.com"); // 设置 SMTP 服务器
+        properties.put("mail.smtp.port", "465"); // 设置 SMTP 端口（一般为 25 或 465）
+        properties.put("mail.smtp.auth", "true"); // 启用身份验证
+        properties.put("mail.smtp.ssl.enable", "true"); // 使用 SSL 加密
+
+        // 设置发送邮件的账户信息
+        final String username = "yysxiaohao201802@163.com";
+        final String password = "TRRNKSJQSXZQOLAL"; // 或者是授权码，根据你的邮箱提供商而定
+
+        // 创建会话对象
+        Session session = Session.getInstance(properties, new Authenticator() {
+            @Override
+            protected PasswordAuthentication getPasswordAuthentication() {
+                final PasswordAuthentication passwordAuthentication = new PasswordAuthentication(username,
+                        password);
+                return passwordAuthentication;
+            }
+        });
+
+        StringBuilder code = new StringBuilder();
+
+        try {
+            // 创建消息对象
+            Message message = new MimeMessage(session);
+
+            // 设置发件人
+            message.setFrom(new InternetAddress(username));
+
+            // 设置收件人
+            message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(mail));
+
+            String characters = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+            int length = 6;
+
+            Random random = new Random();
+
+            for (int i = 0; i < length; i++) {
+                int index = random.nextInt(characters.length());
+                code.append(characters.charAt(index));
+            }
+
+            // 设置邮件主题
+            message.setSubject("这是您的验证码");
+
+            // 设置邮件内容
+            message.setText("验证码：" + code);
+
+            // 发送邮件
+            Transport.send(message);
+            System.out.println("邮件发送成功！");
+        } catch (MessagingException e) {
+            e.printStackTrace();
+            System.out.println("邮件发送失败：" + e.getMessage());
+        }
+
+        return code.toString();
+    }
+```
+
+#### Stream java 1.8
+<https://blog.csdn.net/m0_63364103/article/details/130136467>
+
+目的：用于计算，不保存数据
+
+- BaseStream：基础接口，声明了流管理的核心方法；
+
+- Stream：核心接口，声明了流操作的核心方法，其他接口为指定类型的适配
+
+1.普通使用
+
+2.中间操作符，懒惰式设计
 
 </textarea>
 </mark>
