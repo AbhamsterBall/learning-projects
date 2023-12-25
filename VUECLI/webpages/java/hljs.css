@@ -17,7 +17,14 @@
 }
 .hljs-decorator{color:#bab429}
 .coffeescript .javascript,.javascript .xml,.tex .hljs-formula,.xml .javascript,.xml .vbscript,.xml .css,.xml .hljs-cdata,.xml .php,.php .xml{opacity:0.5}
-
+blockquote{
+    background-color: rgb(247, 247, 247);
+    border-radius: 0px;
+    border-left: #4b4b4b 3px solid;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin: 0px;
+}
 
 
 
