@@ -2,9 +2,9 @@ package tries;
 
 import org.junit.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+//import static org.junit.jupiter.api.Assertions.*;
 
-class T2342Test {
+public class T2342Test {
 
     T2342 t = new T2342();
 
