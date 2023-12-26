@@ -49,11 +49,17 @@
             <version>4.12</version>
         </dependency>
 
+<!--        <dependency>-->
+<!--            <groupId>org.elasticsearch.client</groupId>-->
+<!--            <artifactId>elasticsearch-rest-high-level-client</artifactId>-->
+<!--            <version>7.15.2</version> &lt;!&ndash; 请根据你的 Elasticsearch 版本选择合适的版本号 &ndash;&gt;-->
+<!--        </dependency>-->
         <dependency>
             <groupId>org.elasticsearch.client</groupId>
-            <artifactId>elasticsearch-rest-high-level-client</artifactId>
-            <version>7.15.2</version> <!-- 请根据你的 Elasticsearch 版本选择合适的版本号 -->
+            <artifactId>elasticsearch-rest-client</artifactId>
+            <version>8.11.1</version>
         </dependency>
+
 
     </dependencies>
     

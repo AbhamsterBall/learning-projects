@@ -1,13 +1,10 @@
 package tries;
 
 import org.apache.http.HttpHost;
-import org.elasticsearch.action.search.SearchRequest;
-import org.elasticsearch.action.search.SearchResponse;
-import org.elasticsearch.client.RequestOptions;
+import org.apache.http.util.EntityUtils;
 import org.elasticsearch.client.RestClient;
-import org.elasticsearch.client.RestHighLevelClient;
-import org.elasticsearch.index.query.QueryBuilders;
-import org.elasticsearch.search.builder.SearchSourceBuilder;
+import org.elasticsearch.client.Request;
+import org.elasticsearch.client.Response;
 import org.junit.Test;
 
 import java.io.IOException;
@@ -16,25 +13,30 @@ public class TestElastic {
 
     @Test
     public void test() {
-        // 创建 Elasticsearch 客户端连接
-        RestHighLevelClient client = new RestHighLevelClient(
-                RestClient.builder(new HttpHost("localhost", 9200, "http")));
+        // 创建 Elasticsearch REST 客户端连接
+        RestClient restClient = RestClient.builder(
+                        new HttpHost("localhost", 9200, "http"))
+                .build();
 
-        // 构建搜索请求
-        SearchRequest searchRequest = new SearchRequest("myindex"); // 替换为你的索引名称
-        SearchSourceBuilder searchSourceBuilder = new SearchSourceBuilder();
-        searchSourceBuilder.query(QueryBuilders.matchAllQuery()); // 查询所有文档
-        searchRequest.source(searchSourceBuilder);
-
+// 发送 GET 请求查询数据
         try {
-            // 执行搜索请求
-            SearchResponse searchResponse = client.search(searchRequest, RequestOptions.DEFAULT);
+            // 构建查询请求
+            Request request = new Request("GET", "/myindex/_search");
+            // 替换 "your_index" 为你要查询的索引名称
 
-            // 处理搜索结果
-            // 这里可以对搜索结果进行处理，比如获取 hits、聚合等
+            // 添加请求体（如果有的话）
+            // request.setJsonEntity("{ \"query\": { \"match_all\": {} } }");
 
-            // 关闭客户端连接
-            client.close();
+            // 发送请求并获取响应
+            Response response = restClient.performRequest(request);
+
+            // 处理响应结果
+            // 输出响应内容
+//            System.out.println("Response Status: " + response.getStatusLine());
+            System.out.println("Response Body: " + EntityUtils.toString(response.getEntity()));
+
+            // 关闭 REST 客户端连接
+            restClient.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
