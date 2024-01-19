@@ -23,7 +23,7 @@ public class TestSolr {
 
         // 构建 Solr 查询
         SolrQuery query = new SolrQuery();
-        query.setQuery("*:*"); // 查询所有文档，可以替换成你的具体查询条件
+        query.setQuery("sname:张*"); // 查询所有文档，可以替换成你的具体查询条件
         query.setRows(10); // 设置返回结果的行数
 
         try {
@@ -45,7 +45,7 @@ public class TestSolr {
 //                else
 
                 // 在这里处理获取到的字段值
-                System.out.println("ID: " + id + ", Title: " + title);
+                System.out.println("ID: " + id + ", sname: " + title);
             }
         } catch (Exception e) {
             e.printStackTrace();

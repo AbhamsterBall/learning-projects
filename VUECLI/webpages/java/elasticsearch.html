@@ -83,6 +83,7 @@ xpack.security.transport.ssl.enabled: false
 ```
 <https://blog.csdn.net/qq_43080270/article/details/105970462> # 安装ElasticSearch-Head插件  
 - 启动elasticsearch的磁盘需要留有足够的空间，否则cluster的健康度会爆红
+  - 启动命令：npm run start
   - 健康度错误详情【分片故障分析原因】可以通过插件9100端口页面的Any query: GET _cluster/allocation/explain查看  
 - 从elasticsearch->logstash->kabana(通过nsmn的windows服务搭建)[备用]:<https://community.spiceworks.com/how_to/164166-installing-elk-7-elasticsearch-logstash-and-kibana-windows-server-2016-part-1>  
 - 磁盘健康阈值设置：<https://blog.csdn.net/gxb2260/article/details/129108795>   

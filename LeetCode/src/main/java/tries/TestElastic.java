@@ -18,14 +18,20 @@ public class TestElastic {
                         new HttpHost("localhost", 9200, "http"))
                 .build();
 
-// 发送 GET 请求查询数据
+        // 发送 GET 请求查询数据
         try {
             // 构建查询请求
-            Request request = new Request("GET", "/myindex/_search");
+                Request request = new Request("POST", "/mynewindex/_search");
             // 替换 "your_index" 为你要查询的索引名称
 
             // 添加请求体（如果有的话）
-            // request.setJsonEntity("{ \"query\": { \"match_all\": {} } }");
+            request.setJsonEntity("{\n" +
+                    "  \"query\": {\n" +
+                    "    \"match\": {\n" +
+                    "      \"pname\": \"车\"\n" +
+                    "    }\n" +
+                    "  }\n" +
+                    "}");
 
             // 发送请求并获取响应
             Response response = restClient.performRequest(request);
