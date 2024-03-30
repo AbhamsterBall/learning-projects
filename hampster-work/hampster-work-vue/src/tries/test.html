@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .gradient-box {
+            width: 200px;
+            height: 200px;
+            border-radius: 30px;
+            background: linear-gradient(135deg, #ffffff -20%, #eeeeee 20%, #ffffff 60%);
+            animation: keyframes 800ms infinite;
+        }
+
+        @keyframes keyframes {
+            0% {
+                background: linear-gradient(135deg, #ffffff -50%, #eeeeee 0%, #ffffff 50%);
+                opacity: 0.0;
+            }
+            3.33% {
+                background: linear-gradient(135deg, #ffffff -47.77%, #eeeeee 3.33%, #ffffff 53.33%);
+                opacity: 0.1;
+            }
+            6.67% {
+                background: linear-gradient(135deg, #ffffff -43.33%, #eeeeee 6.67%, #ffffff 56.67%);
+                opacity: 0.2;
+            }
+            10% {
+                background: linear-gradient(135deg, #ffffff -40%, #eeeeee 10%, #ffffff 60%);
+                opacity: 0.3;
+            }
+            13.33% {
+                background: linear-gradient(135deg, #ffffff -37.77%, #eeeeee 13.33%, #ffffff 63.33%);
+                opacity: 0.4;
+            }
+            16.67% {
+                background: linear-gradient(135deg, #ffffff -33.33%, #eeeeee 16.67%, #ffffff 66.67%);
+                opacity: 0.5;
+            }
+            20% {
+                background: linear-gradient(135deg, #ffffff -30%, #eeeeee 20%, #ffffff 70%);
+                opacity: 0.6;
+            }
+            23.33% {
+                background: linear-gradient(135deg, #ffffff -26.67%, #eeeeee 23.33%, #ffffff 73.33%);
+                opacity: 0.7;
+            }
+            26.67% {
+                background: linear-gradient(135deg, #ffffff -23.33%, #eeeeee 26.67%, #ffffff 76.67%);
+                opacity: 0.8;
+            }
+            30% {
+                background: linear-gradient(135deg, #ffffff -20%, #eeeeee 30%, #ffffff 80%);
+                opacity: 0.8;
+            }
+            33.33% {
+                background: linear-gradient(135deg, #ffffff -16.67%, #eeeeee 33.33%, #ffffff 83.33%);
+                opacity: 0.9;
+            }
+            36.67% {
+                background: linear-gradient(135deg, #ffffff -13.33%, #eeeeee 36.67%, #ffffff 86.67%);
+                opacity: 0.8;
+            }
+            40% {
+                background: linear-gradient(135deg, #ffffff -10%, #eeeeee 40%, #ffffff 90%);
+                opacity: 0.7;
+            }
+            43.33% {
+                background: linear-gradient(135deg, #ffffff -6.67%, #eeeeee 43.33%, #ffffff 93.33%);
+                opacity: 0.8;
+            }
+            46.67% {
+                background: linear-gradient(135deg, #ffffff -3.33%, #eeeeee 46.67%, #ffffff 96.67%);
+                opacity: 0.9;
+            }
+            50% {
+                background: linear-gradient(135deg, #ffffff 0%, #eeeeee 50%, #ffffff 100%);
+                opacity: 0.8;
+            }
+            53.33% {
+                background: linear-gradient(135deg, #ffffff 3.33%, #eeeeee 53.33%, #ffffff 103.33%);
+                opacity: 0.7;
+            }
+            56.67% {
+                background: linear-gradient(135deg, #ffffff 6.67%, #eeeeee 56.67%, #ffffff 106.67%);
+                opacity: 0.8;
+            }
+            60% {
+                background: linear-gradient(135deg, #ffffff 10%, #eeeeee 60%, #ffffff 110%);
+                opacity: 0.9;
+            }
+            63.33% {
+                background: linear-gradient(135deg, #ffffff 13.33%, #eeeeee 63.33%, #ffffff 113.33%);
+                opacity: 0.8;
+            }
+            66.67% {
+                background: linear-gradient(135deg, #ffffff 16.67%, #eeeeee 66.67%, #ffffff 116.67%);
+                opacity: 0.7;
+            }
+            70% {
+                background: linear-gradient(135deg, #ffffff 20%, #eeeeee 70%, #ffffff 120%);
+                opacity: 0.8;
+            }
+            73.33% {
+                background: linear-gradient(135deg, #ffffff 23.33%, #eeeeee 73.33%, #ffffff 123.33%);
+                opacity: 0.8;
+            }
+            76.67% {
+                background: linear-gradient(135deg, #ffffff 26.67%, #eeeeee 76.67%, #ffffff 126.67%);
+                opacity: 0.7;
+            }
+            80% {
+                background: linear-gradient(135deg, #ffffff 30%, #eeeeee 80%, #ffffff 130%);
+                opacity: 0.6;
+            }
+            83.33% {
+                background: linear-gradient(135deg, #ffffff 33.33%, #eeeeee 83.33%, #ffffff 133.33%);
+                opacity: 0.5;
+            }
+            86.67% {
+                background: linear-gradient(135deg, #ffffff 36.67%, #eeeeee 86.67%, #ffffff 136.67%);
+                opacity: 0.4;
+            }
+            90% {
+                background: linear-gradient(135deg, #ffffff 40%, #eeeeee 90%, #ffffff 140%);
+                opacity: 0.3;
+            }
+            93.33% {
+                background: linear-gradient(135deg, #ffffff 43.33%, #eeeeee 93.33%, #ffffff 143.33%);
+                opacity: 0.2;
+            }
+            96.67% {
+                background: linear-gradient(135deg, #ffffff 46.67%, #eeeeee 96.67%, #ffffff 146.67%);
+                opacity: 0.1;
+            }
+            100% {
+                background: linear-gradient(135deg, #ffffff 50%, #eeeeee 100%, #ffffff 150%);
+                opacity: 0.0;
+            }
+        }
+    </style>
+    <title>Gradient Box</title>
+</head>
+<body>
+    <div class="gradient-box"></div>
+</body>
+</html>

@@ -1,0 +1,44 @@
+DEBUG [http-nio-8080-exec-8] - ==>  Preparing: SELECT count(0) FROM blog_type
+DEBUG [http-nio-8080-exec-8] - ==>  Preparing: SELECT count(0) FROM blog_type
+DEBUG [http-nio-8080-exec-8] - ==> Parameters: 
+DEBUG [http-nio-8080-exec-8] - ==> Parameters: 
+TRACE [http-nio-8080-exec-8] - <==    Columns: count(0)
+TRACE [http-nio-8080-exec-8] - <==    Columns: count(0)
+TRACE [http-nio-8080-exec-8] - <==        Row: 2
+TRACE [http-nio-8080-exec-8] - <==        Row: 2
+DEBUG [http-nio-8080-exec-8] - <==      Total: 1
+DEBUG [http-nio-8080-exec-8] - <==      Total: 1
+DEBUG [http-nio-8080-exec-8] - ==>  Preparing: SELECT bt_id,bt_name FROM blog_type ORDER BY bt_id ASC LIMIT ?
+DEBUG [http-nio-8080-exec-8] - ==>  Preparing: SELECT bt_id,bt_name FROM blog_type ORDER BY bt_id ASC LIMIT ?
+DEBUG [http-nio-8080-exec-8] - ==> Parameters: 1000(Integer)
+DEBUG [http-nio-8080-exec-8] - ==> Parameters: 1000(Integer)
+TRACE [http-nio-8080-exec-8] - <==    Columns: bt_id, bt_name
+TRACE [http-nio-8080-exec-8] - <==    Columns: bt_id, bt_name
+TRACE [http-nio-8080-exec-8] - <==        Row: 1, JAVA
+TRACE [http-nio-8080-exec-8] - <==        Row: 1, JAVA
+TRACE [http-nio-8080-exec-8] - <==        Row: 2, PYTHON
+TRACE [http-nio-8080-exec-8] - <==        Row: 2, PYTHON
+DEBUG [http-nio-8080-exec-8] - <==      Total: 2
+DEBUG [http-nio-8080-exec-8] - <==      Total: 2
+DEBUG [http-nio-8080-exec-2] - ==>  Preparing: SELECT count(0) FROM blog_type
+DEBUG [http-nio-8080-exec-2] - ==>  Preparing: SELECT count(0) FROM blog_type
+DEBUG [http-nio-8080-exec-2] - ==> Parameters: 
+DEBUG [http-nio-8080-exec-2] - ==> Parameters: 
+TRACE [http-nio-8080-exec-2] - <==    Columns: count(0)
+TRACE [http-nio-8080-exec-2] - <==    Columns: count(0)
+TRACE [http-nio-8080-exec-2] - <==        Row: 2
+TRACE [http-nio-8080-exec-2] - <==        Row: 2
+DEBUG [http-nio-8080-exec-2] - <==      Total: 1
+DEBUG [http-nio-8080-exec-2] - <==      Total: 1
+DEBUG [http-nio-8080-exec-2] - ==>  Preparing: SELECT bt_id,bt_name FROM blog_type ORDER BY bt_id ASC LIMIT ?
+DEBUG [http-nio-8080-exec-2] - ==>  Preparing: SELECT bt_id,bt_name FROM blog_type ORDER BY bt_id ASC LIMIT ?
+DEBUG [http-nio-8080-exec-2] - ==> Parameters: 1000(Integer)
+DEBUG [http-nio-8080-exec-2] - ==> Parameters: 1000(Integer)
+TRACE [http-nio-8080-exec-2] - <==    Columns: bt_id, bt_name
+TRACE [http-nio-8080-exec-2] - <==    Columns: bt_id, bt_name
+TRACE [http-nio-8080-exec-2] - <==        Row: 1, JAVA
+TRACE [http-nio-8080-exec-2] - <==        Row: 1, JAVA
+TRACE [http-nio-8080-exec-2] - <==        Row: 2, PYTHON
+TRACE [http-nio-8080-exec-2] - <==        Row: 2, PYTHON
+DEBUG [http-nio-8080-exec-2] - <==      Total: 2
+DEBUG [http-nio-8080-exec-2] - <==      Total: 2

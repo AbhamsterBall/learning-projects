@@ -1,11 +1,21 @@
+<<<<<<< HEAD
  INFO [main] - Starting Boot on DESKTOP-HKKVAV2 with PID 6292 (F:\JAVA\20231010\ssmAjax_vue\test\out\production\test started by AJH41 in F:\JAVA\20231010\ssmAjax_vue\test)
  INFO [main] - Starting Boot on DESKTOP-HKKVAV2 with PID 6292 (F:\JAVA\20231010\ssmAjax_vue\test\out\production\test started by AJH41 in F:\JAVA\20231010\ssmAjax_vue\test)
+=======
+ INFO [main] - Starting Boot on DESKTOP-HKKVAV2 with PID 16908 (F:\JAVA\20231010\ssmAjax_vue\test\out\production\test started by AJH41 in F:\JAVA\20231010\ssmAjax_vue\test)
+ INFO [main] - Starting Boot on DESKTOP-HKKVAV2 with PID 16908 (F:\JAVA\20231010\ssmAjax_vue\test\out\production\test started by AJH41 in F:\JAVA\20231010\ssmAjax_vue\test)
+>>>>>>> temp-branch
 DEBUG [main] - Running with Spring Boot v2.2.5.RELEASE, Spring v5.2.5.RELEASE
 DEBUG [main] - Running with Spring Boot v2.2.5.RELEASE, Spring v5.2.5.RELEASE
  INFO [main] - No active profile set, falling back to default profiles: default
  INFO [main] - No active profile set, falling back to default profiles: default
+<<<<<<< HEAD
  INFO [main] - Started Boot in 4.605 seconds (JVM running for 5.918)
  INFO [main] - Started Boot in 4.605 seconds (JVM running for 5.918)
+=======
+ INFO [main] - Started Boot in 4.658 seconds (JVM running for 5.967)
+ INFO [main] - Started Boot in 4.658 seconds (JVM running for 5.967)
+>>>>>>> temp-branch
 DEBUG [http-nio-8080-exec-1] - ==>  Preparing: SELECT count(0) FROM scott.emp
 DEBUG [http-nio-8080-exec-1] - ==>  Preparing: SELECT count(0) FROM scott.emp
 DEBUG [http-nio-8080-exec-1] - ==> Parameters: 

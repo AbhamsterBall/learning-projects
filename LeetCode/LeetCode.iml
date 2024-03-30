@@ -5,9 +5,12 @@
       <sourceFolder url="file://$MODULE_DIR$/src" isTestSource="false" />
     </content>
   </component>
+<<<<<<< HEAD
   <component name="FacetManager">
     <facet type="Spring" name="Spring">
       <configuration />
     </facet>
   </component>
+=======
+>>>>>>> temp-branch
 </module>

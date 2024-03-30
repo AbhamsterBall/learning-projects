@@ -8,7 +8,11 @@ import org.springframework.context.annotation.ComponentScan;
 import java.io.IOException;
 import java.util.Properties;
 
+<<<<<<< HEAD
 @SpringBootApplication
+=======
+@SpringBootApplication(scanBasePackages = {"com.hyh"})
+>>>>>>> temp-branch
 //@ComponentScan(basePackages = {"com.hyh"}) // 替换成你的 Controller 所在
 public class Boot {
     public static void main(String[] args) {

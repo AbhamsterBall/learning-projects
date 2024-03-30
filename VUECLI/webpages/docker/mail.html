@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="main.css" rel="stylesheet"/>
+    <script src="marked.min.js"></script>
+    <!--    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.7/styles/darkula.min.css">-->
+    <script src="highlight.min.js"></script>
+    <link href="hljs.css" rel="stylesheet">
+    <meta property="og:title" content="mybatis逆向工程">
+    <script>
+        hljs.initHighlightingOnLoad();
+    </script>
+    <meta name="viewport" content="width=device-width,user-scalable=yes,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0">
+</head>
+<body>
+<div class="main-title">mailserver BY HYH <a href="#" onclick="hideAll()" class="expand">代码全部收起</a></div>
+<div class="text"  style="border-radius: 0px 0px 20px 20px;">
+    <h3 style="margin-top:-15px">mailserver</h3>
+    <a href="https://docs.sendgrid.com/">https://docs.sendgrid.com/</a>
+    <br>代码见(ssmAjaxUpdate_Delete)：<a href="https://github.com/AbhamsterBall/mybatis-learning-projects">https://github.com/AbhamsterBall/mybatis-learning-projects</a>
+<mark class="markdown preText">
+### 通过docker搭建自己的mailserver需要以下网址
+🔥 反向ptr记录需要向ip地址拥有者申请，因为反向记录属于 xx.xx.xx.in-addr.arpa 域名，阿里云IP直接开工单找对话客服，很快可以申请  
+- docker-mail搭建示例：https://docker-mailserver.github.io/docker-mailserver/latest/examples  
+> 如果没有对域名备案可以使用网站中的cloudflare-dns来申请证书
+- dns记录验证：https://ifthenel.se/self-hosted-mail-server/ # 其中DKIM的验证不一定准确，可以在https://dmarcly.com/tools/dkim-record-checker 上查看  
+> 如果25端口无法解封可以考虑采取  
+> > 为postfix设置relayhost，测试及可用第三方为：https://docs.sendgrid.com/for-developers/sending-email/getting-started-smtp  
+> > 设置relayhost及验证方式为：https://www.lunanode.com/guides/postfix_smtp_secure  
+- 如果要使用api的方式添加sender, 查看： 
+> https://docs.sendgrid.com/api-reference/sender-verification/create-verified-sender-request
+#### 注意
+如果要通过下一步验证需要打开25端口的映射，添加
+```
+ports:
+- "30:25" # 25端口受到限制，且检验对象为非SSL端口
+- "143:143" # +SSL : 993 # IMAP
+- "110:110" # +SSL : 465 # POP3
+```
+
+### 测试过程（没有申请SSL和域名备案的情况下）
+#### smtp测试
+https://www.cnblogs.com/taoshihan/p/6732039.html
+```
+[root@hampster config]# telnet localhost 30
+...
+220 mail.hampster.work ESMTP
+HELO mail.hampster.work
+250 mail.hampster.work
+auth login
+334 VXNlcm5hbWU6
+XXXXXXXXXXXXXXXXXXXXXX # 账号的base64编码
+334 UGFzc3dvcmQ6
+XXXXXXXXXXXXXXXXXXXXXX # 密码的base64编码
+235 2.7.0 Authentication successful
+mail from:<hampster@hampster.work>
+250 2.1.0 Ok
+rcpt to:<ajh415@hotmail.com>
+250 2.1.5 Ok
+data
+354 End data with <CR><LF>.<CR><LF>
+From:<hampster@hampster.work>
+To:<ajh415@hotmail.com>
+Subject:ning
+
+awefawefawef,juisdfo,wfaweyfihgh.awefjaweijf?jwefoiuvbhhsr!!!!
+awefjiowefowaif------!!!!!
+.
+250 2.0.0 Ok: queued as D790522CA3
+```
+> 如果验证时没有发送出去，可以使用邮件客户端（例如163邮箱大师）登录再发送，就可以成功
+
+#### imap测试
+```
+[root@hampster ~]# telnet mail.hampster.work 143
+Trying 47.94.167.22...
+Connected to mail.hampster.work.
+Escape character is '^]'.
+* OK [CAPABILITY IMAP4rev1 SASL-IR LOGIN-REFERRALS ID ENABLE IDLE LITERAL+ AUTH=PLAIN AUTH=LO
+a login hampster@hampster.work PASSWORD
+a OK [CAPABILITY IMAP4rev1 SASL-IR LOGIN-REFERRALS ID ENABLE IDLE SORT SORT=DISPLAY THREAD=REDSUBJECT MULTIAPPEND URL-PARTIAL CATENATE UNSELECT CHILDREN NAMESPACE UIDPLUS LIST-EXTENDED ICH ESORT SEARCHRES WITHIN CONTEXT=SEARCH LIST-STATUS BINARY MOVE SNIPPET=FUZZY PREVIEW=FUZZY AL+ NOTIFY SPECIAL-USE QUOTA] Logged in
+a LIST "" "*"
+* LIST (\HasNoChildren \Trash) "." Trash
+* LIST (\HasNoChildren \Sent) "." Sent
+* LIST (\HasNoChildren \Junk) "." Junk
+* LIST (\HasNoChildren \Drafts) "." Drafts
+* LIST (\HasNoChildren) "." INBOX
+a OK List completed (0.002 + 0.000 + 0.001 secs).
+a EXAMINE INBOX
+* FLAGS (\Answered \Flagged \Deleted \Seen \Draft)
+* OK [PERMANENTFLAGS ()] Read-only mailbox.
+* 0 EXISTS
+* 0 RECENT
+* OK [UIDVALIDITY 1709077637] UIDs valid
+* OK [UIDNEXT 1] Predicted next UID
+a OK [READ-ONLY] Examine completed (0.001 + 0.000 secs).
+```
+</mark>
+</div>
+
+<script src="jquery.js"></script>
+<script src="main.js"></script>
+</body>
+</html>
