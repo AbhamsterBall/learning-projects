@@ -150,7 +150,7 @@ public class SMSMail {
         try {
             javax.mail.Message message = new MimeMessage(session);
             message.setFrom(new InternetAddress("info@hampster.work"));
-            message.setRecipients(javax.mail.Message.RecipientType.TO, InternetAddress.parse("yysxiaohao201802@163.com"));
+            message.setRecipients(javax.mail.Message.RecipientType.TO, InternetAddress.parse("ajh415@hotmail.com"));
 
             String characters = getProps().getProperty("spring.data.sendgrid.api-key");
             int length = 6;
