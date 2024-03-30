@@ -1,0 +1,10 @@
+DEBUG [http-nio-8080-exec-1] - ==>  Preparing: SELECT empno,ename,job,mgr,hiredate,sal,comm,deptno FROM scott.emp WHERE empno=?
+DEBUG [http-nio-8080-exec-1] - ==>  Preparing: SELECT empno,ename,job,mgr,hiredate,sal,comm,deptno FROM scott.emp WHERE empno=?
+DEBUG [http-nio-8080-exec-1] - ==> Parameters: 1(Integer)
+DEBUG [http-nio-8080-exec-1] - ==> Parameters: 1(Integer)
+TRACE [http-nio-8080-exec-1] - <==    Columns: EMPNO, ENAME, JOB, MGR, HIREDATE, SAL, COMM, DEPTNO
+TRACE [http-nio-8080-exec-1] - <==    Columns: EMPNO, ENAME, JOB, MGR, HIREDATE, SAL, COMM, DEPTNO
+TRACE [http-nio-8080-exec-1] - <==        Row: 1, John Doe, Manager, null, 2023-10-01 00:00:00, 5000, null, 10
+TRACE [http-nio-8080-exec-1] - <==        Row: 1, John Doe, Manager, null, 2023-10-01 00:00:00, 5000, null, 10
+DEBUG [http-nio-8080-exec-1] - <==      Total: 1
+DEBUG [http-nio-8080-exec-1] - <==      Total: 1

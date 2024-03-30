@@ -1,0 +1,104 @@
+<script setup>
+import loginIcon from './svg/LoginIcon.vue'
+import $ from 'jquery'
+import { setColor } from './svg/LoginIcon.vue'
+import login from "./index/Login.vue";
+
+const props = defineProps({
+  title: String,
+})
+
+setColor("white")
+
+$(() => {
+  $(".loginIcon").hover(
+      function() {
+        $(".login-mini-back").css("opacity", "1")
+        setColor("#2759b2")
+      },
+      function() {
+        $(".login-mini-back").css("opacity", "0")
+        setColor("white")
+      }
+  );
+});
+
+function loginClick() {
+  $(".mask-display").css("display", "block")
+
+  setTimeout(() => {
+    $(".mask-display").css("opacity", "1")
+  }, 300)
+}
+</script>
+
+<template>
+	<div class="main-title">
+    {{ props.title }}
+	</div>
+  <a href="#" @click="loginClick" class="login">登录</a>
+  <a href="#" class="login-mini-back"></a>
+  <login-icon @click="loginClick" width="48" height="48" color="white" class="loginIcon"/>
+  <login/>
+</template>
+
+<style scoped>
+.login {
+  position: absolute;
+  right: 30px;
+  top: 30px;
+  //color: #2759b2;
+  color: white;
+  text-decoration: none;
+  font-size: 18px;
+  margin: 20px;
+  transition: 0.3s;
+  border: white solid 2px;
+  padding: 15px 36px;
+  border-radius: 20px;
+  box-shadow: 0 0 0 3px #2759b2; /* 模拟边框 */
+  outline: #2759b2 solid 1.5px;
+  //background-color: white;
+}
+.login:hover {
+  background-color: white;
+  color: #2759b2;
+  border: #2759b2 solid 2px;
+  box-shadow: 0 0 0 3px white; /* 模拟边框 */
+  outline: #2759b2 solid 1.5px;
+}
+.loginIcon {
+  display: none;
+  position: absolute;
+  right: 56px;
+  top: 56px;
+}
+.loginIcon:hover {
+  cursor: pointer;
+}
+.login-mini-back {
+  display: block;
+  opacity: 0;
+  position: absolute;
+  right: 61px;
+  top: 61px;
+  width: 38px;
+  height: 38px;
+  border-radius: 24px;
+  background-color: white;
+  border-width: 0px;
+  outline: none;
+  transition: .3s;
+}
+@media screen and (max-width: 1000px) {
+  .main-title {
+    letter-spacing: 5px;
+  }
+  .login {
+    display: none;
+  }
+  .loginIcon {
+    display: block;
+  }
+}
+</style>

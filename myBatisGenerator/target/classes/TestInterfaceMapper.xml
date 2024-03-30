@@ -1,0 +1,45 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hyh.dao.ProductDAO">  <!--namespace是与接口化相关的接口-->
+    <!--查询-->
+    <resultMap type="com.hyh.pojo.Product" id="productSet">
+        <id column="id" property="id"/>
+        <result column="name" property="name"/>
+        <result column="description" property="description"/>
+        <result column="price" property="price"/>
+    </resultMap>
+    <!--通过id查询-->
+    <select id="mybatisList" resultType="com.hyh.pojo.Product">
+        select * from product
+    </select>
+
+    <!--查询所有-->
+    <select id="getAll" resultType="com.hyh.pojo.User">
+        SELECT * FROM mybatis_user
+    </select>
+
+    <!--更新-->
+    <update id="update">
+        update mybatis_user
+        <set>
+            <if test="name != null">name=#{name},</if>
+            <if test="sex != null">sex=#{sex},</if>
+            <if test="age != null">age=#{age}</if>
+        </set>
+        where id=#{id}
+    </update>
+
+    <select id="findUserList" resultMap="userList">
+        SELECT e.empno, dept.dname FROM scott.emp e LEFT JOIN scott.dept dept ON e.deptno = dept.deptno
+    </select>
+    <resultMap id="userList" type="com.hyh.pojo.Dleft">
+        <id column="EMPNO" property="empno" jdbcType="INTEGER" />
+        <result column="DNAME" property="dname" jdbcType="VARCHAR" />
+        <!--    <association property="rank" column="grade" select="findUserRoleByUserId"></association>-->
+    </resultMap>
+    <!--  <select id="findUserRoleByUserId" resultType="com.hyh.pojo.Rank">-->
+    <!--    SELECT r.grade FROM salgrade r WHERE r.losal &lt; (select sal from emp where empno=#{id}) AND r.hisal > (select sal from emp where empno=#{id}) LIMIT 1-->
+    <!--  </select>-->
+
+</mapper>

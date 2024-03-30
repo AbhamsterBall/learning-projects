@@ -1,0 +1,52 @@
+<%--
+  Created by IntelliJ IDEA.
+  User: AJH41
+  Date: 2023-10-30
+  Time: 5:41 PM
+  To change this template use File | Settings | File Templates.
+--%>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<html>
+<head>
+    <title>Title</title>
+    <style><%@include file="css/all.css"%></style>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+</head>
+<body>
+<div class="middle" id="emp">
+
+    <div id="re" style="height: 30px;"></div>
+    <form id="form" class="form-container" v-if="columnName.length > 0" @submit.prevent="search">
+        <input type="text" v-for="key in columnName" :placeholder="key" :name="key" :style="'width:' + inputWidth"/>
+        <input type="submit" value="search"/>
+    </form>
+    <form id="formInsert" class="form-container" v-if="columnName.length > 0" @submit.prevent="insertRow">
+        <input type="text" v-for="key in columnName" :placeholder="key" :name="key" :style="'width:' + inputWidth"/>
+        <input type="submit" value="insert"/>
+    </form>
+    <table class="tableStyle">
+        <tr v-if="columnName.length > 0">
+            <th v-for="key in columnName">{{ key }}</th>
+            <th>update</th>
+            <th>delete</th>
+        </tr>
+        <tbody v-if="data !== null && data.length > 0">
+        <tr v-for="item in data">
+            <td v-for="key in Object.keys(data[0])">{{ item[key] || "N/A"}}</td>
+            <td><a :href="'/update/' + item[pkStr]">update</a></td>
+            <td><a @click="deleteRow(item[pkStr])">delete</a></td> <%--@click="delete"--%>
+        </tr>
+        </tbody>
+    </table>
+
+    <div class="menu">
+        <a @click="home">home</a>
+        <a @click="up">up</a>
+        <a @click="next">next</a>
+        <a @click="footer">end</a>
+    </div>
+</div>
+</body>
+</html>
+<script><%@include file="js/emp.js"%></script>

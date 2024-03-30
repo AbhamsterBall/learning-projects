@@ -1,0 +1,2 @@
+DEBUG [http-nio-8080-exec-7] - ==>  Preparing: SELECT empno,ename,job,mgr,hiredate,sal,comm,deptno FROM scott.emp WHERE (ename LIKE ? AND job LIKE ? AND mgr LIKE ? AND empno = ? AND comm = ? AND deptno = ? AND hiredate = ? AND sal = ?)
+DEBUG [http-nio-8080-exec-7] - ==>  Preparing: SELECT empno,ename,job,mgr,hiredate,sal,comm,deptno FROM scott.emp WHERE (ename LIKE ? AND job LIKE ? AND mgr LIKE ? AND empno = ? AND comm = ? AND deptno = ? AND hiredate = ? AND sal = ?)

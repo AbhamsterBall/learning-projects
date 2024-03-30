@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="main.css" rel="stylesheet"/>
+    <script src="marked.min.js"></script>
+    <!--    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.7/styles/darkula.min.css">-->
+    <script src="highlight.min.js"></script>
+    <link href="hljs.css" rel="stylesheet">
+    <meta property="og:title" content="mybatis逆向工程">
+    <script>
+        hljs.initHighlightingOnLoad();
+    </script>
+    <meta name="viewport" content="width=device-width,user-scalable=yes,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0">
+</head>
+<body>
+<div class="main-title">ajax BY HYH <a href="#" onclick="hideAll()" class="expand">代码全部收起</a></div>
+<div class="text"  style="border-radius: 0px 0px 20px 20px;">
+    <h3 style="margin-top:-15px">ElasticSearch</h3>
+    <a href="https://baomidou.com/">https://baomidou.com/</a>
+    <br>代码见(ssmAjaxUpdate_Delete)：<a href="https://github.com/AbhamsterBall/mybatis-learning-projects">https://github.com/AbhamsterBall/mybatis-learning-projects</a>
+<mark class="markdown preText">
+<textarea>
+### 下载
+<https://www.elastic.co/downloads/elasticsearch>
+
+### 文档
+<https://www.elastic.co/guide/en/elasticsearch/reference/8.11/setup.html>
+    
+### 启动
+1. 将bin目录加入环境变量
+2. 执行 `elasticsearch.bat`
+> 如果遇到jdk找不到
+```
+hjava.nio.file.NoSuchFileException: F:\jdk1.8.0_201\lib\tools.jar
+```
+> 将jdk复制到所显示目录
+
+> The system environment variable ES_JAVA_HOME should be set to the path of the JDK installation that you want the service to use. 
+
+### windows安装服务并启动
+```
+C:\Users\AJH41>elasticsearch-service.bat install
+C:\Users\AJH41>elasticsearch-service.bat start
+Usage: elasticsearch-service.bat install|remove|start|stop|manager
+```
+
+### 默认访问网址
+<https://192.168.17.2:9200>  或者
+<https://localhost:9200>  
+- 具体查看[logs目录下的]日志
+
+### 添加用户及权限
+```
+C:\Users\AJH41>elasticsearch-users useradd admin
+```
+config/roles.yum  
+```
+admin_role:
+  cluster: ["monitor", "manage"]
+  indices:
+    - names: ["*"]
+      privileges: ["all"]
+```
+config/users_roles  
+```
+admin_role:admin
+```
+
+### 导入数据
+- 使用Logstash
+<https://www.elastic.co/downloads/logstash>
+
+- 关闭elasticsearch ssl 及 用户名，密码验证
+/config/elasticsearch.yml
+修改以下条目
+```
+xpack.security.enabled: false
+xpack.security.enrollment.enabled: false
+xpack.security.http.ssl.enabled: false
+xpack.security.transport.ssl.enabled: false
+```
+<https://blog.csdn.net/qq_43080270/article/details/105970462> # 安装ElasticSearch-Head插件  
+- 启动elasticsearch的磁盘需要留有足够的空间，否则cluster的健康度会爆红
+  - 启动命令：npm run start
+  - 健康度错误详情【分片故障分析原因】可以通过插件9100端口页面的Any query: GET _cluster/allocation/explain查看  
+- 从elasticsearch->logstash->kabana(通过nsmn的windows服务搭建)[备用]:<https://community.spiceworks.com/how_to/164166-installing-elk-7-elasticsearch-logstash-and-kibana-windows-server-2016-part-1>  
+- 磁盘健康阈值设置：<https://blog.csdn.net/gxb2260/article/details/129108795>   
+
+logstash根目录/logstash.conf
+```
+input {
+  jdbc {
+    jdbc_driver_library => "G:\\Downloads\\mysql-connector-java-8.0.30.jar"
+    jdbc_driver_class => "com.mysql.jdbc.Driver"
+    jdbc_connection_string => "jdbc:mysql://localhost:3306/manage"
+    jdbc_user => "root"
+    jdbc_password => "123456"
+    schedule => "* * * * *"
+    statement => "SELECT * FROM product#"
+  }
+}
+
+output {
+  elasticsearch {
+    hosts => ["http://127.0.0.1:9200"]
+    index => "myindex"
+    user => "admin"
+    password => "123456"
+  }
+}
+```
+windows shell:[bin目录下执行或设置环境变量]
+```
+logstash -f logstash.conf
+```
+验证是否导入成功
+> elastic-head插件<http://localhost:9100/> -> structed query -> 选择[myindex] [json]查看结果  
+
+### 通过java读取数据
+maven
+```
+<dependency>
+  <groupId>org.elasticsearch.client</groupId>
+  <artifactId>elasticsearch-rest-client</artifactId>
+  <version>8.11.1</version>
+</dependency>
+```
+读取数据
+```
+@Test
+    public void test() {
+        // 创建 Elasticsearch REST 客户端连接
+        RestClient restClient = RestClient.builder(
+                        new HttpHost("localhost", 9200, "http"))
+                .build();
+
+// 发送 GET 请求查询数据
+        try {
+            // 构建查询请求
+            Request request = new Request("GET", "/myindex/_search");
+            // 替换 "your_index" 为你要查询的索引名称
+
+            // 添加请求体（如果有的话）
+            // request.setJsonEntity("{ \"query\": { \"match_all\": {} } }");
+
+            // 发送请求并获取响应
+            Response response = restClient.performRequest(request);
+
+            // 处理响应结果
+            // 输出响应内容
+//            System.out.println("Response Status: " + response.getStatusLine());
+            System.out.println("Response Body: " + EntityUtils.toString(response.getEntity()));
+
+            // 关闭 REST 客户端连接
+            restClient.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+```
+</textarea>
+</mark>
+</div>
+
+<script src="jquery.js"></script>
+<script src="main.js"></script>
+</body>
+</html>

@@ -1,0 +1,6 @@
+DEBUG [main] - ==>  Preparing: SELECT empno,ename,job,mgr,hiredate,sal,comm,deptno FROM scott.emp WHERE (Ename LIKE ? AND Sal LIKE ? AND Comm LIKE ?)
+DEBUG [main] - ==>  Preparing: SELECT empno,ename,job,mgr,hiredate,sal,comm,deptno FROM scott.emp WHERE (Ename LIKE ? AND Sal LIKE ? AND Comm LIKE ?)
+DEBUG [main] - ==> Parameters: %de%(String), %100%(String), %1000%(String)
+DEBUG [main] - ==> Parameters: %de%(String), %100%(String), %1000%(String)
+DEBUG [main] - <==      Total: 0
+DEBUG [main] - <==      Total: 0

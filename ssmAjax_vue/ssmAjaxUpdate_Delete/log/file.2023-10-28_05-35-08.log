@@ -1,0 +1,6 @@
+DEBUG [http-nio-8080-exec-6] - ==>  Preparing: UPDATE scott.emp SET ename=?, job=?, mgr=?, hiredate=?, sal=?, comm=?, deptno=? WHERE empno=?
+DEBUG [http-nio-8080-exec-6] - ==>  Preparing: UPDATE scott.emp SET ename=?, job=?, mgr=?, hiredate=?, sal=?, comm=?, deptno=? WHERE empno=?
+DEBUG [http-nio-8080-exec-6] - ==> Parameters: Jane Smith(String), Analyst(String), 1(Integer), 2023-09-15 00:00:00.0(Timestamp), 4000(Long), 300(Long), 20(Integer), 2(Integer)
+DEBUG [http-nio-8080-exec-6] - ==> Parameters: Jane Smith(String), Analyst(String), 1(Integer), 2023-09-15 00:00:00.0(Timestamp), 4000(Long), 300(Long), 20(Integer), 2(Integer)
+DEBUG [http-nio-8080-exec-6] - <==    Updates: 1
+DEBUG [http-nio-8080-exec-6] - <==    Updates: 1

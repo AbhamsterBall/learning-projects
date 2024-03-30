@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
+         version="4.0">
+<!--    <display-name>Struts2Spring4Hibernate4XML</display-name>-->
+
+<!--    &lt;!&ndash;log4j&ndash;&gt;-->
+<!--    <context-param>-->
+<!--        <param-name>log4jConfigLocation</param-name>-->
+<!--        <param-value>/WEB-INF/log4j.properties</param-value>-->
+<!--    </context-param>-->
+<!--    <context-param>-->
+<!--        <param-name>log4jRefreshInterval</param-name>-->
+<!--        <param-value>1000</param-value>-->
+<!--    </context-param>-->
+<!--    <listener>-->
+<!--        <listener-class>org.springframework.web.util.Log4jConfigListener</listener-class>-->
+<!--    </listener>-->
+
+    <context-param>
+        <param-name>contextConfigLocation</param-name>
+        <param-value>/WEB-INF/spring/appContext.xml</param-value>
+    </context-param>
+
+    <listener> <!--artifact -> WEB-INF -> <CREATE> file called lib -> <right click> -> add a copy of -> library files-->
+        <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+    </listener>
+
+    <filter> <!--它取代了servlet-->
+        <filter-name>DispatcherFilter</filter-name>
+        <filter-class>org.apache.struts2.dispatcher.ng.filter.StrutsPrepareAndExecuteFilter</filter-class>
+    </filter>
+
+    <filter-mapping>
+        <filter-name>DispatcherFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+</web-app>

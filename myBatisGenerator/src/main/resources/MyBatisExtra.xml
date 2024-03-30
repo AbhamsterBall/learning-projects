@@ -1,0 +1,40 @@
+<!DOCTYPE generatorConfiguration PUBLIC
+        "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<generatorConfiguration>
+    <properties url="file:F:\JAVA\20231010\myBatisGenerator\src\main\resources\db.properties"/>
+    <classPathEntry location="F:\JAVA\20231010\myBatisGenerator\src\main\resources\ojdbc8-19.11.0.0.jar"/>
+    <context id="dsql" targetRuntime="MyBatis3DynamicSql">
+
+        <plugin type="com.hyh.plugin.GeneratorPlugin"/>
+
+        <commentGenerator type="com.hyh.generator.CommentsImpl">
+            <property name="suppressAllComments" value="false"/>
+            <property name="suppressDate" value="false"/>
+            <property name="addRemarkComments" value="true"/>
+            <property name="dateFormat" value="MM-dd-yyyy mm:ss"/>
+            <property name="useLegacyGeneratedAnnotation" value="true"/>
+        </commentGenerator>
+
+        <!--${oracle.jdbc.driver.OracleDriver}原样传入包含${}-->
+        <jdbcConnection driverClass="${oracle_driver}"
+                        connectionURL="${oracle_url}"
+                        userId="${oracle_username}"
+                        password="${oracle_password}">
+            <property name="remarksReporting" value="true"/>
+        </jdbcConnection>
+
+        <javaModelGenerator targetPackage="exampleExtra.model0" targetProject="src/main/java"/>
+
+        <javaClientGenerator targetPackage="exampleExtra.mapper0" targetProject="src/main/java"/>
+
+        <table schema="scott" tableName="emp"> <!--name the user(schema) for emp or it might match multiple tables-->
+            <columnRenamingRule searchString="^E" replaceString="FUNK"/>
+        </table>
+        <table schema="scott" tableName="partition_by_range">
+            <property name="useActualColumnNames" value="false"/>
+            <columnRenamingRule searchString="^c" replaceString="mama_"/>
+        </table>
+
+    </context>
+</generatorConfiguration>
