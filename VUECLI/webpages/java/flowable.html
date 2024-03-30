@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="main.css" rel="stylesheet"/>
+    <script src="marked.min.js"></script>
+    <!--    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.7/styles/darkula.min.css">-->
+    <script src="highlight.min.js"></script>
+    <link href="hljs.css" rel="stylesheet">
+    <meta property="og:title" content="mybatis逆向工程">
+    <script>
+        hljs.initHighlightingOnLoad();
+    </script>
+    <meta name="viewport" content="width=device-width,user-scalable=yes,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0">
+</head>
+<body>
+<div class="main-title">ajax BY HYH <a href="#" onclick="hideAll()" class="expand">代码全部收起</a></div>
+<div class="text"  style="border-radius: 0px 0px 20px 20px;">
+    <h3 style="margin-top:-15px">MyBatis-plus</h3>
+    <a href="https://baomidou.com/">https://baomidou.com/</a>
+    <br>flowable流程引擎<a href="https://github.com/AbhamsterBall/mybatis-learning-projects">https://github.com/AbhamsterBall/mybatis-learning-projects</a>
+<mark class="markdown preText">
+## flowable流程引擎
+
+### 快速开始
+<https://www.flowable.com/open-source/docs/bpmn/ch02-GettingStarted>
+```
+ProcessEngineConfiguration cfg = new StandaloneProcessEngineConfiguration()
+.setJdbcUrl("jdbc:h2:mem:flowable;DB_CLOSE_DELAY=-1")
+.setJdbcUsername("sa")
+.setJdbcPassword("")
+.setJdbcDriver("org.h2.Driver")
+.setDatabaseSchemaUpdate(ProcessEngineConfiguration.DB_SCHEMA_UPDATE_TRUE);
+
+ProcessEngine processEngine = cfg.buildProcessEngine();
+```
+
+### 对xml的应用
+<https://paulhh.wordpress.com/2017/01/31/flowable-6-instant-gratification/>
+- modeler可以导入xml文件
+> 例如
+```
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+             xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI"
+             xmlns:omgdc="http://www.omg.org/spec/DD/20100524/DC"
+             xmlns:omgdi="http://www.omg.org/spec/DD/20100524/DI"
+             xmlns:flowable="http://flowable.org/bpmn"
+             typeLanguage="http://www.w3.org/2001/XMLSchema"
+             expressionLanguage="http://www.w3.org/1999/XPath"
+             targetNamespace="http://www.flowable.org/processdef">
+
+    <process id="holidayRequest" name="Holiday Request" isExecutable="true">
+
+        <startEvent id="startEvent"/>
+        <sequenceFlow sourceRef="startEvent" targetRef="approveTask"/>
+
+        <userTask id="approveTask" name="Approve or reject request"/>
+        <sequenceFlow sourceRef="approveTask" targetRef="decision"/>
+
+        <exclusiveGateway id="decision"/>
+        <sequenceFlow sourceRef="decision" targetRef="externalSystemCall">
+            <conditionExpression xsi:type="tFormalExpression">
+                <![CDATA[
+          ${approved}
+        ]]>
+            </conditionExpression>
+        </sequenceFlow>
+        <sequenceFlow  sourceRef="decision" targetRef="sendRejectionMail">
+            <conditionExpression xsi:type="tFormalExpression">
+                <![CDATA[
+          ${!approved}
+        ]]>
+            </conditionExpression>
+        </sequenceFlow>
+
+        <serviceTask id="externalSystemCall" name="Enter holidays in external system"
+                     flowable:class="org.flowable.CallExternalSystemDelegate"/>
+        <sequenceFlow sourceRef="externalSystemCall" targetRef="holidayApprovedTask"/>
+
+        <userTask id="holidayApprovedTask" name="Holiday approved"/>
+        <sequenceFlow sourceRef="holidayApprovedTask" targetRef="approveEnd"/>
+
+        <serviceTask id="sendRejectionMail" name="Send out rejection email"
+                     flowable:class="org.flowable.SendRejectionMail"/>
+        <sequenceFlow sourceRef="sendRejectionMail" targetRef="rejectEnd"/>
+
+        <endEvent id="approveEnd"/>
+
+        <endEvent id="rejectEnd"/>
+
+    </process>
+
+</definitions>
+```
+可以转化为：
+<img alt="flowable转换" src="./img/flowable/image.png"/>
+
+</mark>
+</div>
+
+<script src="jquery.js"></script>
+<script src="main.js"></script>
+</body>
+</html>
