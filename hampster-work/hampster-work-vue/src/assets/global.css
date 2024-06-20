@@ -1,11 +1,17 @@
 *{
     font-family: "Microsoft YaHei";
-    margin:0px;
-    padding: 0px;
     border-radius: 40px;
 }
-body{
+/**:not(.markdown):not(.blog-content) {*/
+/*}*/
+body {
     background-color: #f3f3f3;
+    margin:0px;
+    padding:0px;
+}
+.app, .list-outline, .text, .mainHref {
+    margin:0px;
+    padding:0px;
 }
 img, svg{
     border-radius: 0px;
@@ -90,6 +96,7 @@ img, svg{
     text-decoration: none;
     transition: .6s;
     color: #333333;
+    /*letter-spacing: 1px;*/
 }
 .mainHref:hover{
     background-color: #476fb7;

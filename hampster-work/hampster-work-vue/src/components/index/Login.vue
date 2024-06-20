@@ -27,7 +27,7 @@ async function getName() {
   await new Promise(resolve => {
     let name = $('.login-username').val()
     console.log(name)
-    $.get("http://localhost:8080/json/user/isexist/" + name, function(data) {
+    $.get("http://localhost:8082/json/user/isexist/" + name, function(data) {
       console.log(data)
       if (!data) {
 
@@ -44,19 +44,26 @@ function toRegister() {
   setTimeout(() => {$('.lp-display').css("opacity", "1")}, 100)
 
   setTimeout(() => {moveRight()}, 300)
+
+  setTimeout(() => {hideWrong(); restorePos()}, 400)
 }
 
 </script>
 
 <script>
 import $ from "jquery";
-import {ref} from "vue";
+import { ref } from "vue";
+import { passTest } from "./Password.vue";
 
 let movingLoad = null
 
 export function displayWrong(wrongInfo) {
   $('.login-wrong').html(wrongInfo)
   $('.login-wrong').css('display', 'block')
+  adjustSignupPos()
+}
+export function hideWrong() {
+  $('.login-wrong').css('display', 'none')
   adjustSignupPos()
 }
 export function loadMoving() {
@@ -103,6 +110,7 @@ export const warningDisplay = (warningInfo) => {
   setTimeout(function() {
     $('.login-format').css('margin-top', '-6px')
     $('.login-forget').css('margin-top', '24px')
+    adjustSignupPos()
   }, 200)
 }
 
@@ -130,7 +138,15 @@ export const adjustSignupPos = () => {
       $('.login-forget').attr('style', 'margin: -7px 30px 0px 30px !important');
     }
     setTimeout(() => {$('.login-forget').css("display", "flex")}, 300)
+  } else {
+
   }
+
+}
+
+export const restorePos = () => {
+  $('.login-forget').attr('style', 'display: none; margin: 0px 30px 0px 30px');
+  setTimeout(() => {$('.login-forget').attr('style', 'display: flex; margin: 0px 30px 0px 30px')}, 20)
 
 }
 
@@ -162,8 +178,10 @@ export function inputTest(inputName = ".login-username", buttonColor, buttonPoin
           isFormatValid = userTest(outString, isFormatValid)
               break
         case ".login-signup-veri":
-          console.log('testing...')
           isFormatValid = veriTest(outString, isFormatValid, account)
+              break
+        case ".login-signup-pass":
+          isFormatValid = passTest(outString, isFormatValid)
               break
         default: isFormatValid = false
       }

@@ -10,7 +10,7 @@
 
   async function getName() {
     await new Promise(resolve => {
-      $.get("http://localhost:8080/json/index/b_name", function(data) {
+      $.get("http://localhost:8081/json/index/b_name", function(data) {
         name_data.value = data
         for (let i = 0; i < name_data.value.length; i++) {
           name_data.value[i].blogNames = name_data.value[i].blogNames.split(",").slice(-3)
@@ -29,7 +29,7 @@
     <div class="bottom-blog-index" v-for="unit in name_data">
       <div class="bottom-blog-index-title">{{ unit.bt_name }}</div>
       <div style="display: block; width: 250px" v-for="name in unit.blogNames">
-        <a href="#" class="bottom-loading-context">{{ name }}</a>
+        <a :href="name === '...' ? '/search/' + unit.bt_name : '#'" class="bottom-loading-context">{{ name }}</a>
       </div>
     </div>
     <bottom-fixed/>
@@ -48,7 +48,7 @@
   width: auto;
   display: inline-block;
   white-space: pre-wrap;
-  border-radius: 0px;
+  border-radius: 2px;
   margin: 0px 14px;
   padding: 6px 6px;
   line-height: 16px;

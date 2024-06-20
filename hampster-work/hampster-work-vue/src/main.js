@@ -2,7 +2,13 @@ import { createApp } from 'vue'
 import { createStore } from 'vuex'
 import Vuex from 'vuex'
 import './assets/global.css'
+import './assets/hljs.css'
 import App from './App.vue'
+import { createRouter, createWebHistory } from 'vue-router';
+import SearchIndex from "./components/search/SearchIndex.vue";
+import Home from "./components/Home.vue";
+import router from "./router"
+import {hljs} from "highlight/lib/vendor/highlight.js/highlight.js";
 
 const app = createApp(App);
 
@@ -44,5 +50,8 @@ export const store = new Vuex.Store({
 // 在应用初始化时调用initToken action
 store.dispatch('initToken').then(r => { console.log('init') });
 
+app.use(router)
 app.mount('#app')
+
+// hljs.initHighlightingOnLoad();
 // app.use(store)

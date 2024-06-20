@@ -1,12 +1,13 @@
 <script setup>
 import { ref } from 'vue'
 import $ from 'jquery'
-import * as all from "../../App.vue";
+import * as all from "../Home.vue";
+import { setTitle } from "../search/SearchIndex.vue";
 
 const name_data = ref([])
 async function getName() {
   await new Promise(resolve => {
-    $.get("http://localhost:8080/json/index/bt_name", function(data) {
+    $.get("http://localhost:8081/json/index/bt_name", function(data) {
       name_data.value = data.data
       resolve()
     });
@@ -34,12 +35,6 @@ let description = ref()
 let date = ref()
 </script>
 
-<!--<script type="application/ld+json">-->
-<!--{-->
-<!--  "@context": "https://schema.org"-->
-<!--}-->
-<!--</script>-->
-
 <template>
   <teleport to="head">
     <component :is="'script'" type="application/ld+json">
@@ -57,7 +52,7 @@ let date = ref()
     </component>
   </teleport>
 	 <div class="text index-text" style="text-align: center; color: #444444;">
-			 <a href="/java/index.html" class="mainHref"
+			 <a :href="'/search/' + name_item.btName" class="mainHref"
           v-for="(name_item, index) in name_data"
           :style="[index === name_data.length - 1 && windowWidth > 1000 ? { 'border-radius': '0px 0px 40px 40px' } : {},
                index === 0 && windowWidth > 1000 ? { 'border-radius': '40px 40px 0px 0px' } : {},
@@ -71,6 +66,9 @@ let date = ref()
 </template>
 
 <style scoped>
+.mainHref {
+  cursor: pointer;
+}
 @media screen and (max-width: 1000px) {
   .index-text {
     margin-top: 40px;

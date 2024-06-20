@@ -21,7 +21,21 @@ $(() => {
         setColor("white")
       }
   );
+
+  checkIfLogin()
 });
+
+function checkIfLogin() {
+  console.log(localStorage.getItem("utoken"))
+  console.log(localStorage.getItem("uuuuuu"))
+  if (localStorage.getItem("utoken") != null) {
+    $(".login").css("display", "none")
+    $(".loginIcon").css("display", "none")
+    $(".profile-img").attr("src", "http://47.109.149.213:9000/profile/" + localStorage.getItem("utoken") + ".svg");
+  } else {
+    $(".profile").css("display", "none")
+  }
+}
 
 function loginClick() {
   $(".mask-display").css("display", "block")
@@ -34,15 +48,37 @@ function loginClick() {
 
 <template>
 	<div class="main-title">
-    {{ props.title }}
+    <div class="main-title-text">{{ props.title }}</div>
 	</div>
   <a href="#" @click="loginClick" class="login">登录</a>
   <a href="#" class="login-mini-back"></a>
   <login-icon @click="loginClick" width="48" height="48" color="white" class="loginIcon"/>
+  <div class="profile">
+    <img src="/default-profile.svg" alt="profile" class="profile-img">
+  </div>
   <login/>
 </template>
 
 <style scoped>
+.main-title-text {
+  font-family: chaparral-pro,"Times New Roman",Times,serif,'华文宋体','宋体','微软雅黑';
+}
+.profile {
+  display: block;
+  position: absolute;
+  right: 50px;
+  top: 50px;
+  width: 49px;
+  height: 48px;
+  //background-color: white;
+  border: white solid 6px;
+  cursor: pointer;
+}
+.profile-img {
+  width: 52px;
+  margin-left: -2px;
+  margin-top: -2px;
+}
 .login {
   position: absolute;
   right: 30px;

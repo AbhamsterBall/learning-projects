@@ -9,8 +9,13 @@ export default defineConfig({
   transpileDependencies: true,
   devServer: {
     proxy: {
-      '/': {
-        target: 'http://localhost:8080/', // 本地后端地址
+      '/blog': {
+        target: 'http://localhost:8081/', // 本地后端地址
+        changeOrigin: true, //允许跨域
+        ws: false
+      },
+      '/user': {
+        target: 'http://localhost:8082/', // 本地后端地址
         changeOrigin: true, //允许跨域
         ws: false
       },

@@ -1,11 +1,12 @@
 <script setup>
 import { ref, toRefs } from 'vue'
-import { inputResponse, displayWrong, loadMoving, loadStop, inputTest, setAccount } from "./Login.vue";
+import { inputResponse, displayWrong, loadMoving, loadStop, inputTest, setAccount, hideWrong, restorePos } from "./Login.vue";
 import smallWarning from '../svg/SmallWarning.vue'
 import $ from "jquery";
 import {store} from "../../main.js";
 import axios from "axios";
 import Password from "./Password.vue";
+import { getMailCode } from "./SignUp.vue"
 
 let buttonColor = ref("#a9acba")
 let buttonPointer = ref("none")
@@ -31,9 +32,7 @@ function testVeri() {
 
   // 直接传给后端哈希对比
   console.log(account)
-  const ur = "http://localhost:8080/json/user/checkmailcode/" + account._object.account +　"/" + cIn
-  // store.state.token + "/" +
-  // const data = $.ajax({type: "GET", url: ur, async: false}).responseText
+  const ur = "http://localhost:8082/json/user/checkmailcode/" + account._object.account +　"/" + cIn
   axios.get(ur)
       .then(data => {
         console.log(data.data == "expired")
@@ -41,6 +40,7 @@ function testVeri() {
         if (data.data == true) {
           loadStop()
           moveLeft()
+          setTimeout(() => {hideWrong(); restorePos()}, 400)
           console.log("right pass")
         } else if (data.data == "expired") {
           loadStop()
@@ -54,14 +54,13 @@ function testVeri() {
         console.error(error);
       });
 
-
 }
 
 </script>
 
 <script>
 import {toRefs} from "vue";
-import { warningDisplay, warningDisappear } from './Login.vue'
+import { warningDisplay, warningDisappear, hideWrong } from './Login.vue'
 import $ from "jquery";
 
 export function veriTest(outString, isFormatValid, account) {
@@ -109,13 +108,13 @@ function moveLeft() {
     $('.veri-move').css('margin-left', "-912px")
     $('.pass-move').css('margin-left', "-456px")
   }, 300)
-
+  setTimeout(() => {hideWrong()}, 400)
 }
 </script>
 
 <template>
   <div class="pass-display">
-    <password/>
+    <password :account="account"/>
   </div>
   <div class="login-signup-display mask-display login-display">
     <div class="mask-display login-display sub-login-signup">
@@ -136,7 +135,7 @@ function moveLeft() {
             <small-warning width="16" height="16" style="margin-right: 4px; opacity: .8"/>
             <span class="login-warning">验证码为6位数字</span>
           </div>
-          <a href="#" class="login-forget">重新发送</a>
+          <a href="#" class="login-forget" @click="getMailCode(account)">重新发送</a>
         </div>
         <button class="veri-button login-button lp-button" style="display: block !important"
                 :style="{ backgroundColor : buttonColor, pointerEvents : buttonPointer }"

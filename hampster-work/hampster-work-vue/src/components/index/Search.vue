@@ -2,7 +2,7 @@
 import searchIcon from '../svg/SearchIcon.vue'
 import { ref } from 'vue'
 import $ from 'jquery'
-import * as all from '../../../src/App.vue'
+import * as all from '../Home.vue'
 
 const color = ref("#535bf2")
 const getPosOfIcon = () => {
@@ -11,6 +11,7 @@ const getPosOfIcon = () => {
     const le = $('#search')[0].offsetLeft + $('#search')[0].offsetWidth - 60
     $('.index-search').css("left", le + "px")
   } else {
+    $('.index-search').css("transition", "none")
     $('.index-search').css("left", "50%")
   }
 }
@@ -31,6 +32,10 @@ $(() => {
       }
   );
 
+  $(".index-search").click(function() {
+    $("#searchForm").submit();
+  });
+
   $(window).resize(function() {
     // 更新窗口大小信息
     all.keepWedgeUnmoved('#search')
@@ -42,8 +47,8 @@ $(() => {
 </script>
 
 <template>
-  <form action="/search" method="get">
-    <input id="search" type="text" name="search" placeholder="搜索...">
+  <form id="searchForm" action="/search/blur" method="get">
+    <input id="search" type="text" name="searchkey" placeholder="搜索...">
     <searchIcon width="40" height="40" :color="color" class="index-search"/>
   </form>
 </template>
@@ -57,7 +62,7 @@ $(() => {
   position: relative;
   color: #333333;
   line-height: 70px;
-  //margin-top: 100px;
+  /*margin-top: 100px;*/
   padding: 0% 2%;
   font-size: 20px;
   transition: .6s;

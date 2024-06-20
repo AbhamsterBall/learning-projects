@@ -4,7 +4,7 @@ import $ from 'jquery'
 import smallWarning from '../svg/SmallWarning.vue'
 import { inputTest,inputResponse } from './Login.vue'
 import { ref } from "vue";
-import { loadMoving, loadStop } from "./Login.vue";
+import { loadMoving, loadStop, hideWrong, displayWrong, restorePos } from "./Login.vue";
 import checkAccount from './CheckAccount.vue';
 import { store } from '../../main.js';
 import axios from "axios";
@@ -20,34 +20,31 @@ $(() => {
 
 })
 
-function moveLeft() {
-  $('.login-move').css('margin-left', "-912px")
-  $('.veri-move').css('margin-left', "-456px")
-}
-
 let inputAC = ref()
 function testAccount() {
-  $('.veri-display').css('display', 'block')
   inputAC.value = $('.login-signup-input').val()
-
-  $('.sub-login-signup').css('background-color', 'transparent')
   loadMoving()
+  let re = false
 
-  if (inputAC.value.includes("@")) {
-    getMailCode()
-  } else {
-
-  }
-}
-
-async function getMailCode() {
   try {
-    const ur = "http://localhost:8080/json/user/getmailcode/" + inputAC.value
+    const ur = "http://localhost:8082/json/user/isexist/" + inputAC.value
+    console.log(ur)
     axios.get(ur)
         .then(data => {
-          if (data.data == "ok") {
+          console.log(data.data)
+          if (data.data) {
+            console.log("data.data")
             loadStop()
-            setTimeout(() => {moveLeft()}, 100)
+            displayWrong("账号已存在，请<a href=\"#\" class=\"login-forget-top\" style=\"margin-left: 0px\">前往登录</a>")
+            $('.login-forget-top').click(backToLogin)
+          } else {
+            console.log("data.other")
+
+            if (inputAC.value.includes("@")) {
+              getMailCode(inputAC.value)
+            } else {
+
+            }
           }
         })
         .catch(error => {
@@ -59,9 +56,65 @@ async function getMailCode() {
   }
 }
 
+function backToLogin() {
+  console.log("back")
+
+  setTimeout(() => {moveBack()}, 300)
+
+  setTimeout(() => {hideWrong(); restorePos()}, 350)
+
+  setTimeout(() => {
+    $('.lp-display').css("opacity", "0")
+    setTimeout(() => {$('.lp-display').css("display", "none")}, 100)
+  }, 500)
+
+}
+
+function moveBack() {
+  $('.login-move').css('margin-left', "0px")
+  $('.veri-move').css('margin-left', "451px")
+}
+
+
 </script>
 
 <script>
+
+import axios from "axios";
+import $ from "jquery";
+import {ref} from "vue";
+import { hideWrong, restorePos, loadStop } from "./Login.vue";
+
+export async function getMailCode(account) {
+  try {
+    const ur = "http://localhost:8082/json/user/getmailcode/" + account
+    axios.get(ur)
+        .then(data => {
+          if (data.data == "ok") {
+            loadStop()
+            $('.veri-display').css('display', 'block')
+
+            $('.sub-login-signup').css('background-color', 'transparent')
+
+            setTimeout(() => {moveLeft()}, 100)
+            setTimeout(() => {hideWrong(); restorePos()}, 400)
+          }
+        })
+        .catch(error => {
+          console.error(error);
+        });
+  } catch (error) {
+    console.error(error);
+    loadStop(); // 停止加载动画
+  }
+}
+
+function moveLeft() {
+  $('.login-move').css('margin-left', "-912px")
+  $('.veri-move').css('margin-left', "-456px")
+
+  setTimeout(() => {hideWrong()}, 400)
+}
 
 export function moveRight() {
   $('.login-move').css('margin-left', "-456px")
