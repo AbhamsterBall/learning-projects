@@ -1,6 +1,0 @@
-DEBUG [http-nio-8080-exec-2] - ==>  Preparing: UPDATE scott.emp SET ename=?, job=?, hiredate=?, sal=?, deptno=? WHERE empno=?
-DEBUG [http-nio-8080-exec-2] - ==>  Preparing: UPDATE scott.emp SET ename=?, job=?, hiredate=?, sal=?, deptno=? WHERE empno=?
-DEBUG [http-nio-8080-exec-2] - ==> Parameters: Kings Up(String), Manager(String), 2023-10-01 00:00:00.0(Timestamp), 5000(Long), 10(Integer), 1(Integer)
-DEBUG [http-nio-8080-exec-2] - ==> Parameters: Kings Up(String), Manager(String), 2023-10-01 00:00:00.0(Timestamp), 5000(Long), 10(Integer), 1(Integer)
-DEBUG [http-nio-8080-exec-2] - <==    Updates: 1
-DEBUG [http-nio-8080-exec-2] - <==    Updates: 1

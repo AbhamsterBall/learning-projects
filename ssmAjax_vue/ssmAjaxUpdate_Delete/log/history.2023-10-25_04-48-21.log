@@ -1,6 +1,0 @@
-DEBUG [main] - ==>  Preparing: SELECT empno,ename,job,mgr,hiredate,sal,comm,deptno FROM scott.emp WHERE (Ename = ? AND Comm = ? AND Sal = ?)
-DEBUG [main] - ==>  Preparing: SELECT empno,ename,job,mgr,hiredate,sal,comm,deptno FROM scott.emp WHERE (Ename = ? AND Comm = ? AND Sal = ?)
-DEBUG [main] - ==> Parameters: de(String), 100(Long), 1000(Long)
-DEBUG [main] - ==> Parameters: de(String), 100(Long), 1000(Long)
-DEBUG [main] - <==      Total: 0
-DEBUG [main] - <==      Total: 0

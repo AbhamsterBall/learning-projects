@@ -1,6 +1,0 @@
-DEBUG [main] - ==>  Preparing: SELECT empno,ename,job,mgr,hiredate,sal,comm,deptno FROM scott.emp WHERE (Job LIKE ? AND Ename LIKE ? AND Sal LIKE ? AND Deptno LIKE ? AND Mgr LIKE ? AND Comm LIKE ? AND Empno LIKE ? AND Hiredate LIKE ?)
-DEBUG [main] - ==>  Preparing: SELECT empno,ename,job,mgr,hiredate,sal,comm,deptno FROM scott.emp WHERE (Job LIKE ? AND Ename LIKE ? AND Sal LIKE ? AND Deptno LIKE ? AND Mgr LIKE ? AND Comm LIKE ? AND Empno LIKE ? AND Hiredate LIKE ?)
-DEBUG [main] - ==> Parameters: %%(String), %de%(String), %100%(String), %%(String), %%(String), %1000%(String), %%(String), %%(String)
-DEBUG [main] - ==> Parameters: %%(String), %de%(String), %100%(String), %%(String), %%(String), %1000%(String), %%(String), %%(String)
-DEBUG [main] - <==      Total: 0
-DEBUG [main] - <==      Total: 0

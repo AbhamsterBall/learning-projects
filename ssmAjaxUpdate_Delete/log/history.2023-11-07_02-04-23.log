@@ -1,2 +1,0 @@
-DEBUG [http-nio-8080-exec-10] - ==>  Preparing: UPDATE scott.emp WHERE empno=?
-DEBUG [http-nio-8080-exec-10] - ==>  Preparing: UPDATE scott.emp WHERE empno=?

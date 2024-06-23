@@ -1,6 +1,0 @@
-DEBUG [http-nio-8080-exec-4] - ==>  Preparing: DELETE FROM scott.emp WHERE empno=?
-DEBUG [http-nio-8080-exec-4] - ==>  Preparing: DELETE FROM scott.emp WHERE empno=?
-DEBUG [http-nio-8080-exec-4] - ==> Parameters: 19(Integer)
-DEBUG [http-nio-8080-exec-4] - ==> Parameters: 19(Integer)
-DEBUG [http-nio-8080-exec-4] - <==    Updates: 0
-DEBUG [http-nio-8080-exec-4] - <==    Updates: 0

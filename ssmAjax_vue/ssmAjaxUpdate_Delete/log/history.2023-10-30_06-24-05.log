@@ -1,4 +1,0 @@
-DEBUG [main] - ==>  Preparing: SELECT count(0) FROM emp WHERE (ename LIKE ?)
-DEBUG [main] - ==>  Preparing: SELECT count(0) FROM emp WHERE (ename LIKE ?)
-DEBUG [main] - ==> Parameters: %de%(String)
-DEBUG [main] - ==> Parameters: %de%(String)

@@ -1,6 +1,0 @@
-DEBUG [http-nio-8080-exec-6] - ==>  Preparing: UPDATE scott.emp SET ename=?, job=?, mgr=?, hiredate=?, sal=?, deptno=? WHERE empno=?
-DEBUG [http-nio-8080-exec-6] - ==>  Preparing: UPDATE scott.emp SET ename=?, job=?, mgr=?, hiredate=?, sal=?, deptno=? WHERE empno=?
-DEBUG [http-nio-8080-exec-6] - ==> Parameters: David Lee(String), Clerk(String), 4(Integer), 2023-05-15(Date), 2700(Long), 30(Integer), 6(Integer)
-DEBUG [http-nio-8080-exec-6] - ==> Parameters: David Lee(String), Clerk(String), 4(Integer), 2023-05-15(Date), 2700(Long), 30(Integer), 6(Integer)
-DEBUG [http-nio-8080-exec-6] - <==    Updates: 1
-DEBUG [http-nio-8080-exec-6] - <==    Updates: 1
