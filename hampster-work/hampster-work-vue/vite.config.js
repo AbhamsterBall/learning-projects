@@ -20,7 +20,7 @@ export default defineConfig({
         ws: false
       },
       '/web': {
-        target: 'http://localhost:80/', // 本地后端地址
+        target: 'http://localhost:81/', // 本地后端地址
         changeOrigin: true, //允许跨域
         ws: false
       }
