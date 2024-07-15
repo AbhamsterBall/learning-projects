@@ -20,7 +20,7 @@ import java.util.List;
 import static com.baomidou.mybatisplus.extension.handlers.GsonTypeHandler.getGson;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:81")
+@CrossOrigin(origins = "http://localhost")
 public class BlogJsonController {
 
     private final BlogTypeService blogTypeService;
