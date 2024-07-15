@@ -1,7 +1,7 @@
 <script setup>
 import { ref } from 'vue'
 import $ from 'jquery'
-import * as all from "../Home.vue"
+import * as all from "../../views/Home.vue"
 import { getTitle } from './SearchIndex.vue'
 
 console.log(getTitle())

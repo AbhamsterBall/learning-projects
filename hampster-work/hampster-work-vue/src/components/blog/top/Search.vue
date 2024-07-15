@@ -2,8 +2,8 @@
 import searchIcon from '../../svg/SearchIcon.vue'
 import { ref } from 'vue'
 import $ from 'jquery'
-import * as all from '../../Home.vue'
-import { getTitle } from "../BlogIndex.vue";
+import * as all from '../../../views/Home.vue'
+import { getTitle } from "../../../views/blog/index.vue";
 
 // const color = ref("#535bf2")
 const color = ref("#a9acba")

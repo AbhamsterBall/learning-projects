@@ -1,8 +1,8 @@
 <script setup>
 import { ref } from 'vue'
 import $ from 'jquery'
-import * as all from "../Home.vue"
-import { getTitle, setTitle } from './BlogIndex.vue'
+import * as all from "../../views/Home.vue"
+import { getTitle, setTitle } from '../../views/blog/index.vue'
 import BlogRefresh from "../svg/BlogRefresh.vue";
 import Content from "./Content.vue"
 
@@ -82,7 +82,7 @@ let date = ref()
 <script>
 import {ref} from "vue";
 import $ from "jquery";
-import { getTitle, setTitle } from './BlogIndex.vue'
+import { getTitle, setTitle } from '../../views/blog/index.vue'
 
 const page = ref(1)
 

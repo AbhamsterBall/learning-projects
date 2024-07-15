@@ -2,7 +2,7 @@
 import top from './top/Top.vue'
 import { ref } from "vue";
 import $ from "jquery";
-import { getCurrenTitle } from "../Home.vue";
+import { getCurrenTitle } from "../../views/Home.vue";
 import index_search from './top/Search.vue'
 import search_list from './List.vue'
 import loading from '../Loading.vue'

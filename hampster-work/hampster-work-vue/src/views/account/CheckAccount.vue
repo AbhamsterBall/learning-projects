@@ -1,7 +1,7 @@
 <script setup>
 import { ref, toRefs } from 'vue'
 import { inputResponse, displayWrong, loadMoving, loadStop, inputTest, setAccount, hideWrong, restorePos } from "./Login.vue";
-import smallWarning from '../svg/SmallWarning.vue'
+import smallWarning from '../../components/svg/SmallWarning.vue'
 import $ from "jquery";
 import {store} from "../../main.js";
 import axios from "axios";

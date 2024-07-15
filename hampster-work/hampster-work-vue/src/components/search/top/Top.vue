@@ -2,7 +2,7 @@
 import loginIcon from '../../svg/LoginIcon.vue'
 import $ from 'jquery'
 import { setColor } from '../../svg/LoginIcon.vue'
-import login from "../../index/Login.vue";
+import login from "../../../views/account/Login.vue";
 
 const props = defineProps({
   title: String,

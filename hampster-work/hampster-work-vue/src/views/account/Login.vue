@@ -1,7 +1,7 @@
 <script setup>
-import globalMask from '../GlobalMask.vue'
+import globalMask from '../../components/GlobalMask.vue'
 import $ from 'jquery'
-import smallWarning from '../svg/SmallWarning.vue'
+import smallWarning from '../../components/svg/SmallWarning.vue'
 import signUp from './SignUp.vue'
 import { ref } from "vue";
 import { moveRight } from "./SignUp.vue";

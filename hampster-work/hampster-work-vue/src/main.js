@@ -6,7 +6,7 @@ import './assets/hljs.css'
 import App from './App.vue'
 import { createRouter, createWebHistory } from 'vue-router';
 import SearchIndex from "./components/search/SearchIndex.vue";
-import Home from "./components/Home.vue";
+import Home from "./views/Home.vue";
 import router from "./router"
 import {hljs} from "highlight/lib/vendor/highlight.js/highlight.js";
 

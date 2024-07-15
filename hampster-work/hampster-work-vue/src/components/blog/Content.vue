@@ -3,7 +3,7 @@ import $ from "jquery";
 import { marked } from "marked";
 import { ref } from "vue";
 import Loading from "../Loading.vue";
-import * as all from "../Home.vue";
+import * as all from "../../views/Home.vue";
 
 $(() => {
   getContent()

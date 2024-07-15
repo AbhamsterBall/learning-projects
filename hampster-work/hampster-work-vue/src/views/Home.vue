@@ -1,13 +1,13 @@
 <script setup>
-import index_search from './index/Search.vue'
-import index_list from './index/List.vue'
-import top from './Top.vue'
-import loading from './Loading.vue'
-import bottom from './Bottom.vue'
+import index_search from '../components/index/Search.vue'
+import index_list from '../components/index/List.vue'
+import top from '../components/Top.vue'
+import loading from '../components/Loading.vue'
+import bottom from '../components/Bottom.vue'
 import $ from "jquery";
-import mail from './svg/Mail.vue'
+import mail from '../components/svg/Mail.vue'
 import { ref } from 'vue'
-import bottomFixed from "./bottom/BottomFixed.vue";
+import bottomFixed from "../components/bottom/BottomFixed.vue";
 import { store } from '../main.js'
 import axios from "axios";
 

@@ -1,7 +1,7 @@
 <script setup>
 import { ref } from 'vue'
 import $ from 'jquery'
-import * as all from "../Home.vue";
+import * as all from "../../views/Home.vue";
 import { setTitle } from "../search/SearchIndex.vue";
 
 const name_data = ref([])

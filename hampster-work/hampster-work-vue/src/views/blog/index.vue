@@ -1,20 +1,26 @@
 <script setup>
 import { ref } from "vue";
-import top from './top/Top.vue'
-import index_search from './top/Search.vue'
-import search_list from './List.vue'
-import Bottom from "../Bottom.vue";
-import Loading from "../Loading.vue";
-import BottomFixed from "../bottom/BottomFixed.vue";
+import top from '../../components/blog/top/Top.vue'
+import index_search from '../../components/blog/top/Search.vue'
+import search_list from '../../components/blog/List.vue'
+import Bottom from "../../components/Bottom.vue";
+import Loading from "../../components/Loading.vue";
+import BottomFixed from "../../components/bottom/BottomFixed.vue";
 import $ from "jquery";
-import Content from "./Content.vue";
+import Content from "../../components/blog/Content.vue";
 
 $(() => {
   $('.list-outline').css('height', window.innerHeight - 160 + 'px')
 
   $(window).resize(function() {
-    setShowSuspense(false)
-    $('.bottom').css('margin-top', '69%') //屏幕高减去top高度
+    // hide list when window is resized to smaller than 1000px 手机端隐藏列表，并放在左上角
+    if ($(window).width() < 1000) {
+      setShowSuspense(false)
+    } else {
+      setShowSuspense(true)
+    }
+
+    $('.bottom').css('margin-top', '69%') // 屏幕高减去top高度
   });
 })
 </script>
