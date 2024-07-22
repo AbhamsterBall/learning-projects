@@ -8,21 +8,41 @@ import Loading from "../../components/Loading.vue";
 import BottomFixed from "../../components/bottom/BottomFixed.vue";
 import $ from "jquery";
 import Content from "../../components/blog/Content.vue";
+import { checkOverFlow } from "../../components/blog/Content.vue";
 
 $(() => {
-  $('.list-outline').css('height', window.innerHeight - 160 + 'px')
+  // $('.list-outline').css('height', window.innerHeight - 160 + 'px')
+
+  adjustListShowSuspense()
 
   $(window).resize(function() {
-    // hide list when window is resized to smaller than 1000px 手机端隐藏列表，并放在左上角
-    if ($(window).width() < 1000) {
-      setShowSuspense(false)
-    } else {
-      setShowSuspense(true)
-    }
+    adjustListShowSuspense()
 
-    $('.bottom').css('margin-top', '69%') // 屏幕高减去top高度
+    // $('.bottom').css('margin-top', '69%') // 屏幕高减去top高度
   });
 })
+
+function adjustListShowSuspense() {
+  // hide list when window is resized to smaller than 1000px 手机端隐藏列表，并放在左上角
+  if ($(window).width() < 1000) {
+    // setshowListSuspense(false)
+    $('.list-outline').css('display', 'none')
+    $('.extra-outline').css({
+      'display': 'block',
+      'z-index': '-1',
+    })
+  } else {
+    // setshowListSuspense(true)
+    $('.list-outline').css('display', 'block')
+    $('.extra-outline').css('display', 'none')
+  }
+
+  checkOverFlow()
+  // adjust height of content
+  const element = document.querySelector('.extra-outline');
+  element.style.setProperty('--display-value', window.innerHeight - 160 + 'px');
+
+}
 </script>
 
 <script>
@@ -42,11 +62,15 @@ export function getTitle() {
   return title.value
 }
 
-const showSuspense = ref(true)
-
-export function setShowSuspense(bool) {
-  showSuspense.value = bool
-}
+// const showListSuspense = ref(true)
+//
+// export function setshowListSuspense(bool) {
+//   showListSuspense.value = bool
+// }
+//
+// export function getshowListSuspense() {
+//   return showListSuspense.value
+// }
 
 let isSearching = ref(false)
 
@@ -63,12 +87,12 @@ export function getIsSearching() {
 <template>
   <top :title="title"/>
   <index_search/>
-  <suspense v-if="showSuspense">
+  <suspense>
     <template #default>
       <search_list/>
     </template>
     <template #fallback>
-      <div class="list-outline">
+      <div class="list-outline" ref="listOutline">
         <div class="text index-text" style="text-align: center; color: #444444;padding: 0.1% 0.1%">
           <loading boxWidth="82%" boxHeight="100px" class="loading-style"/>
           <loading boxWidth="82%" boxHeight="100px" class="loading-style"/>
@@ -79,6 +103,8 @@ export function getIsSearching() {
       </div>
     </template>
   </suspense>
+  <div class="list-outline extra-outline"
+    ref="listOutline"></div>
 
   <content/>
 
@@ -98,7 +124,7 @@ export function getIsSearching() {
   </suspense>
 </template>
 
-<style scoped>
+<style lang="scss" scoped>
 .index-text {
   margin-top: 4px;
   box-shadow: 0 0 8px 3px #e8e8e8;
@@ -149,6 +175,7 @@ export function getIsSearching() {
   border-radius: 0px;
   overflow: scroll;
   overflow-x: hidden;
+  height: var(--display-value);
 }
 .list-outline::-webkit-scrollbar {
   width: 6px; /* 设置滚动条宽度 */

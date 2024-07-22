@@ -1,5 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import SearchIndex from "../components/search/SearchIndex.vue";
+import SearchIndex from "../views/search/index.vue";
 import Home from "../views/Home.vue";
 import BlogIndex from "../views/blog/index.vue";
 

@@ -263,7 +263,7 @@ function clicked(e, type, name) {
       }
     </component>
   </teleport>
-  <div class="list-outline">
+  <div class="list-outline" ref="listOutline">
 	 <div class="text index-text" style="text-align: center; color: #444444;">
      <div v-for="(name_item, index) in name_data">
        <button :class="'mainHref ' + name_item.btName + '-href'" @click="expandCategory(name_item.btName, index)">

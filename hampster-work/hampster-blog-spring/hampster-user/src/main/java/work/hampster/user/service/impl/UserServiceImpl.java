@@ -14,7 +14,6 @@ import work.hampster.user.service.UserService;
 import javax.mail.*;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
-import java.net.http.HttpRequest;
 import java.util.*;
 
 @Service

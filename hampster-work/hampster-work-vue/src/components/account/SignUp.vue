@@ -1,7 +1,7 @@
 <script setup>
-import globalMask from '../../components/GlobalMask.vue'
+import globalMask from '../GlobalMask.vue'
 import $ from 'jquery'
-import smallWarning from '../../components/svg/SmallWarning.vue'
+import smallWarning from '../svg/SmallWarning.vue'
 import { inputTest,inputResponse } from './Login.vue'
 import { ref } from "vue";
 import { loadMoving, loadStop, hideWrong, displayWrong, restorePos } from "./Login.vue";

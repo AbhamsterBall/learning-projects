@@ -2,7 +2,7 @@
 import { ref } from 'vue'
 import $ from 'jquery'
 import * as all from "../../views/Home.vue";
-import { setTitle } from "../search/SearchIndex.vue";
+import { setTitle } from "../../views/search/index.vue";
 
 const name_data = ref([])
 async function getName() {

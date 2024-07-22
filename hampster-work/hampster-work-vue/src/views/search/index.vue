@@ -1,17 +1,18 @@
 <script setup>
-import top from './top/Top.vue'
+// import top from '../../components/search/top/Top.vue'
+import top from '../../components/Top.vue' // can I use Top.vue instead of search/top/Top.vue ???!!!
 import { ref } from "vue";
 import $ from "jquery";
-import { getCurrenTitle } from "../../views/Home.vue";
-import index_search from './top/Search.vue'
-import search_list from './List.vue'
-import loading from '../Loading.vue'
-import * as left from '../svg/LeftArrow.vue'
-import * as right from '../svg/RightArrow.vue'
-import page_navi from './PageNavi.vue'
-import bottom from '../Bottom.vue'
-import bottomFixed from "../bottom/BottomFixed.vue";
-import blur_list from './BlurList.vue'
+import { getCurrenTitle } from "../Home.vue";
+import index_search from '../../components/search/top/Search.vue'
+import search_list from '../../components/search/List.vue'
+import loading from '../../components/Loading.vue'
+import * as left from '../../components/svg/LeftArrow.vue'
+import * as right from '../../components/svg/RightArrow.vue'
+import page_navi from '../../components/search/PageNavi.vue'
+import bottom from '../../components/Bottom.vue'
+import bottomFixed from "../../components/bottom/BottomFixed.vue";
+import blur_list from '../../components/search/BlurList.vue'
 
 if (!isTitleChanged) getCurrenTitle(title)
 
@@ -29,7 +30,7 @@ console.log("isSearching: " + getIsSearching())
 
 <script>
 import { ref } from "vue";
-import { setSearchText } from "./BlurList.vue";
+import { setSearchText } from "../../components/search/BlurList.vue";
 
 const title = ref("HAMPSTER.WORK")
 let isTitleChanged = false

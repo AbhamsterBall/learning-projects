@@ -2,7 +2,7 @@
 import { ref } from 'vue'
 import $ from 'jquery'
 import * as all from "../../views/Home.vue"
-import { getTitle } from './SearchIndex.vue'
+import { getTitle } from '../../views/search/index.vue'
 
 console.log(getTitle())
 
@@ -47,7 +47,7 @@ let date = ref()
 <script>
 import {ref} from "vue";
 import $ from "jquery";
-import { getTitle } from './SearchIndex.vue'
+import { getTitle } from '../../views/search/index.vue'
 
 const page = ref(1)
 

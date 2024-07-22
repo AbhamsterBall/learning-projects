@@ -12,8 +12,9 @@ $(() => {
   // $("<script>").html("  hljs.initHighlightingOnLoad();").appendTo("head");
   // setTimeout(() => {hljs()}, 5000);
   console.log("yes")
+  // change width & height of content-box
   checkOverFlow()
-  $('.blog-content').css('width', window.innerWidth - $('.list-outline').width() - 100 - 23 + 'px')
+  $('.blog-content').css('width', window.innerWidth - $('.list-outline').width() - 100 - 20 + 'px')
 
   $(window).resize(function() {
     checkOverFlow()
@@ -45,17 +46,7 @@ $(() => {
 })
 // 获取<textarea>元素
 
-function checkOverFlow() {
-  $('.blog-content').css('height', window.innerHeight - 210 + 'px')
-  $('.blog-content').css('width', window.innerWidth - $('.list-outline').width() - 100 - 17 + 'px')
-  // $('table').css('width', window.innerWidth - $('.list-outline').width() - 100 - 17 + 'px')
-  $('.blog-content').css('max-width', window.innerWidth - 316 + 'px')
-  if (window.innerWidth * 0.18 < 216) {
-    $('.blog-content').css('left', 216 + 'px')
-  } else {
-    $('.blog-content').css('left', '18%')
-  }
-}
+
 
 function getSelectedText() {
   var text = "";
@@ -184,6 +175,29 @@ export default {
     //
     // $('.blog-content').css('overflow-y', 'hidden')
     // $('.blog-content').css('overflow-y', 'auto')
+  }
+}
+
+export function checkOverFlow() {
+  if ($(window).width() > 1000) {
+    $('.blog-content').css('height', window.innerHeight - 210 + 'px')
+    $('.blog-content').css('width', window.innerWidth - $('.list-outline').width() - 100 - 14 + 'px')
+    // $('table').css('width', window.innerWidth - $('.list-outline').width() - 100 - 17 + 'px')
+    $('.blog-content').css('max-width', window.innerWidth - 316 + 'px')
+    if (window.innerWidth * 0.18 < 216) {
+      $('.blog-content').css('left', 216 + 'px')
+    } else {
+      $('.blog-content').css('left', '18%')
+    }
+  } else {
+    // console.log("windowWidth: " + $(window).width())
+    // this.$nextTick(() => {
+      $('.blog-content').css({
+        'width': ($(window).width() - 100) + 'px',
+        'left': '0px',
+        'max-width': $(window).width() + 'px'
+      });
+    // })
   }
 }
 

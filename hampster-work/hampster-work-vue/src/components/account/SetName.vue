@@ -1,7 +1,7 @@
 <script setup>
 import {ref, toRefs} from 'vue'
 import { inputResponse, inputTest, loadMoving, loadStop } from "./Login.vue";
-import smallWarning from '../../components/svg/SmallWarning.vue'
+import smallWarning from '../svg/SmallWarning.vue'
 import $ from "jquery";
 import axios from "axios";
 import bcrypt from 'bcryptjs';

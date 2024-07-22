@@ -8,6 +8,7 @@ public class HampsterUserApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(Config.class, args);
+		System.out.println("(♥◠‿◠)ﾉﾞ  Hampster User is running!   ლ(´ڡ`ლ)ﾞ ");
 	}
 
 }
