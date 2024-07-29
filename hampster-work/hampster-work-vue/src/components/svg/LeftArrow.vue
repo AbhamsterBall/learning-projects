@@ -19,8 +19,7 @@ export function setColor(str) {
   <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
        :width="width" :height="height" viewBox="0 0 88 88" style="enable-background:new 0 0 88 88;" xml:space="preserve">
     <polyline :style="{'stroke' : color}" class="st0" points="29.4,15.4 60.4,44 29.4,72.6 "/>
-</svg>
-
+  </svg>
 </template>
 
 <style scoped>

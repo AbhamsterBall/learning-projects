@@ -14,7 +14,10 @@ $(() => {
   console.log("yes")
   // change width & height of content-box
   checkOverFlow()
-  $('.blog-content').css('width', window.innerWidth - $('.list-outline').width() - 100 - 20 + 'px')
+  if ($(window).width() > 1000)
+    $('.blog-content').css('width', window.innerWidth - $('.list-outline').width() - 100 - 20 + 'px')
+  else
+    $('.blog-content').css('width', ($(window).width() - 100) + 'px')
 
   $(window).resize(function() {
     checkOverFlow()
@@ -195,7 +198,8 @@ export function checkOverFlow() {
       $('.blog-content').css({
         'width': ($(window).width() - 100) + 'px',
         'left': '0px',
-        'max-width': $(window).width() + 'px'
+        'max-width': $(window).width() + 'px',
+        'height': window.innerHeight - 210 + 'px'
       });
     // })
   }

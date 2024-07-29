@@ -9,6 +9,10 @@ body {
     margin:0px;
     padding:0px;
 }
+pre {
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}
 .app, .list-outline, .text, .mainHref {
     margin:0px;
     padding:0px;

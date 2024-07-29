@@ -25,14 +25,12 @@ $(() => {
 function adjustListShowSuspense() {
   // hide list when window is resized to smaller than 1000px 手机端隐藏列表，并放在左上角
   if ($(window).width() < 1000) {
-    // setshowListSuspense(false)
     $('.list-outline').css('display', 'none')
     $('.extra-outline').css({
       'display': 'block',
       'z-index': '-1',
     })
   } else {
-    // setshowListSuspense(true)
     $('.list-outline').css('display', 'block')
     $('.extra-outline').css('display', 'none')
   }
