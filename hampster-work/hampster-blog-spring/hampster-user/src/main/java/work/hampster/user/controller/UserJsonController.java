@@ -18,7 +18,7 @@ import java.util.HashMap;
 import java.util.LinkedHashMap;
 
 @RestController
-@CrossOrigin(origins = "http://localhost")
+//@CrossOrigin(origins = "http://localhost")
 public class UserJsonController {
 
     private final UserService userService;

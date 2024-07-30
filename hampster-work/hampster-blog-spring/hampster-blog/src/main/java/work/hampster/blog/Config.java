@@ -23,6 +23,9 @@ import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.serializer.Jackson2JsonRedisSerializer;
 import org.springframework.data.redis.serializer.RedisSerializer;
 import org.springframework.data.redis.serializer.StringRedisSerializer;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+import org.springframework.web.filter.CorsFilter;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
@@ -103,19 +106,23 @@ public class Config implements WebMvcConfigurer {
                         environment.getProperty("spring.data.elasticsearch.rest.scheme"))).build();
     }
 
+    /**
+     * 跨域配置
+     */
     @Bean
-    public WebMvcConfigurer corsConfigurer() {
-        return new WebMvcConfigurer() {
-            @Override
-            public void addCorsMappings(CorsRegistry registry) {
-                registry.addMapping("/**")
-                        .allowedOrigins("http://localhost:*") // 允许所有端口的 localhost
-                        .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS") // 允许的方法
-                        .allowedHeaders("*") // 允许所有请求头
-                        .allowCredentials(true) // 允许携带凭证
-                        .maxAge(3600); // 预检请求的缓存时间
-            }
-        };
+    public CorsFilter corsFilter()
+    {
+        CorsConfiguration config = new CorsConfiguration();
+        config.setAllowCredentials(true);
+        config.addAllowedOriginPattern("http://localhost:*");
+        config.addAllowedHeader("*");
+        config.addAllowedMethod("*");
+        config.setMaxAge(3600L);
+        // 添加映射路径，拦截一切请求(都要过该配置)
+        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+        source.registerCorsConfiguration("/**", config);
+        // 返回新的CorsFilter
+        return new CorsFilter(source);
     }
 
 }
