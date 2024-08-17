@@ -1,9 +1,11 @@
 <script setup>
-import searchIcon from '../../svg/SearchIcon.vue'
+import searchIcon from '../svg/SearchIcon.vue'
 import { ref } from 'vue'
 import $ from 'jquery'
-import * as all from '../../../views/Home.vue'
-import { getTitle } from "../../../views/search/index.vue";
+import * as all from '../../views/Home.vue'
+import { getTitle as getBlogTitle } from "../../views/blog/index.vue";
+import { getTitle as getSearchTitle } from "../../views/search/index.vue";
+import { useRoute } from 'vue-router';
 
 // const color = ref("#535bf2")
 const color = ref("#a9acba")
@@ -75,6 +77,10 @@ $(() => {
   console.log('/search' + (getTitle().includes('HAMPSTER') ? '' : '/' + getTitle())  + '/blur')
 
 });
+
+function getTitle() {
+  return useRoute().name === 'Blog' ? getBlogTitle() : getSearchTitle()
+}
 
 function expandSearch() {
   // $('#search').css('display', 'block')

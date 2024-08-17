@@ -1,7 +1,7 @@
 <script setup>
 import { ref } from "vue";
-import top from '../../components/blog/top/Top.vue'
-import index_search from '../../components/blog/top/Search.vue'
+import top from '../../components/top/Top.vue'
+import index_search from '../../components/top/Search.vue'
 import search_list from '../../components/blog/List.vue'
 import Bottom from "../../components/Bottom.vue";
 import Loading from "../../components/Loading.vue";

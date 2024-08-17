@@ -15,7 +15,7 @@ $(() => {
   // change width & height of content-box
   checkOverFlow()
   if ($(window).width() > 1000)
-    $('.blog-content').css('width', window.innerWidth - $('.list-outline').width() - 100 - 20 + 'px')
+    $('.blog-content').css('width', window.innerWidth - $('.list-outline').width() - 100 - 23 + 'px')
   else
     $('.blog-content').css('width', ($(window).width() - 100) + 'px')
 
@@ -183,15 +183,20 @@ export default {
 
 export function checkOverFlow() {
   if ($(window).width() > 1000) {
-    $('.blog-content').css('height', window.innerHeight - 210 + 'px')
-    $('.blog-content').css('width', window.innerWidth - $('.list-outline').width() - 100 - 14 + 'px')
+    const windowWidth = $(window).width()
     // $('table').css('width', window.innerWidth - $('.list-outline').width() - 100 - 17 + 'px')
-    $('.blog-content').css('max-width', window.innerWidth - 316 + 'px')
     if (window.innerWidth * 0.18 < 216) {
-      $('.blog-content').css('left', 216 + 'px')
+      $('.blog-content').css({
+        'left': 216 + 'px'
+      })
     } else {
       $('.blog-content').css('left', '18%')
     }
+    $(".blog-content").css({
+      'height': window.innerHeight - 210 + 'px',
+      'width': windowWidth - $('.list-outline').width() - 100 - 6 + 'px', // TODO
+      'max-width': windowWidth + 'px'
+    })
   } else {
     // console.log("windowWidth: " + $(window).width())
     // this.$nextTick(() => {

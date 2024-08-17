@@ -7,6 +7,11 @@ import vue from '@vitejs/plugin-vue'
 export default defineConfig({
   plugins: [vue()],
   transpileDependencies: true,
+  server: {
+    host: '0.0.0.0',
+    port: 80,
+    open: true,
+  },
   devServer: {
     proxy: {
       '/blog': {

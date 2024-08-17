@@ -1,10 +1,10 @@
 <script setup>
 // import top from '../../components/search/top/Top.vue'
-import top from '../../components/Top.vue' // can I use Top.vue instead of search/top/Top.vue ???!!!
+import top from '../../components/top/Top.vue' // can I use Top.vue instead of search/top/Top.vue ???!!!
 import { ref } from "vue";
 import $ from "jquery";
 import { getCurrenTitle } from "../Home.vue";
-import index_search from '../../components/search/top/Search.vue'
+import index_search from '../../components/top/Search.vue'
 import search_list from '../../components/search/List.vue'
 import loading from '../../components/Loading.vue'
 import * as left from '../../components/svg/LeftArrow.vue'
