@@ -55,7 +55,6 @@ export function setTitle(tempTitle) {
   isTitleChanged = true
 }
 
-console.log(title.value)
 export function getTitle() {
   return title.value
 }

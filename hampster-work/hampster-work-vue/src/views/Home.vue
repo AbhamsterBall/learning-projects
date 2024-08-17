@@ -36,15 +36,13 @@ let selected = ref()
 document.onmouseup = document.onkeyup = document.onselectionchange = function() {
   setInterval(() => {
     if ( selected.value == getSelectedText() ) {
-      // console.log(getSelectedText());
+      // pass
     } else {
       selected.value = getSelectedText()
-      // console.log(selected.value)
     }
   }, 3000)
 };
 
-// console.log(store.state.token)
 </script>
 
 <script>

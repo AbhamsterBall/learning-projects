@@ -16,8 +16,6 @@ $(() => {
 })
 
 function waitServer() {
-  console.log("waitServer")
-
   loadMoving()
 
   getName()
@@ -26,9 +24,7 @@ function waitServer() {
 async function getName() {
   await new Promise(resolve => {
     let name = $('.login-username').val()
-    console.log(name)
     $.get("http://localhost:8082/json/user/isexist/" + name, function(data) {
-      console.log(data)
       if (!data) {
 
         loadStop()
@@ -102,8 +98,6 @@ export function loadStop() {
 }
 
 export const warningDisplay = (warningInfo) => {
-  console.log("warningDisplay")
-  console.log(warningInfo)
   $('.login-warning').html(warningInfo)
   $('.login-format').css('display', 'flex')
   setTimeout(() => {$('.login-format').css('opacity', '1')}, 180)
@@ -115,7 +109,6 @@ export const warningDisplay = (warningInfo) => {
 }
 
 export const warningDisappear = () => {
-  console.log('warningDisappear')
   $('.login-format').css('margin-top', '-30px')
   $('.login-forget').css('margin-top', '0px')
   setTimeout(() => {$('.login-format').css('opacity', '0')}, 50)
@@ -134,7 +127,6 @@ export const adjustSignupPos = () => {
     if ($('.login-format').css("opacity") == "1")
       $('.login-forget').css("margin", "-7px 24px 0px 389px")
     else {
-      // console.log("in")
       $('.login-forget').attr('style', 'margin: -7px 30px 0px 30px !important');
     }
     setTimeout(() => {$('.login-forget').css("display", "flex")}, 300)

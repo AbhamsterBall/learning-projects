@@ -24,7 +24,6 @@ $(() => {
 
   $(".index-search").hover(
       function() {
-        console.log(1);
         color.value = "#ffc459"
       },
       function() {

@@ -31,17 +31,13 @@ function testVeri() {
   let cIn = $('.login-signup-veri').val()
 
   // 直接传给后端哈希对比
-  console.log(account)
   const ur = "http://localhost:8082/json/user/checkmailcode/" + account._object.account +　"/" + cIn
   axios.get(ur)
       .then(data => {
-        console.log(data.data == "expired")
-        console.log(data.data)
         if (data.data == true) {
           loadStop()
           moveLeft()
           setTimeout(() => {hideWrong(); restorePos()}, 400)
-          console.log("right pass")
         } else if (data.data == "expired") {
           loadStop()
           displayWrong("验证码过期，请检查或<a href=\"#\" class=\"login-forget-top\" style=\"margin-left: 0px\">重新发送</a>")
@@ -65,10 +61,7 @@ import $ from "jquery";
 
 export function veriTest(outString, isFormatValid, account) {
   let re = isFormatValid
-  console.log(account.value._object.account)
-  console.log(/^[0-9+()（）]+$/.test(account.value._object.account))
   if (/^[0-9+()（）]+$/.test(account.value._object.account)) {
-    console.log("in")
     if (outString.length != 6 || !/^[0-9]+$/.test(outString)) {
       if (isFormatValid) {
         warningDisplay("验证码应该为6位数字")
@@ -83,7 +76,6 @@ export function veriTest(outString, isFormatValid, account) {
       }
     }
   } else {
-    console.log("else in")
     if (outString.length != 6 || !/^[0-9A-Za-z]+$/.test(outString)) {
       $('.login-warning').html("验证码应该为6位数字或字母")
       if (isFormatValid) {

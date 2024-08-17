@@ -28,17 +28,13 @@ function testAccount() {
 
   try {
     const ur = "http://localhost:8082/json/user/isexist/" + inputAC.value
-    console.log(ur)
     axios.get(ur)
         .then(data => {
-          console.log(data.data)
           if (data.data) {
-            console.log("data.data")
             loadStop()
             displayWrong("账号已存在，请<a href=\"#\" class=\"login-forget-top\" style=\"margin-left: 0px\">前往登录</a>")
             $('.login-forget-top').click(backToLogin)
           } else {
-            console.log("data.other")
 
             if (inputAC.value.includes("@")) {
               getMailCode(inputAC.value)
@@ -57,7 +53,6 @@ function testAccount() {
 }
 
 function backToLogin() {
-  console.log("back")
 
   setTimeout(() => {moveBack()}, 300)
 

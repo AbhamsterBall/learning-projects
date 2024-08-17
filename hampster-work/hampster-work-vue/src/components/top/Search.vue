@@ -43,7 +43,6 @@ $(() => {
 
   $(".index-search").hover(
       function() {
-        console.log(1);
         if (isExpand) color.value = "#ffc459"
         else color.value = "#FFFFFF"
       },
@@ -74,8 +73,6 @@ $(() => {
     }
   });
 
-  console.log('/search' + (getTitle().includes('HAMPSTER') ? '' : '/' + getTitle())  + '/blur')
-
 });
 
 function getTitle() {
@@ -89,7 +86,6 @@ function expandSearch() {
   } else {
     $('#search').css('opacity', '1')
     setTimeout(() => {
-          console.log(window.innerWidth)
           if (window.innerWidth <= 1000) {
             lessThan1000Expand()
           } else {
@@ -104,7 +100,6 @@ function lessThan1000Expand() {
   $('#search').css('width', '82%')
   $('.main-title-text').css('margin-top', '-20px')
   let left = window.innerWidth * 0.91
-  console.log(left)
   $('.index-search').css('margin-left', left - 65 + "px")
   color.value = "#535bf2"
   $('#search').focus()

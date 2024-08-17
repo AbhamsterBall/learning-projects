@@ -4,8 +4,6 @@ import $ from 'jquery'
 import * as all from "../../views/Home.vue"
 import { getTitle } from '../../views/search/index.vue'
 
-console.log(getTitle())
-
 await getName()
 
 const windowWidth = ref($(window).width())
@@ -63,15 +61,12 @@ const max_page = ref(1)
 
 export async function getMaxPage() {
   await getMaxPageAjax()
-  console.log(max_page.value)
   return max_page.value
 }
 
 export async function getName() {
   await new Promise(resolve => {
-    console.log("http://localhost:8081/json/search/" + getTitle() + "/b_name/" + page.value)
     $.get("http://localhost:8081/json/search/" + getTitle() + "/b_name/" + page.value, function(data) {
-      console.log(data)
       name_data.value = data
       resolve()
     });
@@ -81,9 +76,7 @@ export async function getName() {
 export async function getMaxPageAjax() {
   await new Promise(resolve => {
     $.get("http://localhost:8081/json/search/" + getTitle() + "/b_name/maxpage", function(data) {
-      console.log(data)
       max_page.value = data
-      console.log(max_page.value)
       resolve()
     });
   })

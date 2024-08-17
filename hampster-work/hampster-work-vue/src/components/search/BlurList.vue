@@ -4,8 +4,6 @@ import $ from 'jquery'
 import * as all from "../../views/Home.vue"
 import { getTitle } from '../../views/search/index.vue'
 
-console.log(getTitle())
-
 await getName()
 
 const windowWidth = ref($(window).width())
@@ -54,9 +52,12 @@ $(() => {
 })
 
 function filterHTML(str) {
-  // console.log(str.replace(/"<.*>"/g, ''))
-  console.log(str.replace(/<h[1-6][^>]*>/g, '').replace(/<\/h[1-6]>/g, '').replace(/""/g, '').replace(/<textarea>/g, '').replace(/<\/textarea>/g, '').replace(/</g, '').replace(/\/em>/g, '</em>').replace(/em>/g, '<em>'))
-  return str.replace(/<h[1-6][^>]*>/g, '').replace(/<\/h[1-6]>/g, '').replace(/""/g, '').replace(/<textarea>/g, '').replace(/<\/textarea>/g, '').replace(/</g, '&lt;').replace(/&lt;\/em>/g, '</em>').replace(/&lt;em>/g, '<em>');
+  return str.replace(/<h[1-6][^>]*>/g, '')
+    .replace(/<\/h[1-6]>/g, '').replace(/""/g, '')
+    .replace(/<textarea>/g, '').replace(/<\/textarea>/g, '')
+    .replace(/</g, '&lt;')
+    .replace(/&lt;\/em>/g, '</em>')
+    .replace(/&lt;em>/g, '<em>');
 }
 
 let small_title = ref()
@@ -75,7 +76,6 @@ const max_page = ref(1)
 
 export async function getBlurMaxPage() {
   await getMaxPageAjax()
-  console.log(max_page.value)
   return max_page.value
 }
 
@@ -95,9 +95,7 @@ export async function getName() {
     if (!getTitle().includes("HAMPSTER"))
       url = "http://localhost:8081/json/search/blur/" + getTitle() + "/" + getSearchText() +  "/" + getPage()
     else url = "http://localhost:8081/json/search/blur/" + getSearchText() +  "/" + getPage()
-    console.log(url)
     $.get(url, function(data) {
-      console.log(data)
       name_data.value = data
       resolve()
     });
@@ -111,11 +109,8 @@ export async function getMaxPageAjax() {
     if (!getTitle().includes("HAMPSTER"))
       url = "http://localhost:8081/json/search/blur/" + getTitle() + "/" + getSearchText() +  "/maxpage"
     else url = "http://localhost:8081/json/search/blur/" + getSearchText() +  "/maxpage"
-    console.log(url)
     $.get(url, function(data) {
-      console.log(data)
       max_page.value = data
-      console.log(max_page.value)
       resolve()
     });
   })

@@ -15,7 +15,6 @@ let props = defineProps({
 })
 
 let { account } = toRefs(props) // 解构为单独的变量
-console.log(account)
 
 $(() => {
 
@@ -26,10 +25,7 @@ $(() => {
 })
 
 function showOrHide() {
-  console.log("showOrHide")
   let x = $(".login-signup-pass")[0];
-  console.log(x)
-  console.log(x.type)
   if (x.type === "password") {
     x.type = "text";
   } else {
@@ -38,9 +34,6 @@ function showOrHide() {
 }
 
 function addAccount() {
-  console.log(account)
-  console.log(account._object.account)
-  console.log($('.login-signup-pass').val())
   loadMoving()
   const ur = "http://localhost:8082/json/user/register"
   axios.post(ur, {
@@ -56,7 +49,6 @@ function addAccount() {
           const secretKey = 'RKcBEB9AXN4zyr02rMG1GpQ5ZDldGJhZEvdHo3nw';
           axios.get("http://47.109.149.213:9000/profile/default.svg", {responseType: 'blob'})
               .then(response => {
-                console.log(response)
                 const blob = new Blob([response.data]);
                 axios.put("http://47.109.149.213:9000/profile/" + data.data.user_token + ".svg",
                     blob,  {
@@ -69,7 +61,6 @@ function addAccount() {
                       loadStop()
                       moveLeft()
                       // toSetName()
-                      console.log("add ok")
                     })
                     .catch(error => {
                       console.error(error);
@@ -99,7 +90,6 @@ import { warningDisplay, warningDisappear } from "./Login.vue";
 
 export function passTest(outString, isFormatValid) {
   let re = isFormatValid
-  console.log(outString)
   if (!/[0-9]+/.test(outString) || !/[A-Za-z]+/.test(outString)) {
     if (isFormatValid) {
       warningDisplay("密码应该包含大小写字母及数字")

@@ -26,8 +26,6 @@ $(() => {
 });
 
 function checkIfLogin() {
-  console.log(localStorage.getItem("utoken"))
-  console.log(localStorage.getItem("uuuuuu"))
   if (localStorage.getItem("utoken") != null) {
     $(".login").css("display", "none")
     $(".loginIcon").css("display", "none")

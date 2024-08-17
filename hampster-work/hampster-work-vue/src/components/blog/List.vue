@@ -6,8 +6,6 @@ import { getTitle, setTitle } from '../../views/blog/index.vue'
 import BlogRefresh from "../svg/BlogRefresh.vue";
 import Content from "./Content.vue"
 
-console.log(getTitle())
-
 await getName()
 
 const windowWidth = ref($(window).width())
@@ -48,7 +46,6 @@ $(() => {
   checkOverflow()
 
   // let sepHref = window.location.href.split('/');
-  // console.log(sepHref)
 
   $("<style>").prop("type", "text/css").html("@keyframes rotate {\n" +
       "  from {\n" +
@@ -59,14 +56,11 @@ $(() => {
       "  }\n" +
       "}").appendTo("head");
 
-  console.log(name_data.value[0])
   for (let i = 0; i < name_data.value.length; i++) {
     $('.' + name_data.value[i].btName + '-href').hover(() => {
-      console.log('in')
       if (!showRefresh.value[i])
        $('.' + name_data.value[i].btName + '-refresh').css('opacity', '0.84')
     }, () => {
-      console.log($('.' + name_data.value[i].btName + '-refresh').css('opacity'))
       if (parseFloat($('.' + name_data.value[i].btName + '-refresh').css('opacity')) < 0.85) {
         $('.' + name_data.value[i].btName + '-refresh').css('opacity', '0')
       }
@@ -98,7 +92,6 @@ const max_page = ref(1)
 
 export async function getMaxPage() {
   await getMaxPageAjax()
-  console.log(max_page.value)
   return max_page.value
 }
 
@@ -115,9 +108,7 @@ export async function getName() {
 export async function getMaxPageAjax() {
   await new Promise(resolve => {
     $.get("http://localhost:8081/json/search/" + getTitle() + "/b_name/maxpage", function(data) {
-      console.log(data)
       max_page.value = data
-      console.log(max_page.value)
       resolve()
     });
   })
@@ -128,9 +119,6 @@ function checkOverflow() {
   let content = $('.index-text');
 
   // 如果内容高度小于等于元素高度，则隐藏滚动条
-  console.log("contentHeight:" + content.outerHeight())
-  console.log("scrollHeight:" + scrollArea.css('height').split("px")[0])
-  console.log(parseInt(content.outerHeight()) < parseInt(scrollArea.css('height').split("px")[0]) - 3)
   if (parseInt(content.outerHeight()) < parseInt(scrollArea.css('height').split("px")[0]) - 3) {
     scrollArea.css('overflow-y', 'hidden');
   } else {
@@ -182,11 +170,8 @@ let blog_name = ref({})
 
 export async function getBlogName(btName, index) {
   await new Promise(resolve => {
-    console.log("http://localhost:8081/json/blog/" + btName + "/b_name")
     $.get("http://localhost:8081/json/blog/" + btName + "/b_name", function(data) {
       // setTimeout($('.' + btName + '-refresh').css('animation', 'none'), 10000)
-      console.log(data)
-      console.log("data " + data + blog_name.value[btName])
       blog_name.value[btName] = data
       if (btName === 'ALL') {
         setTitle("HAMPSTER.WORK")
@@ -194,9 +179,6 @@ export async function getBlogName(btName, index) {
         setTitle(btName)
       }
       $('.' + btName).css('opacity', '1')
-      console.log('scroll')
-      console.log($('.' + btName)[0])
-      console.log($('.' + btName)[0].scrollHeight)
       setTimeout(() => {
         $('.' + btName)[0].style.backgroundColor = '#f3f3f3'
         $('.' + btName).css('background-color', '#f3f3f3')

@@ -48,7 +48,9 @@ export const store = new Vuex.Store({
 });
 
 // 在应用初始化时调用initToken action
-store.dispatch('initToken').then(r => { console.log('init') });
+store.dispatch('initToken').then(r => { 
+  // pass
+});
 
 app.use(router)
 app.mount('#app')

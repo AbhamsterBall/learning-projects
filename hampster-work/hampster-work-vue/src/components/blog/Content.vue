@@ -11,7 +11,6 @@ $(() => {
   // $("<script>").prop("src", "highlight/lib/vendor/highlight.js/highlight.js").appendTo("head");
   // $("<script>").html("  hljs.initHighlightingOnLoad();").appendTo("head");
   // setTimeout(() => {hljs()}, 5000);
-  console.log("yes")
   // change width & height of content-box
   checkOverFlow()
   if ($(window).width() > 1000)
@@ -65,7 +64,6 @@ function showRoundedBox() {
   const rect = window.getSelection().getRangeAt(0).getBoundingClientRect()
   returnedText.value = ""
 
-  console.log(parseInt($('.rounded-box').css('width').substring(0, $('.rounded-box').css('width').length - 2)))
   $('.rounded-box').css({
     display: 'block',
     left: `${rect.left + rect.width / 2 - parseInt($('.rounded-box').css('width').substring(0, $('.rounded-box').css('width').length - 2)) / 2}px`,
@@ -81,7 +79,7 @@ let selectedTemp = ref()
 const testSelected = function() {
   setInterval(() => {
     if ( selectedTemp.value == getSelectedText() ) {
-      // console.log(getSelectedText());
+      // pass
     } else {
       selectedTemp.value = getSelectedText()
 
@@ -96,10 +94,9 @@ const testSelected = function() {
   }, 10)
   setInterval(() => {
     if ( selected.value == getSelectedText() ) {
-      // console.log(getSelectedText());
+      // pass
     } else {
       selected.value = getSelectedText()
-      console.log(selected.value)
 
       if (selected.value !== "") {
         isLoading.value = true
@@ -150,7 +147,6 @@ export async function getContent() {
 }
 
 function prepMarkDown() {
-  console.log($(".markdown").length)
   blog_content.value = blog_content.value.replace(/<textarea>/g, '').replace(/\/<textarea>/g, '');
   let text = marked.parse(blog_content.value);
 
@@ -168,11 +164,8 @@ import { hljs } from "highlight/lib/vendor/highlight.js/highlight.js";
 
 export default {
   mounted() {
-    // console.log($(".markdown").length)
     // for (var i = 0 ; i < $(".markdown").length ; i++) {
-    //   console.log($(".markdown").eq(i))
     //   let text = marked.parse($(".markdown").eq(i).text());
-    //   console.log($(".markdown").eq(i).text())
     //   $(".markdown").eq(i).html(text);
     // }
     //
@@ -194,11 +187,14 @@ export function checkOverFlow() {
     }
     $(".blog-content").css({
       'height': window.innerHeight - 210 + 'px',
-      'width': windowWidth - $('.list-outline').width() - 100 - 6 + 'px', // TODO
+      'width': windowWidth - $('.list-outline').width() - 100 - 6 + 'px', 
+      /* TODO:
+        1.problem with merged TOP: unexpected error in console log...
+        2.merge all ajax/axios api under a folder
+      */
       'max-width': windowWidth + 'px'
     })
   } else {
-    // console.log("windowWidth: " + $(window).width())
     // this.$nextTick(() => {
       $('.blog-content').css({
         'width': ($(window).width() - 100) + 'px',
