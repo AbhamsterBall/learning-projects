@@ -177,6 +177,13 @@
 			<version>0.4</version>
 		</dependency>
 
+		<!-- 自动化测试 -->
+		<dependency>
+			<groupId>org.seleniumhq.selenium</groupId>
+			<artifactId>selenium-java</artifactId>
+			<version>4.23.1</version>
+		</dependency>
+
     </dependencies>
 
 	<build>

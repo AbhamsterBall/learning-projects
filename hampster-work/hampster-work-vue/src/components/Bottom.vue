@@ -2,6 +2,7 @@
   import $ from "jquery";
   import { ref } from "vue";
   import bottomFixed from "./bottom/BottomFixed.vue";
+  import { indexBlogName } from "../api/blog";
 
   const name_data = ref([{
     bt_name: "",
@@ -10,7 +11,8 @@
 
   async function getName() {
     await new Promise(resolve => {
-      $.get("http://localhost:8081/json/index/b_name", function(data) {
+      indexBlogName().then(data => {
+      // $.get("http://localhost:8081/json/index/b_name", function(data) {
         name_data.value = data
         for (let i = 0; i < name_data.value.length; i++) {
           name_data.value[i].blogNames = name_data.value[i].blogNames.split(",").slice(-3)

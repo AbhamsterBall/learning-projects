@@ -11,25 +11,48 @@ export default defineConfig({
     host: '0.0.0.0',
     port: 80,
     open: true,
+    proxy: {
+        '^/blog-api': {
+          target: 'http://localhost:8081/', // 8081本地后端地址
+          changeOrigin: true, //允许跨域
+          // ws: false,
+          rewrite: (path) => path.replace(/^\/blog-api/, ''),
+        },
+        '/user': {
+          target: 'http://localhost:8082/', // 本地后端地址
+          changeOrigin: true, //允许跨域
+          ws: false
+        },
+        '/web': {
+          target: 'http://localhost:80/', // 本地后端地址
+          changeOrigin: true, //允许跨域
+          ws: false
+        }
+    }
   },
   devServer: {
-    proxy: {
-      '/blog': {
-        target: 'http://localhost:8081/', // 本地后端地址
-        changeOrigin: true, //允许跨域
-        ws: false
-      },
-      '/user': {
-        target: 'http://localhost:8082/', // 本地后端地址
-        changeOrigin: true, //允许跨域
-        ws: false
-      },
-      '/web': {
-        target: 'http://localhost:80/', // 本地后端地址
-        changeOrigin: true, //允许跨域
-        ws: false
-      }
-    },
+    // proxy: "http://localhost:8081",
+    // proxy: {
+    //   '/blog-api': {
+    //     target: 'http://localhost:80',
+    //     router: () => 'http://localhost:8081', // 8081本地后端地址
+    //     changeOrigin: true, //允许跨域
+    //     ws: false,
+    //     pathRewrite: {
+    //       '^/blog-api': '', // 去掉路径中的/blog-api
+    //     },
+    //   },
+    //   '/user': {
+    //     target: 'http://localhost:8082/', // 本地后端地址
+    //     changeOrigin: true, //允许跨域
+    //     ws: false
+    //   },
+    //   '/web': {
+    //     target: 'http://localhost:80/', // 本地后端地址
+    //     changeOrigin: true, //允许跨域
+    //     ws: false
+    //   }
+    // },
   }
 })
 // let { CopyWebpackPlugin } = require("copy-webpack-plugin")

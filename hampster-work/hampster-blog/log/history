@@ -1,10 +1,32 @@
-DEBUG [http-nio-8081-exec-3] - ==>  Preparing: select b_content from blog where b_name=?
-DEBUG [http-nio-8081-exec-3] - ==>  Preparing: select b_content from blog where b_name=?
-DEBUG [http-nio-8081-exec-3] - ==> Parameters: Elasticsearch(String)
-DEBUG [http-nio-8081-exec-3] - ==> Parameters: Elasticsearch(String)
-TRACE [http-nio-8081-exec-3] - <==    Columns: b_content
-TRACE [http-nio-8081-exec-3] - <==    Columns: b_content
-TRACE [http-nio-8081-exec-3] - <==        Row: <<BLOB>>
-TRACE [http-nio-8081-exec-3] - <==        Row: <<BLOB>>
-DEBUG [http-nio-8081-exec-3] - <==      Total: 1
-DEBUG [http-nio-8081-exec-3] - <==      Total: 1
+DEBUG [http-nio-8081-exec-5] - ==>  Preparing: SELECT bt.bt_name, GROUP_CONCAT(b.b_name) AS blogNames FROM blog_type bt LEFT JOIN (SELECT b.*, ROW_NUMBER() OVER(PARTITION BY b.b_type ORDER BY b.b_time DESC) AS row_num FROM blog b) b ON bt.bt_id = b.b_type WHERE b.row_num <= 3 GROUP BY bt.bt_id HAVING blogNames IS NOT NULL
+DEBUG [http-nio-8081-exec-5] - ==>  Preparing: SELECT bt.bt_name, GROUP_CONCAT(b.b_name) AS blogNames FROM blog_type bt LEFT JOIN (SELECT b.*, ROW_NUMBER() OVER(PARTITION BY b.b_type ORDER BY b.b_time DESC) AS row_num FROM blog b) b ON bt.bt_id = b.b_type WHERE b.row_num <= 3 GROUP BY bt.bt_id HAVING blogNames IS NOT NULL
+DEBUG [http-nio-8081-exec-5] - ==> Parameters: 
+DEBUG [http-nio-8081-exec-5] - ==> Parameters: 
+TRACE [http-nio-8081-exec-5] - <==    Columns: bt_name, blogNames
+TRACE [http-nio-8081-exec-5] - <==    Columns: bt_name, blogNames
+TRACE [http-nio-8081-exec-5] - <==        Row: JAVA, <<BLOB>>
+TRACE [http-nio-8081-exec-5] - <==        Row: JAVA, <<BLOB>>
+TRACE [http-nio-8081-exec-5] - <==        Row: PYTHON, <<BLOB>>
+TRACE [http-nio-8081-exec-5] - <==        Row: PYTHON, <<BLOB>>
+DEBUG [http-nio-8081-exec-5] - <==      Total: 2
+DEBUG [http-nio-8081-exec-5] - <==      Total: 2
+DEBUG [http-nio-8081-exec-10] - ==>  Preparing: select b_name from blog where b_type=(select bt_id from blog_type where bt_name=?) order by b_time desc
+DEBUG [http-nio-8081-exec-10] - ==>  Preparing: select b_name from blog where b_type=(select bt_id from blog_type where bt_name=?) order by b_time desc
+DEBUG [http-nio-8081-exec-10] - ==> Parameters: PYTHON(String)
+DEBUG [http-nio-8081-exec-10] - ==> Parameters: PYTHON(String)
+TRACE [http-nio-8081-exec-10] - <==    Columns: b_name
+TRACE [http-nio-8081-exec-10] - <==    Columns: b_name
+TRACE [http-nio-8081-exec-10] - <==        Row: 继承
+TRACE [http-nio-8081-exec-10] - <==        Row: 继承
+DEBUG [http-nio-8081-exec-10] - <==      Total: 1
+DEBUG [http-nio-8081-exec-10] - <==      Total: 1
+DEBUG [http-nio-8081-exec-8] - ==>  Preparing: select b_content from blog where b_name=?
+DEBUG [http-nio-8081-exec-8] - ==>  Preparing: select b_content from blog where b_name=?
+DEBUG [http-nio-8081-exec-8] - ==> Parameters: 继承(String)
+DEBUG [http-nio-8081-exec-8] - ==> Parameters: 继承(String)
+TRACE [http-nio-8081-exec-8] - <==    Columns: b_content
+TRACE [http-nio-8081-exec-8] - <==    Columns: b_content
+TRACE [http-nio-8081-exec-8] - <==        Row: <<BLOB>>
+TRACE [http-nio-8081-exec-8] - <==        Row: <<BLOB>>
+DEBUG [http-nio-8081-exec-8] - <==      Total: 1
+DEBUG [http-nio-8081-exec-8] - <==      Total: 1

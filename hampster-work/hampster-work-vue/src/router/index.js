@@ -29,10 +29,10 @@ const routes = [
         name: 'Blog',
         component: BlogIndex
     },
-    {
-        path: '/:pathMatch(.*)*',
-        redirect: '/'
-    }
+    // {
+    //     path: '/:pathMatch(.*)*',
+    //     redirect: '/'
+    // }
 ]
 
 const router = createRouter({
