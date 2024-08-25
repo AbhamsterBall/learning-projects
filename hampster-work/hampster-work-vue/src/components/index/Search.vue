@@ -56,7 +56,7 @@ $(() => {
 #search {
   background-color: white;
   width: 630px;
-  border: solid 2px #2759b2;
+  border: solid 2px #1d2841; /* 2759b2 */
   height: auto;
   position: relative;
   color: #333333;
@@ -67,7 +67,7 @@ $(() => {
   transition: .6s;
   margin: 100px auto auto auto;
   display: block;
-  box-shadow: 0 0 6px 3px #bfc8ec; /* 模拟边框 */
+  box-shadow: 0 0 6px 3px rgba(43, 68, 126, 0.31); /* bfc8ec 模拟边框 rgb(43 68 126 / 31%)*/
 }
 #search:focus {
   outline: none;

@@ -11,9 +11,6 @@ const props = defineProps({
 setColor("white")
 
 $(() => {
-  /* TODO: add ai icon(size: 88px * 88px)+ combile all top files into one file
-  * 避免端口变化导致的程序启动失败
-  **/
 
   $(".loginIcon").hover(
       function() {
@@ -88,24 +85,6 @@ function loginClick() {
   width: 52px;
   margin-left: -2px;
   margin-top: -2px;
-  z-index: 100;
-}
-.login {
-  position: absolute;
-  right: 30px;
-  top: 30px;
-  //color: #2759b2;
-  color: white;
-  text-decoration: none;
-  font-size: 18px;
-  margin: 20px;
-  transition: 0.3s;
-  border: white solid 2px;
-  padding: 15px 36px;
-  border-radius: 20px;
-  box-shadow: 0 0 0 3px #2759b2; /* 模拟边框 */
-  outline: #2759b2 solid 1.5px;
-  //background-color: white;
   z-index: 100;
 }
 .login:hover {

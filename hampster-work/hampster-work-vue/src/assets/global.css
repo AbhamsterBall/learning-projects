@@ -32,14 +32,14 @@ img, svg{
     border-radius: 0px 0px 20px 20px;
     text-align: center;
     height: 150px;
-    background-color: #2759b2;
+    background-color: white; /* 2759b2 */
     font-size: 40px;
     vertical-align: center;
-    color: white;
+    color: black;
     line-height: 130px;
     padding-top: 15px;
     letter-spacing: 10px;
-    box-shadow: 0 0 6px 3px #bfc8ec; /* 模拟边框 */
+    box-shadow: 0 0 8px 3px #e8e8e8; /* 模拟边框 0 0 6px 3px #d7dae7*/
 }
 .index-title{
     /*height: 100%;*/
@@ -103,7 +103,7 @@ img, svg{
     /*letter-spacing: 1px;*/
 }
 .mainHref:hover{
-    background-color: #476fb7;
+    background-color: #454f72; /* 476fb7 */
     color: white;
 }
 a{
@@ -145,7 +145,7 @@ textarea::-webkit-scrollbar-thumb{
 }
 .bottom {
     border-radius: 20px 20px 0px 0px;
-    background-color: #2759b2;
+    background-color: #1d2841; /* 2759b2 */
     height: 200px;
     width: 100%;
     margin-top: 100px;
@@ -385,3 +385,22 @@ input::placeholder {
     width: 360px;
     font-size: 16px;
 }
+.login {
+    position: absolute;
+    right: 30px;
+    top: 30px;
+    /*//color: #2759b2;*/
+    color: #333333;
+    text-decoration: none;
+    font-size: 18px;
+    margin: 20px;
+    transition: 0.3s;
+    border: white solid 2px;
+    padding: 15px 36px;
+    border-radius: 20px;
+    box-shadow: 0 0 0 3px #333333; /* 模拟边框 2759b2*/
+    outline: #333333 solid 1.5px; /*2759b2*/
+    /*//background-color: white;*/
+}
+
+

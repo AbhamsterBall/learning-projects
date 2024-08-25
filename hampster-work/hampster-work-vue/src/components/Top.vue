@@ -8,7 +8,7 @@ const props = defineProps({
   title: String,
 })
 
-setColor("white")
+setColor("#333333")
 
 $(() => {
   $(".loginIcon").hover(
@@ -18,7 +18,7 @@ $(() => {
       },
       function() {
         $(".login-mini-back").css("opacity", "0")
-        setColor("white")
+        setColor("#333333")
       }
   );
 
@@ -76,23 +76,6 @@ function loginClick() {
   width: 52px;
   margin-left: -2px;
   margin-top: -2px;
-}
-.login {
-  position: absolute;
-  right: 30px;
-  top: 30px;
-  //color: #2759b2;
-  color: white;
-  text-decoration: none;
-  font-size: 18px;
-  margin: 20px;
-  transition: 0.3s;
-  border: white solid 2px;
-  padding: 15px 36px;
-  border-radius: 20px;
-  box-shadow: 0 0 0 3px #2759b2; /* 模拟边框 */
-  outline: #2759b2 solid 1.5px;
-  //background-color: white;
 }
 .login:hover {
   background-color: white;
