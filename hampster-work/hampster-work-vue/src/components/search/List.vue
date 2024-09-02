@@ -30,7 +30,7 @@ $(() => {
       function() {
         isIn = false
         setTimeout(() => {
-          if (!isIn) $('.main-title').css('box-shadow', '0 0 6px 3px #bfc8ec')
+          if (!isIn) $('.main-title').css('box-shadow', '0 0 8px 3px #e8e8e8')
         }, 600)
       }
   )
@@ -102,8 +102,8 @@ export async function getMaxPageAjax() {
 	 <div class="text index-text" style="text-align: center; color: #444444;">
 			 <a href="/java/index.html" class="mainHref"
           v-for="(name_item, index) in name_data"
-          :style="[index === name_data.length - 1 && windowWidth > 1000 ? { 'border-radius': '0px 0px 40px 40px' } : {},
-               index === name_data.length - 1 && windowWidth <= 1000 ? { 'border-radius': '0px 0px 30px 30px' } : {}]"
+          :style="[index === name_data.length - 1 && windowWidth > 1000 ? { 'border-radius': '0px 0px 30px 30px' } : {},
+               index === name_data.length - 1 && windowWidth <= 1000 ? { 'border-radius': '0px 0px 22px 22px' } : {}]"
        >
          {{ name_item.b_name.toUpperCase() }}
        </a>

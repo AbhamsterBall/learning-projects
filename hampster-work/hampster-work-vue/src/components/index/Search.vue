@@ -60,14 +60,15 @@ $(() => {
   height: auto;
   position: relative;
   color: #333333;
-  line-height: 70px;
-  /*margin-top: 100px;*/
-  padding: 0% 2%;
+  line-height: 20px;
+  /* margin-top: 100px; */
+  padding: 25px 2%;
   font-size: 20px;
   transition: .6s;
   margin: 100px auto auto auto;
   display: block;
   box-shadow: 0 0 6px 3px rgba(43, 68, 126, 0.31); /* bfc8ec 模拟边框 rgb(43 68 126 / 31%)*/
+  border-radius: 40px;
 }
 #search:focus {
   outline: none;
@@ -77,7 +78,7 @@ $(() => {
 .index-search {
   position: absolute;
   left: 50%;
-  margin: -59px 0px 0px 275px;
+  margin: -61px 0px 0px 275px;
   transition: .6s;
   fill: #2759b2;
   cursor: pointer;
@@ -91,7 +92,7 @@ $(() => {
     border-radius: 22px;
   }
   .index-search {
-    margin: -59px 0px 0px 0px;
+    margin: -61px 0px 0px 0px;
   }
 }
 </style>

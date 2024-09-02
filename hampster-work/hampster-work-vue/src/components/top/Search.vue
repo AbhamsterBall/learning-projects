@@ -155,7 +155,7 @@ function moreThan1000Expand() {
 .index-search {
   position: absolute;
   left: 50%;
-  margin: -59px 0px 0px -20px; /*original left 275px*/
+  margin: -61px 0px 0px -20px; /*original left 275px*/
   transition: .3s;
   fill: #2759b2; /* original #2759b2 */
   cursor: pointer;
@@ -171,7 +171,7 @@ function moreThan1000Expand() {
     border-radius: 35px;
   }
   .index-search {
-    margin: -59px 0px 0px -20px;
+    margin: -61px 0px 0px -20px;
   }
 }
 </style>

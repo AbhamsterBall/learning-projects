@@ -38,7 +38,7 @@ $(() => {
       function() {
         isIn = false
         setTimeout(() => {
-          if (!isIn) $('.main-title').css('box-shadow', '0 0 6px 3px #bfc8ec')
+          if (!isIn) $('.main-title').css('box-shadow', '0 0 8px 3px #e8e8e8')
         }, 600)
       }
   )

@@ -54,10 +54,10 @@ let date = ref()
 	 <div class="text index-text" style="text-align: center; color: #444444;">
 			 <a :href="'/search/' + name_item.btName" class="mainHref"
           v-for="(name_item, index) in name_data"
-          :style="[index === name_data.length - 1 && windowWidth > 1000 ? { 'border-radius': '0px 0px 40px 40px' } : {},
-               index === 0 && windowWidth > 1000 ? { 'border-radius': '40px 40px 0px 0px' } : {},
-               index === name_data.length - 1 && windowWidth <= 1000 ? { 'border-radius': '0px 0px 30px 30px' } : {},
-               index === 0 && windowWidth <= 1000 ? { 'border-radius': '30px 30px 0px 0px' } : {}]"
+          :style="[index === name_data.length - 1 && windowWidth > 1000 ? { 'border-radius': '0px 0px 30px 30px' } : {},
+               index === 0 && windowWidth > 1000 ? { 'border-radius': '30px 30px 0px 0px' } : {},
+               index === name_data.length - 1 && windowWidth <= 1000 ? { 'border-radius': '0px 0px 22px 22px' } : {},
+               index === 0 && windowWidth <= 1000 ? { 'border-radius': '22px 22px 0px 0px' } : {}]"
        >
          {{ name_item.btName }}
        </a>

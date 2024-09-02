@@ -1,40 +1,6 @@
-DEBUG [http-nio-8081-exec-7] - ==>  Preparing: SELECT bt.bt_name, GROUP_CONCAT(b.b_name) AS blogNames FROM blog_type bt LEFT JOIN (SELECT b.*, ROW_NUMBER() OVER(PARTITION BY b.b_type ORDER BY b.b_time DESC) AS row_num FROM blog b) b ON bt.bt_id = b.b_type WHERE b.row_num <= 3 GROUP BY bt.bt_id HAVING blogNames IS NOT NULL
-DEBUG [http-nio-8081-exec-8] - ==>  Preparing: select b_content from blog where b_name=?
-DEBUG [http-nio-8081-exec-7] - ==>  Preparing: SELECT bt.bt_name, GROUP_CONCAT(b.b_name) AS blogNames FROM blog_type bt LEFT JOIN (SELECT b.*, ROW_NUMBER() OVER(PARTITION BY b.b_type ORDER BY b.b_time DESC) AS row_num FROM blog b) b ON bt.bt_id = b.b_type WHERE b.row_num <= 3 GROUP BY bt.bt_id HAVING blogNames IS NOT NULL
-DEBUG [http-nio-8081-exec-8] - ==>  Preparing: select b_content from blog where b_name=?
-DEBUG [http-nio-8081-exec-7] - ==> Parameters: 
-DEBUG [http-nio-8081-exec-7] - ==> Parameters: 
-DEBUG [http-nio-8081-exec-8] - ==> Parameters: undefined(String)
-DEBUG [http-nio-8081-exec-8] - ==> Parameters: undefined(String)
-TRACE [http-nio-8081-exec-7] - <==    Columns: bt_name, blogNames
-TRACE [http-nio-8081-exec-7] - <==    Columns: bt_name, blogNames
-TRACE [http-nio-8081-exec-7] - <==        Row: JAVA, <<BLOB>>
-TRACE [http-nio-8081-exec-7] - <==        Row: JAVA, <<BLOB>>
-TRACE [http-nio-8081-exec-7] - <==        Row: PYTHON, <<BLOB>>
-TRACE [http-nio-8081-exec-7] - <==        Row: PYTHON, <<BLOB>>
-DEBUG [http-nio-8081-exec-7] - <==      Total: 2
-DEBUG [http-nio-8081-exec-7] - <==      Total: 2
-DEBUG [http-nio-8081-exec-8] - <==      Total: 0
-DEBUG [http-nio-8081-exec-8] - <==      Total: 0
-DEBUG [http-nio-8081-exec-6] - ==>  Preparing: SELECT count(0) FROM blog_type
-DEBUG [http-nio-8081-exec-6] - ==>  Preparing: SELECT count(0) FROM blog_type
-DEBUG [http-nio-8081-exec-6] - ==> Parameters: 
-DEBUG [http-nio-8081-exec-6] - ==> Parameters: 
-TRACE [http-nio-8081-exec-6] - <==    Columns: count(0)
-TRACE [http-nio-8081-exec-6] - <==    Columns: count(0)
-TRACE [http-nio-8081-exec-6] - <==        Row: 2
-TRACE [http-nio-8081-exec-6] - <==        Row: 2
-DEBUG [http-nio-8081-exec-6] - <==      Total: 1
-DEBUG [http-nio-8081-exec-6] - <==      Total: 1
-DEBUG [http-nio-8081-exec-6] - ==>  Preparing: SELECT bt_id,bt_name FROM blog_type ORDER BY bt_id ASC LIMIT ?
-DEBUG [http-nio-8081-exec-6] - ==>  Preparing: SELECT bt_id,bt_name FROM blog_type ORDER BY bt_id ASC LIMIT ?
-DEBUG [http-nio-8081-exec-6] - ==> Parameters: 1000(Integer)
-DEBUG [http-nio-8081-exec-6] - ==> Parameters: 1000(Integer)
-TRACE [http-nio-8081-exec-6] - <==    Columns: bt_id, bt_name
-TRACE [http-nio-8081-exec-6] - <==    Columns: bt_id, bt_name
-TRACE [http-nio-8081-exec-6] - <==        Row: 1, JAVA
-TRACE [http-nio-8081-exec-6] - <==        Row: 1, JAVA
-TRACE [http-nio-8081-exec-6] - <==        Row: 2, PYTHON
-TRACE [http-nio-8081-exec-6] - <==        Row: 2, PYTHON
-DEBUG [http-nio-8081-exec-6] - <==      Total: 2
-DEBUG [http-nio-8081-exec-6] - <==      Total: 2
+DEBUG [http-nio-8081-exec-2] - ==>  Preparing: select b_content from blog where b_name=?
+DEBUG [http-nio-8081-exec-2] - ==>  Preparing: select b_content from blog where b_name=?
+DEBUG [http-nio-8081-exec-2] - ==> Parameters: undefined(String)
+DEBUG [http-nio-8081-exec-2] - ==> Parameters: undefined(String)
+DEBUG [http-nio-8081-exec-2] - <==      Total: 0
+DEBUG [http-nio-8081-exec-2] - <==      Total: 0
