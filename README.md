@@ -1,6 +1,6 @@
 ## learning-projects  
 
-### application.yml TEMPLETE
+### HAMPSTER.WORK application.yml TEMPLETE
 ```
 ...
 ```
