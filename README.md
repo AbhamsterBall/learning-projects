@@ -1,7 +1,9 @@
 ## learning-projects  
 
 ### application.yml TEMPLETE
+```
 ...
+```
 ----
 学习记录projects  
 the projects of my mybatis learning process.  
