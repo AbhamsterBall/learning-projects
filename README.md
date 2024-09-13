@@ -3,7 +3,7 @@
 ### HAMPSTER.WORK application.yml TEMPLETE
 ```
 server:
-  port: 8081
+  port: PORT
 spring:
   application:
     name: /
