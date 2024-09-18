@@ -19,6 +19,8 @@ $(() => {
     getCurrenTitle(title)
   });
 
+  getTest()
+
 });
 
 function getSelectedText() {
@@ -64,6 +66,20 @@ export const getCurrenTitle = (title) => {
     title.value = "HAMPSTER.WORK"
   }
   $(".main-title").title = title.value
+}
+
+/**
+ * test only
+ * @returns {Promise<void>}
+ */
+export async function getTest() {
+  await new Promise(resolve => {
+    $.get("http://PC-202403042047:8082/actuator/health", function(data) {
+      name_data.value = data.data
+      name_data.value.unshift({ btName: "ALL" })
+      resolve()
+    });
+  })
 }
 </script>
 
