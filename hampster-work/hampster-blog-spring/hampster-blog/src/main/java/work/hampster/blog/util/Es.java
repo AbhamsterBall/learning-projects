@@ -24,13 +24,17 @@ public class Es {
         this.restClient = restClient;
     }
 
-    public static List<HashMap<String, String>> search(String body, int page, int pageSize) {
-        return getPage(getSearchRe(body), page, pageSize);
+    public static HashMap<String, Object> search(String body, int page, int pageSize) {
+        HashMap<String, Object> map = new HashMap<>();
+        ArrayList re = getSearchRe(body);
+        map.put("content", getPage(re, page, pageSize));
+        map.put("max_page", (int)Math.ceil(re.size() / (float) pageSize));
+        return map;
     }
 
-    public static int getMxPage(String body, int pageSize) {
-        return (int)Math.ceil(getSearchRe(body).size() / (float) pageSize);
-    }
+//    public static int getMxPage(String body, int pageSize) {
+//        return (int)Math.ceil(getSearchRe(body).size() / (float) pageSize);
+//    }
 
     private static List<HashMap<String, String>> getPage(ArrayList<HashMap<String, String>> result, int page, int pageSize) {
         return new ArrayList<>(result.subList((page - 1) * pageSize, page * pageSize > result.size() ? result.size() : page * pageSize).stream().toList());

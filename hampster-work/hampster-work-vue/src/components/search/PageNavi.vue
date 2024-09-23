@@ -1,19 +1,18 @@
 <script setup>
 import $ from "jquery";
-import { getPage, setPage, getName, getMaxPage } from "./List.vue";
+import { getPage, setPage, getName} from "./List.vue";
 import { setShowSuspense } from "../../views/search/index.vue";
 import rightArrow from '../svg/RightArrow.vue'
 import leftArrow from '../svg/LeftArrow.vue'
 import * as left from "../svg/LeftArrow.vue";
 import * as right from "../svg/RightArrow.vue";
 import { getIsSearching } from "../../views/search/index.vue";
-import { getBlurMaxPage } from "./BlurList.vue";
 
 let maxPage = 1;
-if (getIsSearching())
-  maxPage = await getBlurMaxPage()
-else
-  maxPage = await getMaxPage()
+// if (getIsSearching())
+//   maxPage = await getBlurMaxPage()
+// else
+//   maxPage = await getMaxPage()
 
 $(() => {
 

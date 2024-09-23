@@ -9,11 +9,11 @@ export default defineConfig({
   transpileDependencies: true,
   server: {
     host: '0.0.0.0',
-    port: 80,
+    port: 81,
     open: true,
     proxy: {
         '^/blog-api': {
-          target: 'http://localhost:8081/', // 8081本地后端地址
+          target: 'http://localhost:9090/', // 8081本地后端地址
           changeOrigin: true, //允许跨域
           // ws: false,
           rewrite: (path) => path.replace(/^\/blog-api/, ''),

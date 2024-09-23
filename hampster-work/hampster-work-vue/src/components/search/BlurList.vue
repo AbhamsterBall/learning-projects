@@ -74,10 +74,10 @@ import { getPage } from './List.vue'
 const name_data = ref([])
 const max_page = ref(1)
 
-export async function getBlurMaxPage() {
-  await getMaxPageAjax()
-  return max_page.value
-}
+// export async function getBlurMaxPage() {
+//   await getMaxPageAjax()
+//   return max_page.value
+// }
 
 const searchText = ref('是')
 
@@ -96,25 +96,26 @@ export async function getName() {
       url = "http://localhost:8081/json/search/blur/" + getTitle() + "/" + getSearchText() +  "/" + getPage()
     else url = "http://localhost:8081/json/search/blur/" + getSearchText() +  "/" + getPage()
     $.get(url, function(data) {
-      name_data.value = data
+      name_data.value = data.content
+      max_page.value = data.max_page
       resolve()
     });
   })
 }
 
-export async function getMaxPageAjax() {
-  await new Promise(resolve => {
-    // http://localhost:8081/json/search/blur/PYTHON/的/maxpage
-    let url = ""
-    if (!getTitle().includes("HAMPSTER"))
-      url = "http://localhost:8081/json/search/blur/" + getTitle() + "/" + getSearchText() +  "/maxpage"
-    else url = "http://localhost:8081/json/search/blur/" + getSearchText() +  "/maxpage"
-    $.get(url, function(data) {
-      max_page.value = data
-      resolve()
-    });
-  })
-}
+// export async function getMaxPageAjax() {
+//   await new Promise(resolve => {
+//     // http://localhost:8081/json/search/blur/PYTHON/的/maxpage
+//     let url = ""
+//     if (!getTitle().includes("HAMPSTER"))
+//       url = "http://localhost:8081/json/search/blur/" + getTitle() + "/" + getSearchText() +  "/maxpage"
+//     else url = "http://localhost:8081/json/search/blur/" + getSearchText() +  "/maxpage"
+//     $.get(url, function(data) {
+//       max_page.value = data
+//       resolve()
+//     });
+//   })
+// }
 
 </script>
 

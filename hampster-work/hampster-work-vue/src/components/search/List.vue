@@ -46,6 +46,7 @@ let date = ref()
 import {ref} from "vue";
 import $ from "jquery";
 import { getTitle } from '../../views/search/index.vue'
+import {searchBlogByType} from "../../api/blog.js";
 
 const page = ref(1)
 
@@ -59,28 +60,31 @@ export function setPage(pageNum) {
 const name_data = ref([])
 const max_page = ref(1)
 
-export async function getMaxPage() {
-  await getMaxPageAjax()
-  return max_page.value
-}
+// export async function getMaxPage() {
+//   await getMaxPageAjax()
+//   return max_page.value
+// }
 
 export async function getName() {
   await new Promise(resolve => {
-    $.get("http://localhost:8081/json/search/" + getTitle() + "/b_name/" + page.value, function(data) {
-      name_data.value = data
+    searchBlogByType(getTitle(), page.value).then(data =>{
+    // $.get("http://localhost:8081/json/search/" + getTitle() + "/b_name/" + page.value, function(data) {
+      name_data.value = data.content
+      max_page.value = data.max_page
       resolve()
     });
   })
 }
 
-export async function getMaxPageAjax() {
-  await new Promise(resolve => {
-    $.get("http://localhost:8081/json/search/" + getTitle() + "/b_name/maxpage", function(data) {
-      max_page.value = data
-      resolve()
-    });
-  })
-}
+// export async function getMaxPageAjax() {
+//   await new Promise(resolve => {
+//     searchBlogMaxPageNumber(getTitle()).then(data => {
+//     // $.get("http://localhost:8081/json/search/" + getTitle() + "/b_name/maxpage", function(data) {
+//       max_page.value = data
+//       resolve()
+//     });
+//   })
+// }
 </script>
 
 <template>

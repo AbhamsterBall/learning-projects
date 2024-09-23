@@ -88,16 +88,17 @@ export function setPage(pageNum) {
 }
 
 const name_data = ref([])
-const max_page = ref(1)
+// const max_page = ref(1)
 
-export async function getMaxPage() {
-  await getMaxPageAjax()
-  return max_page.value
-}
+// export async function getMaxPage() {
+//   await getMaxPageAjax()
+//   return max_page.value
+// }
 
 export async function getName() {
   await new Promise(resolve => {
-    $.get("http://localhost:8081/json/index/bt_name", function(data) {
+    indexBtName().then(data => {
+    // $.get("http://localhost:8081/json/index/bt_name", function(data) {
       name_data.value = data.data
       name_data.value.unshift({ btName: "ALL" })
       resolve()
@@ -105,14 +106,14 @@ export async function getName() {
   })
 }
 
-export async function getMaxPageAjax() {
-  await new Promise(resolve => {
-    $.get("http://localhost:8081/json/search/" + getTitle() + "/b_name/maxpage", function(data) {
-      max_page.value = data
-      resolve()
-    });
-  })
-}
+// export async function getMaxPageAjax() {
+//   await new Promise(resolve => {
+//     $.get("http://localhost:8081/json/search/" + getTitle() + "/b_name/maxpage", function(data) {
+//       max_page.value = data
+//       resolve()
+//     });
+//   })
+// }
 
 function checkOverflow() {
   let scrollArea = $('.list-outline');
@@ -202,6 +203,7 @@ export let current_blog_name = ref("")
 export let shouldRefresh = ref(true)
 
 import { getContent} from "./Content.vue";
+import {indexBtName} from "../../api/blog.js";
 
 function clicked(e, type, name) {
   let all_list = $('.blogHref')

@@ -3,11 +3,13 @@ import { ref } from 'vue'
 import $ from 'jquery'
 import * as all from "../../views/Home.vue";
 import { setTitle } from "../../views/search/index.vue";
+import {indexBtName} from "../../api/blog.js";
 
 const name_data = ref([])
 async function getName() {
   await new Promise(resolve => {
-    $.get("http://localhost:8081/json/index/bt_name", function(data) {
+    indexBtName().then(data => {
+    // $.get("http://localhost:8081/json/index/bt_name", function(data) {
       name_data.value = data.data
       resolve()
     });

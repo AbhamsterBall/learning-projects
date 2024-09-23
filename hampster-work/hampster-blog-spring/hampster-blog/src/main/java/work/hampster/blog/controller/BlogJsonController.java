@@ -34,6 +34,11 @@ public class BlogJsonController {
         this.blogService = blogService;
     }
 
+    /**
+     * blog type name
+     * @param rq
+     * @return
+     */
     @GetMapping(value = "/json/index/bt_name", produces = "application/json; charset=utf-8")
     public String indexBtName(HttpServletRequest rq) {
 //        rq.getParameterMap().forEach((k, v) -> System.out.println(k + " " + Arrays.toString(v)));
@@ -60,20 +65,20 @@ public class BlogJsonController {
         return getGson().toJson(Redis.readAndWrite("es_blur_" + info + "_" + page, () -> blogService.getBlurSearch(info, page, 4), 5));
     }
 
-    @GetMapping(value = "/json/search/blur/{info}/maxpage", produces = "application/json; charset=utf-8")
-    public String searchBlueMxPage(@PathVariable String info) {
-        return getGson().toJson(Redis.readAndWrite("es_blur_" + info + "_max_page", () -> blogService.getBlurSearchMxPage(info,  4), 5));
-    }
+//    @GetMapping(value = "/json/search/blur/{info}/maxpage", produces = "application/json; charset=utf-8")
+//    public String searchBlueMxPage(@PathVariable String info) {
+//        return getGson().toJson(Redis.readAndWrite("es_blur_" + info + "_max_page", () -> blogService.getBlurSearchMxPage(info,  4), 5));
+//    }
 
     @GetMapping(value = "/json/search/blur/{bt_type}/{info}/{page}", produces = "application/json; charset=utf-8")
     public String searchBlue(@PathVariable String bt_type, @PathVariable String info, @PathVariable int page) {
         return getGson().toJson(Redis.readAndWrite("es_blur_" + bt_type + "_" + info + "_" + page, () -> blogService.getBtBlurSearch(bt_type, info, page, 4), 6));
     }
 
-    @GetMapping(value = "/json/search/blur/{bt_type}/{info}/maxpage", produces = "application/json; charset=utf-8")
-    public String searchBlueMxPage(@PathVariable String bt_type, @PathVariable String info) {
-        return getGson().toJson(Redis.readAndWrite("es_blur_" + bt_type + "_" + info + "_max_page", () -> blogService.getBtBlurSearchMxPage(bt_type, info, 4), 6));
-    }
+//    @GetMapping(value = "/json/search/blur/{bt_type}/{info}/maxpage", produces = "application/json; charset=utf-8")
+//    public String searchBlueMxPage(@PathVariable String bt_type, @PathVariable String info) {
+//        return getGson().toJson(Redis.readAndWrite("es_blur_" + bt_type + "_" + info + "_max_page", () -> blogService.getBtBlurSearchMxPage(bt_type, info, 4), 6));
+//    }
 
     @GetMapping(value = "/json/blog/ALL/b_name", produces = "application/json; charset=utf-8")
     public String blogNames() {

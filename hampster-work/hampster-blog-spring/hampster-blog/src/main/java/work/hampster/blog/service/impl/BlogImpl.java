@@ -36,13 +36,13 @@ public class BlogImpl extends EntityServiceImpl<BlogMapper, Blog> implements Blo
     }
 
     @Override
-    public List<HashMap<String, String>> getBlurSearch(String info, int page, int pageSize) {
+    public HashMap<String, Object> getBlurSearch(String info, int page, int pageSize) {
         return Es.search("{   \"query\": {     \"match\": { \"b_content\": \"" + info + "\" }  }, \"highlight\": {             \"type\" : \"unified\", \"number_of_fragments\" : 3, \"fragment_size\": 250,\"fields\": {           \"b_content\": { }     }  },    \"_source\": [\"b_context\", \"b_name\", \"bt_name\"] }",
                 page, pageSize);
     }
 
     @Override
-    public List<HashMap<String, String>> getBtBlurSearch(String btType, String info, int page, int pageSize) {
+    public HashMap<String, Object> getBtBlurSearch(String btType, String info, int page, int pageSize) {
         return Es.search("{ \"query\": {\n" +
                 "    \"bool\": {\n" +
                 "      \"must\": [\n" +
@@ -54,24 +54,24 @@ public class BlogImpl extends EntityServiceImpl<BlogMapper, Blog> implements Blo
                 page, pageSize);
     }
 
-    @Override
-    public int getBlurSearchMxPage(String info, int pageSize) {
-        return Es.getMxPage("{   \"query\": {     \"match\": { \"b_content\": \"" + info + "\" }  }, \"highlight\": {             \"type\" : \"unified\", \"number_of_fragments\" : 3, \"fragment_size\": 250,\"fields\": {           \"b_content\": { }     }  },    \"_source\": [\"b_context\", \"b_name\", \"bt_name\"] }",
-                pageSize);
-    }
+//    @Override
+//    public int getBlurSearchMxPage(String info, int pageSize) {
+//        return Es.getMxPage("{   \"query\": {     \"match\": { \"b_content\": \"" + info + "\" }  }, \"highlight\": {             \"type\" : \"unified\", \"number_of_fragments\" : 3, \"fragment_size\": 250,\"fields\": {           \"b_content\": { }     }  },    \"_source\": [\"b_context\", \"b_name\", \"bt_name\"] }",
+//                pageSize);
+//    }
 
-    @Override
-    public int getBtBlurSearchMxPage(String btType, String info, int pageSize) {
-        return Es.getMxPage("{ \"query\": {\n" +
-                        "    \"bool\": {\n" +
-                        "      \"must\": [\n" +
-                        "        { \"match\": { \"b_content\": \"" + info + "\" } },\n" +
-                        "        { \"match\": { \"bt_name\": \"" + btType + "\" } }\n" +
-                        "      ]\n" +
-                        "    }\n" +
-                        "  }, \"highlight\": {             \"type\" : \"unified\", \"number_of_fragments\" : 3, \"fragment_size\": 250,\"fields\": {           \"b_content\": { }     }  },    \"_source\": [\"b_context\", \"b_name\", \"bt_name\"] }",
-                pageSize);
-    }
+//    @Override
+//    public int getBtBlurSearchMxPage(String btType, String info, int pageSize) {
+//        return Es.getMxPage("{ \"query\": {\n" +
+//                        "    \"bool\": {\n" +
+//                        "      \"must\": [\n" +
+//                        "        { \"match\": { \"b_content\": \"" + info + "\" } },\n" +
+//                        "        { \"match\": { \"bt_name\": \"" + btType + "\" } }\n" +
+//                        "      ]\n" +
+//                        "    }\n" +
+//                        "  }, \"highlight\": {             \"type\" : \"unified\", \"number_of_fragments\" : 3, \"fragment_size\": 250,\"fields\": {           \"b_content\": { }     }  },    \"_source\": [\"b_context\", \"b_name\", \"bt_name\"] }",
+//                pageSize);
+//    }
 
     @Override
     public String getBlogSummary(String info) {
