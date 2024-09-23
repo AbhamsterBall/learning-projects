@@ -20,15 +20,3 @@ TRACE [http-nio-9090-exec-1] - <==        Row: 2, PYTHON
 TRACE [http-nio-9090-exec-1] - <==        Row: 2, PYTHON
 DEBUG [http-nio-9090-exec-1] - <==      Total: 2
 DEBUG [http-nio-9090-exec-1] - <==      Total: 2
-DEBUG [http-nio-9090-exec-3] - ==>  Preparing: SELECT bt.bt_name, GROUP_CONCAT(b.b_name) AS blogNames FROM blog_type bt LEFT JOIN (SELECT b.*, ROW_NUMBER() OVER(PARTITION BY b.b_type ORDER BY b.b_time DESC) AS row_num FROM blog b) b ON bt.bt_id = b.b_type WHERE b.row_num <= 3 GROUP BY bt.bt_id HAVING blogNames IS NOT NULL
-DEBUG [http-nio-9090-exec-3] - ==>  Preparing: SELECT bt.bt_name, GROUP_CONCAT(b.b_name) AS blogNames FROM blog_type bt LEFT JOIN (SELECT b.*, ROW_NUMBER() OVER(PARTITION BY b.b_type ORDER BY b.b_time DESC) AS row_num FROM blog b) b ON bt.bt_id = b.b_type WHERE b.row_num <= 3 GROUP BY bt.bt_id HAVING blogNames IS NOT NULL
-DEBUG [http-nio-9090-exec-3] - ==> Parameters: 
-DEBUG [http-nio-9090-exec-3] - ==> Parameters: 
-TRACE [http-nio-9090-exec-3] - <==    Columns: bt_name, blogNames
-TRACE [http-nio-9090-exec-3] - <==    Columns: bt_name, blogNames
-TRACE [http-nio-9090-exec-3] - <==        Row: JAVA, <<BLOB>>
-TRACE [http-nio-9090-exec-3] - <==        Row: JAVA, <<BLOB>>
-TRACE [http-nio-9090-exec-3] - <==        Row: PYTHON, <<BLOB>>
-TRACE [http-nio-9090-exec-3] - <==        Row: PYTHON, <<BLOB>>
-DEBUG [http-nio-9090-exec-3] - <==      Total: 2
-DEBUG [http-nio-9090-exec-3] - <==      Total: 2

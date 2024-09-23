@@ -13,6 +13,7 @@ import work.hampster.blog.mapper.BlogMapper;
 import work.hampster.blog.model.Blog;
 import work.hampster.blog.service.BlogService;
 import work.hampster.blog.util.Es;
+import work.hampster.service.impl.EntityServiceImpl;
 
 import java.io.BufferedReader;
 import java.io.IOException;

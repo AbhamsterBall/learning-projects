@@ -3,8 +3,6 @@ package work.hampster.blog.controller;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.redis.core.RedisTemplate;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
@@ -13,9 +11,6 @@ import work.hampster.blog.model.Blog;
 import work.hampster.blog.service.BlogService;
 import work.hampster.blog.service.BlogTypeService;
 import work.hampster.blog.util.Redis;
-
-import java.util.ArrayList;
-import java.util.List;
 
 import static com.baomidou.mybatisplus.extension.handlers.GsonTypeHandler.getGson;
 

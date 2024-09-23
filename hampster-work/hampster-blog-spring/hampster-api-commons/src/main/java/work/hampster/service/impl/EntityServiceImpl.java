@@ -1,4 +1,4 @@
-package work.hampster.blog.service.impl;
+package work.hampster.service.impl;
 
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
@@ -8,11 +8,7 @@ import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Service;
-import work.hampster.blog.mapper.BlogMapper;
-import work.hampster.blog.mapper.BlogTypeMapper;
-import work.hampster.blog.model.Blog;
-import work.hampster.blog.model.BlogType;
-import work.hampster.blog.service.EntityService;
+import work.hampster.service.EntityService;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
@@ -140,7 +136,7 @@ public abstract class EntityServiceImpl<M extends BaseMapper<T>, T> implements E
                     try {
                         o = new Date(simple.parse(value).getTime());
                     } catch (ParseException ex) {
-                        re = "格式错误，请改变格式，例如：Oct 23, 2023";
+                        re = "FORMAT ERROR，please change format to: Oct 23, 2023";
                         o = new Date(0);
                     }
                 }
@@ -169,13 +165,13 @@ public abstract class EntityServiceImpl<M extends BaseMapper<T>, T> implements E
         try {
             if (re == "") {
                 if (service.updateById(updatedEntity)) {
-                    actualStr = "更新成功";
+                    actualStr = "update success";
                 } else {
-                    actualStr = "更新失败：请刷新或检查后重试";
+                    actualStr = "update FAIL: please refresh or retry after check";
                 }
             }
         } catch (Exception e) {
-            actualStr = "更新失败：" + e.getCause().getMessage();
+            actualStr = "update FAIL：" + e.getCause().getMessage();
         }
         System.out.println(actualStr);
         return re == "" ? actualStr : re;
@@ -185,9 +181,9 @@ public abstract class EntityServiceImpl<M extends BaseMapper<T>, T> implements E
     public String cDeleteById(int pk) {
         String actualStr = "";
         if (service.removeById(pk)) {
-            actualStr = "删除成功";
+            actualStr = "delete success";
         } else {
-            actualStr = "删除失败：请刷新或检查后重试";
+            actualStr = "delete FAIL: please refresh or retry after check";
         }
         return actualStr;
     }
@@ -200,21 +196,15 @@ public abstract class EntityServiceImpl<M extends BaseMapper<T>, T> implements E
         try {
             if (re == "") {
                 if (service.save(insertedEntity))
-                    actualStr = "插入成功";
+                    actualStr = "insert success";
                 else
-                    actualStr = "FAILED: refresh and try again";
+                    actualStr = "insert FAIL: please refresh or retry after check";
             }
         } catch (Exception e) {
-            actualStr = "插入失败：" + e.getCause().getMessage();
+            actualStr = "insert FAIL: " + e.getCause().getMessage();
         }
 
         System.out.println(re == "" ? actualStr : re);
         return re == "" ? actualStr : re;
     }
 }
-
-@Service
-class BlogTypeServicePlus extends ServiceImpl<BlogTypeMapper, BlogType> {}
-
-@Service
-class BlogServicePlus extends ServiceImpl<BlogMapper, Blog> {}

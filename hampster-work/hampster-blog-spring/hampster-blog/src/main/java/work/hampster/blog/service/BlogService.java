@@ -2,6 +2,7 @@ package work.hampster.blog.service;
 
 import work.hampster.blog.mapper.BlogMapper;
 import work.hampster.blog.model.Blog;
+import work.hampster.service.EntityService;
 
 import java.util.ArrayList;
 import java.util.HashMap;

@@ -11,9 +11,15 @@
 	<groupId>work.hampster</groupId>
 	<artifactId>hampster-blog-spring</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>blog</name>
+    <packaging>pom</packaging>
+    <name>blog</name>
 	<description>Demo project for Spring Boot</description>
-	<properties>
+    <modules>
+        <module>hampster-api-commons</module>
+		<module>hampster-blog</module>
+		<module>hampster-user</module>
+    </modules>
+    <properties>
 		<java.version>8</java.version>
 	</properties>
 	<dependencies>

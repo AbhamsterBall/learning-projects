@@ -1,4 +1,4 @@
-package work.hampster.blog.service;
+package work.hampster.service;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import jakarta.servlet.http.HttpServletRequest;

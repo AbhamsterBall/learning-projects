@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicReference;
+import java.util.stream.Collectors;
 
 @Service
 public class Es {
@@ -37,7 +38,7 @@ public class Es {
 //    }
 
     private static List<HashMap<String, String>> getPage(ArrayList<HashMap<String, String>> result, int page, int pageSize) {
-        return new ArrayList<>(result.subList((page - 1) * pageSize, page * pageSize > result.size() ? result.size() : page * pageSize).stream().toList());
+        return new ArrayList<>(result.subList((page - 1) * pageSize, page * pageSize > result.size() ? result.size() : page * pageSize).stream().collect(Collectors.toList()));
     }
 
     private static ArrayList<HashMap<String, String>> getSearchRe(String body) {

@@ -1,4 +1,4 @@
-package work.hampster.blog.util;
+package work.hampster.util;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
