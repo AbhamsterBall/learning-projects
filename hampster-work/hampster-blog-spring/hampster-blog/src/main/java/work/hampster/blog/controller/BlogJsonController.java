@@ -12,6 +12,10 @@ import work.hampster.blog.service.BlogService;
 import work.hampster.blog.service.BlogTypeService;
 import work.hampster.blog.util.Redis;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import static com.baomidou.mybatisplus.extension.handlers.GsonTypeHandler.getGson;
 
 @RestController
@@ -47,13 +51,17 @@ public class BlogJsonController {
 
     @GetMapping(value = "/json/search/{bt_name}/b_name/{page}", produces = "application/json; charset=utf-8")
     public String searchBNameInBt(@PathVariable String bt_name, @PathVariable int page) {
-        return getGson().toJson(Redis.readAndWrite(bt_name + "_b_name_" + page, () -> blogServicePlus.getBaseMapper().selectBnInBt(bt_name, (page - 1) * 4, 4), 17));
+        HashMap<String, Object> map = new HashMap<>();
+        List<Map<String, Object>> content = blogServicePlus.getBaseMapper().selectBnInBt(bt_name, (page - 1) * 4, 4);
+        map.put("content", content);
+        map.put("max_page", (int)Math.ceil(content.size() / (float) 4));
+        return getGson().toJson(Redis.readAndWrite(bt_name + "_b_name_" + page, () -> map, 17));
     }
 
-    @GetMapping(value = "/json/search/{bt_name}/b_name/maxpage", produces = "application/json; charset=utf-8")
-    public String searchBNameInBtMxPage(@PathVariable String bt_name) {
-        return getGson().toJson(Redis.readAndWrite(bt_name + "_b_name_max_page", () -> (int)Math.ceil(blogServicePlus.getBaseMapper().countBnInBt(bt_name) / (float) 4), 18));
-    }
+//    @GetMapping(value = "/json/search/{bt_name}/b_name/maxpage", produces = "application/json; charset=utf-8")
+//    public String searchBNameInBtMxPage(@PathVariable String bt_name) {
+//        return getGson().toJson(Redis.readAndWrite(bt_name + "_b_name_max_page", () -> (int)Math.ceil(blogServicePlus.getBaseMapper().countBnInBt(bt_name) / (float) 4), 18));
+//    }
 
     @GetMapping(value = "/json/search/blur/{info}/{page}", produces = "application/json; charset=utf-8")
     public String searchBlue(@PathVariable String info, @PathVariable int page) {

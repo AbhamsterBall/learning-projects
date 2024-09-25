@@ -19,21 +19,21 @@ $(() => {
     all.keepWedgeUnmoved('.mainHref')
   });
 
-  $('.main-title').css('box-shadow', 'none')
-
-  let isIn = true
-  $('.index-text').hover(
-      function() {
-        $('.main-title').css('box-shadow', 'none')
-        isIn = true
-      },
-      function() {
-        isIn = false
-        setTimeout(() => {
-          if (!isIn) $('.main-title').css('box-shadow', '0 0 8px 3px #e8e8e8')
-        }, 600)
-      }
-  )
+  // $('.main-title').css('box-shadow', 'none')
+  //
+  // let isIn = true
+  // $('.index-text').hover(
+  //     function() {
+  //       $('.main-title').css('box-shadow', 'none')
+  //       isIn = true
+  //     },
+  //     function() {
+  //       isIn = false
+  //       setTimeout(() => {
+  //         if (!isIn) $('.main-title').css('box-shadow', '0 0 8px 3px #e8e8e8')
+  //       }, 600)
+  //     }
+  // )
 
 })
 
@@ -71,6 +71,7 @@ export async function getName() {
     // $.get("http://localhost:8081/json/search/" + getTitle() + "/b_name/" + page.value, function(data) {
       name_data.value = data.content
       max_page.value = data.max_page
+      console.log(JSON.stringify(data))
       resolve()
     });
   })

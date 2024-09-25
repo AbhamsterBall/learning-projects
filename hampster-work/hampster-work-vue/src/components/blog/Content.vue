@@ -189,7 +189,7 @@ export function checkOverFlow() {
       'height': window.innerHeight - 210 + 'px',
       'width': windowWidth - $('.list-outline').width() - 100 - 6 + 'px', 
       /* TODO:
-        1.problem with merged TOP: unexpected error in console log... // expected: only if no content
+        # 1.problem with merged TOP: unexpected error in console log... // expected: only if no content
         2.merge all ajax/axios api under a folder **
         3.unexpected behavior for Content Panel Width while resize(<1000px -> >1000px)
       */

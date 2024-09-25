@@ -39,7 +39,7 @@ img, svg{
     line-height: 130px;
     padding-top: 15px;
     letter-spacing: 10px;
-    box-shadow: 0 0 8px 3px #e8e8e8; /* 模拟边框 0 0 6px 3px #d7dae7*/
+    box-shadow: 0 0 16px 0px rgba(105, 105, 105, 0.32) /* 模拟边框 0 0 6px 3px #d7dae7*/
 }
 @media screen and (max-width: 1000px) {
     .main-title{

@@ -65,7 +65,7 @@ function loginClick() {
 }
 .main-title {
   line-height: 100px; /*当搜索收回的时候 高度变为100px -> 60px*/
-  z-index: 50;
+  z-index: 1000;
   position: relative;
 }
 .profile {

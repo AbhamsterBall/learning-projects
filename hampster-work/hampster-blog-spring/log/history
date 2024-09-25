@@ -1,22 +1,32 @@
-DEBUG [http-nio-9090-exec-1] - ==>  Preparing: SELECT count(0) FROM blog_type
-DEBUG [http-nio-9090-exec-1] - ==>  Preparing: SELECT count(0) FROM blog_type
-DEBUG [http-nio-9090-exec-1] - ==> Parameters: 
-DEBUG [http-nio-9090-exec-1] - ==> Parameters: 
-TRACE [http-nio-9090-exec-1] - <==    Columns: count(0)
-TRACE [http-nio-9090-exec-1] - <==    Columns: count(0)
-TRACE [http-nio-9090-exec-1] - <==        Row: 2
-TRACE [http-nio-9090-exec-1] - <==        Row: 2
-DEBUG [http-nio-9090-exec-1] - <==      Total: 1
-DEBUG [http-nio-9090-exec-1] - <==      Total: 1
-DEBUG [http-nio-9090-exec-1] - ==>  Preparing: SELECT bt_id,bt_name FROM blog_type ORDER BY bt_id ASC LIMIT ?
-DEBUG [http-nio-9090-exec-1] - ==>  Preparing: SELECT bt_id,bt_name FROM blog_type ORDER BY bt_id ASC LIMIT ?
-DEBUG [http-nio-9090-exec-1] - ==> Parameters: 1000(Integer)
-DEBUG [http-nio-9090-exec-1] - ==> Parameters: 1000(Integer)
-TRACE [http-nio-9090-exec-1] - <==    Columns: bt_id, bt_name
-TRACE [http-nio-9090-exec-1] - <==    Columns: bt_id, bt_name
-TRACE [http-nio-9090-exec-1] - <==        Row: 1, JAVA
-TRACE [http-nio-9090-exec-1] - <==        Row: 1, JAVA
-TRACE [http-nio-9090-exec-1] - <==        Row: 2, PYTHON
-TRACE [http-nio-9090-exec-1] - <==        Row: 2, PYTHON
-DEBUG [http-nio-9090-exec-1] - <==      Total: 2
-DEBUG [http-nio-9090-exec-1] - <==      Total: 2
+DEBUG [http-nio-9090-exec-2] - ==>  Preparing: select b_name from blog where b_type=(select bt_id from blog_type where bt_name=?) order by b_time desc limit ?, ?
+DEBUG [http-nio-9090-exec-2] - ==>  Preparing: select b_name from blog where b_type=(select bt_id from blog_type where bt_name=?) order by b_time desc limit ?, ?
+DEBUG [http-nio-9090-exec-2] - ==> Parameters: JAVA(String), 0(Integer), 4(Integer)
+DEBUG [http-nio-9090-exec-2] - ==> Parameters: JAVA(String), 0(Integer), 4(Integer)
+TRACE [http-nio-9090-exec-2] - <==    Columns: b_name
+TRACE [http-nio-9090-exec-2] - <==    Columns: b_name
+TRACE [http-nio-9090-exec-2] - <==        Row: Mybatis Generator
+TRACE [http-nio-9090-exec-2] - <==        Row: Mybatis Generator
+TRACE [http-nio-9090-exec-2] - <==        Row: Elasticsearch
+TRACE [http-nio-9090-exec-2] - <==        Row: Elasticsearch
+TRACE [http-nio-9090-exec-2] - <==        Row: Solr AliPay Xml Stream Vue3响应式
+TRACE [http-nio-9090-exec-2] - <==        Row: Solr AliPay Xml Stream Vue3响应式
+TRACE [http-nio-9090-exec-2] - <==        Row: Vue脚手架
+TRACE [http-nio-9090-exec-2] - <==        Row: Vue脚手架
+DEBUG [http-nio-9090-exec-2] - <==      Total: 4
+DEBUG [http-nio-9090-exec-2] - <==      Total: 4
+DEBUG [http-nio-9090-exec-9] - ==>  Preparing: select b_name from blog where b_type=(select bt_id from blog_type where bt_name=?) order by b_time desc limit ?, ?
+DEBUG [http-nio-9090-exec-9] - ==>  Preparing: select b_name from blog where b_type=(select bt_id from blog_type where bt_name=?) order by b_time desc limit ?, ?
+DEBUG [http-nio-9090-exec-9] - ==> Parameters: JAVA(String), 0(Integer), 4(Integer)
+DEBUG [http-nio-9090-exec-9] - ==> Parameters: JAVA(String), 0(Integer), 4(Integer)
+TRACE [http-nio-9090-exec-9] - <==    Columns: b_name
+TRACE [http-nio-9090-exec-9] - <==    Columns: b_name
+TRACE [http-nio-9090-exec-9] - <==        Row: Mybatis Generator
+TRACE [http-nio-9090-exec-9] - <==        Row: Mybatis Generator
+TRACE [http-nio-9090-exec-9] - <==        Row: Elasticsearch
+TRACE [http-nio-9090-exec-9] - <==        Row: Elasticsearch
+TRACE [http-nio-9090-exec-9] - <==        Row: Solr AliPay Xml Stream Vue3响应式
+TRACE [http-nio-9090-exec-9] - <==        Row: Solr AliPay Xml Stream Vue3响应式
+TRACE [http-nio-9090-exec-9] - <==        Row: Vue脚手架
+TRACE [http-nio-9090-exec-9] - <==        Row: Vue脚手架
+DEBUG [http-nio-9090-exec-9] - <==      Total: 4
+DEBUG [http-nio-9090-exec-9] - <==      Total: 4
