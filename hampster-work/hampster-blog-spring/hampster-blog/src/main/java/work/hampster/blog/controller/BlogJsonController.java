@@ -16,7 +16,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import static com.baomidou.mybatisplus.extension.handlers.GsonTypeHandler.getGson;
+//import static com.baomidou.mybatisplus.extension.handlers.GsonTypeHandler.getGson;
+
+import static work.hampster.util.Json.getGson;
 
 @RestController
 //@CrossOrigin(origins = "http://localhost")
