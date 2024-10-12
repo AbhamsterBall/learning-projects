@@ -171,7 +171,8 @@ let blog_name = ref({})
 
 export async function getBlogName(btName, index) {
   await new Promise(resolve => {
-    $.get("http://localhost:8081/json/blog/" + btName + "/b_name", function(data) {
+    getBlogNameByType(btName).then(data => {
+    // $.get("http://localhost:8081/json/blog/" + btName + "/b_name", function(data) {
       // setTimeout($('.' + btName + '-refresh').css('animation', 'none'), 10000)
       blog_name.value[btName] = data
       if (btName === 'ALL') {
@@ -203,7 +204,7 @@ export let current_blog_name = ref("")
 export let shouldRefresh = ref(true)
 
 import { getContent} from "./Content.vue";
-import {indexBtName} from "../../api/blog.js";
+import {getBlogNameByType, indexBtName} from "../../api/blog.js";
 
 function clicked(e, type, name) {
   let all_list = $('.blogHref')

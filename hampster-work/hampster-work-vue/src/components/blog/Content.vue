@@ -4,6 +4,7 @@ import { marked } from "marked";
 import { ref } from "vue";
 import Loading from "../Loading.vue";
 import * as all from "../../views/Home.vue";
+import {getBlogContentSummary} from "../../api/blog.js";
 
 $(() => {
   getContent()
@@ -115,7 +116,8 @@ let returnedText = ref("")
 let isLoading = ref(true)
 async function getSummary(info) {
   await new Promise(resolve => {
-    $.get("http://localhost:8081/json/blog/" + info + "/getsummary", function(data) {
+    getBlogContentSummary(info).then(data => {
+    // $.get("http://localhost:8081/json/blog/" + info + "/getsummary", function(data) {
       isLoading.value = false
       returnedText.value = data
       resolve()
@@ -137,7 +139,8 @@ export async function getContent() {
     $(".markdown").eq(0).html("");
     isContentLoading.value = true
     let currentUrl = window.location.href.split('/');
-    $.get("http://localhost:8081/json/blog/" + currentUrl[5], function(data) {
+    getBlogContent(currentUrl[5]).then(() => {
+    // $.get("http://localhost:8081/json/blog/" + currentUrl[5], function(data) {
       isContentLoading.value = false
       blog_content.value = data
       prepMarkDown()
@@ -208,6 +211,7 @@ export function checkOverFlow() {
 }
 
 import { shouldRefresh } from "./List.vue";
+import {getBlogContent} from "../../api/blog.js";
 </script>
 
 <template>

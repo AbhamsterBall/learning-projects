@@ -70,6 +70,7 @@ import {ref} from "vue";
 import $ from "jquery";
 import { getTitle } from '../../views/search/index.vue'
 import { getPage } from './List.vue'
+import {blogSearch} from "../../api/blog.js";
 
 const name_data = ref([])
 const max_page = ref(1)
@@ -92,10 +93,11 @@ export function getSearchText() {
 export async function getName() {
   await new Promise(resolve => {
     let url = ""
-    if (!getTitle().includes("HAMPSTER"))
-      url = "http://localhost:8081/json/search/blur/" + getTitle() + "/" + getSearchText() +  "/" + getPage()
-    else url = "http://localhost:8081/json/search/blur/" + getSearchText() +  "/" + getPage()
-    $.get(url, function(data) {
+    blogSearch(getTitle(), getSearchText(), getPage()).then(() => {
+    // if (!getTitle().includes("HAMPSTER"))
+    //   url = "http://localhost:8081/json/search/blur/" + getTitle() + "/" + getSearchText() +  "/" + getPage()
+    // else url = "http://localhost:8081/json/search/blur/" + getSearchText() +  "/" + getPage()
+    // $.get(url, function(data) {
       name_data.value = data.content
       max_page.value = data.max_page
       resolve()
