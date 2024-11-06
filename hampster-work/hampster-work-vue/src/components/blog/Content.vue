@@ -13,15 +13,16 @@ $(() => {
   // $("<script>").html("  hljs.initHighlightingOnLoad();").appendTo("head");
   // setTimeout(() => {hljs()}, 5000);
   // change width & height of content-box
-  checkOverFlow()
+  // console.log("width: " + $(window).width())
+  // checkOverFlow()
   if ($(window).width() > 1000)
     $('.blog-content').css('width', window.innerWidth - $('.list-outline').width() - 100 - 23 + 'px')
   else
     $('.blog-content').css('width', ($(window).width() - 100) + 'px')
 
-  $(window).resize(function() {
-    checkOverFlow()
-  });
+  // $(window).resize(function() {
+  //   checkOverFlow()
+  // });
 
   marked.setOptions({
     "async": false,
@@ -128,6 +129,22 @@ async function getSummary(info) {
 
 </script>
 
+<template>
+  <div class="blog-content" v-if="shouldRefresh">
+    <div class="rounded-box">
+      <loading boxWidth="50px" boxHeight="14px" class="summary-loading" v-show="isLoading"/>
+      {{ returnedText }}
+    </div>
+    <loading boxWidth="94%" boxHeight="190px" v-show="isContentLoading"/>
+    <loading boxWidth="94%" boxHeight="150px" v-show="isContentLoading"/>
+    <mark class="markdown preText">
+      <!--    <pre>-->
+      {{ blog_content }}
+      <!--    </pre>-->
+    </mark>
+  </div>
+</template>
+
 <script>
 import {ref} from "vue";
 
@@ -139,7 +156,7 @@ export async function getContent() {
     $(".markdown").eq(0).html("");
     isContentLoading.value = true
     let currentUrl = window.location.href.split('/');
-    getBlogContent(currentUrl[5]).then(() => {
+    getBlogContent(currentUrl[5]).then((data) => {
     // $.get("http://localhost:8081/json/blog/" + currentUrl[5], function(data) {
       isContentLoading.value = false
       blog_content.value = data
@@ -177,58 +194,11 @@ export default {
   }
 }
 
-export function checkOverFlow() {
-  if ($(window).width() > 1000) {
-    const windowWidth = $(window).width()
-    // $('table').css('width', window.innerWidth - $('.list-outline').width() - 100 - 17 + 'px')
-    if (window.innerWidth * 0.18 < 216) {
-      $('.blog-content').css({
-        'left': 216 + 'px'
-      })
-    } else {
-      $('.blog-content').css('left', '18%')
-    }
-    $(".blog-content").css({
-      'height': window.innerHeight - 210 + 'px',
-      'width': windowWidth - $('.list-outline').width() - 100 - 6 + 'px', 
-      /* TODO:
-        # 1.problem with merged TOP: unexpected error in console log... // expected: only if no content
-        2.merge all ajax/axios api under a folder **
-        3.unexpected behavior for Content Panel Width while resize(<1000px -> >1000px)
-      */
-      'max-width': windowWidth + 'px'
-    })
-  } else {
-    // this.$nextTick(() => {
-      $('.blog-content').css({
-        'width': ($(window).width() - 100) + 'px',
-        'left': '0px',
-        'max-width': $(window).width() + 'px',
-        'height': window.innerHeight - 210 + 'px'
-      });
-    // })
-  }
-}
+
 
 import { shouldRefresh } from "./List.vue";
 import {getBlogContent} from "../../api/blog.js";
 </script>
-
-<template>
-  <div class="blog-content" v-if="shouldRefresh">
-    <div class="rounded-box">
-      <loading boxWidth="50px" boxHeight="14px" class="summary-loading" v-show="isLoading"/>
-      {{ returnedText }}
-    </div>
-    <loading boxWidth="94%" boxHeight="190px" v-show="isContentLoading"/>
-    <loading boxWidth="94%" boxHeight="150px" v-show="isContentLoading"/>
-    <mark class="markdown preText">
-<!--    <pre>-->
-      {{ blog_content }}
-<!--    </pre>-->
-    </mark>
-  </div>
-</template>
 
 <style scoped>
 .rounded-box {

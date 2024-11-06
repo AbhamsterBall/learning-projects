@@ -44,5 +44,5 @@ export function getBlogContentSummary(info) {
 // get blog content
 export function getBlogContent(name) {
   return $.get(apiUrl +
-      "json/blog/" + name);
+      "/json/blog/" + name);
 }

@@ -8,19 +8,56 @@ import Loading from "../../components/Loading.vue";
 import BottomFixed from "../../components/bottom/BottomFixed.vue";
 import $ from "jquery";
 import Content from "../../components/blog/Content.vue";
-import { checkOverFlow } from "../../components/blog/Content.vue";
 
 $(() => {
   // $('.list-outline').css('height', window.innerHeight - 160 + 'px')
 
   adjustListShowSuspense()
+  checkOverFlow()
 
   $(window).resize(function() {
     adjustListShowSuspense()
+    checkOverFlow()
 
     // $('.bottom').css('margin-top', '69%') // 屏幕高减去top高度
   });
 })
+
+function checkOverFlow() {
+  if ($(window).width() > 1000) {
+    const windowWidth = $(window).width()
+    // $('table').css('width', window.innerWidth - $('.list-outline').width() - 100 - 17 + 'px')
+    if (window.innerWidth * 0.18 < 216) {
+      $('.blog-content').css({
+        'left': 216 + 'px'
+      })
+    } else {
+      $('.blog-content').css('left', '18%')
+    }
+    $(".blog-content").css({
+      'height': window.innerHeight - 210 + 'px',
+      'width': windowWidth - $('.list-outline').width() - 100 - 6 + 'px',
+      /* TODO:
+        # 1.problem with merged TOP: unexpected error in console log... // expected: only if no content
+        2.merge all ajax/axios api under a folder **
+        3.unexpected behavior for Content Panel Width while resize(<1000px -> >1000px)
+      */
+      'max-width': windowWidth + 'px'
+    })
+  } else {
+    // this.$nextTick(() => {
+    $('.blog-content').css({
+      'width': ($(window).width() - 100) + 'px',
+      'left': '0px',
+      'max-width': $(window).width() + 'px',
+      'height': window.innerHeight - 210 + 'px'
+    });
+    // $('.list-outline').css({
+    //   'display': 'none'
+    // })
+    // })
+  }
+}
 
 function adjustListShowSuspense() {
   // hide list when window is resized to smaller than 1000px 手机端隐藏列表，并放在左上角
