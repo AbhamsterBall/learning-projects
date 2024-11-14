@@ -36,7 +36,8 @@ function checkOverFlow() {
     }
     $(".blog-content").css({
       'height': window.innerHeight - 210 + 'px',
-      'width': windowWidth - $('.list-outline').width() - 100 - 6 + 'px',
+      // 'width': windowWidth - $('.list-outline').width() - 100 - 6 + 'px',
+      'width': windowWidth - $('.list-outline').width() - 100 + 'px',
       /* TODO:
         # 1.problem with merged TOP: unexpected error in console log... // expected: only if no content
         2.merge all ajax/axios api under a folder **
