@@ -46,19 +46,27 @@ function loginClick() {
 </script>
 
 <template>
-	<div class="main-title">
-    <div class="main-title-text">{{ props.title }}</div>
-	</div>
-  <a href="#" @click="loginClick" class="login">登录</a>
-  <a href="#" class="login-mini-back"></a>
-  <login-icon @click="loginClick" width="48" height="48" color="white" class="loginIcon"/>
-  <div class="profile">
-    <img src="/default-profile.svg" alt="profile" class="profile-img">
+  <div class="top-background">
+    <div class="main-title">
+      <div class="main-title-text">{{ props.title }}</div>
+    </div>
+    <a href="#" @click="loginClick" class="login">登录</a>
+    <a href="#" class="login-mini-back"></a>
+    <login-icon @click="loginClick" width="48" height="48" color="white" class="loginIcon"/>
+    <div class="profile">
+      <img src="/default-profile.svg" alt="profile" class="profile-img">
+    </div>
+    <login/>
   </div>
-  <login/>
 </template>
 
 <style scoped lang="scss">
+.top-background {
+  background: white;
+  border-radius: 0px;
+  position: relative;
+  //z-index: 2000;
+}
 .main-title-text {
   transition: .3s;
   font-family: chaparral-pro,"Times New Roman",Times,serif,'华文宋体','宋体','微软雅黑';

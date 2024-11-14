@@ -4,7 +4,7 @@ import { marked } from "marked";
 import { ref } from "vue";
 import Loading from "../Loading.vue";
 import * as all from "../../views/Home.vue";
-import {getBlogContentSummary} from "../../api/blog.js";
+import { getBlogContentSummary } from "../../api/blog.js";
 
 $(() => {
   getContent()
@@ -218,7 +218,7 @@ import {getBlogContent} from "../../api/blog.js";
   line-height: 14px;
 }
 .blog-content {
-  padding: 25px 50px;
+  padding: 20px 50px;
   background-color: white;
   width: 74.6%;
   /* width: 70%; */
@@ -226,7 +226,7 @@ import {getBlogContent} from "../../api/blog.js";
   height: 500px;
   position: absolute;
   left: 18%;
-  top: 160px;
+  top: 165px;
   border-radius: 0px;
   z-index: 10;
   overflow-x: hidden;
@@ -236,6 +236,7 @@ import {getBlogContent} from "../../api/blog.js";
 .blog-content::-webkit-scrollbar {
   width: 6px; /* 设置滚动条宽度 */
   background-color: white;
+  z-index: 3000;
 }
 
 .blog-content::-webkit-scrollbar-thumb {

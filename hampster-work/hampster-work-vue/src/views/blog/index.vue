@@ -35,7 +35,7 @@ function checkOverFlow() {
       $('.blog-content').css('left', '18%')
     }
     $(".blog-content").css({
-      'height': window.innerHeight - 210 + 'px',
+      'height': window.innerHeight - 205 + 'px',
       // 'width': windowWidth - $('.list-outline').width() - 100 - 6 + 'px',
       'width': windowWidth - $('.list-outline').width() - 100 + 'px',
       /* TODO:
@@ -51,7 +51,7 @@ function checkOverFlow() {
       'width': ($(window).width() - 100) + 'px',
       'left': '0px',
       'max-width': $(window).width() + 'px',
-      'height': window.innerHeight - 210 + 'px'
+      'height': window.innerHeight - 205 + 'px'
     });
     // $('.list-outline').css({
     //   'display': 'none'
@@ -80,6 +80,48 @@ function adjustListShowSuspense() {
 
 }
 </script>
+
+<template>
+  <top :title="title"/>
+  <index_search/>
+  <suspense>
+    <template #default>
+      <search_list/>
+    </template>
+    <template #fallback>
+      <div class="list-outline" ref="listOutline">
+        <div class="text index-text" style="text-align: center; color: #444444;padding: 0.1% 0.1%">
+          <loading boxWidth="82%" boxHeight="100px" class="loading-style"/>
+          <loading boxWidth="82%" boxHeight="100px" class="loading-style"/>
+          <loading boxWidth="82%" boxHeight="100px" class="loading-style"/>
+          <loading boxWidth="82%" boxHeight="100px" class="loading-style"/>
+          <loading boxWidth="82%" boxHeight="100px" class="loading-style"/>
+        </div>
+      </div>
+    </template>
+  </suspense>
+  <div style="height: 10px; background-color: white"></div>
+  <div class="list-outline extra-outline"
+       ref="listOutline"></div>
+
+
+  <content/>
+
+  <suspense>
+    <template #default>
+      <bottom/>
+    </template>
+    <template #fallback>
+      <div class="bottom">
+        <div class="bottom-blog-index">
+          <loading boxWidth="300px" boxHeight="30px" bg="#2759b2" shadow="#214890" class="bottom-loading-title"/>
+          <loading box-width="400px" box-height="125px" bg="#2759b2" shadow="#214890" class="bottom-loading-context"/>
+        </div>
+        <bottom-fixed/>
+      </div>
+    </template>
+  </suspense>
+</template>
 
 <script>
 import {ref} from "vue";
@@ -119,45 +161,11 @@ export function getIsSearching() {
 
 </script>
 
-<template>
-  <top :title="title"/>
-  <index_search/>
-  <suspense>
-    <template #default>
-      <search_list/>
-    </template>
-    <template #fallback>
-      <div class="list-outline" ref="listOutline">
-        <div class="text index-text" style="text-align: center; color: #444444;padding: 0.1% 0.1%">
-          <loading boxWidth="82%" boxHeight="100px" class="loading-style"/>
-          <loading boxWidth="82%" boxHeight="100px" class="loading-style"/>
-          <loading boxWidth="82%" boxHeight="100px" class="loading-style"/>
-          <loading boxWidth="82%" boxHeight="100px" class="loading-style"/>
-          <loading boxWidth="82%" boxHeight="100px" class="loading-style"/>
-        </div>
-      </div>
-    </template>
-  </suspense>
-  <div class="list-outline extra-outline"
-    ref="listOutline"></div>
-
-  <content/>
-
-  <suspense>
-    <template #default>
-      <bottom/>
-    </template>
-    <template #fallback>
-      <div class="bottom">
-        <div class="bottom-blog-index">
-          <loading boxWidth="300px" boxHeight="30px" bg="#2759b2" shadow="#214890" class="bottom-loading-title"/>
-          <loading box-width="400px" box-height="125px" bg="#2759b2" shadow="#214890" class="bottom-loading-context"/>
-        </div>
-        <bottom-fixed/>
-      </div>
-    </template>
-  </suspense>
-</template>
+<!--<style>-->
+<!--body {-->
+<!--  background-color: black;-->
+<!--}-->
+<!--</style>-->
 
 <style lang="scss" scoped>
 .index-text {
