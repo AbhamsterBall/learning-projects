@@ -26,16 +26,19 @@ $(() => {
 function checkOverFlow() {
   if ($(window).width() > 1000) {
     const windowWidth = $(window).width()
+    let listWidth = 0
     // $('table').css('width', window.innerWidth - $('.list-outline').width() - 100 - 17 + 'px')
     if (window.innerWidth * 0.18 < 216) {
       $('.blog-content').css({
         'left': 216 + 'px'
       })
+      listWidth = 216
     } else {
       $('.blog-content').css('left', '18%')
+      listWidth = windowWidth * 0.18
     }
     $(".blog-content").css({
-      'height': window.innerHeight - 205 + 'px',
+      'height': window.innerHeight - 210 + 'px',
       // 'width': windowWidth - $('.list-outline').width() - 100 - 6 + 'px',
       'width': windowWidth - $('.list-outline').width() - 100 + 'px',
       /* TODO:
@@ -43,16 +46,18 @@ function checkOverFlow() {
         2.merge all ajax/axios api under a folder **
         3.unexpected behavior for Content Panel Width while resize(<1000px -> >1000px)
       */
-      'max-width': windowWidth + 'px'
+      'max-width': windowWidth - listWidth - 100 + 'px'
     })
+    console.log((windowWidth - listWidth - 100) + 'px ' + (windowWidth - $('.list-outline').width() - 100 - 6))
   } else {
     // this.$nextTick(() => {
     $('.blog-content').css({
       'width': ($(window).width() - 100) + 'px',
       'left': '0px',
-      'max-width': $(window).width() + 'px',
-      'height': window.innerHeight - 205 + 'px'
+      'max-width': ($(window).width()) + 'px',
+      'height': window.innerHeight - 210 + 'px'
     });
+
     // $('.list-outline').css({
     //   'display': 'none'
     // })
@@ -83,6 +88,17 @@ function adjustListShowSuspense() {
 
 <template>
   <top :title="title"/>
+  <div style="height: 30px;
+    background-color: transparent;
+    margin-top: -30px;
+    border-radius: 0px;
+    z-index: 20;
+    position: relative;">
+    <div style="height: 25px;
+      background-color: white;
+      border-radius: 0px">
+    </div>
+  </div>
   <index_search/>
   <suspense>
     <template #default>
@@ -100,12 +116,11 @@ function adjustListShowSuspense() {
       </div>
     </template>
   </suspense>
-  <div style="height: 10px; background-color: white"></div>
   <div class="list-outline extra-outline"
        ref="listOutline"></div>
 
-
   <content/>
+
 
   <suspense>
     <template #default>
@@ -121,6 +136,7 @@ function adjustListShowSuspense() {
       </div>
     </template>
   </suspense>
+  <div style="height: 40px;background-color: white;border-radius: 0px;position: relative;z-index: 20;"></div>
 </template>
 
 <script>

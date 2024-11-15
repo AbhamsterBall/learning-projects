@@ -226,7 +226,7 @@ import {getBlogContent} from "../../api/blog.js";
   height: 500px;
   position: absolute;
   left: 18%;
-  top: 165px;
+  top: 160px;
   border-radius: 0px;
   z-index: 10;
   overflow-x: hidden;

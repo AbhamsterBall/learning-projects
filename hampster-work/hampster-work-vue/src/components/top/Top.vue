@@ -62,7 +62,7 @@ function loginClick() {
 
 <style scoped lang="scss">
 .top-background {
-  background: white;
+  background: transparent;
   border-radius: 0px;
   position: relative;
   //z-index: 2000;
