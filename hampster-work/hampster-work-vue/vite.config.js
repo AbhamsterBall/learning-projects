@@ -17,7 +17,7 @@ export default defineConfig({
           //     changeOrigin: true, //是否跨域
           // },
         '^/blog-api': {
-          target: 'http://localhost:9090/', // 8081本地后端地址
+          target: 'http://localhost:8081/', // 8081本地后端地址
           changeOrigin: true, //允许跨域
           // ws: false,
           rewrite: (path) => path.replace(/^\/blog-api/, ''),

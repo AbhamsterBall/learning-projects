@@ -38,7 +38,7 @@ function checkOverFlow() {
       listWidth = windowWidth * 0.18
     }
     $(".blog-content").css({
-      'height': window.innerHeight - 210 + 'px',
+      'height': window.innerHeight - 200 + 'px',
       // 'width': windowWidth - $('.list-outline').width() - 100 - 6 + 'px',
       'width': windowWidth - $('.list-outline').width() - 100 + 'px',
       /* TODO:
@@ -55,7 +55,7 @@ function checkOverFlow() {
       'width': ($(window).width() - 100) + 'px',
       'left': '0px',
       'max-width': ($(window).width()) + 'px',
-      'height': window.innerHeight - 210 + 'px'
+      'height': window.innerHeight - 200 + 'px'
     });
 
     // $('.list-outline').css({
@@ -67,14 +67,22 @@ function checkOverFlow() {
 
 function adjustListShowSuspense() {
   // hide list when window is resized to smaller than 1000px 手机端隐藏列表，并放在左上角
+  console.log($(window).width())
   if ($(window).width() < 1000) {
-    $('.list-outline').css('display', 'none')
+    $('.list-outline').css({
+      'display': 'block',
+      'z-index': '-2',
+    })
     $('.extra-outline').css({
       'display': 'block',
       'z-index': '-1',
     })
+    console.log("enter")
   } else {
-    $('.list-outline').css('display', 'block')
+    $('.list-outline').css({
+      'display': 'block',
+      'z-index': '100',
+    })
     $('.extra-outline').css('display', 'none')
   }
 
@@ -82,6 +90,7 @@ function adjustListShowSuspense() {
   // adjust height of content
   const element = document.querySelector('.extra-outline');
   element.style.setProperty('--display-value', window.innerHeight - 160 + 'px');
+  console.log($('.list-outline').css('z-index'))
 
 }
 </script>

@@ -14,6 +14,25 @@ function updateWindowWidth() {
   windowWidth.value = $(window).width()
 }
 
+function adjustListShowSuspense() {
+  // hide list when window is resized to smaller than 1000px 手机端隐藏列表，并放在左上角
+  if ($(window).width() < 1000) {
+    $('.list-outline').css({
+      'display': 'block',
+      'z-index': '-2',
+    })
+    $('.extra-outline').css({
+      'display': 'block',
+      'z-index': '-1',
+    })
+  } else {
+    $('.list-outline').css({
+      'display': 'block',
+      'z-index': '100',
+    })
+    $('.extra-outline').css('display', 'none')
+  }
+}
 $(() => {
   setShowRefresh()
 
@@ -25,6 +44,7 @@ $(() => {
 
     $('.list-outline').css('height', window.innerHeight - 160 + 'px')
     checkOverflow()
+    adjustListShowSuspense()
   });
 
   // $('.main-title').css('box-shadow', 'none')
@@ -44,6 +64,7 @@ $(() => {
   // )
 
   checkOverflow()
+  adjustListShowSuspense()
 
   // let sepHref = window.location.href.split('/');
 
