@@ -93,13 +93,14 @@ export function getSearchText() {
 export async function getName() {
   await new Promise(resolve => {
     let url = ""
-    blogSearch(getTitle(), getSearchText(), getPage()).then(() => {
+    blogSearch(getTitle(), getSearchText(), getPage()).then((data) => {
     // if (!getTitle().includes("HAMPSTER"))
     //   url = "http://localhost:8081/json/search/blur/" + getTitle() + "/" + getSearchText() +  "/" + getPage()
     // else url = "http://localhost:8081/json/search/blur/" + getSearchText() +  "/" + getPage()
     // $.get(url, function(data) {
       name_data.value = data.content
       max_page.value = data.max_page
+      console.log(JSON.stringify(data))
       resolve()
     });
   })

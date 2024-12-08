@@ -6,7 +6,6 @@ import rightArrow from '../svg/RightArrow.vue'
 import leftArrow from '../svg/LeftArrow.vue'
 import * as left from "../svg/LeftArrow.vue";
 import * as right from "../svg/RightArrow.vue";
-import { getIsSearching } from "../../views/search/index.vue";
 
 let maxPage = 1;
 // if (getIsSearching())

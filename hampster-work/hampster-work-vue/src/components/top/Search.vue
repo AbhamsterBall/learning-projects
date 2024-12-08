@@ -145,7 +145,7 @@ function moreThan1000Expand() {
   margin: -80px auto auto auto;
   display: block;
   box-shadow: 0 0 6px 3px #1e4488; /* 模拟边框 */
-  z-index: 100;
+  z-index: 1000;
 }
 #search:focus {
   outline: none;
@@ -159,7 +159,7 @@ function moreThan1000Expand() {
   transition: .3s;
   fill: #2759b2; /* original #2759b2 */
   cursor: pointer;
-  z-index: 100;
+  z-index: 1000;
 }
 
 @media screen and (max-width: 1000px) {

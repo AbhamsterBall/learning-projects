@@ -1,7 +1,7 @@
 <script setup>
 // import top from '../../components/search/top/Top.vue'
 import top from '../../components/top/Top.vue' // can I use Top.vue instead of search/top/Top.vue ???!!!
-import { ref } from "vue";
+import { ref, onMounted } from 'vue';
 import $ from "jquery";
 import { getCurrenTitle } from "../Home.vue";
 import index_search from '../../components/top/Search.vue'
@@ -23,7 +23,23 @@ $(() => {
   });
 
 });
+let isBlurPage = window.location.href.indexOf("blur") !== -1;
 
+let currentUrl = window.location.href.split('/');
+if (currentUrl.length > 4) {
+  if (!isBlurPage) {
+    setTitle(currentUrl[currentUrl.length - 1])
+  } else {
+    if (currentUrl[4].indexOf("blur") !== -1) {
+      setTitle("HAMPSTER.WORK")
+      setSearchText(currentUrl[4].split("?")[1].split("=")[1])
+    } else {
+      setTitle(currentUrl[4])
+      console.log(currentUrl[5].split("?")[1].split("=")[1])
+      setSearchText(currentUrl[5].split("?")[1].split("=")[1])
+    }
+  }
+}
 </script>
 
 <script>
@@ -47,34 +63,6 @@ const showSuspense = ref(true)
 export function setShowSuspense(bool) {
   showSuspense.value = bool
 }
-
-let isSearching = ref(false)
-
-export function setIsSearching(bol) {
-  isSearching.value = bol
-}
-
-export function getIsSearching() {
-  return isSearching.value
-}
-
-let currentUrl = window.location.href.split('/');
-if (currentUrl.length > 4) {
-  if (window.location.href.indexOf("blur") === -1) {
-    setIsSearching(false)
-    setTitle(currentUrl[currentUrl.length - 1])
-  } else {
-    setIsSearching(true)
-    if (currentUrl[4].indexOf("blur") !== -1) {
-      setTitle("HAMPSTER.WORK")
-      setSearchText(currentUrl[4].split("?")[1].split("=")[1])
-    }
-    else {
-      setTitle(currentUrl[4])
-      setSearchText(currentUrl[5].split("?")[1].split("=")[1])
-    }
-  }
-}
 </script>
 
 <template>
@@ -82,10 +70,12 @@ if (currentUrl.length > 4) {
   <index_search/>
   <suspense v-if="showSuspense">
     <template #default>
-      <template v-if="getIsSearching()">
+      <template v-if="isBlurPage">
+<!--        <div>blur {{ isSearching.value }}</div>-->
         <blur_list/>
       </template>
       <template v-else>
+<!--        <div>search {{ isSearching.value }}</div>-->
         <search_list/>
       </template>
     </template>
