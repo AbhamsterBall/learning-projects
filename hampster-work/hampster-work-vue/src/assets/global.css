@@ -408,7 +408,7 @@ input::placeholder {
     transition: 0.3s;
     border: white solid 2px;
     padding: 15px 36px;
-    border-radius: 20px;
+    border-radius: 15px;
     box-shadow: 0 0 0 3px #333333; /* 模拟边框 2759b2*/
     outline: #333333 solid 1.5px; /*2759b2*/
     /*//background-color: white;*/

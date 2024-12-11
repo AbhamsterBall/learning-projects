@@ -47,5 +47,7 @@ g {
   stroke-linecap: round;
   stroke-linejoin: round;
   stroke-width: 10.5px;
+
+  transition: .6s;
 }
 </style>

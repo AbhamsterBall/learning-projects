@@ -69,6 +69,8 @@ function adjustListShowSuspense() {
   // hide list when window is resized to smaller than 1000px 手机端隐藏列表，并放在左上角
   console.log($(window).width())
   if ($(window).width() < 1000) {
+    if (getTitle() === "HAMPSTER.WORK")
+      setTitle("HAMPSTER")
     $('.list-outline').css({
       'display': 'block',
       'z-index': '-2',
@@ -79,6 +81,8 @@ function adjustListShowSuspense() {
     })
     console.log("enter")
   } else {
+    if (getTitle() === "HAMPSTER")
+      setTitle("HAMPSTER.WORK")
     $('.list-outline').css({
       'display': 'block',
       'z-index': '100',
@@ -97,16 +101,8 @@ function adjustListShowSuspense() {
 
 <template>
   <top :title="title"/>
-  <div style="height: 30px;
-    background-color: transparent;
-    margin-top: -30px;
-    border-radius: 0px;
-    z-index: 20;
-    position: relative;">
-    <div style="height: 25px;
-      background-color: white;
-      border-radius: 0px">
-    </div>
+  <div data-v-84162407="" style="height: 25px;background-color: white;margin-top: -30px;border-radius: 0px;z-index: 600;position: relative;/* width: 100px; */">
+    <div data-v-84162407="" style="height: 25px; background-color: white; border-radius: 0px;"></div>
   </div>
   <index_search/>
   <suspense>
@@ -154,7 +150,14 @@ import {ref} from "vue";
 const title = ref("HAMPSTER.WORK")
 let isTitleChanged = false
 
-setTitle("JAVA")
+const genre = window.location.href.split("//")[1].split("/")[2]
+if (genre === "ALL")
+  if ($(window).width() > 1000)
+    setTitle("HAMPSTER.WORK")
+  else
+    setTitle("HAMPSTER")
+else
+  setTitle(genre)
 export function setTitle(tempTitle) {
   title.value = tempTitle
   isTitleChanged = true
@@ -174,15 +177,15 @@ export function getTitle() {
 //   return showListSuspense.value
 // }
 
-let isSearching = ref(false)
+// let isSearching = ref(false)
 
-export function setIsSearching(bol) {
-  isSearching.value = bol
-}
-
-export function getIsSearching() {
-  return isSearching.value
-}
+// export function setIsSearching(bol) {
+//   isSearching.value = bol
+// }
+//
+// export function getIsSearching() {
+//   return isSearching.value
+// }
 
 </script>
 
@@ -194,7 +197,7 @@ export function getIsSearching() {
 
 <style lang="scss" scoped>
 .index-text {
-  margin-top: 4px;
+  margin-top: 16px;
   box-shadow: 0 0 8px 3px #e8e8e8;
   border-radius: 0px 0px 40px 40px;
   z-index: 0;
@@ -262,7 +265,7 @@ export function getIsSearching() {
 }
 .index-text {
   height: auto;
-  margin-top: 4px;
+  margin-top: 16px;
   box-shadow: 0 0 8px 3px #e8e8e8;
   border-radius: 0px 0px 40px 40px;
   z-index: 0;

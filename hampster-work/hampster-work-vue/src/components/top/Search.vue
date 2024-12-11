@@ -8,7 +8,7 @@ import { getTitle as getSearchTitle } from "../../views/search/index.vue";
 import { useRoute } from 'vue-router';
 
 // const color = ref("#535bf2")
-const color = ref("#a9acba")
+const color = ref("rgb(232 232 234)")
 const getPosOfIcon = () => {
   // if (window.innerWidth <= 1000) {
   //   $('.index-search').css("transition", "none")
@@ -42,13 +42,14 @@ $(() => {
   all.keepWedgeUnmoved("#search")
 
   $(".index-search").hover(
-      function() {
+      function() { // mouse enter
         if (isExpand) color.value = "#ffc459"
-        else color.value = "#FFFFFF"
+        else color.value = "#535bf2"
       },
-      function() {
+      function() { // mouse pointer leave
         if (isExpand) color.value = "#535bf2"
-        else color.value = "#a9acba"
+        else color.value = "rgb(232 232 234)" // "#a9acba"
+
       }
   );
 
@@ -64,10 +65,10 @@ $(() => {
       $('.index-search').css("transition", ".3s")
       $('.index-search').css('left', "50%")
       $('#search').css('width', '0px')
-      $('.main-title-text').css('margin-top', '0px')
-      $('.index-search').css('margin-left', '-20px')
+      $('.main-title-text').css('margin-top', '-10px')
+      $('.index-search').css('margin-left', '-24px')
       $('#search').css('opacity', '0')
-      color.value = "#a9acba"
+      color.value = "rgb(232 232 234)"
       isExpand = false
       $('.profile').css('top', "50px")
     }
@@ -98,7 +99,7 @@ function expandSearch() {
 
 function lessThan1000Expand() {
   $('#search').css('width', '82%')
-  $('.main-title-text').css('margin-top', '-20px')
+  $('.main-title-text').css('margin-top', '-25px')
   let left = window.innerWidth * 0.91
   $('.index-search').css('margin-left', left - 65 + "px")
   color.value = "#535bf2"
@@ -111,7 +112,7 @@ function lessThan1000Expand() {
 function moreThan1000Expand() {
   $('.index-search').css('left', "50%")
   $('#search').css('width', '630px')
-  $('.main-title-text').css('margin-top', '-20px')
+  $('.main-title-text').css('margin-top', '-25px')
   $('.index-search').css('margin-left', '275px')
   color.value = "#535bf2"
   $('#search').focus()
@@ -137,25 +138,29 @@ function moreThan1000Expand() {
   height: auto;
   position: relative;
   color: #333333;
-  line-height: 70px;
+  //line-height: 70px;
   //margin-top: 100px;
-  padding: 0% 2%;
+  padding: 25px 2%;
   font-size: 20px;
   transition: .6s;
-  margin: -80px auto auto auto;
+  margin: -90px auto auto auto;
   display: block;
-  box-shadow: 0 0 6px 3px #1e4488; /* 模拟边框 */
+  //box-shadow: 0 0 6px 3px #1e4488; /* 模拟边框 */
+  box-shadow: 0 0 6px 3px rgba(105, 105, 105, 0.1); /* 模拟边框 */
   z-index: 1000;
+  line-height: 20px;
+  border-radius: 22px;
 }
 #search:focus {
   outline: none;
   border: solid 2px #CD853F;
+  //border: solid 2px white;
   transition: .6s;
 }
 .index-search {
   position: absolute;
   left: 50%;
-  margin: -61px 0px 0px -20px; /*original left 275px*/
+  margin: -61px 0px 0px -24px; /*original left 275px*/
   transition: .3s;
   fill: #2759b2; /* original #2759b2 */
   cursor: pointer;
@@ -165,13 +170,14 @@ function moreThan1000Expand() {
 @media screen and (max-width: 1000px) {
   #search {
     /*margin-top: 50px;*/
-    margin-top: -78px;
+    margin-top: -88px;
     width: 82%;
     text-indent: 15px;
-    border-radius: 35px;
+    border-radius: 40px;
   }
   .index-search {
     margin: -61px 0px 0px -20px;
   }
 }
+
 </style>

@@ -138,4 +138,8 @@ function loginClick() {
     display: block;
   }
 }
+
+.main-title-text {
+  margin-top: -10px;
+}
 </style>

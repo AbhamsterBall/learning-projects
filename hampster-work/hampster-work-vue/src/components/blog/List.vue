@@ -197,7 +197,10 @@ export async function getBlogName(btName, index) {
       // setTimeout($('.' + btName + '-refresh').css('animation', 'none'), 10000)
       blog_name.value[btName] = data
       if (btName === 'ALL') {
-        setTitle("HAMPSTER.WORK")
+        if ($(window).width() < 1000)
+          setTitle("HAMPSTER")
+        else
+          setTitle("HAMPSTER.WORK")
       } else {
         setTitle(btName)
       }
@@ -240,6 +243,15 @@ function clicked(e, type, name) {
   let newState = { page: "example" };
   let newUrl = "/blog/" + type + "/" + name;
   window.history.pushState(newState, "", newUrl);
+
+  if (type === 'ALL') {
+    if ($(window).width() < 1000)
+      setTitle("HAMPSTER")
+    else
+      setTitle("HAMPSTER.WORK")
+  } else {
+    setTitle(type)
+  }
   current_blog_name = name;
 
   getContent()
@@ -404,7 +416,7 @@ function clicked(e, type, name) {
 }
 .index-text {
   height: auto;
-  margin-top: 4px;
+  margin-top: 16px;
   box-shadow: 0 0 8px 3px #e8e8e8;
   border-radius: 0px 0px 40px 40px;
   z-index: 0;
