@@ -37,8 +37,8 @@ export function blogSearch(title, searchText, page) {
 
 // get blog content summary
 export function getBlogContentSummary(info) {
-  return $.get(apiUrl +
-    "/json/blog/" + info + "/getsummary");
+  return $.post(apiUrl +
+    "/json/blog/getSummary", info);
 }
 
 // get blog content

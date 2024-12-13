@@ -36,15 +36,21 @@ function adjustListShowSuspense() {
 $(() => {
   setShowRefresh()
 
-  $('.list-outline').css('height', window.innerHeight - 160 + 'px')
+  let height = window.innerHeight - 146 + 'px'
+  $('.list-outline').css('height', height)
+  // $('.extra-outline').css('height', height)
   $(window).resize(function() {
+    let height = window.innerHeight - 146 + 'px'
     updateWindowWidth()
     // 更新窗口大小信息
     all.keepWedgeUnmoved('.mainHref')
 
-    $('.list-outline').css('height', window.innerHeight - 160 + 'px')
+    $('.list-outline').css('height', height)
+    // $('.extra-outline').css('height', height)
     checkOverflow()
     adjustListShowSuspense()
+
+    this.$forceUpdate()
   });
 
   // $('.main-title').css('box-shadow', 'none')

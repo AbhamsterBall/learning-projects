@@ -3,15 +3,15 @@ package work.hampster.blog.controller;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import work.hampster.blog.mapper.BlogMapper;
 import work.hampster.blog.model.Blog;
 import work.hampster.blog.service.BlogService;
 import work.hampster.blog.service.BlogTypeService;
 import work.hampster.blog.util.Redis;
 
+import java.net.URLDecoder;
+import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -95,9 +95,15 @@ public class BlogJsonController {
         return getGson().toJson(Redis.readAndWrite(bt_type + "_b_name_all", () -> blogServicePlus.getBaseMapper().selectAllBlogNamesInBt(bt_type), 12));
     }
 
-    @GetMapping(value = "/json/blog/{info}/getsummary", produces = "application/json; charset=utf-8")
-    public String blogGetSummary(@PathVariable String info) {
-        return getGson().toJson(Redis.readAndWrite(info + "_summary", () -> blogService.getBlogSummary(info), 20));
+    // upload to server and analyze
+    @PostMapping(value = "/json/blog/getSummary", produces = "application/json; charset=utf-8")
+    public String blogGetSummary(@RequestBody String info) {
+        String decodedInfo = URLDecoder.decode(info, StandardCharsets.UTF_8);
+        return getGson().toJson(
+                Redis.readAndWrite(
+                    decodedInfo + "_summary",
+                    () -> blogService.getBlogSummary(decodedInfo),
+                    20));
     }
 
     @GetMapping(value = "/json/blog/{b_name}", produces = "application/json; charset=utf-8")
