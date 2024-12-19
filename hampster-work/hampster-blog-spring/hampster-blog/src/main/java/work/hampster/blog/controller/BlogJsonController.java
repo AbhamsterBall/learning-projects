@@ -15,6 +15,8 @@ import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 //import static com.baomidou.mybatisplus.extension.handlers.GsonTypeHandler.getGson;
 
@@ -98,7 +100,7 @@ public class BlogJsonController {
     // upload to server and analyze
     @PostMapping(value = "/json/blog/getSummary", produces = "application/json; charset=utf-8")
     public String blogGetSummary(@RequestBody String info) {
-        String decodedInfo = URLDecoder.decode(info, StandardCharsets.UTF_8);
+        String decodedInfo = URLDecoder.decode(fixIncompleteEscapeSequences(info), StandardCharsets.UTF_8);
         return getGson().toJson(
                 Redis.readAndWrite(
                     decodedInfo + "_summary",
@@ -109,6 +111,22 @@ public class BlogJsonController {
     @GetMapping(value = "/json/blog/{b_name}", produces = "application/json; charset=utf-8")
     public String blogGetContent(@PathVariable String b_name) {
         return getGson().toJson(Redis.readAndWrite(b_name + "_content", () -> blogServicePlus.getBaseMapper().selectBlogContent(b_name), 22));
+    }
+
+    private String fixIncompleteEscapeSequences(String input) {
+        Pattern pattern = Pattern.compile("%([0-9a-fA-F]{0,1})");
+        Matcher matcher = pattern.matcher(input);
+        StringBuffer sb = new StringBuffer();
+        while (matcher.find()) {
+            // 如果是不完整的转义序列，替换为 %25（即 % 的 URL 编码）
+            if (matcher.group(1).length() < 2) {
+                matcher.appendReplacement(sb, " ");
+            } else {
+                matcher.appendReplacement(sb, matcher.group(0));
+            }
+        }
+        matcher.appendTail(sb);
+        return sb.toString();
     }
 
 }

@@ -69,8 +69,10 @@ function showRoundedBox() {
   $('.rounded-box').css({
     display: 'block',
     left: `${rect.left + rect.width / 2 - parseInt($('.rounded-box').css('width').substring(0, $('.rounded-box').css('width').length - 2)) / 2}px`,
-    top: `${rect.top - 42}px`
+    top: `${(rect.top - 42) < 166 ? 166 : (rect.top - 42)}px`
   });
+
+  // console.log(`top: ${(rect.top - 42) < 166 ? 166 : (rect.top - 42)}px`)
 
   setTimeout(() => {$('.rounded-box').css('opacity', '1')}, 100)
 }
@@ -104,8 +106,7 @@ const testSelected = function() {
         isLoading.value = true
         showRoundedBox()
         getSummary(selected.value) //new Promise获取值并isLoading.value = false
-      }
-      else {
+      } else {
         $('.rounded-box').css('opacity', '0')
         setTimeout(() => {$('.rounded-box').css('display', 'none')}, 100)
       }

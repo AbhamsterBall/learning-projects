@@ -72,23 +72,23 @@ function adjustListShowSuspense() {
   if ($(window).width() < 1000) {
     if (getTitle() === "HAMPSTER.WORK")
       setTitle("HAMPSTER")
-    $('.list-outline').css({
-      'display': 'block',
-      'z-index': '-2',
-    })
-    $('.extra-outline').css({
-      'display': 'block',
-      'z-index': '-1',
-    })
+    // $('.list-outline').css({
+    //   'display': 'block',
+    //   'z-index': '-2',
+    // })
+    // $('.extra-outline').css({
+    //   'display': 'block',
+    //   'z-index': '-1',
+    // })
     // console.log("enter")
   } else {
     if (getTitle() === "HAMPSTER")
       setTitle("HAMPSTER.WORK")
-    $('.list-outline').css({
-      'display': 'block',
-      'z-index': '100',
-    })
-    $('.extra-outline').css('display', 'none')
+    // $('.list-outline').css({
+    //   'display': 'block',
+    //   'z-index': '100',
+    // })
+    // $('.extra-outline').css('display', 'none')
   }
 
   checkOverFlow()

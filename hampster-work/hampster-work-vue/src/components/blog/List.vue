@@ -100,6 +100,38 @@ let description = ref()
 let date = ref()
 </script>
 
+
+<template>
+  <teleport to="head">
+    <component :is="'script'" type="application/ld+json">
+      {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "headline": "{{ small_title }}",
+      "description": "{{ description }}",
+      "datePublished": "{{ date }}",
+      "author": {
+      "@type": "Person",
+      "name": "何宇荟"
+      }
+      }
+    </component>
+  </teleport>
+  <div class="list-outline" ref="listOutline">
+    <div class="text index-text" style="text-align: center; color: #444444;">
+      <div v-for="(name_item, index) in name_data">
+        <button :class="'mainHref ' + name_item.btName + '-href'" @click="expandCategory(name_item.btName, index)">
+          {{ name_item.btName }} <blog-refresh width="25" height="25" :class="'blog-refresh ' + name_item.btName + '-refresh'"/>
+        </button>
+        <div :class="'title-list ' + name_item.btName">
+          <div class="blogHref" v-for="(name, blog_index) in blog_name[name_item.btName]" @click="clicked($event, name_item.btName, name.b_name)">{{ name.b_name }}</div>
+        </div>
+      </div>
+      <!-- <a href="/python/index.html" class="mainHref">PYTHON</a> -->
+    </div>
+  </div>
+</template>
+
 <script>
 import {ref} from "vue";
 import $ from "jquery";
@@ -271,37 +303,6 @@ function clicked(e, type, name) {
 }
 </script>
 
-<template>
-  <teleport to="head">
-    <component :is="'script'" type="application/ld+json">
-      {
-        "@context": "https://schema.org",
-        "@type": "Article",
-        "headline": "{{ small_title }}",
-        "description": "{{ description }}",
-        "datePublished": "{{ date }}",
-        "author": {
-          "@type": "Person",
-          "name": "何宇荟"
-        }
-      }
-    </component>
-  </teleport>
-  <div class="list-outline" ref="listOutline">
-	 <div class="text index-text" style="text-align: center; color: #444444;">
-     <div v-for="(name_item, index) in name_data">
-       <button :class="'mainHref ' + name_item.btName + '-href'" @click="expandCategory(name_item.btName, index)">
-         {{ name_item.btName }} <blog-refresh width="25" height="25" :class="'blog-refresh ' + name_item.btName + '-refresh'"/>
-       </button>
-       <div :class="'title-list ' + name_item.btName">
-          <div class="blogHref" v-for="(name, blog_index) in blog_name[name_item.btName]" @click="clicked($event, name_item.btName, name.b_name)">{{ name.b_name }}</div>
-       </div>
-     </div>
-			 <!-- <a href="/python/index.html" class="mainHref">PYTHON</a> -->
-	 </div>
-  </div>
-</template>
-
 <style scoped>
 .title-list {
   transition: .3s;
@@ -384,6 +385,7 @@ function clicked(e, type, name) {
   z-index: 300;
   position: relative;
   background-color: white;
+  display: block;
 }
 .mainHref:hover {
   background-color: #fafbff;
@@ -432,6 +434,7 @@ function clicked(e, type, name) {
     margin-top: 0px;
   }
   .mainHref {
+    display: none;
     padding-top: 42px;
     padding-bottom: 42px;
   }
