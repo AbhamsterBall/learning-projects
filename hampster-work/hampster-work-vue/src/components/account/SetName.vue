@@ -5,6 +5,7 @@ import smallWarning from '../svg/SmallWarning.vue'
 import $ from "jquery";
 import axios from "axios";
 import bcrypt from 'bcryptjs';
+import {setUserName} from "../../api/search.js";
 
 let buttonColor = ref("#a9acba")
 let buttonPointer = ref("none")
@@ -19,12 +20,15 @@ $(() => {
 
 function setName() {
   if (localStorage.getItem("utoken") !== null) {
-    const ur = "http://localhost:8082/json/user/setname/" + localStorage.getItem("utoken")
-    axios.put(ur, {
-      uName: $('.login-signup-name').val()
-    })
+    // const ur = "http://localhost:8082/json/user/setname/" + localStorage.getItem("utoken")
+    // axios.put(ur, {
+    //   uName: $('.login-signup-name').val()
+    // })
+    setUserName({
+          uName: $('.login-signup-name').val()
+        })
         .then(data => {
-          if (data.data == "更新成功") {
+          if (data === "更新成功") {
             $('.mask-display').css("opacity", "0")
             setTimeout(() => {
               $('.mask-display').css("display", "none")

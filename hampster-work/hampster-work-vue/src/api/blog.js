@@ -1,7 +1,7 @@
 import $ from "jquery";
 import request from '../utils/request'
 
-const apiUrl = "/blog-api";
+const apiUrl = import.meta.env.VITE_API_BLOG_BASE_URL;
 
 // index page : blog name
 export function indexBlogName() {

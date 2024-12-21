@@ -13,10 +13,11 @@ export let isRelogin = { show: false };
 
 axios.defaults.headers['Content-Type'] = 'application/json;charset=utf-8'
 
+// console.log(import.meta.env)
 // 创建axios实例
 const service = axios.create({
     // axios中请求配置有baseURL选项，表示请求URL公共部分
-    baseURL: import.meta.env.VUE_APP_BASE_API,
+    baseURL: import.meta.env.BASE_URL,
     // 超时
     timeout: 10000
 })
@@ -110,13 +111,13 @@ service.interceptors.response.use(res => {
     },
     error => {
         console.log('err' + error)
-        let { ElMessage } = error;
-        if (message == "Network Error") {
-            ElMessage = "后端接口连接异常";
+        let { message } = error;
+        if (message === "Network Error") {
+            message = "后端接口连接异常";
         } else if (message.includes("timeout")) {
-            ElMessage = "系统接口请求超时";
+            message = "系统接口请求超时";
         } else if (message.includes("Request failed with status code")) {
-            ElMessage = "系统接口" + message.substr(message.length - 3) + "异常";
+            message = "系统接口" + message.substr(message.length - 3) + "异常";
         }
         ElMessage({ message: message, type: 'error', duration: 5 * 1000 })
         return Promise.reject(error)

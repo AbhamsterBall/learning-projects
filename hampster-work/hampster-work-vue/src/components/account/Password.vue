@@ -6,6 +6,7 @@ import $ from "jquery";
 import axios from "axios";
 import bcrypt from 'bcryptjs';
 import SetName from "./SetName.vue";
+import {getProfile, putProfile, register} from "../../api/search.js";
 
 let buttonColor = ref("#a9acba")
 let buttonPointer = ref("none")
@@ -35,38 +36,45 @@ function showOrHide() {
 
 function addAccount() {
   loadMoving()
-  const ur = "http://localhost:8082/json/user/register"
-  axios.post(ur, {
-    uId: 0,
-    uName: "Registered Hamster",
-    uMail: account._object.account,
-    uPass: bcrypt.hashSync($('.login-signup-pass').val(), bcrypt.genSaltSync())
-  })
-      .then(data => {
-        if (data.data.status) {
-          localStorage.setItem("utoken", data.data.user_token)
-          const accessKey = 'IEJiPMBh0214n5H8wNPH';
-          const secretKey = 'RKcBEB9AXN4zyr02rMG1GpQ5ZDldGJhZEvdHo3nw';
-          axios.get("http://47.109.149.213:9000/profile/default.svg", {responseType: 'blob'})
-              .then(response => {
-                const blob = new Blob([response.data]);
-                axios.put("http://47.109.149.213:9000/profile/" + data.data.user_token + ".svg",
-                    blob,  {
-                  headers: {
-                    'Content-Type': 'image/svg+xml', // 指定内容类型为二进制流
-                    'Authorization': `Bearer ${accessKey}:${secretKey}`
-                  }
+  // const ur = "http://localhost:8082/json/user/register"
+  // axios.post(ur, {
+  //   uId: 0,
+  //   uName: "Registered Hamster",
+  //   uMail: account._object.account,
+  //   uPass: bcrypt.hashSync($('.login-signup-pass').val(), bcrypt.genSaltSync())
+  // })
+    register({
+      uId: 0,
+      uName: "Registered Hamster",
+      uMail: account._object.account,
+      uPass: bcrypt.hashSync($('.login-signup-pass').val(), bcrypt.genSaltSync())
+    }).then(data => {
+      if (data.status) {
+        localStorage.setItem("utoken", data.user_token)
+        // const accessKey = 'IEJiPMBh0214n5H8wNPH';
+        // const secretKey = 'RKcBEB9AXN4zyr02rMG1GpQ5ZDldGJhZEvdHo3nw';
+        getProfile('default.svg')
+        // axios.get("http://47.109.149.213:9000/profile/default.svg", {responseType: 'blob'})
+          .then(response => {
+            const blob = new Blob([response]);
+            // axios.put("http://47.109.149.213:9000/profile/" + data.data.user_token + ".svg",
+            //     blob,  {
+            //   headers: {
+            //     'Content-Type': 'image/svg+xml', // 指定内容类型为二进制流
+            //     'Authorization': `Bearer ${accessKey}:${secretKey}`
+            //   }
+            // })
+            putProfile(data.user_token + ".svg", blob)
+                .then(response => {
+                  loadStop()
+                  moveLeft()
+                  // toSetName()
                 })
-                    .then(response => {
-                      loadStop()
-                      moveLeft()
-                      // toSetName()
-                    })
-                    .catch(error => {
-                      console.error(error);
-                    });
-              });
-        }
+                .catch(error => {
+                  console.error(error);
+                });
+          });
+         }
       })
       .catch(error => {
         console.error(error);

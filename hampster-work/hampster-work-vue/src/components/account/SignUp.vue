@@ -8,6 +8,7 @@ import { loadMoving, loadStop, hideWrong, displayWrong, restorePos } from "./Log
 import checkAccount from './CheckAccount.vue';
 import { store } from '../../main.js';
 import axios from "axios";
+import {isNameExist} from "../../api/search.js";
 
 let buttonColor = ref("#a9acba")
 let buttonPointer = ref("none")
@@ -27,25 +28,26 @@ function testAccount() {
   let re = false
 
   try {
-    const ur = "http://localhost:8082/json/user/isexist/" + inputAC.value
-    axios.get(ur)
-        .then(data => {
-          if (data.data) {
-            loadStop()
-            displayWrong("账号已存在，请<a href=\"#\" class=\"login-forget-top\" style=\"margin-left: 0px\">前往登录</a>")
-            $('.login-forget-top').click(backToLogin)
+    // const ur = "http://localhost:8082/json/user/isexist/" + inputAC.value
+    // axios.get(ur)
+    isNameExist(inputAC.value)
+      .then(data => {
+        if (data) {
+          loadStop()
+          displayWrong("账号已存在，请<a href=\"#\" class=\"login-forget-top\" style=\"margin-left: 0px\">前往登录</a>")
+          $('.login-forget-top').click(backToLogin)
+        } else {
+
+          if (inputAC.value.includes("@")) {
+            getMailCode(inputAC.value)
           } else {
 
-            if (inputAC.value.includes("@")) {
-              getMailCode(inputAC.value)
-            } else {
-
-            }
           }
-        })
-        .catch(error => {
-          console.error(error);
-        });
+        }
+      })
+      .catch(error => {
+        console.error(error);
+      });
   } catch (error) {
     console.error(error);
     loadStop(); // 停止加载动画
@@ -79,25 +81,27 @@ import axios from "axios";
 import $ from "jquery";
 import {ref} from "vue";
 import { hideWrong, restorePos, loadStop } from "./Login.vue";
+import {getEmailCode} from "../../api/search.js";
 
 export async function getMailCode(account) {
   try {
-    const ur = "http://localhost:8082/json/user/getmailcode/" + account
-    axios.get(ur)
-        .then(data => {
-          if (data.data == "ok") {
-            loadStop()
-            $('.veri-display').css('display', 'block')
+    // const ur = "http://localhost:8082/json/user/getmailcode/" + account
+    // axios.get(ur)
+    getEmailCode(account)
+      .then(data => {
+        if (data === "ok") {
+          loadStop()
+          $('.veri-display').css('display', 'block')
 
-            $('.sub-login-signup').css('background-color', 'transparent')
+          $('.sub-login-signup').css('background-color', 'transparent')
 
-            setTimeout(() => {moveLeft()}, 100)
-            setTimeout(() => {hideWrong(); restorePos()}, 400)
-          }
-        })
-        .catch(error => {
-          console.error(error);
-        });
+          setTimeout(() => {moveLeft()}, 100)
+          setTimeout(() => {hideWrong(); restorePos()}, 400)
+        }
+      })
+      .catch(error => {
+        console.error(error);
+      });
   } catch (error) {
     console.error(error);
     loadStop(); // 停止加载动画

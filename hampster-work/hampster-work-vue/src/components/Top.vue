@@ -29,7 +29,8 @@ function checkIfLogin() {
   if (localStorage.getItem("utoken") != null) {
     $(".login").css("display", "none")
     $(".loginIcon").css("display", "none")
-    $(".profile-img").attr("src", "http://47.109.149.213:9000/profile/" + localStorage.getItem("utoken") + ".svg");
+    $(".profile-img").attr("src", import.meta.env.VITE_API_MINIO_BASE_URL +
+        "/profile/" + localStorage.getItem("utoken") + ".svg");
   } else {
     $(".profile").css("display", "none")
   }

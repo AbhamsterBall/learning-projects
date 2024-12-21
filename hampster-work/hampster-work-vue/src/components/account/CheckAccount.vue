@@ -7,6 +7,7 @@ import {store} from "../../main.js";
 import axios from "axios";
 import Password from "./Password.vue";
 import { getMailCode } from "./SignUp.vue"
+import {checkMailCode} from "../../api/search.js";
 
 let buttonColor = ref("#a9acba")
 let buttonPointer = ref("none")
@@ -31,24 +32,25 @@ function testVeri() {
   let cIn = $('.login-signup-veri').val()
 
   // 直接传给后端哈希对比
-  const ur = "http://localhost:8082/json/user/checkmailcode/" + account._object.account +　"/" + cIn
-  axios.get(ur)
-      .then(data => {
-        if (data.data == true) {
-          loadStop()
-          moveLeft()
-          setTimeout(() => {hideWrong(); restorePos()}, 400)
-        } else if (data.data == "expired") {
-          loadStop()
-          displayWrong("验证码过期，请检查或<a href=\"#\" class=\"login-forget-top\" style=\"margin-left: 0px\">重新发送</a>")
-        } else {
-          loadStop()
-          displayWrong("验证码错误，请检查或<a href=\"#\" class=\"login-forget-top\" style=\"margin-left: 0px\">重新发送</a>")
-        }
-      })
-      .catch(error => {
-        console.error(error);
-      });
+  // const ur = "http://localhost:8082/json/user/checkmailcode/" + account._object.account +　"/" + cIn
+  // axios.get(ur)
+  checkMailCode(account._object.account, cIn)
+    .then(data => {
+      if (data === true) {
+        loadStop()
+        moveLeft()
+        setTimeout(() => {hideWrong(); restorePos()}, 400)
+      } else if (data === "expired") {
+        loadStop()
+        displayWrong("验证码过期，请检查或<a href=\"#\" class=\"login-forget-top\" style=\"margin-left: 0px\">重新发送</a>")
+      } else {
+        loadStop()
+        displayWrong("验证码错误，请检查或<a href=\"#\" class=\"login-forget-top\" style=\"margin-left: 0px\">重新发送</a>")
+      }
+    })
+    .catch(error => {
+      console.error(error);
+    });
 
 }
 

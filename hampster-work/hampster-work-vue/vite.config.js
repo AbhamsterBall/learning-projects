@@ -20,8 +20,23 @@ export default defineConfig({
           target: 'http://localhost:8081/', // 8081本地后端地址
           changeOrigin: true, //允许跨域
           // ws: false,
-          rewrite: (path) => path.replace(/^\/blog-api/, ''),
+          rewrite: (path) =>
+              path.replace(/^\/blog-api/, ''),
         },
+        '^/user-api': {
+          target: 'http://localhost:8082/', // 8081本地后端地址
+          changeOrigin: true, //允许跨域
+          // ws: false,
+          rewrite: (path) =>
+              path.replace(/^\/user-api/, ''),
+        },
+        '^/minio-api' : {
+          target: 'http://47.109.149.213:9000/', // 8081本地后端地址
+          changeOrigin: true, //允许跨域
+          // ws: false,
+          rewrite: (path) =>
+              path.replace(/^\/minio-api/, ''),
+        }
       }
   },
     // proxy: "http://localhost:9090",

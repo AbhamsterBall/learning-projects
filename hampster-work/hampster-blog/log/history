@@ -1,6 +1,42 @@
-DEBUG [http-nio-8081-exec-2] - ==>  Preparing: select b_content from blog where b_name=?
-DEBUG [http-nio-8081-exec-2] - ==>  Preparing: select b_content from blog where b_name=?
-DEBUG [http-nio-8081-exec-2] - ==> Parameters: undefined(String)
-DEBUG [http-nio-8081-exec-2] - ==> Parameters: undefined(String)
-DEBUG [http-nio-8081-exec-2] - <==      Total: 0
-DEBUG [http-nio-8081-exec-2] - <==      Total: 0
+DEBUG [http-nio-8082-exec-4] - ==>  Preparing: SELECT COUNT( * ) AS total FROM user WHERE (u_token = ?)
+DEBUG [http-nio-8082-exec-4] - ==>  Preparing: SELECT COUNT( * ) AS total FROM user WHERE (u_token = ?)
+DEBUG [http-nio-8082-exec-4] - ==> Parameters: admin(String)
+DEBUG [http-nio-8082-exec-4] - ==> Parameters: admin(String)
+TRACE [http-nio-8082-exec-4] - <==    Columns: total
+TRACE [http-nio-8082-exec-4] - <==    Columns: total
+TRACE [http-nio-8082-exec-4] - <==        Row: 0
+TRACE [http-nio-8082-exec-4] - <==        Row: 0
+DEBUG [http-nio-8082-exec-4] - <==      Total: 1
+DEBUG [http-nio-8082-exec-4] - <==      Total: 1
+DEBUG [http-nio-8082-exec-4] - ==>  Preparing: INSERT INTO user ( u_id, u_token, u_name, u_pass, u_mail ) VALUES ( ?, ?, ?, ?, ? )
+DEBUG [http-nio-8082-exec-4] - ==>  Preparing: INSERT INTO user ( u_id, u_token, u_name, u_pass, u_mail ) VALUES ( ?, ?, ?, ?, ? )
+DEBUG [http-nio-8082-exec-4] - ==> Parameters: 0(Integer), TIyDX2KCA3XlNhpy(String), Registered Hamster(String), $2a$10$rtJLZ0euteiEB8bMh/3ZO.fkkfkZPpzn3hnIuvRPrk78oON18tu5.(String), a1270898097@163.com(String)
+DEBUG [http-nio-8082-exec-4] - ==> Parameters: 0(Integer), TIyDX2KCA3XlNhpy(String), Registered Hamster(String), $2a$10$rtJLZ0euteiEB8bMh/3ZO.fkkfkZPpzn3hnIuvRPrk78oON18tu5.(String), a1270898097@163.com(String)
+DEBUG [http-nio-8082-exec-4] - <==    Updates: 1
+DEBUG [http-nio-8082-exec-4] - <==    Updates: 1
+DEBUG [http-nio-8082-exec-5] - ==>  Preparing: SELECT count(0) FROM user
+DEBUG [http-nio-8082-exec-5] - ==>  Preparing: SELECT count(0) FROM user
+DEBUG [http-nio-8082-exec-5] - ==> Parameters: 
+DEBUG [http-nio-8082-exec-5] - ==> Parameters: 
+TRACE [http-nio-8082-exec-5] - <==    Columns: count(0)
+TRACE [http-nio-8082-exec-5] - <==    Columns: count(0)
+TRACE [http-nio-8082-exec-5] - <==        Row: 10
+TRACE [http-nio-8082-exec-5] - <==        Row: 10
+DEBUG [http-nio-8082-exec-5] - <==      Total: 1
+DEBUG [http-nio-8082-exec-5] - <==      Total: 1
+DEBUG [http-nio-8082-exec-5] - ==>  Preparing: SELECT u_id,u_token,u_name,u_pass,u_mail,u_phone FROM user ORDER BY u_id ASC LIMIT ?
+DEBUG [http-nio-8082-exec-5] - ==>  Preparing: SELECT u_id,u_token,u_name,u_pass,u_mail,u_phone FROM user ORDER BY u_id ASC LIMIT ?
+DEBUG [http-nio-8082-exec-5] - ==> Parameters: 1(Integer)
+DEBUG [http-nio-8082-exec-5] - ==> Parameters: 1(Integer)
+TRACE [http-nio-8082-exec-5] - <==    Columns: u_id, u_token, u_name, u_pass, u_mail, u_phone
+TRACE [http-nio-8082-exec-5] - <==    Columns: u_id, u_token, u_name, u_pass, u_mail, u_phone
+TRACE [http-nio-8082-exec-5] - <==        Row: 1, geMZyxvnN8cuthUm, AbHamster, $2a$10$eO6TGS6WzWd/MjJygL2VZ.ua52Bbj/sRNyFq.ccGJgyGePu7dDjVK, ajh415@hotmail.com, null
+TRACE [http-nio-8082-exec-5] - <==        Row: 1, geMZyxvnN8cuthUm, AbHamster, $2a$10$eO6TGS6WzWd/MjJygL2VZ.ua52Bbj/sRNyFq.ccGJgyGePu7dDjVK, ajh415@hotmail.com, null
+DEBUG [http-nio-8082-exec-5] - <==      Total: 1
+DEBUG [http-nio-8082-exec-5] - <==      Total: 1
+DEBUG [http-nio-8082-exec-5] - ==>  Preparing: UPDATE user SET u_name=? WHERE u_id=?
+DEBUG [http-nio-8082-exec-5] - ==>  Preparing: UPDATE user SET u_name=? WHERE u_id=?
+DEBUG [http-nio-8082-exec-5] - ==> Parameters: AbHamster(String), 1(Integer)
+DEBUG [http-nio-8082-exec-5] - ==> Parameters: AbHamster(String), 1(Integer)
+DEBUG [http-nio-8082-exec-5] - <==    Updates: 1
+DEBUG [http-nio-8082-exec-5] - <==    Updates: 1

@@ -6,6 +6,7 @@ import signUp from './SignUp.vue'
 import { ref } from "vue";
 import { moveRight } from "./SignUp.vue";
 import { veriTest } from "./CheckAccount.vue";
+import {isNameExist} from "../../api/search.js";
 
 $(() => {
 
@@ -24,7 +25,8 @@ function waitServer() {
 async function getName() {
   await new Promise(resolve => {
     let name = $('.login-username').val()
-    $.get("http://localhost:8082/json/user/isexist/" + name, function(data) {
+    isNameExist(name).then(data => {
+    // $.get("http://localhost:8082/json/user/isexist/" + name, function(data) {
       if (!data) {
 
         loadStop()
