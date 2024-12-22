@@ -11,4 +11,11 @@ public class Json {
         return g;
     }
 
+    public static String toJson(Object o) {
+        GsonBuilder gb = new GsonBuilder();
+        gb.serializeNulls();
+        Gson g = gb.create();
+        return g.toJson(o);
+    }
+
 }

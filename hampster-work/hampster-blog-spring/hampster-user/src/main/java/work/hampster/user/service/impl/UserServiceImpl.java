@@ -1,6 +1,7 @@
 package work.hampster.user.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.toolkit.ObjectUtils;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +11,7 @@ import work.hampster.user.Config;
 import work.hampster.user.mapper.UserMapper;
 import work.hampster.user.model.User;
 import work.hampster.user.service.UserService;
+import work.hampster.util.AjaxResult;
 
 import javax.mail.*;
 import javax.mail.internet.InternetAddress;
@@ -95,6 +97,26 @@ public class UserServiceImpl extends EntityServiceImpl<UserMapper, User> impleme
         User user = (User) ((List) this.cQuery(rq, 1, 1).get("data")).get(0);
 
         return user.getUId();
+    }
+
+    @Override
+    public AjaxResult login(User info) {
+        User re = null;
+        if (ObjectUtils.isNotEmpty(info.getUMail()))
+            re = userServicePlus.getOne(
+                new QueryWrapper<User>()
+                    .eq("u_mail", info.getUMail()));
+        else if (ObjectUtils.isNotEmpty(info.getUPhone()))
+            re = userServicePlus.getOne(
+                new QueryWrapper<User>()
+                    .eq("u_phone", info.getUPhone()));
+        if (ObjectUtils.isNotEmpty(re)) {
+            if (BCrypt.checkpw(info.getUPass(), re.getUPass()))
+                return AjaxResult.success(re.getUToken());
+            else
+                return AjaxResult.error("password error");
+        } else
+            return AjaxResult.error("account not exist");
     }
 
     public String getCode(String characters, int length) {

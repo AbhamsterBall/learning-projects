@@ -1,3 +1,4 @@
+<!-- @deprecated -->
 <script setup>
 
 </script>
@@ -27,6 +28,62 @@
   </div>
 </template>
 
-<style scoped>
+<script>
 
+</script>
+
+<style scoped>
+.login-mask {
+  display: none;
+  opacity: 0;
+  margin-left: 456px;
+}
+.login-signup-display {
+  z-index: 6000;
+  padding-right: 912px;
+  /*display: none !important;*/
+  background-color: transparent;
+}
+.sub-login-signup {
+  z-index: 6001;
+  position: relative;
+  margin-top: -24px;
+  box-shadow: none;
+  background-color: transparent !important;
+}
+.lp-net {
+  padding-top: 24px;
+  margin-left: 480px;
+}
+.lp-button {
+  margin-left: 480px;
+}
+.login-signup-input {
+  outline: none;
+  border: none;
+  border-radius: 0px;
+  position: absolute;
+  margin-top: -15px;
+  text-indent: 4px;
+  width: 360px;
+  font-size: 16px;
+}
+.move-ex {
+  padding-left: 911px;
+}
+.veri-display {
+  display: none;
+  transition: 0.3s;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  width: 480px;
+  height: 336px;
+  background-color: transparent;
+  z-index: 7000;
+  border-radius: 20px;
+  transform: translate(-50%, -50%);
+  /* box-shadow: 0 0 8px 3px #d0d0d0; 模拟边框
+  overflow: hidden;*/
+}
 </style>

@@ -40,6 +40,14 @@ export function register(data) {
     })
 }
 
+export function userLogin(data) {
+    return request({
+        url: baseUrl + "/json/user/login",
+        method: 'post',
+        data: data
+    })
+}
+
 export function getProfile(name) {
     return request({
         url: minioBaseUrl + "/profile/" + name,

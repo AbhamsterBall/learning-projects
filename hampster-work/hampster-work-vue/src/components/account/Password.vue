@@ -6,13 +6,14 @@ import $ from "jquery";
 import axios from "axios";
 import bcrypt from 'bcryptjs';
 import SetName from "./SetName.vue";
-import {getProfile, putProfile, register} from "../../api/search.js";
+import {getProfile, putProfile, register, userLogin} from "../../api/search.js";
+import router from "../../router/index.js";
 
 let buttonColor = ref("#a9acba")
 let buttonPointer = ref("none")
 
 let props = defineProps({
-  account: String
+  account: String,
 })
 
 let { account } = toRefs(props) // 解构为单独的变量
@@ -81,6 +82,36 @@ function addAccount() {
       });
 }
 
+import { displayWrong } from "./Login.vue";
+function login() {
+  loadMoving()
+  // const ur = "http://localhost:8082/json/user/register"
+  // axios.post(ur, {
+  //   uId: 0,
+  //   uName: "Registered Hamster",
+  //   uMail: account._object.account,
+  //   uPass: bcrypt.hashSync($('.login-signup-pass').val(), bcrypt.genSaltSync())
+  // })
+  userLogin({
+    uMail: account._object.account.includes('@') ?
+        account._object.account : null,
+    uPhone: account._object.account.includes('@') ?
+        null : account._object.account,
+    uPass: $('.login-signup-pass').val()
+  }).then(res => {
+    loadStop()
+    if (res.code === 200) {
+      localStorage.setItem("utoken", res.msg)
+      router.go(0)
+    } else {
+      displayWrong("密码错误，请输入其它密码或<a href=\"#\" class=\"login-forget-top\" style=\"margin-left: 0px\">找回密码</a>")
+    }
+  })
+  .catch(error => {
+    console.error(error);
+  });
+}
+
 function moveLeft() {
   $('.set-name-display').css('display', 'block')
   setTimeout(() => {
@@ -95,6 +126,9 @@ function moveLeft() {
 <script>
 import $ from "jquery";
 import { warningDisplay, warningDisappear } from "./Login.vue";
+import { ref } from "vue";
+
+export let isLogin = ref(false);
 
 export function passTest(outString, isFormatValid) {
   let re = isFormatValid
@@ -153,7 +187,10 @@ export function passTest(outString, isFormatValid) {
         </div>
         <button class="pass-button login-button lp-button"
                 :style="{ backgroundColor : buttonColor, pointerEvents : buttonPointer }"
-                @click.native="addAccount">下一步</button>
+                @click.native="addAccount" v-show="!isLogin">下一步</button>
+        <button class="pass-button login-button lp-button"
+                :style="{ backgroundColor : buttonColor, pointerEvents : buttonPointer }"
+                @click.native="login" v-show="isLogin">登陆</button>
       </div>
     </div>
   </div>

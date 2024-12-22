@@ -1,6 +1,7 @@
 package work.hampster.user.controller;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import jakarta.servlet.http.HttpServletRequest;
 import org.elasticsearch.http.HttpRequest;
@@ -12,10 +13,13 @@ import work.hampster.user.service.UserService;
 import work.hampster.user.util.Entity;
 import work.hampster.user.util.Json;
 import work.hampster.user.util.Redis;
+import work.hampster.util.AjaxResult;
 
 import java.lang.reflect.Method;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
+
+import static work.hampster.util.Json.toJson;
 
 @RestController
 //@CrossOrigin(origins = "http://localhost")
@@ -62,11 +66,21 @@ public class UserJsonController {
     }
 
     @PutMapping(value = "json/user/setname/{utoken}", produces = "application/json; charset=utf-8")
-    public String setUserInfo(@PathVariable String utoken, @RequestBody LinkedHashMap info) {
-        int uid = userService.getIdByToken(utoken);
-        User userObj = (User)Json.fromJsonToObject(User.class, info);
-        userObj.setUId(uid);
-        return userService.cUpdateById(Entity.fromEntityToRq(User.class, userObj), uid);
+    public String setUserInfo(@PathVariable String utoken, @RequestBody User info) {
+//        int uid = userService.getIdByToken(utoken);
+//        User userObj = (User)Json.fromJsonToObject(User.class, info);
+//        userObj.setUId(uid);
+        return toJson(userServicePlus.update(
+                new UpdateWrapper<User>().set("u_name", info.getUName())
+                        .eq("u_token", utoken)) ?
+                AjaxResult.success() : AjaxResult.error());
+//        return null;
+//        return userService.cUpdateById(Entity.fromEntityToRq(User.class, userObj), uid);
+    }
+
+    @PostMapping(value = "json/user/login", produces = "application/json; charset=utf-8")
+    public String login(@RequestBody User info) {
+        return toJson(userService.login(info));
     }
 
 }

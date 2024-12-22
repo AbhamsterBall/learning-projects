@@ -157,13 +157,19 @@ export async function getContent() {
     $(".markdown").eq(0).html("");
     isContentLoading.value = true
     let currentUrl = window.location.href.split('/');
-    getBlogContent(currentUrl[5]).then((data) => {
-    // $.get("http://localhost:8081/json/blog/" + currentUrl[5], function(data) {
+    if (currentUrl[5] !== undefined && currentUrl[5] !== "")
+      getBlogContent(currentUrl[5]).then((data) => {
+      // $.get("http://localhost:8081/json/blog/" + currentUrl[5], function(data) {
+        isContentLoading.value = false
+        blog_content.value = data
+        prepMarkDown()
+        resolve()
+      });
+    else {
       isContentLoading.value = false
-      blog_content.value = data
       prepMarkDown()
       resolve()
-    });
+    }
   })
 }
 

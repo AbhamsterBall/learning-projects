@@ -96,7 +96,9 @@ export function veriTest(outString, isFormatValid, account) {
   return re
 }
 
+import { isLogin } from "./Password.vue"
 function moveLeft() {
+  isLogin.value = false
   $('.pass-display').css('display', 'block')
   setTimeout(() => {
     $('.veri-move').css('margin-left', "-912px")

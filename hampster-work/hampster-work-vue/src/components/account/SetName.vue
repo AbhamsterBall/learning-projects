@@ -25,10 +25,10 @@ function setName() {
     //   uName: $('.login-signup-name').val()
     // })
     setUserName({
-          uName: $('.login-signup-name').val()
+          "uName" : $('.login-signup-name').val()
         })
-        .then(data => {
-          if (data === "更新成功") {
+        .then(res => {
+          if (res.code === 200) {
             $('.mask-display').css("opacity", "0")
             setTimeout(() => {
               $('.mask-display').css("display", "none")

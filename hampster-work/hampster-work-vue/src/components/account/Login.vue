@@ -3,10 +3,12 @@ import globalMask from '../GlobalMask.vue'
 import $ from 'jquery'
 import smallWarning from '../svg/SmallWarning.vue'
 import signUp from './SignUp.vue'
+import password from './Password.vue'
 import { ref } from "vue";
 import { moveRight } from "./SignUp.vue";
 import { veriTest } from "./CheckAccount.vue";
 import {isNameExist} from "../../api/search.js";
+import Password from "./Password.vue";
 
 $(() => {
 
@@ -25,14 +27,14 @@ function waitServer() {
 async function getName() {
   await new Promise(resolve => {
     let name = $('.login-username').val()
+    setAccount(name)
     isNameExist(name).then(data => {
     // $.get("http://localhost:8082/json/user/isexist/" + name, function(data) {
+      loadStop()
       if (!data) {
-
-        loadStop()
-
         displayWrong("账号不存在，请输入其它账号或<a href=\"#\" class=\"login-forget-top\" style=\"margin-left: 0px\" @click=\"toRegister\">获取新账号</a>")
-      }
+      } else
+        toLogin()
     });
   })
 }
@@ -46,7 +48,82 @@ function toRegister() {
   setTimeout(() => {hideWrong(); restorePos()}, 400)
 }
 
+import { isLogin } from "./Password.vue"
+import { inputAC } from "./SignUp.vue"
+function toLogin() {
+  inputAC.value = $('.login-username').val()
+  $('.lp-display').css("display", "block")
+  setTimeout(() => {$('.lp-display').css("opacity", "1")}, 100)
+
+  isLogin.value = true
+  // $('.login-move').css('transition', "3s")
+  // $('.pass-move').css('transition', "3s")
+  // $('.veri-move').css('transition', "3s")
+  $('.login-move').css('margin-left', "0px")
+  $('.pass-move').css('margin-left', "0px")
+  $('.sign-up-move').css('opacity', 0)
+  $('.veri-move').css('margin-left', "5px")
+  $('.veri-display').css('display', 'block')
+  $('.pass-display').css('display', 'block')
+  setTimeout(() => {
+    // moveRight()
+    // $('.login-move').css('margin-left', "-456px")
+    // $('.veri-move').css('margin-left', "5px")
+    $('.login-move').css('margin-left', "-456px")
+    $('.sign-up-move').css('margin-left', "-912px")
+    // $('.veri-move').css('margin-left', "-912px")
+    $('.pass-move').css('margin-left', "-455px")
+    // $('.sign-up-move').css('opacity', 1)
+  }, 300)
+
+  setTimeout(() => {
+    // $('.sign-up-move').css('opacity', 1)
+    hideWrong();
+    restorePos()}, 400)
+
+  setTimeout(() => {
+    $('.sign-up-move').css('opacity', 1)
+  }, 3000)
+}
+
 </script>
+
+<template>
+  <!--  <div :class="className">-->
+  <global-mask/>
+  <div class="lp-display">
+    <sign-up/>
+  </div>
+<!--  <div class="lp-login-display">-->
+<!--    <password :account="account.value" :isLogin=true />-->
+<!--  </div>-->
+  <div class="mask-display login-display" style="overflow: hidden">
+    <div class="login-net">HAMPSTER.WORK</div>
+    <div class="login-move">
+      <div class="login-title">输入账号</div>
+      <div class="login-mask login-display">
+        <div class="login-loading ll-left"></div>
+        <div class="login-loading ll-right" style="margin-left: -860px"></div>
+      </div>
+      <div class="login-wrong">账号不存在，请输入其它账号或<a href="#" class="login-forget-top" style="margin-left: 0px" @click="toRegister">获取新账号</a></div>
+      <div class="login-input">
+        <fieldset class="name-field">
+          <legend class="name-legend">邮箱或手机号</legend>
+          <input type="text" value="" placeholder="hampster@hampster.work | (+86) 12345678900" class="login-username" maxlength="114">
+        </fieldset>
+        <div class="login-format">
+          <small-warning width="16" height="16" style="margin-right: 4px; opacity: .8"/>
+          <span class="login-warning">中国大陆(+86)手机号应为11位</span>
+        </div>
+        <a href="#" class="login-forget" @click="toRegister">注册账号</a>
+      </div>
+      <button class="login-button"
+              :style="{ backgroundColor : buttonColor, pointerEvents : buttonPointer }"
+              @click.native="waitServer">下一步</button>
+    </div>
+  </div>
+  <!--  </div>-->
+</template>
 
 <script>
 import $ from "jquery";
@@ -147,7 +224,7 @@ export const restorePos = () => {
 let buttonColor = ref("#a9acba")
 let buttonPointer = ref("none")
 
-let account = ref()
+let account = ref('')
 export function setAccount(acc) {
   account.value = acc
 }
@@ -157,6 +234,8 @@ export function inputTest(inputName = ".login-username", buttonColor, buttonPoin
   $(inputName).on('input', function() {
 
     let inputValue = $(inputName).val()
+    console.log(inputName)
+    console.log(inputValue)
     let isLenValid = true
     if (inputValue.length == 0) {
       isLenValid = false
@@ -252,38 +331,6 @@ export function inputResponse(inputClass, place_holder) {
 
 </script>
 
-<template>
-<!--  <div :class="className">-->
-    <global-mask/>
-    <div class="lp-display">
-      <sign-up/>
-    </div>
-    <div class="mask-display login-display" style="overflow: hidden">
-      <div class="login-net">HAMPSTER.WORK</div>
-      <div class="login-move">
-        <div class="login-title">输入账号</div>
-        <div class="login-mask login-display">
-          <div class="login-loading ll-left"></div>
-          <div class="login-loading ll-right" style="margin-left: -860px"></div>
-        </div>
-        <div class="login-wrong">账号不存在，请输入其它账号或<a href="#" class="login-forget-top" style="margin-left: 0px" @click="toRegister">获取新账号</a></div>
-        <div class="login-input">
-          <fieldset class="name-field">
-            <legend class="name-legend">邮箱或手机号</legend>
-            <input type="text" value="23847392867" placeholder="hampster@hampster.work | (+86) 12345678900" class="login-username" maxlength="114">
-          </fieldset>
-          <div class="login-format">
-            <small-warning width="16" height="16" style="margin-right: 4px; opacity: .8"/>
-            <span class="login-warning">中国大陆(+86)手机号应为11位</span>
-          </div>
-          <a href="#" class="login-forget" @click="toRegister">注册账号</a>
-      </div>
-      <button class="login-button" :style="{ backgroundColor : buttonColor, pointerEvents : buttonPointer }" @click.native="waitServer">下一步</button>
-      </div>
-    </div>
-<!--  </div>-->
-</template>
-
 <style scoped>
 .login-server-response {
   display: none;
@@ -294,6 +341,22 @@ export function inputResponse(inputClass, place_holder) {
   transition: .3s;
 }
 .lp-display {
+  display: none;
+  opacity: 0;
+  transition: 0.3s;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  width: 480px;
+  height: 336px;
+  background-color: transparent;
+  z-index: 7000;
+  border-radius: 20px;
+  transform: translate(-50%, -50%);
+  /* box-shadow: 0 0 8px 3px #d0d0d0; 模拟边框*/
+  overflow: hidden;
+}
+.lp-login-display {
   display: none;
   opacity: 0;
   transition: 0.3s;

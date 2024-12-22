@@ -9,6 +9,7 @@ const name_data = ref([])
 async function getName() {
   await new Promise(resolve => {
     indexBtName().then(data => {
+      // console.log(JSON.stringify(data))
     // $.get("http://localhost:8081/json/index/bt_name", function(data) {
       name_data.value = data.data
       resolve()
