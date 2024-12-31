@@ -63,7 +63,42 @@ function filterHTML(str) {
 let small_title = ref()
 let description = ref()
 let date = ref()
+
+// function toBlog(name) {
+//   this.$router.push({
+//     path: '/blog/' + getUrlTitle() + '/' + name
+//   })
+// }
 </script>
+
+<template>
+  <teleport to="head">
+    <component :is="'script'" type="application/ld+json">
+      {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "headline": "{{ small_title }}",
+      "description": "{{ description }}",
+      "datePublished": "{{ date }}",
+      "author": {
+      "@type": "Person",
+      "name": "何宇荟"
+      }
+      }
+    </component>
+  </teleport>
+  <div class="text index-text" style="text-align: center; color: #444444;">
+    <div class="mainHref"
+         @click="toBlog(name_item.b_name)"
+         v-for="(name_item, index) in name_data"
+         :style="[index === name_data.length - 1 && windowWidth > 1000 ? { 'border-radius': '0px 0px 40px 40px' } : {},
+               index === name_data.length - 1 && windowWidth <= 1000 ? { 'border-radius': '0px 0px 30px 30px' } : {}]"
+    >
+      <div class="search-title">{{ name_item.b_name.toUpperCase() }} <span class="title-seperator">|</span> {{ name_item.bt_name }}</div>
+      <div class="search-text" v-html="filterHTML(name_item.b_highlights)"></div>
+    </div>
+  </div>
+</template>
 
 <script>
 import {ref} from "vue";
@@ -71,6 +106,19 @@ import $ from "jquery";
 import { getTitle } from '../../views/search/index.vue'
 import { getPage } from './List.vue'
 import {blogSearch} from "../../api/blog.js";
+
+import { getUrlTitle } from "./List.vue";
+
+export default {
+  // name: 'BlurList',
+  methods: {
+    toBlog(name) {
+      this.$router.push({
+        path: '/blog/' + getUrlTitle() + '/' + name
+      });
+    }
+  }
+};
 
 const name_data = ref([])
 const max_page = ref(1)
@@ -100,7 +148,7 @@ export async function getName() {
     // $.get(url, function(data) {
       name_data.value = data.content
       max_page.value = data.max_page
-      console.log(JSON.stringify(data))
+      // console.log(JSON.stringify(data))
       resolve()
     });
   })
@@ -121,34 +169,6 @@ export async function getName() {
 // }
 
 </script>
-
-<template>
-  <teleport to="head">
-    <component :is="'script'" type="application/ld+json">
-      {
-      "@context": "https://schema.org",
-      "@type": "Article",
-      "headline": "{{ small_title }}",
-      "description": "{{ description }}",
-      "datePublished": "{{ date }}",
-      "author": {
-      "@type": "Person",
-      "name": "何宇荟"
-      }
-      }
-    </component>
-  </teleport>
-  <div class="text index-text" style="text-align: center; color: #444444;">
-    <div class="mainHref"
-       v-for="(name_item, index) in name_data"
-       :style="[index === name_data.length - 1 && windowWidth > 1000 ? { 'border-radius': '0px 0px 40px 40px' } : {},
-               index === name_data.length - 1 && windowWidth <= 1000 ? { 'border-radius': '0px 0px 30px 30px' } : {}]"
-    >
-      <div class="search-title">{{ name_item.b_name.toUpperCase() }} <span class="title-seperator">|</span> {{ name_item.bt_name }}</div>
-      <div class="search-text" v-html="filterHTML(name_item.b_highlights)"></div>
-    </div>
-  </div>
-</template>
 
 <style scoped>
 .title-seperator {

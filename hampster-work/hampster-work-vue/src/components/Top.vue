@@ -49,7 +49,7 @@ function loginClick() {
 	<div class="main-title">
     <div class="main-title-text">{{ props.title }}</div>
 	</div>
-  <a href="#" @click="loginClick" class="login">登录</a>
+  <a href="#" @click="loginClick" class="login">登 录</a>
   <a href="#" class="login-mini-back"></a>
   <login-icon @click="loginClick" width="48" height="48" color="white" class="loginIcon"/>
   <div class="profile">
@@ -59,6 +59,11 @@ function loginClick() {
 </template>
 
 <style scoped>
+.login {
+  font-weight: 500;
+  //text-shadow: 0.5px 0 black;
+  //font-family: 'Noto Serif CJK SC', 'Noto Serif CJK', 'Source Han Serif SC', ‘Source Han Serif’, source-han-serif-sc, serif
+}
 .main-title-text {
   font-family: chaparral-pro,"Times New Roman",Times,serif,'华文宋体','宋体','微软雅黑';
 }

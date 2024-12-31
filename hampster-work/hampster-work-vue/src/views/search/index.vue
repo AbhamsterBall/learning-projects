@@ -104,8 +104,8 @@ export function setShowSuspense(bool) {
     <template #fallback>
       <div class="bottom">
         <div class="bottom-blog-index">
-          <loading boxWidth="300px" boxHeight="30px" bg="#2759b2" shadow="#214890" class="bottom-loading-title"/>
-          <loading box-width="400px" box-height="125px" bg="#2759b2" shadow="#214890" class="bottom-loading-context"/>
+          <loading boxWidth="300px" boxHeight="30px" bg="#1d2841" shadow="#161e2f" class="bottom-loading-title"/>  <!-- #0d111c -->
+          <loading box-width="400px" box-height="125px" bg="#1d2841" shadow="#161e2f" class="bottom-loading-context"/>
         </div>
         <bottom-fixed/>
       </div>

@@ -148,6 +148,7 @@ async function getSummary(info) {
 
 <script>
 import {ref} from "vue";
+import { setTitle } from "../../views/blog/index.vue";
 
 let blog_content = ref("")
 let isContentLoading = ref(true)
@@ -157,6 +158,13 @@ export async function getContent() {
     $(".markdown").eq(0).html("");
     isContentLoading.value = true
     let currentUrl = window.location.href.split('/');
+    if (currentUrl[4] !== undefined && currentUrl[4] !== "") {
+      setTitle(
+          currentUrl[4] === "ALL" ? (
+              ($(window).width() > 1000) ? "HAMPSTER.WORK" : "HAMPSTER"
+          ) : currentUrl[4]
+      )
+    }
     if (currentUrl[5] !== undefined && currentUrl[5] !== "")
       getBlogContent(currentUrl[5]).then((data) => {
       // $.get("http://localhost:8081/json/blog/" + currentUrl[5], function(data) {

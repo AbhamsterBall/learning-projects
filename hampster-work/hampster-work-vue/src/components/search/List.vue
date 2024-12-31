@@ -40,7 +40,36 @@ $(() => {
 let small_title = ref()
 let description = ref()
 let date = ref()
+
 </script>
+
+<template>
+  <teleport to="head">
+    <component :is="'script'" type="application/ld+json">
+      {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "headline": "{{ small_title }}",
+      "description": "{{ description }}",
+      "datePublished": "{{ date }}",
+      "author": {
+      "@type": "Person",
+      "name": "何宇荟"
+      }
+      }
+    </component>
+  </teleport>
+  <div class="text index-text" style="text-align: center; color: #444444;">
+    <a :href="'/blog/' + getUrlTitle() + '/' + name_item.b_name" class="mainHref"
+       v-for="(name_item, index) in name_data"
+       :style="[index === name_data.length - 1 && windowWidth > 1000 ? { 'border-radius': '0px 0px 30px 30px' } : {},
+               index === name_data.length - 1 && windowWidth <= 1000 ? { 'border-radius': '0px 0px 22px 22px' } : {}]"
+    >
+      {{ name_item.b_name.toUpperCase() }}
+    </a>
+    <!-- <a href="/python/index.html" class="mainHref">PYTHON</a> -->
+  </div>
+</template>
 
 <script>
 import {ref} from "vue";
@@ -57,6 +86,10 @@ export function setPage(pageNum) {
   page.value = pageNum
 }
 
+export function getUrlTitle() {
+  return (getTitle() === "HAMPSTER" || getTitle() === "HAMPSTER.WORK") ? "ALL" : getTitle()
+}
+
 const name_data = ref([])
 const max_page = ref(1)
 
@@ -71,7 +104,7 @@ export async function getName() {
     // $.get("http://localhost:8081/json/search/" + getTitle() + "/b_name/" + page.value, function(data) {
       name_data.value = data.content
       max_page.value = data.max_page
-      console.log(JSON.stringify(data))
+      // console.log(JSON.stringify(data))
       resolve()
     });
   })
@@ -87,34 +120,6 @@ export async function getName() {
 //   })
 // }
 </script>
-
-<template>
-  <teleport to="head">
-    <component :is="'script'" type="application/ld+json">
-      {
-        "@context": "https://schema.org",
-        "@type": "Article",
-        "headline": "{{ small_title }}",
-        "description": "{{ description }}",
-        "datePublished": "{{ date }}",
-        "author": {
-          "@type": "Person",
-          "name": "何宇荟"
-        }
-      }
-    </component>
-  </teleport>
-	 <div class="text index-text" style="text-align: center; color: #444444;">
-			 <a href="/java/index.html" class="mainHref"
-          v-for="(name_item, index) in name_data"
-          :style="[index === name_data.length - 1 && windowWidth > 1000 ? { 'border-radius': '0px 0px 30px 30px' } : {},
-               index === name_data.length - 1 && windowWidth <= 1000 ? { 'border-radius': '0px 0px 22px 22px' } : {}]"
-       >
-         {{ name_item.b_name.toUpperCase() }}
-       </a>
-			 <!-- <a href="/python/index.html" class="mainHref">PYTHON</a> -->
-	 </div>
-</template>
 
 <style scoped>
 .index-text {
