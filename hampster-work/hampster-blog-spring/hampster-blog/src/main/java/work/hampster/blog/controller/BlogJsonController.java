@@ -8,7 +8,7 @@ import work.hampster.blog.mapper.BlogMapper;
 import work.hampster.blog.model.Blog;
 import work.hampster.blog.service.BlogService;
 import work.hampster.blog.service.BlogTypeService;
-import work.hampster.blog.util.Redis;
+import work.hampster.util.Redis;
 
 import java.net.URLDecoder;
 import java.nio.charset.StandardCharsets;

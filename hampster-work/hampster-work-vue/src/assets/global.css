@@ -189,14 +189,16 @@ textarea::-webkit-scrollbar-thumb{
     display: block;
     margin: 21px 30px 0px 30px;
     padding-bottom: 30px;
-    color: #dce6ef;
+    /*color: #dce6ef;*/
+    color: #9eacb8;
     font-size: 16px;
     font-weight: 300;
     line-height: 26px;
     letter-spacing: 2px;
 }
 .bottom-mail {
-    color: #dce6ef;
+    /*color: #dce6ef;*/
+    color: #9eacb8;
     display: flex;
     align-items: center;
     font-size: 17px;
@@ -209,7 +211,7 @@ textarea::-webkit-scrollbar-thumb{
 /*    }*/
 /*}*/
 .bottom-mail:hover {
-    color: white;
+    /*color: white;*/
     cursor: pointer;
 }
 @media screen and (max-width: 1000px) {
@@ -221,6 +223,17 @@ textarea::-webkit-scrollbar-thumb{
         height: auto;
         display: block;
         margin-top: 60px;
+    }
+}
+@media screen and (max-width: 600px) {
+    .bottom-blog-index {
+        display: block;
+        width: 82%;
+    }
+    .bottom {
+        height: auto;
+        display: block;
+        margin-top: 30px;
     }
 }
 /*mask*/

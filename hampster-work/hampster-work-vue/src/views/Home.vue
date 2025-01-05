@@ -113,5 +113,9 @@ export const getCurrenTitle = (title) => {
 </template>
 
 <style scoped>
-
+@media screen and (max-width: 600px) {
+  .index-text {
+    margin-top: 22px;
+  }
+}
 </style>

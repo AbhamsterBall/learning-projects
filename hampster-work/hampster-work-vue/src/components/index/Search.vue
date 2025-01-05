@@ -95,4 +95,23 @@ $(() => {
     margin: -61px 0px 0px 0px;
   }
 }
+
+@media screen and (max-width: 600px) {
+  #search {
+    margin-top: 30px;
+    width: 82%;
+    text-indent: 15px;
+    border-radius: 22px;
+    border: solid 1.5px #1d2841;
+  }
+  #search:focus {
+    outline: none;
+    border: solid 1.5px #CD853F;
+    transition: .6s;
+  }
+  .index-search {
+    margin: -61px 0px 0px 0px;
+    transform: scale(.9);
+  }
+}
 </style>

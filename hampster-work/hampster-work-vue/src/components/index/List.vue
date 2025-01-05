@@ -81,4 +81,14 @@ let date = ref()
     padding-bottom: 42px;
   }
 }
+
+@media screen and (max-width: 600px) {
+  .index-text {
+    margin-top: 22px;
+  }
+  .mainHref {
+    padding-top: 30px;
+    padding-bottom: 30px;
+  }
+}
 </style>

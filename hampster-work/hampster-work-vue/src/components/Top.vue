@@ -58,7 +58,7 @@ function loginClick() {
   <login/>
 </template>
 
-<style scoped>
+<style scoped lang="scss">
 .login {
   font-weight: 500;
   //text-shadow: 0.5px 0 black;
@@ -75,7 +75,7 @@ function loginClick() {
   width: 49px;
   height: 48px;
   //background-color: white;
-  border: white solid 6px;
+  border: #ffffff00 solid 6px;
   cursor: pointer;
 }
 .profile-img {
@@ -121,6 +121,28 @@ function loginClick() {
     display: none;
   }
   .loginIcon {
+    display: block;
+  }
+}
+@media screen and (max-width: 600px) {
+  .main-title {
+    letter-spacing: 2px;
+    height: 100px;
+    line-height: 80px;
+    font-size: 35px;
+  }
+  .profile {
+    top: 25px;
+    right: 20px;
+    transform: scale(0.9);
+  }
+  .login {
+    display: none;
+  }
+  .loginIcon {
+    top: 31px;
+    right: 26px;
+    transform: scale(0.9);
     display: block;
   }
 }

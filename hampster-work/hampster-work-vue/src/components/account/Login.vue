@@ -98,7 +98,7 @@ function toLogin() {
 <!--    <password :account="account.value" :isLogin=true />-->
 <!--  </div>-->
   <div class="mask-display login-display" style="overflow: hidden">
-    <div class="login-net">HAMPSTER.WORK</div>
+    <div class="login-net"><!--HAMPSTER.WORK--></div>
     <div class="login-move">
       <div class="login-title">输入账号</div>
       <div class="login-mask login-display">
@@ -117,9 +117,11 @@ function toLogin() {
         </div>
         <a href="#" class="login-forget" @click="toRegister">注册账号</a>
       </div>
-      <button class="login-button"
-              :style="{ backgroundColor : buttonColor, pointerEvents : buttonPointer }"
-              @click.native="waitServer">下一步</button>
+      <div class="login-button">
+        <button class="login-button-sub"
+                :style="{ backgroundColor : buttonColor, pointerEvents : buttonPointer }"
+                @click.native="waitServer">下一步</button>
+      </div>
     </div>
   </div>
   <!--  </div>-->
@@ -331,7 +333,39 @@ export function inputResponse(inputClass, place_holder) {
 
 </script>
 
-<style scoped>
+<style scoped lang="scss">
+.login-button {
+  width: 100%;
+  height: 48px;
+  left: 0px;
+  top: 208px;
+  background-color: transparent;
+  padding: 0;
+  margin: 56px 0px;
+}
+.login-button-sub {
+  width: 90%;
+  height: 48px;
+  border-radius: 10px;
+  outline: none;
+  border: none;
+  margin: auto;
+  /*background-color: #2759b2;*/
+  background-color: #888888;
+  color: white;
+  transition: .3s;
+  position: relative;
+  letter-spacing: 36px;
+  text-align: center;
+  padding: 0 5px 0 40px;
+  font-size: 16px;
+  //left: 0px;
+  //top: 0px;
+  pointer-events: none;
+}
+.login-net:after {
+  content: "HAMPSTER.WORK";
+}
 .login-server-response {
   display: none;
 }
@@ -372,4 +406,26 @@ export function inputResponse(inputClass, place_holder) {
   /* box-shadow: 0 0 8px 3px #d0d0d0; 模拟边框*/
   overflow: hidden;
 }
+@media screen and (max-width: 500px) {
+  .login-net:after {
+    content: "HAMPSTER";
+  }
+  .login-display {
+    width: 90%;
+  }
+  .name-field {
+    width: 77% !important;
+    margin: 6px auto 12px auto !important;
+  }
+  .login-move {
+    width: 100% !important;
+  }
+  .login-username {
+    width: 74% !important;
+  }
+  .login-button-sub {
+    width: 85% !important;
+  }
+}
+
 </style>

@@ -30,7 +30,7 @@
   <div class="bottom">
     <div class="bottom-blog-index" v-for="unit in name_data">
       <div class="bottom-blog-index-title">{{ unit.bt_name }}</div>
-      <div style="display: block; width: 250px" v-for="name in unit.blogNames">
+      <div class="bottom-blog-index-subtitle" v-for="name in unit.blogNames">
         <a :href="name === '...' ? '/search/' + unit.bt_name : '#'" class="bottom-loading-context">{{ name }}</a>
       </div>
     </div>
@@ -39,6 +39,10 @@
 </template>
 
 <style scoped>
+.bottom-blog-index-subtitle {
+  display: block;
+  width: 250px;
+}
 .bottom-blog-index-title {
   margin: 15px 20px 5px 20px;
   font-size: 30px;
@@ -72,5 +76,23 @@
 .bottom-blog-index {
   width: 250px;
 }
-
+@media screen and (max-width: 600px) {
+  .bottom-blog-index-title {
+    margin: 15px 20px 5px 20px;
+    font-size: 30px;
+    color: white;
+    font-weight: 600;
+    font-family: chaparral-pro,"Times New Roman",Times,serif;
+    text-align: center;
+  }
+  .bottom-blog-index-subtitle {
+    display: block;
+    width: 100%;
+    text-align: center;
+  }
+  .bottom-blog-index {
+    width: 100%;
+    padding-left: 0px;
+  }
+}
 </style>

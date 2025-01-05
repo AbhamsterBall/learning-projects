@@ -3,19 +3,16 @@ package work.hampster.user.controller;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import jakarta.servlet.http.HttpServletRequest;
-import org.elasticsearch.http.HttpRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import work.hampster.user.mapper.UserMapper;
 import work.hampster.user.model.User;
 import work.hampster.user.service.UserService;
-import work.hampster.user.util.Entity;
-import work.hampster.user.util.Json;
-import work.hampster.user.util.Redis;
+import work.hampster.user.util.UserJson;
+import work.hampster.user.util.UserRedis;
 import work.hampster.util.AjaxResult;
+import work.hampster.util.Json;
 
-import java.lang.reflect.Method;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 
@@ -43,17 +40,17 @@ public class UserJsonController {
 
     @GetMapping(value = "json/user/getmailcode/{username}", produces = "application/json; charset=utf-8")
     public String getMailCode(@PathVariable String username) {
-        return Redis.handleMailCode(userService, username).get("status").toString();
+        return UserRedis.handleMailCode(userService, username).get("status").toString();
     }
 
     @GetMapping(value = "json/user/checkmailcode/{username}/{mailcode}", produces = "application/json; charset=utf-8")
     public String checkMailCode(@PathVariable String username, @PathVariable String mailcode) {
-        return Redis.checkMailCode(username, mailcode);
+        return UserRedis.checkMailCode(username, mailcode);
     }
 
     @PostMapping(value = "json/user/register", produces = "application/json; charset=utf-8")
     public String register(@RequestBody LinkedHashMap user) { // DTO
-        User userObj = (User)Json.fromJsonToObject(User.class, user);
+        User userObj = (User) UserJson.fromJsonToObject(User.class, user);
         String token = userService.getToken();
         userObj.setUToken(token);
 

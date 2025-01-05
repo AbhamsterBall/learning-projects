@@ -1,7 +1,5 @@
 package work.hampster.user.util;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import work.hampster.user.model.User;
 
 import java.lang.reflect.Method;
@@ -10,13 +8,13 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.LinkedHashMap;
 
-public class Json {
-    public static Gson getGson() {
-        GsonBuilder gb = new GsonBuilder();
-        gb.serializeNulls();
-        Gson g = gb.create();
-        return g;
-    }
+public class UserJson {
+//    public static Gson getGson() {
+//        GsonBuilder gb = new GsonBuilder();
+//        gb.serializeNulls();
+//        Gson g = gb.create();
+//        return g;
+//    }
 
     public static Object fromJsonToObject(Class z, LinkedHashMap json) {
         Object temp = null;
