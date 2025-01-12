@@ -1,0 +1,17 @@
+server:
+  port: 8081
+spring:
+  application:
+    name: blog
+  cloud:
+      nacos:
+          config:
+            server-addr: mail.hampster.work:8848
+            file-extension: yaml
+            group: DEFAULT_GROUP
+#            shared-configs:
+#              - ${spring.application.name}-${spring.profiles.active}.${spring.cloud.nacos.config.file-extension}
+  profiles:
+    active: prod
+  config:
+    import: nacos:${spring.application.name}-${spring.profiles.active}.${spring.cloud.nacos.config.file-extension}

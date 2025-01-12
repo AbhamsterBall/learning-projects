@@ -63,6 +63,8 @@ const showSuspense = ref(true)
 export function setShowSuspense(bool) {
   showSuspense.value = bool
 }
+
+export let maxPage = ref(undefined)
 </script>
 
 <template>
@@ -73,29 +75,32 @@ export function setShowSuspense(bool) {
       <template v-if="isBlurPage">
 <!--        <div>blur {{ isSearching.value }}</div>-->
         <blur_list/>
+        <page_navi/>
       </template>
       <template v-else>
 <!--        <div>search {{ isSearching.value }}</div>-->
         <search_list/>
+        <page_navi/>
       </template>
     </template>
     <template #fallback>
       <div class="text index-text" style="text-align: center; color: #444444;padding: 0.1% 0.1%">
         <loading boxWidth="94%" boxHeight="190px"/>
         <loading boxWidth="94%" boxHeight="190px"/>
+        <div  class="navigator" style="text-align: center; color: #444444; padding: 0.1% 0.1%">
+          <loading boxWidth="94%" boxHeight="40px"/>
+        </div>
       </div>
     </template>
   </suspense>
-  <suspense>
-    <template #default>
-      <page_navi/>
-    </template>
-    <template #fallback>
-      <div  class="navigator" style="text-align: center; color: #444444; padding: 0.1% 0.1%">
-        <loading boxWidth="94%" boxHeight="40px"/>
-      </div>
-    </template>
-  </suspense>
+<!--  <suspense>-->
+<!--    <template #default>-->
+
+<!--    </template>-->
+<!--    <template #fallback>-->
+
+<!--    </template>-->
+<!--  </suspense>-->
   <div class="seperator" style="width: 20px;height: 30px;background-color: transparent; margin-top: 12px"></div>
   <suspense>
     <template #default>

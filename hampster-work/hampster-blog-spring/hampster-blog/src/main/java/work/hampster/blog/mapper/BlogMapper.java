@@ -15,8 +15,8 @@ public interface BlogMapper extends BaseMapper<Blog> {
     @Select("select b_name from blog where b_type=(select bt_id from blog_type where bt_name=#{type_name}) order by b_time desc limit #{start}, #{size}")
     List<Map<String, Object>> selectBnInBt(@Param("type_name") String type_name, @Param("start") int start, @Param("size") int size);
 
-//    @Select("select count(*) from blog where b_type=(select bt_id from blog_type where bt_name=#{type_name}) ")
-//    int countBnInBt(@Param("type_name") String type_name);
+    @Select("select count(*) from blog where b_type=(select bt_id from blog_type where bt_name=#{type_name}) ")
+    int countBnInBt(@Param("type_name") String type_name);
 
     @Select("select b_name from blog order by b_time desc")
     List<Map<String, Object>> selectAllBlogNames();

@@ -91,7 +91,8 @@ export function getUrlTitle() {
 }
 
 const name_data = ref([])
-const max_page = ref(1)
+// export const maxPage = ref(1)
+import { maxPage } from "../../views/search/index.vue";
 
 // export async function getMaxPage() {
 //   await getMaxPageAjax()
@@ -103,7 +104,8 @@ export async function getName() {
     searchBlogByType(getTitle(), page.value).then(data =>{
     // $.get("http://localhost:8081/json/search/" + getTitle() + "/b_name/" + page.value, function(data) {
       name_data.value = data.content
-      max_page.value = data.max_page
+      // max_page.value = data.max_page
+      maxPage.value = data.max_page
       // console.log(JSON.stringify(data))
       resolve()
     });

@@ -58,7 +58,8 @@ public class BlogJsonController {
         HashMap<String, Object> map = new HashMap<>();
         List<Map<String, Object>> content = blogServicePlus.getBaseMapper().selectBnInBt(bt_name, (page - 1) * 4, 4);
         map.put("content", content);
-        map.put("max_page", (int)Math.ceil(content.size() / (float) 4));
+//        map.put("max_page", (int)Math.ceil(content.size() / (float) 4));
+        map.put("max_page", (int)Math.ceil(blogServicePlus.getBaseMapper().countBnInBt(bt_name) / (float) 4));
         return getGson().toJson(Redis.readAndWrite(bt_name + "_b_name_" + page, () -> map, 17));
     }
 

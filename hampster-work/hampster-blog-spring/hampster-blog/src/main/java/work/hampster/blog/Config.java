@@ -2,6 +2,7 @@ package work.hampster.blog;
 
 //import com.alibaba.druid.pool.DruidDataSource;
 
+import com.alibaba.cloud.nacos.annotation.NacosConfig;
 import com.baomidou.mybatisplus.extension.spring.MybatisSqlSessionFactoryBean;
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.PropertyAccessor;
@@ -39,6 +40,8 @@ import static org.elasticsearch.client.RestClient.builder;
 @ComponentScan("work.hampster.blog")
 @PropertySource("classpath:db.properties")
 @PropertySource("classpath:application.yml")
+@PropertySource("classpath:bootstrap.yml")
+//@NacosConfig(dataId = "blog-prod.yaml", group = "DEFAULT_GROUP")
 public class Config implements WebMvcConfigurer {
 
     public static Properties getProps() {

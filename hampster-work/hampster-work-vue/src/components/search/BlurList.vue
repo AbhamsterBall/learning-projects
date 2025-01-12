@@ -33,21 +33,21 @@ $(() => {
     $('.search-text').css('width', wid + 'px')
   });
 
-  $('.main-title').css('box-shadow', 'none')
+  // $('.main-title').css('box-shadow', 'none')
 
   let isIn = true
-  $('.index-text').hover(
-      function() {
-        $('.main-title').css('box-shadow', 'none')
-        isIn = true
-      },
-      function() {
-        isIn = false
-        setTimeout(() => {
-          if (!isIn) $('.main-title').css('box-shadow', '0 0 8px 3px #e8e8e8') // 0 0 6px 3px #bfc8ec
-        }, 600)
-      }
-  )
+  // $('.index-text').hover(
+  //     function() {
+  //       $('.main-title').css('box-shadow', 'none')
+  //       isIn = true
+  //     },
+  //     function() {
+  //       isIn = false
+  //       setTimeout(() => {
+  //         if (!isIn) $('.main-title').css('box-shadow', '0 0 8px 3px #e8e8e8') // 0 0 6px 3px #bfc8ec
+  //       }, 600)
+  //     }
+  // )
 
 })
 
@@ -121,7 +121,7 @@ export default {
 };
 
 const name_data = ref([])
-const max_page = ref(1)
+import { maxPage } from "../../views/search/index.vue";
 
 // export async function getBlurMaxPage() {
 //   await getMaxPageAjax()
@@ -147,7 +147,9 @@ export async function getName() {
     // else url = "http://localhost:8081/json/search/blur/" + getSearchText() +  "/" + getPage()
     // $.get(url, function(data) {
       name_data.value = data.content
-      max_page.value = data.max_page
+      // max_page.value = data.max_page
+      maxPage.value = data.max_page
+      console.log(maxPage.value)
       // console.log(JSON.stringify(data))
       resolve()
     });
@@ -171,6 +173,10 @@ export async function getName() {
 </script>
 
 <style scoped>
+.main-title {
+  box-shadow: 0 0 8px 3px #e8e8e8;
+
+}
 .title-seperator {
   font-family: 'Microsoft YaHei';
   margin-left: 10px;
