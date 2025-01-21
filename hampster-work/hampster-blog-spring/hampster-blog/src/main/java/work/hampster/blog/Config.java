@@ -2,7 +2,9 @@ package work.hampster.blog;
 
 //import com.alibaba.druid.pool.DruidDataSource;
 
+import com.alibaba.cloud.nacos.NacosConfigManager;
 import com.alibaba.cloud.nacos.annotation.NacosConfig;
+import com.alibaba.cloud.nacos.client.NacosPropertySourceLocator;
 import com.baomidou.mybatisplus.extension.spring.MybatisSqlSessionFactoryBean;
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.PropertyAccessor;
@@ -12,7 +14,9 @@ import org.apache.commons.dbcp2.BasicDataSource;
 import org.apache.http.HttpHost;
 import org.elasticsearch.client.RestClient;
 import org.mybatis.spring.mapper.MapperScannerConfigurer;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.config.YamlPropertiesFactoryBean;
+import org.springframework.cloud.bootstrap.config.PropertySourceLocator;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -30,6 +34,8 @@ import org.springframework.web.filter.CorsFilter;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import javax.sql.DataSource;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Properties;
 
 import static org.elasticsearch.client.RestClient.builder;
@@ -37,12 +43,12 @@ import static org.elasticsearch.client.RestClient.builder;
 //import jakarta.sql.DataSource;
 
 @Configuration(proxyBeanMethods = false)
-@ComponentScan("work.hampster.blog")
-@PropertySource("classpath:db.properties")
-@PropertySource("classpath:application.yml")
-@PropertySource("classpath:bootstrap.yml")
-//@NacosConfig(dataId = "blog-prod.yaml", group = "DEFAULT_GROUP")
 public class Config implements WebMvcConfigurer {
+
+    @Bean
+    public NacosPropertySourceLocator nacosPropertySourceLocator0(NacosConfigManager nacosConfigManager) {
+        return new NacosPropertySourceLocator(nacosConfigManager);
+    }
 
     public static Properties getProps() {
         YamlPropertiesFactoryBean yamlFactory = new YamlPropertiesFactoryBean();

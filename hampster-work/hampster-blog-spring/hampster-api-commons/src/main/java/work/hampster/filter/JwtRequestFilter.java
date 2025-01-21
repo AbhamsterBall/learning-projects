@@ -46,66 +46,66 @@ public class JwtRequestFilter extends OncePerRequestFilter {
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain chain)
             throws ServletException, IOException {
-//
-//        response.setHeader("Access-Control-Allow-Origin", "*");
-//        response.setHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS, DELETE, PUT");
-//        response.setHeader("Access-Control-Max-Age", "12000");
-//        response.setHeader("Access-Control-Allow-Headers", "Access-Control-Allow-Headers, Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
-//        response.setHeader("Access-Control-Expose-Headers", "*");
-//
-////        System.out.println("authorization: " + request.getHeaders("Authorization"));
-//
-//        final String authorizationHeader = request.getHeader("Authorization");
-////        System.out.println("authorization: " + authorizationHeader);
-//
-//        String jwt = null;
-//
-//        if (ObjectHandler.isStrArrContains(request.getRequestURI(), EXCLUDE_URL)) {
-//            chain.doFilter(request, response);
-//            return;
-//        }
-//
-////        System.out.println(request.getRequestURI());
-////        System.out.println(authorizationHeader.startsWith("APIBearer ") + " " + authorizationHeader);
-//        if (ObjectUtils.isNotEmpty(authorizationHeader)) {
-//
-//            // generate token for /token/get request
-//
-//            String decryptURL = null;
-//            String decrypt = null;
-//            Long timestamp = null;
-//            if (authorizationHeader.startsWith("APIBearer ")) {
-//                jwt = authorizationHeader.substring(10);
-//
-//                String subURL = request.getRequestURI()
-//                        .substring(1);
-//                decryptURL = RSA.decryptURL(subURL, Jwt.rsa.getPrivateKey());
-////                System.out.println("decryptURL " + decryptURL);
-//                decrypt = RSA.decrypt(jwt, Jwt.rsa.getPrivateKey());
-////                System.out.println("decrypt " + decrypt);
-//                if (ObjectUtils.isNotNull(decrypt))
-//                    timestamp = Long.valueOf(decrypt.split(": ")[1]);
-//
-//                if (ObjectUtils.isNotNull(decrypt) && ObjectUtils.isNotNull(decryptURL) &&
-//                        (decryptURL.equals("continue") ?
-//                                Objects.equals(decrypt, "sqlTS: " + timestamp) :
-//                                Objects.equals(decryptURL, "tokenGet: " + timestamp))) {
-//                    returnNewToken(response, jwtUtil.generateToken(jwt, request.getRequestURI()));
-//                    return;
-//                }
-//            }
-//
-////            System.out.println("in filter");
-//
-//            if (authorizationHeader.startsWith("Bearer ")) {
-////                System.out.println("in jwt");
-//                jwt = authorizationHeader.substring(7);
-//                isTokenValid(jwt, request, response, chain);
-//            } else
-//                response.sendError(AjaxResult.UNAUTHORIZED, "unauthorized request");
-//
-//        } else
-//            response.sendError(AjaxResult.UNAUTHORIZED, "unauthorized request");
+
+        response.setHeader("Access-Control-Allow-Origin", "*");
+        response.setHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS, DELETE, PUT");
+        response.setHeader("Access-Control-Max-Age", "12000");
+        response.setHeader("Access-Control-Allow-Headers", "Access-Control-Allow-Headers, Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
+        response.setHeader("Access-Control-Expose-Headers", "*");
+
+//        System.out.println("authorization: " + request.getHeaders("Authorization"));
+
+        final String authorizationHeader = request.getHeader("Authorization");
+//        System.out.println("authorization: " + authorizationHeader);
+
+        String jwt = null;
+
+        if (ObjectHandler.isStrArrContains(request.getRequestURI(), EXCLUDE_URL)) {
+            chain.doFilter(request, response);
+            return;
+        }
+
+//        System.out.println(request.getRequestURI());
+//        System.out.println(authorizationHeader.startsWith("APIBearer ") + " " + authorizationHeader);
+        if (ObjectUtils.isNotEmpty(authorizationHeader)) {
+
+            // generate token for /token/get request
+
+            String decryptURL = null;
+            String decrypt = null;
+            Long timestamp = null;
+            if (authorizationHeader.startsWith("APIBearer ")) {
+                jwt = authorizationHeader.substring(10);
+
+                String subURL = request.getRequestURI()
+                        .substring(1);
+                decryptURL = RSA.decryptURL(subURL, Jwt.rsa.getPrivateKey());
+//                System.out.println("decryptURL " + decryptURL);
+                decrypt = RSA.decrypt(jwt, Jwt.rsa.getPrivateKey());
+//                System.out.println("decrypt " + decrypt);
+                if (ObjectUtils.isNotNull(decrypt))
+                    timestamp = Long.valueOf(decrypt.split(": ")[1]);
+
+                if (ObjectUtils.isNotNull(decrypt) && ObjectUtils.isNotNull(decryptURL) &&
+                        (decryptURL.equals("continue") ?
+                                Objects.equals(decrypt, "sqlTS: " + timestamp) :
+                                Objects.equals(decryptURL, "tokenGet: " + timestamp))) {
+                    returnNewToken(response, jwtUtil.generateToken(jwt, request.getRequestURI()));
+                    return;
+                }
+            }
+
+//            System.out.println("in filter");
+
+            if (authorizationHeader.startsWith("Bearer ")) {
+//                System.out.println("in jwt");
+                jwt = authorizationHeader.substring(7);
+                isTokenValid(jwt, request, response, chain);
+            } else
+                response.sendError(AjaxResult.UNAUTHORIZED, "unauthorized request");
+
+        } else
+            response.sendError(AjaxResult.UNAUTHORIZED, "unauthorized request");
         chain.doFilter(request, response);
     }
 

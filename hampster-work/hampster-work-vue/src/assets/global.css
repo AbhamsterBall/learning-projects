@@ -427,4 +427,37 @@ input::placeholder {
     /*//background-color: white;*/
 }
 
+/* el-style */
+.el-message {
+    width: 87% !important;
+    border-radius: 10px !important;
+    background-color: white !important;
+    border: none !important;
+    box-shadow: 0 0 8px 3px #e8e8e8 !important;
+    margin-top: -20px;
+}
 
+.el-message.is-center {
+    justify-content: flex-start !important;
+}
+
+.el-message__content {
+    width: 100% !important;
+    color: black !important;
+}
+
+.el-message .el-message-icon--error {
+    color: #FF0000 !important;
+    font-size: 18px;
+}
+
+.el-message .el-message-icon--warning {
+    color: #ffb700 !important;
+    font-size: 18px;
+}
+
+@media screen and (max-width: 600px) {
+    .el-message {
+        margin-top: -50px;
+    }
+}

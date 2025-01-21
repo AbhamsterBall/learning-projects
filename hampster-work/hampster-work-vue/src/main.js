@@ -9,6 +9,7 @@ import SearchIndex from "./views/search/index.vue";
 import Home from "./views/Home.vue";
 import router from "./router"
 import {hljs} from "highlight/lib/vendor/highlight.js/highlight.js";
+import 'element-plus/dist/index.css';
 
 const app = createApp(App);
 

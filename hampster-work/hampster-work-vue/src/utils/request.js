@@ -7,6 +7,9 @@ import { tansParams, blobValidate } from "./rouyi";
 import cache from '../plugins/cache'
 import { saveAs } from 'file-saver'
 
+
+const resExcludeStrings = ['/blog-api'];
+
 let downloadLoadingInstance;
 // 是否显示重新登录
 export let isRelogin = { show: false };
@@ -76,7 +79,7 @@ service.interceptors.request.use(config => {
 // 响应拦截器
 service.interceptors.response.use(
     res => {
-        // console.log(JSON.stringify(res))
+        console.log(JSON.stringify(res))
         // 未设置状态码则默认成功状态
         const code = (res.data ? res.data.code : 200) || 200;
         // 获取错误信息
@@ -88,6 +91,15 @@ service.interceptors.response.use(
         if (res.request.responseType ===  'blob' || res.request.responseType ===  'arraybuffer') {
             return res.data
         }
+
+        // 检查 URL 是否包含排除数组中的任何一个字符串
+        if (!resExcludeStrings.some(excludeString => res.config.url.includes(excludeString))) {
+            // 只对不包含排除数组中任何一个字符串的 URL 进行处理
+            // 例如，处理响应数据
+            // 处理逻辑...
+            return res.data;
+        }
+
         if (code === 401) {
             if (!isRelogin.show) {
                 isRelogin.show = true;

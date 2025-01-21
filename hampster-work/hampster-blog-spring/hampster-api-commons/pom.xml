@@ -21,38 +21,37 @@
         <dependency>
             <groupId>com.baomidou</groupId>
             <artifactId>mybatis-plus</artifactId>
-            <version>3.5.5</version>
+            <version>3.5.9</version>
         </dependency>
 
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-redis</artifactId>
-            <version>3.4.1</version>
+<!--            <version>3.4.1</version>-->
         </dependency>
 
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-security</artifactId>
-            <version>3.4.0</version>
-        </dependency>
-
-        <dependency>
-            <groupId>com.alibaba.cloud</groupId>
-            <artifactId>spring-cloud-starter-alibaba-nacos-config</artifactId>
-            <version>2023.0.3.2</version>
+<!--            <version>3.4.0</version>-->
         </dependency>
 
 <!--        <dependency>-->
 <!--            <groupId>com.alibaba.cloud</groupId>-->
-<!--            <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>-->
-<!--            <version>2023.0.3.2</version>-->
+<!--            <artifactId>spring-cloud-starter-alibaba-nacos-config</artifactId>-->
 <!--        </dependency>-->
 
-        <!--开启Spring Cloud 应用程序启动时加载bootstrap配置文件-->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-bootstrap</artifactId>
             <version>4.2.0</version>
+        </dependency>
+
+        <!-- 内容加密 -->
+        <dependency>
+            <groupId>com.github.ulisesbocchio</groupId>
+            <artifactId>jasypt-spring-boot-starter</artifactId>
+            <version>3.0.5</version>
         </dependency>
 
     </dependencies>

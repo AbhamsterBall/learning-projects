@@ -83,6 +83,7 @@ function addAccount() {
 }
 
 import { displayWrong } from "./Login.vue";
+import {ElMessage} from "element-plus";
 function login() {
   loadMoving()
   // const ur = "http://localhost:8082/json/user/register"

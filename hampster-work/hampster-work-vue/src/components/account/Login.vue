@@ -12,6 +12,20 @@ import Password from "./Password.vue";
 
 $(() => {
 
+  // console.log(ElMessage)
+  // ElMessage({ message: '正在登录...',
+  //   type: 'warning',
+  //   center: true,
+  //   duration: 0,
+  //   showClose: false,
+  //   onClose: () => {
+  //     console.log('消息已关闭')
+  //   },
+  //   offset: 50,
+  //   customClass: 'custom-message',
+  //   round: true
+  // })
+
   inputResponse('.login-username', "hampster@hampster.work | +86 1234567890")
 
   inputTest(".login-username", buttonColor, buttonPointer)
@@ -50,6 +64,7 @@ function toRegister() {
 
 import { isLogin } from "./Password.vue"
 import { inputAC } from "./SignUp.vue"
+import {ElMessage} from "element-plus";
 function toLogin() {
   inputAC.value = $('.login-username').val()
   $('.lp-display').css("display", "block")
@@ -196,19 +211,30 @@ export const warningDisappear = () => {
   setTimeout(() => {$('.login-format').css('display', 'none')}, 100)
   setTimeout(() => {$('.login-format').css('display', 'flex')}, 150)
 
-  if ($('.login-wrong').css("display") == "block")
-    $('.login-forget').css("display", "none")
+  // if ($('.login-wrong').css("display") == "block")
+  //   $('.login-forget').css("display", "none")
   setTimeout(() => {adjustSignupPos()}, 200)
 }
 
 export const adjustSignupPos = () => {
 
   if ($('.login-wrong').css("display") == "block") {
-    $('.login-forget').css("display", "none")
+    // $('.login-forget').css("display", "none")
     if ($('.login-format').css("opacity") == "1")
-      $('.login-forget').css("margin", "-7px 24px 0px 389px")
+      // $('.login-forget').css("margin", "-7px 24px 0px 389px")
+      // 18px 24px 0px 28px
+      $('.login-forget').css({
+        "margin": "18px 24px 0px 28px",
+      })
     else {
-      $('.login-forget').attr('style', 'margin: -7px 30px 0px 30px !important');
+      // $('.login-forget').attr('style', 'margin: -7px 30px 0px 30px !important');
+      // $('.login-forget').attr('style', 'margin: 2px 0px !important')
+      // $('.login-forget').css({
+      //   "margin-top": "-7px !important",
+      //   "margin-right": "30px !important",
+      //   "margin-bottom": "0px !important",
+      //   "margin-left": "30px !important"
+      // })
     }
     setTimeout(() => {$('.login-forget').css("display", "flex")}, 300)
   } else {
@@ -218,7 +244,7 @@ export const adjustSignupPos = () => {
 }
 
 export const restorePos = () => {
-  $('.login-forget').attr('style', 'display: none; margin: 0px 30px 0px 30px');
+  $('.login-forget').attr('style', 'margin: 0px 30px 0px 30px');
   setTimeout(() => {$('.login-forget').attr('style', 'display: flex; margin: 0px 30px 0px 30px')}, 20)
 
 }
@@ -236,8 +262,8 @@ export function inputTest(inputName = ".login-username", buttonColor, buttonPoin
   $(inputName).on('input', function() {
 
     let inputValue = $(inputName).val()
-    console.log(inputName)
-    console.log(inputValue)
+    // console.log(inputName)
+    // console.log(inputValue)
     let isLenValid = true
     if (inputValue.length == 0) {
       isLenValid = false

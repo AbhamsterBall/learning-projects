@@ -1,0 +1,16 @@
+spring:
+  application:
+    name: user
+  cloud:
+    nacos:
+      config:
+        server-addr: mail.hampster.work:8848
+        file-extension: yaml
+        group: DEFAULT_GROUP
+        username: readonly
+        password: "#V-Z~G6_5d3DTbw9"
+#        namespace: Public
+  config:
+    import:
+      - nacos:${spring.application.name}-prod.${spring.cloud.nacos.config.file-extension}
+      - nacos:application-prod.${spring.cloud.nacos.config.file-extension}
