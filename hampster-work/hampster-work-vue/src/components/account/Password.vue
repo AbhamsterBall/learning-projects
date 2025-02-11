@@ -8,6 +8,7 @@ import bcrypt from 'bcryptjs';
 import SetName from "./SetName.vue";
 import {getProfile, putProfile, register, userLogin} from "../../api/search.js";
 import router from "../../router/index.js";
+import { publicKey } from "../../utils/request.js";
 
 let buttonColor = ref("#a9acba")
 let buttonPointer = ref("none")
@@ -19,6 +20,8 @@ let props = defineProps({
 let { account } = toRefs(props) // 解构为单独的变量
 
 $(() => {
+  // console.log(isLogin.value)
+  // encryptData("123456", publicKey)
 
   inputResponse('.login-signup-pass', "••••••••••••")
 
@@ -84,7 +87,7 @@ function addAccount() {
 
 import { displayWrong } from "./Login.vue";
 import {ElMessage} from "element-plus";
-function login() {
+async function login() {
   loadMoving()
   // const ur = "http://localhost:8082/json/user/register"
   // axios.post(ur, {
@@ -98,7 +101,8 @@ function login() {
         account._object.account : null,
     uPhone: account._object.account.includes('@') ?
         null : account._object.account,
-    uPass: $('.login-signup-pass').val()
+    uPass: await encryptData($('.login-signup-pass').val(), publicKey)
+    // uPass: $('.login-signup-pass').val()
   }).then(res => {
     loadStop()
     if (res.code === 200) {
@@ -128,6 +132,88 @@ function moveLeft() {
 import $ from "jquery";
 import { warningDisplay, warningDisappear } from "./Login.vue";
 import { ref } from "vue";
+
+
+import { CryptoJS } from 'jsrsasign';
+
+export async function encryptData(data, publicKey) {
+  try {
+    const re = AES.encrypt(data, publicKey)
+    console.log(AES.decrypt(re.info, re.decryptedKey))
+    return re;
+  } catch (error) {
+    console.error('加密失败:', error);
+    throw error;
+  }
+}
+
+import JSEncrypt from 'jsencrypt'
+function encryptWithRSA(publicKey, data) {
+  const encryptor = new JSEncrypt();
+  encryptor.setPublicKey(publicKey);
+  return encryptor.encrypt(data);
+}
+
+// import CryptoJS from 'crypto-js'
+
+function encrypt(plaintext, publicKey) {
+  try {
+    const aesKey = CryptoJS.lib.WordArray.random(16); // 128位密钥
+    const key = CryptoJS.PBKDF2(aesKey.toString(), 'salt',
+        { keySize: 128/32, iterations: 100 });
+    console.log(key)
+    // const key = CryptoJS.enc.Utf8.parse(process.env.REACT_APP_SECRET_AES_KEY as string)
+    const iv = CryptoJS.lib.WordArray.random(16)
+    const encrypted = CryptoJS.AES.encrypt(plaintext, key, {
+      iv: iv,
+      mode: CryptoJS.mode.CBC,
+      padding: CryptoJS.pad.Pkcs7,
+    })
+
+    const encryptMessage = encrypted.ciphertext.toString(CryptoJS.enc.Base64)
+    return {
+      info: iv.toString(CryptoJS.enc.Base64) + encryptMessage,
+      key: encryptWithRSA(publicKey, aesKey.toString()),
+      decryptedKey: aesKey.toString()
+    };
+  } catch (error) {
+    return null
+  }
+}
+
+function decrypt(encryptedData, aesKey) {
+  try {
+    // const key = CryptoJS.enc.Utf8.parse(aesKey)
+    console.log(encryptedData, aesKey)
+    const key = CryptoJS.PBKDF2(aesKey, 'salt',
+        { keySize: 128/32, iterations: 100 });
+    const ivString = encryptedData.substring(0, 24)
+    console.log(ivString)
+    const encryptedString = encryptedData.substring(24)
+
+    const iv = CryptoJS.enc.Base64.parse(ivString)
+
+    console.log(ivString)
+    console.log(CryptoJS.AES)
+    const decrypted = CryptoJS.AES.decrypt(
+        { ciphertext: CryptoJS.enc.Base64.parse(encryptedString) }, key, {
+      iv: iv,
+      mode: CryptoJS.mode.CBC,
+      padding: CryptoJS.pad.Pkcs7,
+    })
+
+    const decryptedText = decrypted.toString(CryptoJS.enc.Utf8)
+    return decryptedText
+  } catch (error) {
+    console.log(error)
+    return null
+  }
+}
+
+export const AES = {
+  decrypt,
+  encrypt,
+}
 
 export let isLogin = ref(false);
 
@@ -175,7 +261,7 @@ export function passTest(outString, isFormatValid) {
         <div class="login-input">
           <fieldset class="name-field">
             <legend class="name-legend">请输入密码</legend>
-            <input type="password" value="" placeholder="••••••••••••" class="login-signup-pass login-input-general" maxlength="80">
+            <input type="password" value="19990415hyh" placeholder="••••••••••••" class="login-signup-pass login-input-general" maxlength="80">
           </fieldset>
           <div class="login-format">
             <small-warning width="16" height="16" style="margin-right: 4px; opacity: .8"/>
@@ -188,10 +274,10 @@ export function passTest(outString, isFormatValid) {
         </div>
         <button class="pass-button login-button lp-button"
                 :style="{ backgroundColor : buttonColor, pointerEvents : buttonPointer }"
-                @click.native="addAccount" v-show="!isLogin">下一步</button>
+                @click.native="addAccount" v-if="!isLogin">下一步</button>
         <button class="pass-button login-button lp-button"
                 :style="{ backgroundColor : buttonColor, pointerEvents : buttonPointer }"
-                @click.native="login" v-show="isLogin">登陆</button>
+                @click.native="login" v-if="isLogin">登陆</button>
       </div>
     </div>
   </div>

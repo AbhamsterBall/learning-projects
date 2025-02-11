@@ -5,35 +5,51 @@ import com.baomidou.mybatisplus.core.toolkit.ObjectUtils;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.mock.web.MockHttpServletRequest;
 import org.springframework.stereotype.Service;
-import work.hampster.user.Config;
+import work.hampster.transfer.RSADTO;
 import work.hampster.user.mapper.UserMapper;
 import work.hampster.user.model.User;
 import work.hampster.user.service.UserService;
+import work.hampster.user.transfer.UserDTO;
+import work.hampster.util.AES;
 import work.hampster.util.AjaxResult;
 
+import javax.crypto.BadPaddingException;
+import javax.crypto.IllegalBlockSizeException;
+import javax.crypto.NoSuchPaddingException;
 import javax.mail.*;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
+import java.security.InvalidKeyException;
+import java.security.NoSuchAlgorithmException;
+import java.security.spec.InvalidKeySpecException;
 import java.util.*;
 
 @Service
 public class UserServiceImpl extends EntityServiceImpl<UserMapper, User> implements UserService {
 
-    final UserServicePlus userServicePlus;
-    final Properties properties;
+    private final UserServicePlus userServicePlus;
+    private final RSADTO rsaDTO;
+//    final Properties properties;
 
-    public UserServiceImpl(ServiceImpl<UserMapper, User> service, UserServicePlus userServicePlus, Properties properties) {
-        super(service);
-        this.userServicePlus = userServicePlus;
-        this.properties = properties;
+    @Autowired
+    public UserServiceImpl(ServiceImpl<UserMapper, User> userServicePlus,
+                           RSADTO rsaDTO) {
+        super(userServicePlus);
+        this.userServicePlus = (UserServicePlus) userServicePlus;
+        this.rsaDTO = rsaDTO;
+//        this.properties = properties;
     }
 
     @Override
     protected Class<User> getEntityClass() {
         return User.class;
     }
+
+    @Value("${spring.data.sendgrid.api-key}")
+    private String apiKey;
 
     @Override
     public Map<String, Object> getMailCode(String username) {
@@ -44,7 +60,7 @@ public class UserServiceImpl extends EntityServiceImpl<UserMapper, User> impleme
         props.put("mail.smtp.starttls.enable", "true");
 
         final String smtpUsername = "apikey";
-        String password = properties.get("spring.data.sendgrid.api-key").toString();
+        String password = apiKey;
 
         Session session = Session.getInstance(props, new Authenticator() {
             protected PasswordAuthentication getPasswordAuthentication() {
@@ -100,7 +116,7 @@ public class UserServiceImpl extends EntityServiceImpl<UserMapper, User> impleme
     }
 
     @Override
-    public AjaxResult login(User info) {
+    public AjaxResult login(UserDTO info) throws Exception {
         User re = null;
         if (ObjectUtils.isNotEmpty(info.getUMail()))
             re = userServicePlus.getOne(
@@ -111,7 +127,7 @@ public class UserServiceImpl extends EntityServiceImpl<UserMapper, User> impleme
                 new QueryWrapper<User>()
                     .eq("u_phone", info.getUPhone()));
         if (ObjectUtils.isNotEmpty(re)) {
-            if (BCrypt.checkpw(info.getUPass(), re.getUPass()))
+            if (BCrypt.checkpw(AES.decrypt(info.getUPassDTO()), re.getUPass()))
                 return AjaxResult.success(re.getUToken());
             else
                 return AjaxResult.error("password error");
@@ -131,4 +147,6 @@ public class UserServiceImpl extends EntityServiceImpl<UserMapper, User> impleme
 
         return code.toString();
     }
+
+
 }

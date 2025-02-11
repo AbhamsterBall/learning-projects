@@ -13,6 +13,7 @@ const resExcludeStrings = ['/blog-api'];
 let downloadLoadingInstance;
 // 是否显示重新登录
 export let isRelogin = { show: false };
+export let publicKey = 'MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDDrpyev6FMtR3wnS6xrVdTVRwGj3qibvS5LXjKn8y3UsX/i8w/NaH4VtF8WdXIIbpvYNprYD+lQkSYelz3Wbgl4O4fKWH8y72yBy0X7vEcOFYkGE/FB+Z1EmrfxjggGpvRgSMvRw2YBspmTjS1KiqJOUiZIrjHo7/ComImn8FcZQIDAQAB';
 
 axios.defaults.headers['Content-Type'] = 'application/json;charset=utf-8'
 
@@ -79,7 +80,7 @@ service.interceptors.request.use(config => {
 // 响应拦截器
 service.interceptors.response.use(
     res => {
-        console.log(JSON.stringify(res))
+        // console.log(JSON.stringify(res))
         // 未设置状态码则默认成功状态
         const code = (res.data ? res.data.code : 200) || 200;
         // 获取错误信息

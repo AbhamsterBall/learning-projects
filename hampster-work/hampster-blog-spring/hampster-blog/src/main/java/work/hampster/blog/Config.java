@@ -50,13 +50,13 @@ public class Config implements WebMvcConfigurer {
         return new NacosPropertySourceLocator(nacosConfigManager);
     }
 
-    public static Properties getProps() {
-        YamlPropertiesFactoryBean yamlFactory = new YamlPropertiesFactoryBean();
-        ClassPathResource resource = new ClassPathResource("application.yml");
-        yamlFactory.setResources(resource);
-        Properties props = yamlFactory.getObject();
-        return props;
-    }
+//    public static Properties getProps() {
+//        YamlPropertiesFactoryBean yamlFactory = new YamlPropertiesFactoryBean();
+//        ClassPathResource resource = new ClassPathResource("application.yml");
+//        yamlFactory.setResources(resource);
+//        Properties props = yamlFactory.getObject();
+//        return props;
+//    }
 
     @Bean(name = "dataSource")
 //    @ConfigurationProperties(prefix = "spring.datasource")

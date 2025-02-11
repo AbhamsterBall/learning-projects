@@ -8,13 +8,12 @@ import org.springframework.web.bind.annotation.*;
 import work.hampster.user.mapper.UserMapper;
 import work.hampster.user.model.User;
 import work.hampster.user.service.UserService;
-import work.hampster.user.util.UserJson;
 import work.hampster.user.util.UserRedis;
+import work.hampster.user.transfer.UserDTO;
 import work.hampster.util.AjaxResult;
 import work.hampster.util.Json;
 
 import java.util.HashMap;
-import java.util.LinkedHashMap;
 
 import static work.hampster.util.Json.toJson;
 
@@ -49,13 +48,13 @@ public class UserJsonController {
     }
 
     @PostMapping(value = "json/user/register", produces = "application/json; charset=utf-8")
-    public String register(@RequestBody LinkedHashMap user) { // DTO
-        User userObj = (User) UserJson.fromJsonToObject(User.class, user);
+    public String register(@RequestBody User user) { // DTO
+//        User userObj = (User) UserJson.fromJsonToObject(User.class, user);
         String token = userService.getToken();
-        userObj.setUToken(token);
+        user.setUToken(token);
 
         HashMap<String, String> map = new HashMap<>();
-        map.put("status", userServicePlus.save(userObj) ? "true" : "false");
+        map.put("status", userServicePlus.save(user) ? "true" : "false");
         // if status == true`K
         map.put("user_token", token);
 
@@ -76,7 +75,7 @@ public class UserJsonController {
     }
 
     @PostMapping(value = "json/user/login", produces = "application/json; charset=utf-8")
-    public String login(@RequestBody User info) {
+    public String login(@RequestBody UserDTO info) throws Exception {
         return toJson(userService.login(info));
     }
 

@@ -35,19 +35,19 @@ import static org.elasticsearch.client.RestClient.builder;
 //import jakarta.sql.DataSource;
 
 @Configuration(proxyBeanMethods = false)
-@ComponentScan("work.hampster.user")
-@PropertySource("classpath:db.properties")
-@PropertySource("classpath:application.yml")
+//@ComponentScan("work.hampster.user")
+//@PropertySource("classpath:db.properties")
+//@PropertySource("classpath:application.yml")
 public class Config {
 
-    @Bean(name = "properties")
-    public Properties getProps() {
-        YamlPropertiesFactoryBean yamlFactory = new YamlPropertiesFactoryBean();
-        ClassPathResource resource = new ClassPathResource("application.yml");
-        yamlFactory.setResources(resource);
-        Properties props = yamlFactory.getObject();
-        return props;
-    }
+//    @Bean(name = "properties")
+//    public Properties getProps() {
+//        YamlPropertiesFactoryBean yamlFactory = new YamlPropertiesFactoryBean();
+//        ClassPathResource resource = new ClassPathResource("application.yml");
+//        yamlFactory.setResources(resource);
+//        Properties props = yamlFactory.getObject();
+//        return props;
+//    }
 
     @Bean(name = "dataSource")
 //    @ConfigurationProperties(prefix = "spring.datasource")
