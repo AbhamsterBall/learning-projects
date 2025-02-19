@@ -1,20 +1,30 @@
-DEBUG [http-nio-8082-exec-1] - ==>  Preparing: SELECT COUNT( * ) AS total FROM user WHERE (u_mail = ?)
-DEBUG [http-nio-8082-exec-1] - ==>  Preparing: SELECT COUNT( * ) AS total FROM user WHERE (u_mail = ?)
-DEBUG [http-nio-8082-exec-1] - ==> Parameters: ajh415@hotmail.com(String)
-DEBUG [http-nio-8082-exec-1] - ==> Parameters: ajh415@hotmail.com(String)
-TRACE [http-nio-8082-exec-1] - <==    Columns: total
-TRACE [http-nio-8082-exec-1] - <==    Columns: total
-TRACE [http-nio-8082-exec-1] - <==        Row: 1
-TRACE [http-nio-8082-exec-1] - <==        Row: 1
-DEBUG [http-nio-8082-exec-1] - <==      Total: 1
-DEBUG [http-nio-8082-exec-1] - <==      Total: 1
-DEBUG [http-nio-8082-exec-3] - ==>  Preparing: SELECT u_id,u_token,u_name,u_pass,u_mail,u_phone FROM user WHERE (u_mail = ?)
-DEBUG [http-nio-8082-exec-3] - ==>  Preparing: SELECT u_id,u_token,u_name,u_pass,u_mail,u_phone FROM user WHERE (u_mail = ?)
-DEBUG [http-nio-8082-exec-3] - ==> Parameters: ajh415@hotmail.com(String)
-DEBUG [http-nio-8082-exec-3] - ==> Parameters: ajh415@hotmail.com(String)
-TRACE [http-nio-8082-exec-3] - <==    Columns: u_id, u_token, u_name, u_pass, u_mail, u_phone
-TRACE [http-nio-8082-exec-3] - <==    Columns: u_id, u_token, u_name, u_pass, u_mail, u_phone
-TRACE [http-nio-8082-exec-3] - <==        Row: 16, amHiAmXBfaatEj8A, Registered Hamster, $2a$10$wpITvLPVgnyNTzQ5CnTWPO9TCzAnRR2nhzPdyRlPxPkLQoWzw5DCa, ajh415@hotmail.com, null
-TRACE [http-nio-8082-exec-3] - <==        Row: 16, amHiAmXBfaatEj8A, Registered Hamster, $2a$10$wpITvLPVgnyNTzQ5CnTWPO9TCzAnRR2nhzPdyRlPxPkLQoWzw5DCa, ajh415@hotmail.com, null
-DEBUG [http-nio-8082-exec-3] - <==      Total: 1
-DEBUG [http-nio-8082-exec-3] - <==      Total: 1
+DEBUG [http-nio-8082-exec-5] - ==>  Preparing: SELECT COUNT( * ) AS total FROM user WHERE (u_mail = ?)
+DEBUG [http-nio-8082-exec-5] - ==>  Preparing: SELECT COUNT( * ) AS total FROM user WHERE (u_mail = ?)
+DEBUG [http-nio-8082-exec-5] - ==> Parameters: ajh415@hotmail.com(String)
+DEBUG [http-nio-8082-exec-5] - ==> Parameters: ajh415@hotmail.com(String)
+TRACE [http-nio-8082-exec-5] - <==    Columns: total
+TRACE [http-nio-8082-exec-5] - <==    Columns: total
+TRACE [http-nio-8082-exec-5] - <==        Row: 1
+TRACE [http-nio-8082-exec-5] - <==        Row: 1
+DEBUG [http-nio-8082-exec-5] - <==      Total: 1
+DEBUG [http-nio-8082-exec-5] - <==      Total: 1
+DEBUG [http-nio-8082-exec-6] - ==>  Preparing: SELECT u_id,u_token,u_name,u_pass,u_mail,u_phone,u_profile FROM user WHERE (u_mail = ?)
+DEBUG [http-nio-8082-exec-6] - ==>  Preparing: SELECT u_id,u_token,u_name,u_pass,u_mail,u_phone,u_profile FROM user WHERE (u_mail = ?)
+DEBUG [http-nio-8082-exec-6] - ==> Parameters: ajh415@hotmail.com(String)
+DEBUG [http-nio-8082-exec-6] - ==> Parameters: ajh415@hotmail.com(String)
+TRACE [http-nio-8082-exec-6] - <==    Columns: u_id, u_token, u_name, u_pass, u_mail, u_phone, u_profile
+TRACE [http-nio-8082-exec-6] - <==    Columns: u_id, u_token, u_name, u_pass, u_mail, u_phone, u_profile
+TRACE [http-nio-8082-exec-6] - <==        Row: 16, amHiAmXBfaatEj8A, Registered Hamster, $2a$10$wpITvLPVgnyNTzQ5CnTWPO9TCzAnRR2nhzPdyRlPxPkLQoWzw5DCa, ajh415@hotmail.com, null, default.svg
+TRACE [http-nio-8082-exec-6] - <==        Row: 16, amHiAmXBfaatEj8A, Registered Hamster, $2a$10$wpITvLPVgnyNTzQ5CnTWPO9TCzAnRR2nhzPdyRlPxPkLQoWzw5DCa, ajh415@hotmail.com, null, default.svg
+DEBUG [http-nio-8082-exec-6] - <==      Total: 1
+DEBUG [http-nio-8082-exec-6] - <==      Total: 1
+DEBUG [http-nio-8082-exec-7] - ==>  Preparing: SELECT u_id,u_token,u_name,u_pass,u_mail,u_phone,u_profile FROM user WHERE u_id=?
+DEBUG [http-nio-8082-exec-7] - ==>  Preparing: SELECT u_id,u_token,u_name,u_pass,u_mail,u_phone,u_profile FROM user WHERE u_id=?
+DEBUG [http-nio-8082-exec-7] - ==> Parameters: 16(Integer)
+DEBUG [http-nio-8082-exec-7] - ==> Parameters: 16(Integer)
+TRACE [http-nio-8082-exec-7] - <==    Columns: u_id, u_token, u_name, u_pass, u_mail, u_phone, u_profile
+TRACE [http-nio-8082-exec-7] - <==    Columns: u_id, u_token, u_name, u_pass, u_mail, u_phone, u_profile
+TRACE [http-nio-8082-exec-7] - <==        Row: 16, amHiAmXBfaatEj8A, Registered Hamster, $2a$10$wpITvLPVgnyNTzQ5CnTWPO9TCzAnRR2nhzPdyRlPxPkLQoWzw5DCa, ajh415@hotmail.com, null, default.svg
+TRACE [http-nio-8082-exec-7] - <==        Row: 16, amHiAmXBfaatEj8A, Registered Hamster, $2a$10$wpITvLPVgnyNTzQ5CnTWPO9TCzAnRR2nhzPdyRlPxPkLQoWzw5DCa, ajh415@hotmail.com, null, default.svg
+DEBUG [http-nio-8082-exec-7] - <==      Total: 1
+DEBUG [http-nio-8082-exec-7] - <==      Total: 1

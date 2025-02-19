@@ -1,8 +1,13 @@
 <script setup>
-import loginIcon from './svg/LoginIcon.vue'
+import loginIcon from '../svg/LoginIcon.vue'
 import $ from 'jquery'
-import { setColor } from './svg/LoginIcon.vue'
-import login from "./account/Login.vue";
+import { setColor } from '../svg/LoginIcon.vue'
+import login from "../account/Login.vue";
+import {store} from "../../main.js";
+import Bottom from "../Bottom.vue";
+import BottomFixed from "../bottom/BottomFixed.vue";
+import Loading from "../Loading.vue";
+import Profile from "./Profile.vue";
 
 const props = defineProps({
   title: String,
@@ -26,11 +31,15 @@ $(() => {
 });
 
 function checkIfLogin() {
-  if (localStorage.getItem("utoken") != null) {
+  console.log(store.state.token.length)
+  if (store.state.token.length !== 280) {
     $(".login").css("display", "none")
     $(".loginIcon").css("display", "none")
-    $(".profile-img").attr("src", import.meta.env.VITE_API_MINIO_BASE_URL +
-        "/profile/" + localStorage.getItem("utoken") + ".svg");
+    // $(".profile-img").attr("src", import.meta.env.VITE_API_MINIO_BASE_URL +
+    // //     "/profile/" + localStorage.getItem("utoken") + ".svg");
+    // $(".profile-img").attr("src", import.meta.env.VITE_API_MINIO_BASE_URL +
+    //     "/profile/" + localStorage.getItem("utoken") + ".svg");
+    // TODO : LOADING IMG
   } else {
     $(".profile").css("display", "none")
   }
@@ -53,7 +62,14 @@ function loginClick() {
   <a href="#" class="login-mini-back"></a>
   <login-icon @click="loginClick" width="48" height="48" color="white" class="loginIcon"/>
   <div class="profile">
-    <img src="/default-profile.svg" alt="profile" class="profile-img">
+<!--    <suspense>-->
+<!--      <template #default>-->
+<!--&lt;!&ndash;        <profile/>&ndash;&gt;-->
+<!--      </template>-->
+<!--      <template #fallback>-->
+        <loading box-width="48px" box-height="48px" bg="#f6f6f6" border-radius="24px" class="profile-img"/>
+<!--      </template>-->
+<!--    </suspense>-->
   </div>
   <login/>
 </template>

@@ -5,7 +5,7 @@ import smallWarning from '../svg/SmallWarning.vue'
 import $ from "jquery";
 import axios from "axios";
 import bcrypt from 'bcryptjs';
-import {setUserName} from "../../api/search.js";
+import {setUserName} from "../../api/search/user.js";
 
 let buttonColor = ref("#a9acba")
 let buttonPointer = ref("none")

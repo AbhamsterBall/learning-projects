@@ -54,9 +54,8 @@ public class Config {
         dataSource.setDriverClassName(environment.getProperty("mysql80_driver"));
         dataSource.setUsername(environment.getProperty("mysql80_username"));
         dataSource.setPassword(environment.getProperty("mysql80_password"));
-
-        System.out.println(environment.getProperty("mysql80_driver"));
-        System.out.println(dataSource.getUrl());
+//        System.out.println(environment.getProperty("mysql80_driver"));
+//        System.out.println(dataSource.getUrl());
 
         return dataSource;
     }

@@ -8,7 +8,7 @@ import { loadMoving, loadStop, hideWrong, displayWrong, restorePos } from "./Log
 import checkAccount from './CheckAccount.vue';
 import { store } from '../../main.js';
 import axios from "axios";
-import {isNameExist} from "../../api/search.js";
+import {isNameExist} from "../../api/search/user.js";
 
 let buttonColor = ref("#a9acba")
 let buttonPointer = ref("none")
@@ -114,7 +114,7 @@ import axios from "axios";
 import $ from "jquery";
 import {ref} from "vue";
 import { hideWrong, restorePos, loadStop } from "./Login.vue";
-import {getEmailCode} from "../../api/search.js";
+import {getEmailCode} from "../../api/search/user.js";
 
 export let inputAC = ref()
 export async function getMailCode(account) {

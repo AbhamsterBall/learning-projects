@@ -1,5 +1,7 @@
 package work.hampster.hampsteruser;
 
+import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.Jwts;
 import org.bouncycastle.asn1.x509.AlgorithmIdentifier;
 import org.bouncycastle.jcajce.spec.PBKDF2KeySpec;
 import org.junit.jupiter.api.Test;
@@ -303,6 +305,28 @@ class UserApplicationTests {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    @Test
+    void testExtract() {
+        Claims body = Jwts.parserBuilder()
+                .setSigningKey("WpBzX/t+Bh/awLy5cS1rR4hvT9jRTTw558B3SXV2E3bs/HdDYVMkcnzO7a6lq03T5ZmXLtVdQuGVSWVT9EQxRw==")
+                .build()
+                .parseClaimsJws("eyJhbGciOiJIUzI1NiJ9.eyJyYW5kb20iOiJlMzAyZmNhYS1kYWEwLTRkYzItOTBlNC1iMzAyNzAxNGY5NjkiLCJjb3B5cmlnaHQiOiJIWUgiLCJmaW5nZXJwcmludCI6eyJrZXkiOiJoYU1TeEpoc0x1SDRlUzF0RUZld2tLVUhPckxFUEZMeWlWMjJkcEJ2KzBnZmlXSHJkQWhGWjRrVFVQMHhGTlA0ZURrVkpTaGtwRStjZlRVVE5DTHNHVm1DajFPa3hSVTZEODFqaHl6Tm5WUFkvWEpvbld4STNady8wUVI3cy9ucGtGUk5yakwvYjFXWkw3bm9iMUhBRm9sUXlCbWpCckV5bGtJWWNYck1ieDA9IiwiaW5mbyI6ImkzTW5maDhCajEySEJpNG1NTXR2VVE9PTlPdTA3bldhblQxV0NQK2VLcmorMHprbmhmQXNoeVNhNGFPaGlFSHpVcXZjZ1BkSkxHV045ckFLemk2ajdNWm0ifSwidGltZXN0YW1wIjoxNzM5NDI0OTEzMDc3LCJpYXQiOjE3Mzk0MjQ5MTMsImV4cCI6MTc0NzIwMDkxM30.Hsp7zSGIuO8hN1SsL3JXsniRpBpEusQlexJJlTo72jU")
+                .getBody();
+        System.out.println("finished");
+
+        try {
+            Claims body0 = Jwts.parserBuilder()
+                    .setSigningKey("WpBzX/t+Bh/awLy5cS1rR4hvT9jRTTw558B3SXV2E3bs/HdDYVMkcnzO7a6lq03T5ZmXLtVdQuGVSWVT9EQxRw==")
+                    .build()
+                    .parseClaimsJws("bGciOiJIUzI1NiJ9.eyJyYW5kb20iOiJlMzAyZmNhYS1kYWEwLTRkYzItOTBlNC1iMzAyNzAxNGY5NjkiLCJjb3B5cmlnaHQiOiJIWUgiLCJmaW5nZXJwcmludCI6eyJrZXkiOiJoYU1TeEpoc0x1SDRlUzF0RUZld2tLVUhPckxFUEZMeWlWMjJkcEJ2KzBnZmlXSHJkQWhGWjRrVFVQMHhGTlA0ZURrVkpTaGtwRStjZlRVVE5DTHNHVm1DajFPa3hSVTZEODFqaHl6Tm5WUFkvWEpvbld4STNady8wUVI3cy9ucGtGUk5yakwvYjFXWkw3bm9iMUhBRm9sUXlCbWpCckV5bGtJWWNYck1ieDA9IiwiaW5mbyI6ImkzTW5maDhCajEySEJpNG1NTXR2VVE9PTlPdTA3bldhblQxV0NQK2VLcmorMHprbmhmQXNoeVNhNGFPaGlFSHpVcXZjZ1BkSkxHV045ckFLemk2ajdNWm0ifSwidGltZXN0YW1wIjoxNzM5NDI0OTEzMDc3LCJpYXQiOjE3Mzk0MjQ5MTMsImV4cCI6MTc0NzIwMDkxM30.Hsp7zSGIuO8hN1SsL3JXsniRpBpEusQlexJJlTo72jU")
+                    .getBody();
+            System.out.println("finished");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
     }
 
 }

@@ -11,6 +11,10 @@
       type: String,
       default: '#eeeeee'
     },
+    borderRadius: {
+      type: String,
+      default: '20px'
+    }
   })
 
   function createFrame() {
@@ -46,14 +50,15 @@
 <template>
   <div class="gradient-box" :style="{'width':boxWidth, 'height':boxHeight
   , 'background': bg
+  , 'border-radius': borderRadius
   , 'animation':'keyframes-' + bg.substring(1) + '-' + shadow.substring(1) + ' 800ms infinite'}"></div>
 </template>
 
-<style scoped>
+<style scoped lang="scss">
 .gradient-box {
   margin: 3%;
-  border-radius: 20px;
+  // border-radius: 20px;
   background: linear-gradient(135deg, #ffffff -20%, #eeeeee 20%, #ffffff 60%);
-  /*animation: keyframes 800ms infinite;*/
+  ///*animation: keyframes 800ms infinite;*/
 }
 </style>

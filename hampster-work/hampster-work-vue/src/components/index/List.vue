@@ -3,7 +3,7 @@ import { ref } from 'vue'
 import $ from 'jquery'
 import * as all from "../../views/Home.vue";
 import { setTitle } from "../../views/search/index.vue";
-import {indexBtName} from "../../api/blog.js";
+import {indexBtName} from "../../api/blog/blog.js";
 
 const name_data = ref([])
 async function getName() {
@@ -42,15 +42,15 @@ let date = ref()
   <teleport to="head">
     <component :is="'script'" type="application/ld+json">
       {
-      "@context": "https://schema.org",
-      "@type": "Article",
-      "headline": "{{ title }}",
-      "description": "{{ description }}",
-      "datePublished": "{{ date }}",
-      "author": {
-      "@type": "Person",
-      "name": "何宇荟"
-      }
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": "{{ title }}",
+        "description": "{{ description }}",
+        "datePublished": "{{ date }}",
+        "author": {
+          "@type": "Person",
+          "name": "何宇荟"
+        }
       }
     </component>
   </teleport>

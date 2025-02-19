@@ -266,7 +266,8 @@ export let current_blog_name = ref("")
 export let shouldRefresh = ref(true)
 
 import { getContent} from "./Content.vue";
-import {getBlogNameByType, indexBtName} from "../../api/blog.js";
+import { indexBtName } from "../../api/blog/blog.js";
+import { getBlogNameByType } from "../../api/blog/blog.js"
 
 function clicked(e, type, name) {
   let all_list = $('.blogHref')

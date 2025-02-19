@@ -30,7 +30,11 @@ export const store = new Vuex.Store({
   },
   mutations: {
     setToken(state) {
-      state.token = generateRandomString(12);
+      state.token = generateRandomString(280);
+      localStorage.setItem('token', state.token);
+    },
+    setNewToken(state, newToken) {
+      state.token = newToken;
       localStorage.setItem('token', state.token);
     },
     clearToken(state) {

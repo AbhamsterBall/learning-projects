@@ -1,5 +1,9 @@
 package work.hampster.util;
 
+import com.baomidou.mybatisplus.core.toolkit.ObjectUtils;
+import work.hampster.model.User;
+
+import java.lang.reflect.Field;
 import java.util.Objects;
 
 public class ObjectHandler {
@@ -23,5 +27,17 @@ public class ObjectHandler {
             }
         }
         return result;
+    }
+
+    public static void convert(Object ori, Object des) throws IllegalAccessException {
+        if (ObjectUtils.isNotNull(ori)) {
+            for (Field field : User.class.getDeclaredFields()) {
+                if (field.getName().equals("serialVersionUID") || field.getName().equals("merchantCode")) continue;
+                field.setAccessible(true);
+                if (ObjectUtils.isNotNull(field.get(ori))) {
+                    field.set(des, field.get(ori));
+                }
+            }
+        }
     }
 }

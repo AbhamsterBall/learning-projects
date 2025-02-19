@@ -1,6 +1,6 @@
 package work.hampster.user.util;
 
-import work.hampster.user.model.User;
+import work.hampster.model.User;
 
 import java.lang.reflect.Method;
 import java.sql.Date;

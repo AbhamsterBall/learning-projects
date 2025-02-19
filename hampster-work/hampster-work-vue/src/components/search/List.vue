@@ -75,7 +75,7 @@ let date = ref()
 import {ref} from "vue";
 import $ from "jquery";
 import { getTitle } from '../../views/search/index.vue'
-import {searchBlogByType} from "../../api/blog.js";
+import {searchBlogByType} from "../../api/blog/blog.js";
 
 const page = ref(1)
 

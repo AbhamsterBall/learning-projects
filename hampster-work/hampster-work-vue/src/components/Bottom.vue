@@ -2,7 +2,7 @@
   import $ from "jquery";
   import { ref } from "vue";
   import bottomFixed from "./bottom/BottomFixed.vue";
-  import { indexBlogName } from "../api/blog";
+  import { indexBlogName } from "../api/blog/blog.js";
 
   const name_data = ref([{
     bt_name: "",

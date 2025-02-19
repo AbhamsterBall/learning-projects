@@ -4,7 +4,7 @@ import { marked } from "marked";
 import { ref } from "vue";
 import Loading from "../Loading.vue";
 import * as all from "../../views/Home.vue";
-import { getBlogContentSummary } from "../../api/blog.js";
+import { getBlogContentSummary } from "../../api/blog/blog.js";
 
 $(() => {
   getContent()
@@ -212,7 +212,7 @@ export default {
 
 
 import { shouldRefresh } from "./List.vue";
-import {getBlogContent} from "../../api/blog.js";
+import {getBlogContent} from "../../api/blog/blog.js";
 </script>
 
 <style scoped>

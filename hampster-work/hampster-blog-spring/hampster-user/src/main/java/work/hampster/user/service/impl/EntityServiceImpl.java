@@ -9,7 +9,7 @@ import com.github.pagehelper.PageHelper;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Service;
 import work.hampster.user.mapper.UserMapper;
-import work.hampster.user.model.User;
+import work.hampster.model.User;
 import work.hampster.user.service.EntityService;
 
 import java.lang.reflect.Field;

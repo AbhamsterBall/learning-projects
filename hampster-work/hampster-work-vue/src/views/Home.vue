@@ -1,7 +1,7 @@
 <script setup>
 import index_search from '../components/index/Search.vue'
 import index_list from '../components/index/List.vue'
-import top from '../components/Top.vue'
+import top from '../components/index/Top.vue'
 import loading from '../components/Loading.vue'
 import bottom from '../components/Bottom.vue'
 import $ from "jquery";

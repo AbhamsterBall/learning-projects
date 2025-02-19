@@ -59,7 +59,7 @@ public class JasyptTest {
 
     @Test
     public void testENC() throws Exception {
-        String plainText = "MIICdgIBADANBgkqhkiG9w0BAQEFAASCAmAwggJcAgEAAoGBAMOunJ6/oUy1HfCdLrGtV1NVHAaPeqJu9LkteMqfzLdSxf+LzD81ofhW0XxZ1cghum9g2mtgP6VCRJh6XPdZuCXg7h8pYfzLvbIHLRfu8Rw4ViQYT8UH5nUSat/GOCAam9GBIy9HDZgGymZONLUqKok5SJkiuMejv8KiYiafwVxlAgMBAAECgYAcdsDHgr52xv2061hIdht2vrGV7rb6+8LTUN76MmZ34C1276HlK+sEkbRlLzgepXFWFDORXO3FHy+VMm9ld4KGlnzlWuuQhGZ0IBgScgW233Gqwyd6jbFYG9SwbZQAPf18DKgbRuFi+m/2cQ8I9ITYZnox0/BN7STNAE9zFAX6HQJBAPpMKmLNXIA8Cccv55lzPo3PuOj67LSwc1PADxKpRjDgKJHMdZ8KZWwbtN5p8f5cUPT6g8NrhIgbFo+yuQtsDt8CQQDII+hEQoV+2i5YNMMkiEm/4uzr+ZNpsMn9sv+wWdG5Bu5LlA/N92K7QgtzdU/zxDSUQrBsl01vTRH7M+OJZvE7AkApo/g9PbsQ3mwmBjM6lTCn+RHjOLOej+hv23jmeuDhirlVIDXFQr6C0M0zX17SGVuilfbL0RxYZGFJgMtGOjDzAkEAwTLoY/xTIcE8O6mzNvDZQIKucpzZ0Iz4cA77BCGwcgxevFaRayIEDQAUTcBRDd+5YeV+qVTlSyv6z6OnYlwdQQJAAd9oqSbQX6ScuyOR861Iz8awfbEsvQLDs5zRjfjfEBxCZh8lEdJt1cBm4o1AXvDuXrBtC3NNVY/Px/IOMNh2EA==";
+        String plainText = "hampster";
         String factor = "vmfJ.M&VNAiL6Yz=Cc";
 
         String encryptWithSHA512Str = encryptWithSHA512(plainText, factor);

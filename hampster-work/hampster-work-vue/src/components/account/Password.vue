@@ -6,7 +6,7 @@ import $ from "jquery";
 import axios from "axios";
 import bcrypt from 'bcryptjs';
 import SetName from "./SetName.vue";
-import {getProfile, putProfile, register, userLogin} from "../../api/search.js";
+import {register, userLogin} from "../../api/search/user.js";
 import router from "../../router/index.js";
 import { publicKey } from "../../utils/request.js";
 
@@ -47,66 +47,73 @@ function addAccount() {
   //   uMail: account._object.account,
   //   uPass: bcrypt.hashSync($('.login-signup-pass').val(), bcrypt.genSaltSync())
   // })
-    register({
-      uId: 0,
-      uName: "Registered Hamster",
-      uMail: account._object.account,
-      uPass: bcrypt.hashSync($('.login-signup-pass').val(), bcrypt.genSaltSync())
-    }).then(data => {
-      if (data.status) {
-        localStorage.setItem("utoken", data.user_token)
-        // const accessKey = 'IEJiPMBh0214n5H8wNPH';
-        // const secretKey = 'RKcBEB9AXN4zyr02rMG1GpQ5ZDldGJhZEvdHo3nw';
-        getProfile('default.svg')
-        // axios.get("http://47.109.149.213:9000/profile/default.svg", {responseType: 'blob'})
-          .then(response => {
-            const blob = new Blob([response]);
-            // axios.put("http://47.109.149.213:9000/profile/" + data.data.user_token + ".svg",
-            //     blob,  {
-            //   headers: {
-            //     'Content-Type': 'image/svg+xml', // 指定内容类型为二进制流
-            //     'Authorization': `Bearer ${accessKey}:${secretKey}`
-            //   }
-            // })
-            putProfile(data.user_token + ".svg", blob)
-                .then(response => {
-                  loadStop()
-                  moveLeft()
-                  // toSetName()
-                })
-                .catch(error => {
-                  console.error(error);
-                });
-          });
-         }
-      })
-      .catch(error => {
-        console.error(error);
-      });
+  register({
+    uId: 0,
+    uName: "Registered Hamster",
+    uMail: account._object.account,
+    uPass: bcrypt.hashSync($('.login-signup-pass').val(), bcrypt.genSaltSync())
+  }).then(data => {
+    if (data.status) {
+      // localStorage.setItem("utoken", data.user_token)
+      // // const accessKey = 'IEJiPMBh0214n5H8wNPH';
+      // // const secretKey = 'RKcBEB9AXN4zyr02rMG1GpQ5ZDldGJhZEvdHo3nw';
+      // getProfile('default.svg')
+      // // axios.get("http://47.109.149.213:9000/profile/default.svg", {responseType: 'blob'})
+      //   .then(response => {
+      //     const blob = new Blob([response]);
+      //     // axios.put("http://47.109.149.213:9000/profile/" + data.data.user_token + ".svg",
+      //     //     blob,  {
+      //     //   headers: {
+      //     //     'Content-Type': 'image/svg+xml', // 指定内容类型为二进制流
+      //     //     'Authorization': `Bearer ${accessKey}:${secretKey}`
+      //     //   }
+      //     // })
+      //     putProfile(data.user_token + ".svg", blob)
+      //         .then(response => {
+      //           loadStop()
+      //           moveLeft()
+      //           // toSetName()
+      //         })
+      //         .catch(error => {
+      //           console.error(error);
+      //         });
+      //   });
+          loadStop()
+          moveLeft()
+       }
+    })
+    .catch(error => {
+      console.error(error);
+    }
+  );
 }
 
 import { displayWrong } from "./Login.vue";
 import {ElMessage} from "element-plus";
+import FingerprintJS from '@fingerprintjs/fingerprintjs';
+import { store } from '../../main.js'
+
 async function login() {
   loadMoving()
-  // const ur = "http://localhost:8082/json/user/register"
-  // axios.post(ur, {
-  //   uId: 0,
-  //   uName: "Registered Hamster",
-  //   uMail: account._object.account,
-  //   uPass: bcrypt.hashSync($('.login-signup-pass').val(), bcrypt.genSaltSync())
-  // })
+
+  // 初始化 FingerprintJS
+  const fp = await FingerprintJS.load();
+  // 生成指纹
+  const result = await fp.get();
+  const fpId =  result.visitorId;
   userLogin({
     uMail: account._object.account.includes('@') ?
         account._object.account : null,
     uPhone: account._object.account.includes('@') ?
         null : account._object.account,
-    uPass: await encryptData($('.login-signup-pass').val(), publicKey)
+    uPass: await encryptData($('.login-signup-pass').val(), publicKey),
+    uFingerPrint: await encryptData(fpId.toString(), publicKey)
     // uPass: $('.login-signup-pass').val()
   }).then(res => {
     loadStop()
     if (res.code === 200) {
-      localStorage.setItem("utoken", res.msg)
+      store.commit('setNewToken', res.msg)
+      // localStorage.setItem("utoken", res.msg)
       router.go(0)
     } else {
       displayWrong("密码错误，请输入其它密码或<a href=\"#\" class=\"login-forget-top\" style=\"margin-left: 0px\">找回密码</a>")
@@ -139,7 +146,7 @@ import { CryptoJS } from 'jsrsasign';
 export async function encryptData(data, publicKey) {
   try {
     const re = AES.encrypt(data, publicKey)
-    console.log(AES.decrypt(re.info, re.decryptedKey))
+    // console.log(AES.decrypt(re.info, re.decryptedKey))
     return re;
   } catch (error) {
     console.error('加密失败:', error);
@@ -174,7 +181,7 @@ function encrypt(plaintext, publicKey) {
     return {
       info: iv.toString(CryptoJS.enc.Base64) + encryptMessage,
       key: encryptWithRSA(publicKey, aesKey.toString()),
-      decryptedKey: aesKey.toString()
+      // decryptedKey: aesKey.toString()
     };
   } catch (error) {
     return null

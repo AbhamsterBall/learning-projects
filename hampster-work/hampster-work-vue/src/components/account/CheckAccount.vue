@@ -7,7 +7,7 @@ import {store} from "../../main.js";
 import axios from "axios";
 import Password from "./Password.vue";
 import { getMailCode } from "./SignUp.vue"
-import {checkMailCode} from "../../api/search.js";
+import {checkMailCode} from "../../api/search/user.js";
 
 let buttonColor = ref("#a9acba")
 let buttonPointer = ref("none")

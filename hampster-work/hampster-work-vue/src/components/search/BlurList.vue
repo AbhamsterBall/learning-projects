@@ -105,7 +105,7 @@ import {ref} from "vue";
 import $ from "jquery";
 import { getTitle } from '../../views/search/index.vue'
 import { getPage } from './List.vue'
-import {blogSearch} from "../../api/blog.js";
+import { blogSearch } from "../../api/search/search.js";
 
 import { getUrlTitle } from "./List.vue";
 

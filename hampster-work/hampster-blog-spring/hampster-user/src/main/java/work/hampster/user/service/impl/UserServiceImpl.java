@@ -3,6 +3,10 @@ package work.hampster.user.service.impl;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.toolkit.ObjectUtils;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.Jwts;
+import io.minio.errors.*;
+import org.jetbrains.annotations.TestOnly;
 import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -10,21 +14,20 @@ import org.springframework.mock.web.MockHttpServletRequest;
 import org.springframework.stereotype.Service;
 import work.hampster.transfer.RSADTO;
 import work.hampster.user.mapper.UserMapper;
-import work.hampster.user.model.User;
+import work.hampster.model.User;
 import work.hampster.user.service.UserService;
-import work.hampster.user.transfer.UserDTO;
+import work.hampster.transfer.UserDTO;
 import work.hampster.util.AES;
 import work.hampster.util.AjaxResult;
+import work.hampster.util.Jwt;
+import work.hampster.util.Minio;
 
-import javax.crypto.BadPaddingException;
-import javax.crypto.IllegalBlockSizeException;
-import javax.crypto.NoSuchPaddingException;
 import javax.mail.*;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
+import java.io.IOException;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
-import java.security.spec.InvalidKeySpecException;
 import java.util.*;
 
 @Service
@@ -32,14 +35,15 @@ public class UserServiceImpl extends EntityServiceImpl<UserMapper, User> impleme
 
     private final UserServicePlus userServicePlus;
     private final RSADTO rsaDTO;
-//    final Properties properties;
+    private final Jwt jwtUtil;
 
     @Autowired
     public UserServiceImpl(ServiceImpl<UserMapper, User> userServicePlus,
-                           RSADTO rsaDTO) {
+                           RSADTO rsaDTO, Jwt jwtUtil) {
         super(userServicePlus);
         this.userServicePlus = (UserServicePlus) userServicePlus;
         this.rsaDTO = rsaDTO;
+        this.jwtUtil = jwtUtil;
 //        this.properties = properties;
     }
 
@@ -127,12 +131,34 @@ public class UserServiceImpl extends EntityServiceImpl<UserMapper, User> impleme
                 new QueryWrapper<User>()
                     .eq("u_phone", info.getUPhone()));
         if (ObjectUtils.isNotEmpty(re)) {
+            info.setUserInfo(re);
             if (BCrypt.checkpw(AES.decrypt(info.getUPassDTO()), re.getUPass()))
-                return AjaxResult.success(re.getUToken());
+//                return AjaxResult.success(re.getUToken());
+                return AjaxResult.success(jwtUtil.generateUserToken(info));
             else
                 return AjaxResult.error("password error");
         } else
             return AjaxResult.error("account not exist");
+    }
+
+    @Override
+    public AjaxResult getUserInfo(String token) throws ServerException, InsufficientDataException, ErrorResponseException, IOException, NoSuchAlgorithmException, InvalidKeyException, InvalidResponseException, XmlParserException, InternalException {
+        HashMap<String, Object> map = new HashMap<>();
+        Claims claims;
+        try {
+            claims = jwtUtil.extractAllClaims(token);
+        } catch (Exception e) {
+            return AjaxResult.error("token error");
+        }
+        map.put("userId", claims.get("user_id"));
+        map.put("userName", claims.get("user_name"));
+        map.put("userFingerPrint", claims.get("fingerprint"));
+
+        // get profile
+        User user = userServicePlus.getById((Integer) claims.get("user_id"));
+        map.put("userProfile", Minio.getTempUrl("profile/" + user.getUProfile()));
+
+        return AjaxResult.success(map);
     }
 
     public String getCode(String characters, int length) {

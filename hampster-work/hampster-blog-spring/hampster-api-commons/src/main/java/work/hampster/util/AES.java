@@ -49,7 +49,7 @@ public class AES {
         return decryptAES(ciphertextBase64, aesKey, ivBase64);
     }
 
-    public String encrypt(AESDTO aesDTO) throws Exception {
+    public static String encrypt(AESDTO aesDTO) throws Exception {
         String encryptInfo = aesDTO.getInfo();
         String keyStr = RSA.decrypt(aesDTO.getKey(), rsaDTO.getPrivateKey());
 

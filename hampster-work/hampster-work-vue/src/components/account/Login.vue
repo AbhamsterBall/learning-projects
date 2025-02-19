@@ -7,7 +7,7 @@ import password from './Password.vue'
 import { ref } from "vue";
 import { moveRight } from "./SignUp.vue";
 import { veriTest } from "./CheckAccount.vue";
-import {isNameExist} from "../../api/search.js";
+import { isNameExist } from "../../api/search/user.js";
 import Password from "./Password.vue";
 
 $(() => {

@@ -1,4 +1,4 @@
-package work.hampster.user.model;
+package work.hampster.model;
 
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
@@ -48,6 +48,10 @@ public class User implements Serializable {
     @SerializedName("uPhone")
     @JsonProperty("uPhone")
     private String uPhone;
+
+    @SerializedName("uProfile")
+    @JsonProperty("uProfile")
+    private String uProfile;
 
     private static final long serialVersionUID = 1L;
 

@@ -2,10 +2,8 @@ package work.hampster.user.util;
 
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.mock.web.MockHttpServletRequest;
-import work.hampster.user.model.User;
 
 import java.lang.reflect.Method;
-import java.util.LinkedHashMap;
 
 public class Entity {
 
