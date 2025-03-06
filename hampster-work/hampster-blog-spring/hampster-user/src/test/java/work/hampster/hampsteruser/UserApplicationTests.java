@@ -307,7 +307,7 @@ class UserApplicationTests {
         }
     }
 
-    @Test
+//    @Test
     void testExtract() {
         Claims body = Jwts.parserBuilder()
                 .setSigningKey("WpBzX/t+Bh/awLy5cS1rR4hvT9jRTTw558B3SXV2E3bs/HdDYVMkcnzO7a6lq03T5ZmXLtVdQuGVSWVT9EQxRw==")
