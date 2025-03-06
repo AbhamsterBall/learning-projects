@@ -13,12 +13,14 @@ import work.hampster.user.util.UserRedis;
 import work.hampster.transfer.UserDTO;
 import work.hampster.util.AjaxResult;
 import work.hampster.util.Json;
+import work.hampster.util.Redis;
 
 import java.io.IOException;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
 import java.util.HashMap;
 
+import static work.hampster.util.Json.getGson;
 import static work.hampster.util.Json.toJson;
 
 @RestController
@@ -84,8 +86,18 @@ public class UserController {
     }
 
     @GetMapping(value = "/user/info", produces = "application/json; charset=utf-8")
-    public String getUserInfo(@RequestParam String token) throws ServerException, InsufficientDataException, ErrorResponseException, IOException, NoSuchAlgorithmException, InvalidKeyException, InvalidResponseException, XmlParserException, InternalException {
-        return toJson(userService.getUserInfo(token));
+    public Object getUserInfo(@RequestHeader(value = "Authorization") String token,
+                              @RequestHeader(value = "Fingerprint") String fingerprint) throws ServerException, InsufficientDataException, ErrorResponseException, IOException, NoSuchAlgorithmException, InvalidKeyException, InvalidResponseException, XmlParserException, InternalException {
+        String finalToken = token.replace("Bearer ", "");
+        return Redis.readAndWrite(
+                "user_info_" + token + "_" + fingerprint,
+                () -> {
+                    try {
+                        return toJson(userService.getUserInfo(finalToken, fingerprint));
+                    } catch (Exception e) {
+                        throw new RuntimeException(e);
+                    }
+                }, 60 * 24);
     }
 
 }

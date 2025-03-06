@@ -62,14 +62,19 @@ function loginClick() {
   <a href="#" class="login-mini-back"></a>
   <login-icon @click="loginClick" width="48" height="48" color="white" class="loginIcon"/>
   <div class="profile">
-<!--    <suspense>-->
-<!--      <template #default>-->
-<!--&lt;!&ndash;        <profile/>&ndash;&gt;-->
-<!--      </template>-->
-<!--      <template #fallback>-->
-        <loading box-width="48px" box-height="48px" bg="#f6f6f6" border-radius="24px" class="profile-img"/>
-<!--      </template>-->
-<!--    </suspense>-->
+    <suspense>
+      <template #default>
+        <profile/>
+      </template>
+      <template #fallback>
+    <div style="background-color: #f6f6f6;
+          width: 48px; height: 48px; border-radius: 24px;
+          margin-left: -2px">
+        <loading box-width="48px" box-height="48px" bg="#f6f6f6"
+                 border-radius="24px" class="profile-img"/>
+    </div>
+      </template>
+    </suspense>
   </div>
   <login/>
 </template>
@@ -96,7 +101,7 @@ function loginClick() {
 }
 .profile-img {
   width: 52px;
-  margin-left: -2px;
+  margin-left: -0px;
   margin-top: -2px;
 }
 .login:hover {

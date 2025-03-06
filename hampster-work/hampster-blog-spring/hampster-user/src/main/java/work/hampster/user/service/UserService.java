@@ -17,5 +17,5 @@ public interface UserService extends EntityService<UserMapper, User> {
     int getIdByToken(String utoken);
 
     AjaxResult login(UserDTO info) throws Exception;
-    AjaxResult getUserInfo(String token) throws ServerException, InsufficientDataException, ErrorResponseException, IOException, NoSuchAlgorithmException, InvalidKeyException, InvalidResponseException, XmlParserException, InternalException;
+    AjaxResult getUserInfo(String token, String fingerprint) throws ServerException, InsufficientDataException, ErrorResponseException, IOException, NoSuchAlgorithmException, InvalidKeyException, InvalidResponseException, XmlParserException, InternalException;
 }

@@ -1,5 +1,5 @@
 import request from '../../utils/request.js'
-import {store} from "../../main.js";
+import {fingerprint, store} from "../../main.js";
 
 const baseUrl = import.meta.env.VITE_API_USER_BASE_URL
 const minioBaseUrl = import.meta.env.VITE_API_MINIO_BASE_URL
@@ -49,17 +49,18 @@ export function userLogin(data) {
     })
 }
 
-export function getUserInfo() {
-    // return request({
-    //     url: minioBaseUrl + "/profile/" + name,
-    //     method: 'get',
-    //     responseType: 'blob'
-    // })
+export async function getUserInfo() {
+    const fpId =  fingerprint.visitorId;
     return request({
         url: baseUrl + "/user/info",
-        params: {
-            token: store.state.token
-        },
+        // params: {
+        //     token: store.state.token,
+        //     fingerprint: fpId
+        // },
         method: 'get',
+        headers: {
+            'Authorization': `Bearer ${store.state.token}`,
+            'Fingerprint': fpId
+        }
     })
 }

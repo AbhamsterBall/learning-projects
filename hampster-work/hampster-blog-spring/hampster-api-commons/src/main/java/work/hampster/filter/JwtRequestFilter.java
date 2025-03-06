@@ -20,19 +20,19 @@ import java.util.Objects;
 public class JwtRequestFilter extends OncePerRequestFilter {
 
     public static final String[] EXCLUDE_URL = {
-            "/actuator",
-            "/getUnionPayCodeList",
-            "/spi-api",
-            "/store", // TODO: DELETE AFTER TEST   fubei ER CODE GENERATOR
-//            "/dispatchQrCodeQuery", // TODO: DELETE AFTER TEST   fubei ER CODE GENERATOR
-//            "/ali", // TODO: DELETE AFTER TEST   ali auth generator
-//            "/aliThirdParty", // TODO: DELETE AFTER TEST   ali third party generator
-//            "/aliN7H" // TODO: DELETE AFTER TEST   ali n7h
-            "/aliN7H/setDevice", // android api
-            "/aliN7H/getShopList", // android api
-            "/aliN7H/getInternalShops", // android api
-            "/aliN7H/getDeviceList",
-            "/aliN7H/getAliShopList"
+//            "/actuator",
+//            "/getUnionPayCodeList",
+//            "/spi-api",
+//            "/store", // TODO: DELETE AFTER TEST   fubei ER CODE GENERATOR
+////            "/dispatchQrCodeQuery", // TODO: DELETE AFTER TEST   fubei ER CODE GENERATOR
+////            "/ali", // TODO: DELETE AFTER TEST   ali auth generator
+////            "/aliThirdParty", // TODO: DELETE AFTER TEST   ali third party generator
+////            "/aliN7H" // TODO: DELETE AFTER TEST   ali n7h
+//            "/aliN7H/setDevice", // android api
+//            "/aliN7H/getShopList", // android api
+//            "/aliN7H/getInternalShops", // android api
+//            "/aliN7H/getDeviceList",
+//            "/aliN7H/getAliShopList"
     };
 
     private final Jwt jwtUtil;

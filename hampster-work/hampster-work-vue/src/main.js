@@ -10,6 +10,11 @@ import Home from "./views/Home.vue";
 import router from "./router"
 import {hljs} from "highlight/lib/vendor/highlight.js/highlight.js";
 import 'element-plus/dist/index.css';
+import FingerprintJS from "@fingerprintjs/fingerprintjs";
+
+const fp = await FingerprintJS.load();
+// 生成指纹
+export const fingerprint = await fp.get();
 
 const app = createApp(App);
 

@@ -142,7 +142,7 @@ public class UserServiceImpl extends EntityServiceImpl<UserMapper, User> impleme
     }
 
     @Override
-    public AjaxResult getUserInfo(String token) throws ServerException, InsufficientDataException, ErrorResponseException, IOException, NoSuchAlgorithmException, InvalidKeyException, InvalidResponseException, XmlParserException, InternalException {
+    public AjaxResult getUserInfo(String token, String fingerprint) throws ServerException, InsufficientDataException, ErrorResponseException, IOException, NoSuchAlgorithmException, InvalidKeyException, InvalidResponseException, XmlParserException, InternalException {
         HashMap<String, Object> map = new HashMap<>();
         Claims claims;
         try {
@@ -150,15 +150,18 @@ public class UserServiceImpl extends EntityServiceImpl<UserMapper, User> impleme
         } catch (Exception e) {
             return AjaxResult.error("token error");
         }
-        map.put("userId", claims.get("user_id"));
-        map.put("userName", claims.get("user_name"));
-        map.put("userFingerPrint", claims.get("fingerprint"));
+        if (!claims.get("fingerprint").equals(fingerprint))
+            return AjaxResult.error("fingerprint error");
+        else {
+            map.put("userId", claims.get("user_id"));
+            map.put("userName", claims.get("user_name"));
 
-        // get profile
-        User user = userServicePlus.getById((Integer) claims.get("user_id"));
-        map.put("userProfile", Minio.getTempUrl("profile/" + user.getUProfile()));
+            // get profile
+            User user = userServicePlus.getById((Integer) claims.get("user_id"));
+            map.put("userProfile", Minio.getTempUrl("profile/" + user.getUProfile()));
 
-        return AjaxResult.success(map);
+            return AjaxResult.success(map);
+        }
     }
 
     public String getCode(String characters, int length) {
