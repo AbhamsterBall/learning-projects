@@ -2,6 +2,8 @@
 import rightArrow from '../svg/RightArrow.vue'
 import leftArrow from '../svg/LeftArrow.vue'
 import { maxPage } from "../../views/search/index.vue";
+// const moduleT = await import('../../views/search/index.vue');
+// const { maxPage } = moduleT;
 import $ from "jquery";
 import * as left from "../svg/LeftArrow.vue";
 import * as right from "../svg/RightArrow.vue";
@@ -15,9 +17,12 @@ $(() => {
 import $ from "jquery";
 import { getPage, setPage, getName} from "./List.vue";
 import { setShowSuspense } from "../../views/search/index.vue";
+// const moduleT = await import('../../views/search/index.vue');
+// const { setShowSuspense } = moduleT;
 import * as left from "../svg/LeftArrow.vue";
 import * as right from "../svg/RightArrow.vue";
 import { maxPage } from "../../views/search/index.vue";
+// const { maxPage } = moduleT;
 
 export default {
   name: "PageNavi",

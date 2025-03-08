@@ -268,7 +268,7 @@ export function passTest(outString, isFormatValid) {
         <div class="login-input">
           <fieldset class="name-field">
             <legend class="name-legend">请输入密码</legend>
-            <input type="password" value="19990415hyh" placeholder="••••••••••••" class="login-signup-pass login-input-general" maxlength="80">
+            <input type="password" value="" placeholder="••••••••••••" class="login-signup-pass login-input-general" maxlength="80">
           </fieldset>
           <div class="login-format">
             <small-warning width="16" height="16" style="margin-right: 4px; opacity: .8"/>

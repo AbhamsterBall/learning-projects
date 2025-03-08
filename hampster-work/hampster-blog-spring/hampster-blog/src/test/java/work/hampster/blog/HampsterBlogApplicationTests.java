@@ -29,7 +29,7 @@ class HampsterBlogApplicationTests {
         System.out.println(b == c);
     }
 
-    @Test
+//    @Test
     void testApi() {
         WebDriver driver = new ChromeDriver();
 

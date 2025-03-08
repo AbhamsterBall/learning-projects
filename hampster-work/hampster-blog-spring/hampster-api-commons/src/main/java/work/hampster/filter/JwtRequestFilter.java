@@ -47,11 +47,11 @@ public class JwtRequestFilter extends OncePerRequestFilter {
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain chain)
             throws ServletException, IOException {
 
-//        response.setHeader("Access-Control-Allow-Origin", "*");
-//        response.setHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS, DELETE, PUT");
-//        response.setHeader("Access-Control-Max-Age", "12000");
-//        response.setHeader("Access-Control-Allow-Headers", "Access-Control-Allow-Headers, Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
-//        response.setHeader("Access-Control-Expose-Headers", "*");
+        response.setHeader("Access-Control-Allow-Origin", "*");
+        response.setHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS, DELETE, PUT");
+        response.setHeader("Access-Control-Max-Age", "12000");
+        response.setHeader("Access-Control-Allow-Headers", "Access-Control-Allow-Headers, Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
+        response.setHeader("Access-Control-Expose-Headers", "*");
 //
 ////        System.out.println("authorization: " + request.getHeaders("Authorization"));
 //
@@ -65,7 +65,8 @@ public class JwtRequestFilter extends OncePerRequestFilter {
 //            return;
 //        }
 //
-////        System.out.println(request.getRequestURI());
+//        System.out.println(request.getRequestURI());
+        logger.info("request: " + request.getRequestURI());
 ////        System.out.println(authorizationHeader.startsWith("APIBearer ") + " " + authorizationHeader);
 //        if (ObjectUtils.isNotEmpty(authorizationHeader)) {
 //

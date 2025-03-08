@@ -3,11 +3,10 @@ import $ from "jquery";
 import { marked } from "marked";
 import { ref } from "vue";
 import Loading from "../Loading.vue";
-import * as all from "../../views/Home.vue";
 import { getBlogContentSummary } from "../../api/blog/blog.js";
 
 $(() => {
-  getContent()
+
 
   // $("<script>").prop("src", "highlight/lib/vendor/highlight.js/highlight.js").appendTo("head");
   // $("<script>").html("  hljs.initHighlightingOnLoad();").appendTo("head");
@@ -149,56 +148,23 @@ async function getSummary(info) {
 <script>
 import {ref} from "vue";
 import { setTitle } from "../../views/blog/index.vue";
+// const module = await import("../../views/blog/index.vue")
+// const { setTitle } = module
 
 let blog_content = ref("")
 let isContentLoading = ref(true)
 
-export async function getContent() {
-  await new Promise(resolve => {
-    $(".markdown").eq(0).html("");
-    isContentLoading.value = true
-    let currentUrl = window.location.href.split('/');
-    if (currentUrl[4] !== undefined && currentUrl[4] !== "") {
-      setTitle(
-          currentUrl[4] === "ALL" ? (
-              ($(window).width() > 1000) ? "HAMPSTER.WORK" : "HAMPSTER"
-          ) : currentUrl[4]
-      )
-    }
-    if (currentUrl[5] !== undefined && currentUrl[5] !== "")
-      getBlogContent(currentUrl[5]).then((data) => {
-      // $.get("http://localhost:8081/json/blog/" + currentUrl[5], function(data) {
-        isContentLoading.value = false
-        blog_content.value = data
-        prepMarkDown()
-        resolve()
-      });
-    else {
-      isContentLoading.value = false
-      prepMarkDown()
-      resolve()
-    }
-  })
-}
+import * as hljs from '../../highlight/highlight.min.js'
 
-function prepMarkDown() {
-  blog_content.value = blog_content.value.replace(/<textarea>/g, '').replace(/\/<textarea>/g, '');
-  let text = marked.parse(blog_content.value);
-
-  $(".markdown").eq(0).html(text);
-
-  $("<script>").html("hljs.initHighlighting.called = false;  hljs.initHighlighting();").remove();
-  $("<script>").html("hljs.initHighlighting.called = false;  hljs.initHighlighting();").appendTo("head");
-
-  $('.blog-content').css('overflow-y', 'hidden')
-  $('.blog-content').css('overflow-y', 'auto')
-}
+// function
 import $ from "jquery";
 import { marked } from "marked";
-import { hljs } from "highlight/lib/vendor/highlight.js/highlight.js";
+// import { hljs } from "highlight/lib/vendor/highlight.js/highlight.js";
 
 export default {
+  name: "Content",
   mounted() {
+    this.getContent(this)
     // for (var i = 0 ; i < $(".markdown").length ; i++) {
     //   let text = marked.parse($(".markdown").eq(i).text());
     //   $(".markdown").eq(i).html(text);
@@ -206,6 +172,65 @@ export default {
     //
     // $('.blog-content').css('overflow-y', 'hidden')
     // $('.blog-content').css('overflow-y', 'auto')
+  },
+  methods: {
+    async getContent(self) {
+      await new Promise(resolve => {
+        $(".markdown").eq(0).html("");
+        isContentLoading.value = true
+        let currentUrl = window.location.href.split('/');
+        if (currentUrl[4] !== undefined && currentUrl[4] !== "") {
+          setTitle(
+              currentUrl[4] === "ALL" ? (
+                  ($(window).width() > 1000) ? "HAMPSTER.WORK" : "HAMPSTER"
+              ) : currentUrl[4]
+          )
+        }
+        if (currentUrl[5] !== undefined && currentUrl[5] !== "")
+          getBlogContent(currentUrl[5]).then((data) => {
+            // $.get("http://localhost:8081/json/blog/" + currentUrl[5], function(data) {
+            isContentLoading.value = false
+            blog_content.value = data
+            this.prepMarkDown(self)
+            resolve()
+          });
+        else {
+          isContentLoading.value = false
+          this.prepMarkDown(self)
+          resolve()
+        }
+      })
+    },
+    prepMarkDown(self) {
+      blog_content.value = blog_content.value.replace(/<textarea>/g, '').replace(/\/<textarea>/g, '');
+      let text = marked.parse(blog_content.value);
+
+      // text = hljs.highlight(text, { language: 'javascript' }).value
+
+      self.$forceUpdate();
+
+      self.$nextTick(() => {
+        $(".markdown").eq(0).html(text);
+
+        console.log(text)
+
+        $("<script>").html("hljs.initHighlighting.called = false;  hljs.initHighlighting();").remove();
+        $("<script>").html("hljs.initHighlighting.called = false;  hljs.initHighlighting();").appendTo("body");
+
+        // setTimeout(() => {
+        //   hljs.initHighlighting.called = false;
+        //   hljs.initHighlighting();
+        // }, 1000)
+
+        // hljs.initHighlightingOnLoad();
+        // hljs.highlightAll()
+        // hljs.highlightBlock($(".markdown").eq(0))
+
+        $('.blog-content').css('overflow-y', 'hidden')
+        $('.blog-content').css('overflow-y', 'auto')
+      })
+
+    }
   }
 }
 

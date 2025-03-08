@@ -5,8 +5,6 @@ import './assets/global.css'
 import './assets/hljs.css'
 import App from './App.vue'
 import { createRouter, createWebHistory } from 'vue-router';
-import SearchIndex from "./views/search/index.vue";
-import Home from "./views/Home.vue";
 import router from "./router"
 import {hljs} from "highlight/lib/vendor/highlight.js/highlight.js";
 import 'element-plus/dist/index.css';

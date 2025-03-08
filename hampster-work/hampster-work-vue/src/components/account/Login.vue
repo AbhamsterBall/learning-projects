@@ -124,7 +124,7 @@ function toLogin() {
       <div class="login-input">
         <fieldset class="name-field">
           <legend class="name-legend">邮箱或手机号</legend>
-          <input type="text" value="ajh415@hotmail.com" placeholder="hampster@hampster.work | (+86) 12345678900" class="login-username" maxlength="114">
+          <input type="text" value="" placeholder="hampster@hampster.work | (+86) 12345678900" class="login-username" maxlength="114">
         </fieldset>
         <div class="login-format">
           <small-warning width="16" height="16" style="margin-right: 4px; opacity: .8"/>

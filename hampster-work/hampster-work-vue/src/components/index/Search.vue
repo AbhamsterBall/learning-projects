@@ -3,6 +3,8 @@ import searchIcon from '../svg/SearchIcon.vue'
 import { ref } from 'vue'
 import $ from 'jquery'
 import * as all from '../../views/Home.vue'
+// const all = await import('../../views/Home.vue');
+console.log(all)
 
 const color = ref("#535bf2")
 const getPosOfIcon = () => {

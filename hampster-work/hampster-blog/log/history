@@ -8,3 +8,43 @@ TRACE [http-nio-8082-exec-2] - <==        Row: 16, amHiAmXBfaatEj8A, Registered 
 TRACE [http-nio-8082-exec-2] - <==        Row: 16, amHiAmXBfaatEj8A, Registered Hamster, $2a$10$wpITvLPVgnyNTzQ5CnTWPO9TCzAnRR2nhzPdyRlPxPkLQoWzw5DCa, ajh415@hotmail.com, null, default.svg
 DEBUG [http-nio-8082-exec-2] - <==      Total: 1
 DEBUG [http-nio-8082-exec-2] - <==      Total: 1
+DEBUG [http-nio-8082-exec-2] - ==>  Preparing: SELECT COUNT( * ) AS total FROM user WHERE (u_phone = ?)
+DEBUG [http-nio-8082-exec-2] - ==>  Preparing: SELECT COUNT( * ) AS total FROM user WHERE (u_phone = ?)
+DEBUG [http-nio-8082-exec-2] - ==> Parameters: 18280031397(String)
+DEBUG [http-nio-8082-exec-2] - ==> Parameters: 18280031397(String)
+TRACE [http-nio-8082-exec-2] - <==    Columns: total
+TRACE [http-nio-8082-exec-2] - <==    Columns: total
+TRACE [http-nio-8082-exec-2] - <==        Row: 0
+TRACE [http-nio-8082-exec-2] - <==        Row: 0
+DEBUG [http-nio-8082-exec-2] - <==      Total: 1
+DEBUG [http-nio-8082-exec-2] - <==      Total: 1
+DEBUG [http-nio-8082-exec-4] - ==>  Preparing: SELECT COUNT( * ) AS total FROM user WHERE (u_phone = ?)
+DEBUG [http-nio-8082-exec-4] - ==>  Preparing: SELECT COUNT( * ) AS total FROM user WHERE (u_phone = ?)
+DEBUG [http-nio-8082-exec-4] - ==> Parameters: 17882372530(String)
+DEBUG [http-nio-8082-exec-4] - ==> Parameters: 17882372530(String)
+DEBUG [http-nio-8082-exec-5] - ==>  Preparing: SELECT u_id,u_token,u_name,u_pass,u_mail,u_phone,u_profile FROM user WHERE u_id=?
+DEBUG [http-nio-8082-exec-5] - ==>  Preparing: SELECT u_id,u_token,u_name,u_pass,u_mail,u_phone,u_profile FROM user WHERE u_id=?
+DEBUG [http-nio-8082-exec-5] - ==> Parameters: 16(Integer)
+DEBUG [http-nio-8082-exec-5] - ==> Parameters: 16(Integer)
+TRACE [http-nio-8082-exec-5] - <==    Columns: u_id, u_token, u_name, u_pass, u_mail, u_phone, u_profile
+TRACE [http-nio-8082-exec-5] - <==    Columns: u_id, u_token, u_name, u_pass, u_mail, u_phone, u_profile
+TRACE [http-nio-8082-exec-5] - <==        Row: 16, amHiAmXBfaatEj8A, Registered Hamster, $2a$10$wpITvLPVgnyNTzQ5CnTWPO9TCzAnRR2nhzPdyRlPxPkLQoWzw5DCa, ajh415@hotmail.com, null, default.svg
+TRACE [http-nio-8082-exec-5] - <==        Row: 16, amHiAmXBfaatEj8A, Registered Hamster, $2a$10$wpITvLPVgnyNTzQ5CnTWPO9TCzAnRR2nhzPdyRlPxPkLQoWzw5DCa, ajh415@hotmail.com, null, default.svg
+DEBUG [http-nio-8082-exec-5] - <==      Total: 1
+DEBUG [http-nio-8082-exec-5] - <==      Total: 1
+TRACE [http-nio-8082-exec-4] - <==    Columns: total
+TRACE [http-nio-8082-exec-4] - <==    Columns: total
+TRACE [http-nio-8082-exec-4] - <==        Row: 0
+TRACE [http-nio-8082-exec-4] - <==        Row: 0
+DEBUG [http-nio-8082-exec-4] - <==      Total: 1
+DEBUG [http-nio-8082-exec-4] - <==      Total: 1
+DEBUG [http-nio-8082-exec-7] - ==>  Preparing: SELECT COUNT( * ) AS total FROM user WHERE (u_phone = ?)
+DEBUG [http-nio-8082-exec-7] - ==>  Preparing: SELECT COUNT( * ) AS total FROM user WHERE (u_phone = ?)
+DEBUG [http-nio-8082-exec-7] - ==> Parameters: 18280031397(String)
+DEBUG [http-nio-8082-exec-7] - ==> Parameters: 18280031397(String)
+TRACE [http-nio-8082-exec-7] - <==    Columns: total
+TRACE [http-nio-8082-exec-7] - <==    Columns: total
+TRACE [http-nio-8082-exec-7] - <==        Row: 0
+TRACE [http-nio-8082-exec-7] - <==        Row: 0
+DEBUG [http-nio-8082-exec-7] - <==      Total: 1
+DEBUG [http-nio-8082-exec-7] - <==      Total: 1

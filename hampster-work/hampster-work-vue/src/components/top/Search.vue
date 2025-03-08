@@ -3,8 +3,13 @@ import searchIcon from '../svg/SearchIcon.vue'
 import { ref } from 'vue'
 import $ from 'jquery'
 import * as all from '../../views/Home.vue'
+// const all = await import('../../views/Home.vue');
 import { getTitle as getBlogTitle } from "../../views/blog/index.vue";
+// const module = await import("../../views/blog/index.vue")
+// const { getTitle: getBlogTitle } = module;
 import { getTitle as getSearchTitle } from "../../views/search/index.vue";
+// const moduleT = await import('../../views/search/index.vue');
+// const { getTitle: getSearchTitle } = moduleT;
 import { useRoute } from 'vue-router';
 
 // const color = ref("#535bf2")

@@ -59,7 +59,7 @@ public class JasyptTest {
 
     @Test
     public void testENC() throws Exception {
-        String plainText = "hampster";
+        String plainText = "F:\\JAVA\\20231010\\hampster-work\\hampster-blog-spring\\hampster-blog\\src\\main\\resources\\summary.py";
         String factor = "vmfJ.M&VNAiL6Yz=Cc";
 
         String encryptWithSHA512Str = encryptWithSHA512(plainText, factor);

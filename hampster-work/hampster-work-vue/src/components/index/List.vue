@@ -2,7 +2,7 @@
 import { ref } from 'vue'
 import $ from 'jquery'
 import * as all from "../../views/Home.vue";
-import { setTitle } from "../../views/search/index.vue";
+// const all = await import('../../views/Home.vue');
 import {indexBtName} from "../../api/blog/blog.js";
 
 const name_data = ref([])

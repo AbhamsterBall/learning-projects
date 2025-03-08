@@ -8,6 +8,7 @@ import org.elasticsearch.client.Request;
 import org.elasticsearch.client.Response;
 import org.elasticsearch.client.RestClient;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import work.hampster.blog.mapper.BlogMapper;
 import work.hampster.blog.model.Blog;
@@ -25,6 +26,9 @@ import java.util.concurrent.atomic.AtomicReference;
 
 @Service
 public class BlogImpl extends EntityServiceImpl<BlogMapper, Blog> implements BlogService {
+
+    @Value("${python.program.summary}")
+    String pythonProgram;
 
     @Autowired
     public BlogImpl(ServiceImpl<BlogMapper, Blog> blogServicePlus) {
@@ -78,7 +82,7 @@ public class BlogImpl extends EntityServiceImpl<BlogMapper, Blog> implements Blo
     public String getBlogSummary(String info) {
         String re = "";
         try {
-            String pythonProgram = "F:\\JAVA\\20231010\\hampster-work\\hampster-blog-spring\\hampster-blog\\src\\main\\resources\\summary.py";
+//            String pythonProgram = "F:\\JAVA\\20231010\\hampster-work\\hampster-blog-spring\\hampster-blog\\src\\main\\resources\\summary.py";
             String arg = info;
             Process process = Runtime.getRuntime().exec("python " + pythonProgram + " " + arg);
 

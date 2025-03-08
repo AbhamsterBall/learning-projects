@@ -1,7 +1,4 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import SearchIndex from "../views/search/index.vue";
-import Home from "../views/Home.vue";
-import BlogIndex from "../views/blog/index.vue";
 
 // const routes = [
 //     {

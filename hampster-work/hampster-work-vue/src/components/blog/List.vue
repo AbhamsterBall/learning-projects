@@ -2,7 +2,10 @@
 import { ref } from 'vue'
 import $ from 'jquery'
 import * as all from "../../views/Home.vue"
+// const all = await import('../../views/Home.vue');
 import { getTitle, setTitle } from '../../views/blog/index.vue'
+// const module = await import("../../views/blog/index.vue")
+// const { getTitle, setTitle } = module
 import BlogRefresh from "../svg/BlogRefresh.vue";
 import Content from "./Content.vue"
 
@@ -136,6 +139,8 @@ let date = ref()
 import {ref} from "vue";
 import $ from "jquery";
 import { getTitle, setTitle } from '../../views/blog/index.vue'
+// const module = await import("../../views/blog/index.vue")
+// const { getTitle, setTitle } = module
 
 const page = ref(1)
 
@@ -265,43 +270,50 @@ export async function getBlogName(btName, index) {
 export let current_blog_name = ref("")
 export let shouldRefresh = ref(true)
 
-import { getContent} from "./Content.vue";
+import Content from "./Content.vue";
+console.log(Content)
 import { indexBtName } from "../../api/blog/blog.js";
 import { getBlogNameByType } from "../../api/blog/blog.js"
 
-function clicked(e, type, name) {
-  let all_list = $('.blogHref')
-  for (let i = 0 ; i < $('.blogHref').length ; i++) {
-    // $('.blogHref')[i].style.backgroundColor = "rgb(243, 243, 243)";
-    $('.blogHref')[i].style.backgroundColor = "transparent";
-    $('.blogHref')[i].style.color = 'black';
+export default {
+  methods: {
+    clicked(e, type, name) {
+      let all_list = $('.blogHref')
+      for (let i = 0 ; i < $('.blogHref').length ; i++) {
+        // $('.blogHref')[i].style.backgroundColor = "rgb(243, 243, 243)";
+        $('.blogHref')[i].style.backgroundColor = "transparent";
+        $('.blogHref')[i].style.color = 'black';
+      }
+      event.target.style.backgroundColor = '#476fb7';
+      event.target.style.color = 'white';
+
+      let newState = { page: "example" };
+      let newUrl = "/blog/" + type + "/" + name;
+      window.history.pushState(newState, "", newUrl);
+
+      if (type === 'ALL') {
+        if ($(window).width() < 1000)
+          setTitle("HAMPSTER")
+        else
+          setTitle("HAMPSTER.WORK")
+      } else {
+        setTitle(type)
+      }
+      current_blog_name = name;
+
+      const getContent = () => Content.methods.getContent(this)
+      getContent()
+      // // 设置条件变量为true，触发组件重新渲染
+      // shouldRefresh.value = false;
+      // // 在一段时间后将条件变量重置为false，以便下次刷新
+      // setTimeout(() => {
+      //   shouldRefresh.value = true;
+      // }, 100); // 设置一个适当的延迟时间
+
+    }
   }
-  event.target.style.backgroundColor = '#476fb7';
-  event.target.style.color = 'white';
-
-  let newState = { page: "example" };
-  let newUrl = "/blog/" + type + "/" + name;
-  window.history.pushState(newState, "", newUrl);
-
-  if (type === 'ALL') {
-    if ($(window).width() < 1000)
-      setTitle("HAMPSTER")
-    else
-      setTitle("HAMPSTER.WORK")
-  } else {
-    setTitle(type)
-  }
-  current_blog_name = name;
-
-  getContent()
-  // // 设置条件变量为true，触发组件重新渲染
-  // shouldRefresh.value = false;
-  // // 在一段时间后将条件变量重置为false，以便下次刷新
-  // setTimeout(() => {
-  //   shouldRefresh.value = true;
-  // }, 100); // 设置一个适当的延迟时间
-
 }
+// function
 </script>
 
 <style scoped>

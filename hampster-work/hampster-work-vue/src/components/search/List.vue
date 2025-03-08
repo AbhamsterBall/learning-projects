@@ -2,7 +2,10 @@
 import { ref } from 'vue'
 import $ from 'jquery'
 import * as all from "../../views/Home.vue"
+// const all = await import('../../views/Home.vue');
 import { getTitle } from '../../views/search/index.vue'
+// const module = await import('../../views/search/index.vue');
+// const { getTitle } = module;
 
 await getName()
 
@@ -75,6 +78,8 @@ let date = ref()
 import {ref} from "vue";
 import $ from "jquery";
 import { getTitle } from '../../views/search/index.vue'
+// const module = await import('../../views/search/index.vue');
+// const { getTitle } = module;
 import {searchBlogByType} from "../../api/blog/blog.js";
 
 const page = ref(1)
@@ -93,6 +98,8 @@ export function getUrlTitle() {
 const name_data = ref([])
 // export const maxPage = ref(1)
 import { maxPage } from "../../views/search/index.vue";
+// const moduleT = await import('../../views/search/index.vue');
+// const { maxPage } = moduleT;
 
 // export async function getMaxPage() {
 //   await getMaxPageAjax()
