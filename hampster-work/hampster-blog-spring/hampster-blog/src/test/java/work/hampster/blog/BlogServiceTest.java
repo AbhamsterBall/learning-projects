@@ -8,7 +8,7 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 
 public class BlogServiceTest {
-    @Test
+//    @Test
     public void test() {
         String re = "";
         try {

@@ -158,7 +158,9 @@ public class UserServiceImpl extends EntityServiceImpl<UserMapper, User> impleme
 
             // get profile
             User user = userServicePlus.getById((Integer) claims.get("user_id"));
-            map.put("userProfile", Minio.getTempUrl("profile/" + user.getUProfile()));
+            String profileURL = Minio.getTempUrl("profile/" + user.getUProfile());
+            map.put("userProfile", profileURL.replace("http://mail.hampster.work:9000/",
+                    "https://www.hampster.work/minio/"));
 
             return AjaxResult.success(map);
         }
