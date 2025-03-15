@@ -140,12 +140,12 @@ public class Minio {
         }
     }
 
-    public static String getTempUrl(String name) throws ServerException, InsufficientDataException, ErrorResponseException, IOException, NoSuchAlgorithmException, InvalidKeyException, InvalidResponseException, XmlParserException, InternalException {
+    public static String getTempUrl(String name, int expiry) throws ServerException, InsufficientDataException, ErrorResponseException, IOException, NoSuchAlgorithmException, InvalidKeyException, InvalidResponseException, XmlParserException, InternalException {
         return minioClient.getPresignedObjectUrl(
                 GetPresignedObjectUrlArgs.builder()
                         .bucket(MinioConfig.bucketName)
                         .object(name).method(Method.GET)
-                        .expiry(5 * 60)
+                        .expiry(expiry * 60)
                         .build()
         );
     }

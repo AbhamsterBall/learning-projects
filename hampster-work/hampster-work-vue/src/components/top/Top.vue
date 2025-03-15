@@ -3,6 +3,10 @@ import loginIcon from '../svg/LoginIcon.vue'
 import $ from 'jquery'
 import { setColor } from '../svg/LoginIcon.vue'
 import login from "../account/Login.vue";
+import Profile from "../index/Profile.vue";
+import Loading from "../Loading.vue";
+import {store} from "../../main.js";
+import { checkIfLogin } from "../index/Top.vue";
 
 const props = defineProps({
   title: String,
@@ -26,17 +30,6 @@ $(() => {
   checkIfLogin()
 });
 
-function checkIfLogin() {
-  if (localStorage.getItem("utoken") != null) {
-    $(".login").css("display", "none")
-    $(".loginIcon").css("display", "none")
-    $(".profile-img").attr("src", import.meta.env.VITE_API_MINIO_BASE_URL
-      + "/profile/" + localStorage.getItem("utoken") + ".svg");
-  } else {
-    $(".profile").css("display", "none")
-  }
-}
-
 </script>
 
 <template>
@@ -47,8 +40,23 @@ function checkIfLogin() {
     <a href="#" @click="loginClick" class="login">登 录</a>
     <a href="#" class="login-mini-back"></a>
     <login-icon @click="loginClick" width="48" height="48" color="white" class="loginIcon"/>
+<!--    <div class="profile">-->
+<!--      <img src="/default-profile.svg" alt="profile" class="profile-img">-->
+<!--    </div>-->
     <div class="profile">
-      <img src="/default-profile.svg" alt="profile" class="profile-img">
+      <suspense>
+        <template #default>
+          <profile/>
+        </template>
+        <template #fallback>
+          <div style="background-color: #f6f6f6;
+          width: 48px; height: 48px; border-radius: 24px;
+          margin-left: -2px">
+            <loading box-width="48px" box-height="48px" bg="#f6f6f6"
+                     border-radius="24px" class="profile-img"/>
+          </div>
+        </template>
+      </suspense>
     </div>
     <div class="more">
       <img src="/img/more.svg" alt="more" class="more-svg">

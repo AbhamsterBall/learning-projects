@@ -30,21 +30,6 @@ $(() => {
   checkIfLogin()
 });
 
-function checkIfLogin() {
-  console.log(store.state.token.length)
-  if (store.state.token.length !== 280) {
-    $(".login").css("display", "none")
-    $(".loginIcon").css("display", "none")
-    // $(".profile-img").attr("src", import.meta.env.VITE_API_MINIO_BASE_URL +
-    // //     "/profile/" + localStorage.getItem("utoken") + ".svg");
-    // $(".profile-img").attr("src", import.meta.env.VITE_API_MINIO_BASE_URL +
-    //     "/profile/" + localStorage.getItem("utoken") + ".svg");
-    // TODO : LOADING IMG
-  } else {
-    $(".profile").css("display", "none")
-  }
-}
-
 function loginClick() {
   $(".mask-display").css("display", "block")
 
@@ -78,6 +63,26 @@ function loginClick() {
   </div>
   <login/>
 </template>
+
+<script>
+import {store} from "../../main.js";
+import $ from "jquery";
+
+export function checkIfLogin() {
+  console.log(store.state.token.length)
+  if (store.state.token.length !== 280) {
+    $(".login").css("display", "none")
+    $(".loginIcon").css("display", "none")
+    // $(".profile-img").attr("src", import.meta.env.VITE_API_MINIO_BASE_URL +
+    // //     "/profile/" + localStorage.getItem("utoken") + ".svg");
+    // $(".profile-img").attr("src", import.meta.env.VITE_API_MINIO_BASE_URL +
+    //     "/profile/" + localStorage.getItem("utoken") + ".svg");
+    // TODO : LOADING IMG
+  } else {
+    $(".profile").css("display", "none")
+  }
+}
+</script>
 
 <style scoped lang="scss">
 .login {
