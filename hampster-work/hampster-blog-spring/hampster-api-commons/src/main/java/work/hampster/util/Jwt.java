@@ -1,5 +1,6 @@
 package work.hampster.util;
 
+import com.alibaba.nacos.shaded.com.google.gson.Gson;
 import com.baomidou.mybatisplus.core.toolkit.ObjectUtils;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
@@ -53,20 +54,32 @@ public class Jwt {
         return extractExpiration(token).before(new Date());
     }
 
-    public String generateToken(String timestamp, String url) {
+    public String generateToken(String timestamp, String url, String userToken) {
         String decrypt = RSA.decrypt(timestamp, Jwt.rsa.getPrivateKey());
         if (System.currentTimeMillis() - Long.valueOf(decrypt.split(": ")[1]) < 5 * 60 * 1000) {
-            Map<String, Object> claims = new HashMap<>();
-            claims.put("copyright", "HYH");
-            claims.put("timestamp", Long.valueOf(decrypt.split(": ")[1]));
-            claims.put("request", url);
-            claims.put("random", UUID.randomUUID().toString());
+            String[] tokenList = new String[10];
 
-            String token = createToken(claims);
-            while (ObjectUtils.isNotNull(Redis.redis.opsForValue().get("token_" + token)))
-                token = createToken(claims);
-            Redis.redis.opsForValue().set("token_" + token, 0, 5, TimeUnit.MINUTES);
-            return token;
+            for (int i = 0; i < 10; i++) {
+            Map<String, Object> claims = new HashMap<>();
+                claims.put("copyright", "HYH");
+                claims.put("timestamp", Long.valueOf(decrypt.split(": ")[1]));
+                claims.put("request", url);
+                claims.put("random", UUID.randomUUID().toString());
+
+                if (userToken != null) {
+                    if (!ObjectUtils.isNull(Redis.redis.opsForValue().get("user_token_" + userToken))) {
+                        claims.put("user_token", userToken);
+                    }
+                }
+
+                String token = createToken(claims);
+                while (ObjectUtils.isNotNull(Redis.redis.opsForValue().get("token_" + token)))
+                    token = createToken(claims);
+                Redis.redis.opsForValue().set("token_" + token, 0, 5, TimeUnit.MINUTES);
+                tokenList[i] = token;
+            }
+
+            return new Gson().toJson(tokenList);
         } else {
             return "unauthorized request";
         }
@@ -81,7 +94,10 @@ public class Jwt {
         claims.put("user_id", user.getUId());
         claims.put("fingerprint", AES.decrypt(user.getUFingerPrint()));
 
-        return createToken(claims, 1000 * 60 * 60 * 24 * 90L);
+        String token = createToken(claims, 1000 * 60 * 60 * 24 * 90L);
+        Redis.redis.opsForValue().set("user_token_" + token, 0, 1000 * 60 * 60 * 24 * 90L);
+
+        return token;
     }
 
     private String createToken(Map<String, Object> claims) {

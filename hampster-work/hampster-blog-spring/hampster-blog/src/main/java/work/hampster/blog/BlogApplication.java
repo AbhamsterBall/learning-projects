@@ -14,5 +14,5 @@ public class BlogApplication {
 		SpringApplication.run(BlogApplication.class, args);
 		System.out.println("(♥◠‿◠)ﾉﾞ  Hampster Blog is running!   ლ(´ڡ`ლ)ﾞ ");
 	}
-
+ 
 }

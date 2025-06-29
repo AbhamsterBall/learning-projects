@@ -22,6 +22,7 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicReference;
 
 @Service
@@ -85,6 +86,14 @@ public class BlogImpl extends EntityServiceImpl<BlogMapper, Blog> implements Blo
 //            String pythonProgram = "F:\\JAVA\\20231010\\hampster-work\\hampster-blog-spring\\hampster-blog\\src\\main\\resources\\summary.py";
             String arg = info;
             Process process = Runtime.getRuntime().exec("python " + pythonProgram + " " + arg);
+
+            // 等待进程完成
+            boolean exited = process.waitFor(3, TimeUnit.SECONDS);
+            while (!exited) {
+                exited = process.waitFor(3, TimeUnit.SECONDS);
+            }
+
+            System.out.println("Python程序执行完成: " + process.exitValue());
 
             BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream(), "UTF-8"));
             String line;

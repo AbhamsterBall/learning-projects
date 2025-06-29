@@ -1,6 +1,8 @@
 package work.hampster.filter;
 
 import com.baomidou.mybatisplus.core.toolkit.ObjectUtils;
+
+import io.jsonwebtoken.Claims;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -35,6 +37,10 @@ public class JwtRequestFilter extends OncePerRequestFilter {
 //            "/aliN7H/getAliShopList"
     };
 
+    public static final String[] USER_ONLY_URL = {
+
+    };
+
     private final Jwt jwtUtil;
 
     @Autowired
@@ -52,82 +58,96 @@ public class JwtRequestFilter extends OncePerRequestFilter {
         response.setHeader("Access-Control-Max-Age", "12000");
         response.setHeader("Access-Control-Allow-Headers", "Access-Control-Allow-Headers, Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
         response.setHeader("Access-Control-Expose-Headers", "*");
-//
-////        System.out.println("authorization: " + request.getHeaders("Authorization"));
-//
+
+//         logger.info("authorization: " + request.getHeader("Authorization"));
+
 //        final String authorizationHeader = request.getHeader("Authorization");
-////        System.out.println("authorization: " + authorizationHeader);
-//
+// //
 //        String jwt = null;
-//
+// //
 //        if (ObjectHandler.isStrArrContains(request.getRequestURI(), EXCLUDE_URL)) {
 //            chain.doFilter(request, response);
 //            return;
 //        }
-//
-//        System.out.println(request.getRequestURI());
-        logger.info("request: " + request.getRequestURI());
-////        System.out.println(authorizationHeader.startsWith("APIBearer ") + " " + authorizationHeader);
+
+
 //        if (ObjectUtils.isNotEmpty(authorizationHeader)) {
-//
+
 //            // generate token for /token/get request
-//
-//            String decryptURL = null;
-//            String decrypt = null;
-//            Long timestamp = null;
+
+
 //            if (authorizationHeader.startsWith("APIBearer ")) {
-//                jwt = authorizationHeader.substring(10);
-//
-//                String subURL = request.getRequestURI()
-//                        .substring(1);
-//                decryptURL = RSA.decryptURL(subURL, Jwt.rsa.getPrivateKey());
-////                System.out.println("decryptURL " + decryptURL);
-//                decrypt = RSA.decrypt(jwt, Jwt.rsa.getPrivateKey());
-////                System.out.println("decrypt " + decrypt);
-//                if (ObjectUtils.isNotNull(decrypt))
-//                    timestamp = Long.valueOf(decrypt.split(": ")[1]);
-//
-//                if (ObjectUtils.isNotNull(decrypt) && ObjectUtils.isNotNull(decryptURL) &&
-//                        (decryptURL.equals("continue") ?
-//                                Objects.equals(decrypt, "sqlTS: " + timestamp) :
-//                                Objects.equals(decryptURL, "tokenGet: " + timestamp))) {
-//                    returnNewToken(response, jwtUtil.generateToken(jwt, request.getRequestURI()));
-//                    return;
-//                }
+
+                logger.info("request: " + request.getRequestURI());
+
+//                 jwt = authorizationHeader.substring(10);
+//                 isTokenApplyValid(jwt, request, response, chain);
 //            }
-//
-////            System.out.println("in filter");
-//
+
+//            logger.info("token received:" + request.getRequestURI());
+
 //            if (authorizationHeader.startsWith("Bearer ")) {
-////                System.out.println("in jwt");
+// //                System.out.println("in jwt");
 //                jwt = authorizationHeader.substring(7);
 //                isTokenValid(jwt, request, response, chain);
 //            } else
 //                response.sendError(AjaxResult.UNAUTHORIZED, "unauthorized request");
-//
+
 //        } else
 //            response.sendError(AjaxResult.UNAUTHORIZED, "unauthorized request");
         chain.doFilter(request, response);
     }
 
-    private void returnNewToken(HttpServletResponse response, String newToken) throws IOException {
-        if (!newToken.equals("unauthorized request")) {
+    private void returnNewToken(HttpServletResponse response, String newTokens) throws IOException {
+        if (!newTokens.equals("unauthorized request")) {
             response.setStatus(HttpServletResponse.SC_OK);
             response.setContentType("application/json;charset=UTF-8");
-            response.getWriter().write("{\"code\":200,\"message\":\"Success\",\"data\":{\"token\":\"" + newToken + "\"}}");
+            response.getWriter().write("{\"code\":200,\"message\":\"Success\",\"data\":{\"token\":" + newTokens + "}}");
         } else
             response.sendError(AjaxResult.UNAUTHORIZED, "unauthorized request");
     }
 
+    private void isTokenApplyValid(String jwt, HttpServletRequest request, HttpServletResponse response, FilterChain chain) throws ServletException, IOException {
+        String decryptURL = null;
+        String decrypt = null;
+        Long timestamp = null;
+
+        if (ObjectUtils.isNotEmpty(jwt)) {
+            String subURL = request.getRequestURI()
+            .substring(1);
+            decryptURL = RSA.decryptURL(subURL, Jwt.rsa.getPrivateKey());
+            logger.info("decrypt URL: " + decryptURL);
+            decrypt = RSA.decrypt(jwt, Jwt.rsa.getPrivateKey());
+            logger.info("decrypt: " + decrypt);
+
+            String[] decryptInfo = decrypt.split(".");
+            if (ObjectUtils.isNotNull(decrypt))
+                timestamp = Long.valueOf(decryptInfo[1]);
+
+            if (ObjectUtils.isNotNull(decrypt) && ObjectUtils.isNotNull(decryptURL) &&
+                    (decryptURL.equals("continue") ?
+                            Objects.equals(decrypt, subURL + "." + timestamp) :
+                            Objects.equals(decryptURL, "tokenGet." + timestamp))) {
+                returnNewToken(response, jwtUtil.generateToken(jwt, request.getRequestURI(), decryptInfo[2]));
+                return;
+            }
+        }
+    }
+    
     private void isTokenValid(String jwt, HttpServletRequest request, HttpServletResponse response, FilterChain chain) throws ServletException, IOException {
         String res = "";
         boolean validateToken = jwtUtil.validateToken(jwt);
-        if (ObjectUtils.isNotEmpty(jwt) && validateToken) {
+        Claims cls = jwtUtil.extractAllClaims(jwt);
+        if (ObjectUtils.isNotEmpty(jwt) && validateToken
+            && (cls.get("user_token") != null 
+                || !ObjectHandler.isStrArrContains(request.getRequestURI(), USER_ONLY_URL))) {
 //            System.out.println("in servlet");
             chain.doFilter(request, response);
             return;
         } else if (!validateToken) {
             res = "invalid token";
+        } else if (cls.get("user_token") == null) { 
+            res = "no user authentication info";
         }
 //        System.out.println("RES " + res);
         response.sendError(AjaxResult.FORBIDDEN,
