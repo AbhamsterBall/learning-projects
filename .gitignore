@@ -25,6 +25,9 @@ node_modules/
 out/
 target/
 
+# local model
+local_model/
+
 # log files
 *.log
 
