@@ -54,15 +54,15 @@ public class Jwt {
         return extractExpiration(token).before(new Date());
     }
 
-    public String generateToken(String timestamp, String url, String userToken) {
-        String decrypt = RSA.decrypt(timestamp, Jwt.rsa.getPrivateKey());
-        if (System.currentTimeMillis() - Long.valueOf(decrypt.split(": ")[1]) < 5 * 60 * 1000) {
+    public String generateToken(Long timestamp, String url, String userToken) {
+//        String decrypt = RSA.decrypt(timestamp, Jwt.rsa.getPrivateKey());
+        if (System.currentTimeMillis() - timestamp < 5 * 60 * 1000) {
             String[] tokenList = new String[10];
 
             for (int i = 0; i < 10; i++) {
             Map<String, Object> claims = new HashMap<>();
                 claims.put("copyright", "HYH");
-                claims.put("timestamp", Long.valueOf(decrypt.split(": ")[1]));
+                claims.put("timestamp", timestamp);
                 claims.put("request", url);
                 claims.put("random", UUID.randomUUID().toString());
 
@@ -86,6 +86,9 @@ public class Jwt {
     }
 
     public String generateUserToken(UserDTO user) throws Exception {
+//        // 生成一个短的id作为key
+//        String tokenId = UUID.randomUUID().toString().replace("-", "");
+
         Map<String, Object> claims = new HashMap<>();
         claims.put("copyright", "HYH");
         claims.put("timestamp", System.currentTimeMillis());
@@ -95,7 +98,8 @@ public class Jwt {
         claims.put("fingerprint", AES.decrypt(user.getUFingerPrint()));
 
         String token = createToken(claims, 1000 * 60 * 60 * 24 * 90L);
-        Redis.redis.opsForValue().set("user_token_" + token, 0, 1000 * 60 * 60 * 24 * 90L);
+        System.out.println("token length: " + token.length());
+        Redis.redis.opsForValue().set("user_token_" + token, 0, 1000 * 60 * 60 * 24 * 90L, TimeUnit.MILLISECONDS);
 
         return token;
     }

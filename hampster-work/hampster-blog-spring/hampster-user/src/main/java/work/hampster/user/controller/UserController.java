@@ -86,14 +86,14 @@ public class UserController {
     }
 
     @GetMapping(value = "/user/info", produces = "application/json; charset=utf-8")
-    public Object getUserInfo(@RequestHeader(value = "Authorization") String token,
+    public Object getUserInfo(@RequestHeader(value = "token") String token,
                               @RequestHeader(value = "Fingerprint") String fingerprint) throws ServerException, InsufficientDataException, ErrorResponseException, IOException, NoSuchAlgorithmException, InvalidKeyException, InvalidResponseException, XmlParserException, InternalException {
-        String finalToken = token.replace("Bearer ", "");
+//        String finalToken = token.replace("Bearer ", "");
         return Redis.readAndWrite(
                 "user_info_" + token + "_" + fingerprint,
                 () -> {
                     try {
-                        return toJson(userService.getUserInfo(finalToken, fingerprint));
+                        return toJson(userService.getUserInfo(token, fingerprint));
                     } catch (Exception e) {
                         throw new RuntimeException(e);
                     }

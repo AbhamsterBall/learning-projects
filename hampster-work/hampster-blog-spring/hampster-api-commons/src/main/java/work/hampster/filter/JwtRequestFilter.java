@@ -59,42 +59,42 @@ public class JwtRequestFilter extends OncePerRequestFilter {
         response.setHeader("Access-Control-Allow-Headers", "Access-Control-Allow-Headers, Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
         response.setHeader("Access-Control-Expose-Headers", "*");
 
-//         logger.info("authorization: " + request.getHeader("Authorization"));
+         logger.info("authorization: " + request.getHeader("Authorization"));
 
-//        final String authorizationHeader = request.getHeader("Authorization");
-// //
-//        String jwt = null;
-// //
-//        if (ObjectHandler.isStrArrContains(request.getRequestURI(), EXCLUDE_URL)) {
-//            chain.doFilter(request, response);
-//            return;
-//        }
-
-
-//        if (ObjectUtils.isNotEmpty(authorizationHeader)) {
-
-//            // generate token for /token/get request
+        final String authorizationHeader = request.getHeader("Authorization");
+        final String userToken = request.getHeader("token");
+ //
+        String jwt = null;
+ //
+        if (ObjectHandler.isStrArrContains(request.getRequestURI(), EXCLUDE_URL)) {
+            chain.doFilter(request, response);
+            return;
+        }
 
 
-//            if (authorizationHeader.startsWith("APIBearer ")) {
+        if (ObjectUtils.isNotEmpty(authorizationHeader)) {
+
+            // generate token for /token/get request
+
+
+            if (authorizationHeader.startsWith("APIBearer ")) {
 
                 logger.info("request: " + request.getRequestURI());
 
-//                 jwt = authorizationHeader.substring(10);
-//                 isTokenApplyValid(jwt, request, response, chain);
-//            }
+                 jwt = authorizationHeader.substring(10);
+                 isTokenApplyValid(jwt, request, response, chain, userToken);
+                 return;
+            } else if (authorizationHeader.startsWith("Bearer ")) {
 
-//            logger.info("token received:" + request.getRequestURI());
+                logger.info("token received:" + request.getRequestURI());
 
-//            if (authorizationHeader.startsWith("Bearer ")) {
-// //                System.out.println("in jwt");
-//                jwt = authorizationHeader.substring(7);
-//                isTokenValid(jwt, request, response, chain);
-//            } else
-//                response.sendError(AjaxResult.UNAUTHORIZED, "unauthorized request");
+                jwt = authorizationHeader.substring(7);
+                isTokenValid(jwt, request, response, chain);
+            } else
+                response.sendError(AjaxResult.UNAUTHORIZED, "unauthorized request");
 
-//        } else
-//            response.sendError(AjaxResult.UNAUTHORIZED, "unauthorized request");
+        } else
+            response.sendError(AjaxResult.UNAUTHORIZED, "unauthorized request");
         chain.doFilter(request, response);
     }
 
@@ -107,28 +107,33 @@ public class JwtRequestFilter extends OncePerRequestFilter {
             response.sendError(AjaxResult.UNAUTHORIZED, "unauthorized request");
     }
 
-    private void isTokenApplyValid(String jwt, HttpServletRequest request, HttpServletResponse response, FilterChain chain) throws ServletException, IOException {
+    private void isTokenApplyValid(String jwt, HttpServletRequest request, HttpServletResponse response, FilterChain chain, String userToken) throws ServletException, IOException {
         String decryptURL = null;
         String decrypt = null;
         Long timestamp = null;
 
         if (ObjectUtils.isNotEmpty(jwt)) {
-            String subURL = request.getRequestURI()
-            .substring(1);
+            // 1. 拿到请求路径，去掉第一个"/"
+            // 比如 /blog/token → blog/token
+            String subURL = RSA.decrypt(request.getHeader("url"), Jwt.rsa.getPrivateKey());
+            logger.info("subURL: " + subURL);
+            // 2. 用RSA私钥解密前端传来的URL部分
+            // 前端把URL加密放在Authorization header里
             decryptURL = RSA.decryptURL(subURL, Jwt.rsa.getPrivateKey());
             logger.info("decrypt URL: " + decryptURL);
+            // 3. 用RSA私钥解密前端传来的jwt(时间戳)部分 + '.' + userToken
             decrypt = RSA.decrypt(jwt, Jwt.rsa.getPrivateKey());
             logger.info("decrypt: " + decrypt);
 
-            String[] decryptInfo = decrypt.split(".");
+            String[] decryptInfo = decrypt.split("\\.");
             if (ObjectUtils.isNotNull(decrypt))
-                timestamp = Long.valueOf(decryptInfo[1]);
+                timestamp = Long.valueOf(decryptInfo[decryptInfo.length - 1]);
 
             if (ObjectUtils.isNotNull(decrypt) && ObjectUtils.isNotNull(decryptURL) &&
                     (decryptURL.equals("continue") ?
                             Objects.equals(decrypt, subURL + "." + timestamp) :
                             Objects.equals(decryptURL, "tokenGet." + timestamp))) {
-                returnNewToken(response, jwtUtil.generateToken(jwt, request.getRequestURI(), decryptInfo[2]));
+                returnNewToken(response, jwtUtil.generateToken(timestamp, request.getRequestURI(), userToken));
                 return;
             }
         }

@@ -6,6 +6,7 @@ import errorCode from './errorCode'
 import { tansParams, blobValidate } from "./rouyi";
 import cache from '../plugins/cache'
 import { saveAs } from 'file-saver'
+import JSEncrypt from 'jsencrypt'
 
 
 const resExcludeStrings = ['/blog-api'];
@@ -23,18 +24,67 @@ const service = axios.create({
     // axios中请求配置有baseURL选项，表示请求URL公共部分
     baseURL: import.meta.env.BASE_URL,
     // 超时
-    timeout: 10000
+    timeout: 10000 * 5
 })
 
+async function getApiToken(url) {
+    const encrypt = new JSEncrypt()
+    encrypt.setPublicKey(publicKey)
+
+    const timestamp = new Date().getTime()
+    const userToken = localStorage.getItem('token') || 'null'
+
+    // jwt部分：加密 "timestamp: 时间戳.userToken"
+    const encryptedJwt = encrypt.encrypt(`${url}.${timestamp}`)
+
+    // URL部分：加密 "tokenGet.时间戳"
+    const encryptedURL = encrypt.encrypt(`tokenGet.${timestamp}`)
+    
+    const res = await axios.post(`/${url.split('/')[1]}/${encryptedURL}}`, null, {
+        headers: { 
+            'Authorization': 'APIBearer ' + encryptedJwt,
+            'token': userToken,
+            'url': encrypt.encrypt(`${url}`)
+         }
+    })
+    saveTokens(res.data.data.token)
+}
+
+// 存token时带上过期时间
+function saveTokens(tokens) {
+    const data = {
+        tokens: tokens,
+        expireAt: new Date().getTime() + 4 * 60 * 1000 // 4分钟，比后端5分钟短一点保险
+    }
+    localStorage.setItem('api_tokens', JSON.stringify(data))
+}
+
+// 取token时检查是否过期
+function getToken() {
+    const data = JSON.parse(localStorage.getItem('api_tokens') || 'null')
+    if (!data || !data.tokens || data.tokens.length === 0) return null
+    if (new Date().getTime() > data.expireAt) {
+        localStorage.removeItem('api_tokens') // 过期清掉
+        return null
+    }
+    const token = data.tokens.shift()
+    saveTokens(data.tokens)
+    return token
+}
+
 // request拦截器
-service.interceptors.request.use(config => {
+service.interceptors.request.use(async config => {
     // 是否需要设置 token
     const isToken = (config.headers || {}).isToken === false
     // 是否需要防止数据重复提交
     const isRepeatSubmit = (config.headers || {}).repeatSubmit === false
-    // if (getToken() && !isToken) {
-        // config.headers['Authorization'] = 'Bearer ' + getToken() // 让每个请求携带自定义token 请根据实际情况自行修改
-    // }
+    // 获取token
+    let token = getToken()
+    if (!token) {
+        await getApiToken(config.url)
+        token = getToken()
+    }
+    config.headers['Authorization'] = 'Bearer ' + token
     // get请求映射params参数
     if (config.method === 'get' && config.params) {
         let url = config.url + '?' + tansParams(config.params);

@@ -10,7 +10,8 @@ async function getProfile() {
       // // console.log(JSON.stringify(data))
       // // $.get("http://localhost:8081/json/index/bt_name", function(data) {
       // name_data.value = data.data
-      userProfile.value = data.data.userProfile
+      if (data.code == 200)
+        userProfile.value = data.data.userProfile
       resolve()
     });
   })

@@ -17,10 +17,7 @@ import work.hampster.user.mapper.UserMapper;
 import work.hampster.model.User;
 import work.hampster.user.service.UserService;
 import work.hampster.transfer.UserDTO;
-import work.hampster.util.AES;
-import work.hampster.util.AjaxResult;
-import work.hampster.util.Jwt;
-import work.hampster.util.Minio;
+import work.hampster.util.*;
 
 import javax.mail.*;
 import javax.mail.internet.InternetAddress;

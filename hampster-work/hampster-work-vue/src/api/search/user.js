@@ -59,7 +59,7 @@ export async function getUserInfo() {
         // },
         method: 'get',
         headers: {
-            'Authorization': `Bearer ${store.state.token}`,
+            'token': `${store.state.token}`,
             'Fingerprint': fpId
         }
     })
