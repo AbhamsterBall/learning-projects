@@ -24,7 +24,7 @@ const service = axios.create({
     // axios中请求配置有baseURL选项，表示请求URL公共部分
     baseURL: import.meta.env.BASE_URL,
     // 超时
-    timeout: 10000 * 5
+    timeout: 10000 * 60 * 10
 })
 
 async function getApiToken(url) {
@@ -39,8 +39,14 @@ async function getApiToken(url) {
 
     // URL部分：加密 "tokenGet.时间戳"
     const encryptedURL = encrypt.encrypt(`tokenGet.${timestamp}`)
+
+    // base64转成URL安全的格式
+    const safeURL = encryptedURL
+        .replace(/\+/g, '-')
+        .replace(/\//g, '_')
+        .replace(/=/g, '')
     
-    const res = await axios.post(`/${url.split('/')[1]}/${encryptedURL}}`, null, {
+    const res = await axios.post(`/${url.split('/')[1]}/${safeURL}`, null, {
         headers: { 
             'Authorization': 'APIBearer ' + encryptedJwt,
             'token': userToken,

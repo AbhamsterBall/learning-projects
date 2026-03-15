@@ -73,29 +73,20 @@ public class JwtRequestFilter extends OncePerRequestFilter {
 
 
         if (ObjectUtils.isNotEmpty(authorizationHeader)) {
-
-            // generate token for /token/get request
-
-
             if (authorizationHeader.startsWith("APIBearer ")) {
-
                 logger.info("request: " + request.getRequestURI());
-
-                 jwt = authorizationHeader.substring(10);
-                 isTokenApplyValid(jwt, request, response, chain, userToken);
-                 return;
+                jwt = authorizationHeader.substring(10);
+                isTokenApplyValid(jwt, request, response, chain, userToken);
             } else if (authorizationHeader.startsWith("Bearer ")) {
-
                 logger.info("token received:" + request.getRequestURI());
-
                 jwt = authorizationHeader.substring(7);
                 isTokenValid(jwt, request, response, chain);
-            } else
+            } else {
                 response.sendError(AjaxResult.UNAUTHORIZED, "unauthorized request");
-
-        } else
+            }
+        } else {
             response.sendError(AjaxResult.UNAUTHORIZED, "unauthorized request");
-        chain.doFilter(request, response);
+        }
     }
 
     private void returnNewToken(HttpServletResponse response, String newTokens) throws IOException {
