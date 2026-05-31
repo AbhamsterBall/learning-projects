@@ -7,6 +7,9 @@ import {ref, watch} from 'vue'
 const mailHover = ref(false)
 const mailFocus = ref(false)
 
+const beianHover = ref(false)
+const beianFocus = ref(false)
+
 $(() => {
   setColor("#9eacb8")
   $(".bottom-mail").hover(
@@ -37,16 +40,28 @@ watch([mailHover, mailFocus], ([newMailHover, newMailFocus]) => {
   <div class="bottom-text">
     <a href="/" class="bottom-net">HAMPSTER.WORK</a><br>
     <a href="mailto:ajh415@hotmail.com"
-       @mouseenter="mailHover.value = true"
-       @mouseleave="mailHover.value = false"
-       @focus="mailFocus.value = true"
-       @blur="mailFocus.value = false"
+       @mouseenter="mailHover = true"
+       @mouseleave="mailHover = false"
+       @focus="mailFocus = true"
+       @blur="mailFocus = false"
        :style="{ color: mailHover || mailFocus ? 'white' : '#9eacb8' }"
        class="bottom-mail">
       <div class="mail-icon">
         <mail width="20" height="20"/>
       </div>
       <span class="mail-text">ajh415@hotmail.com</span>
+    </a>
+    <!-- ICP License -->
+    <a href="https://beian.miit.gov.cn/"
+      target="_blank"
+      rel="noopener noreferrer"
+      @mouseenter="beianHover = true"
+      @mouseleave="beianHover = false"
+      @focus="beianFocus = true"
+      @blur="beianFocus = false"
+      :style="{ color: beianHover || beianFocus ? 'white' : '#9eacb8' }"
+      class="bottom-beian">
+      蜀ICP备2024069529号
     </a>
     何宇荟©版权所有
   </div>
@@ -69,7 +84,7 @@ watch([mailHover, mailFocus], ([newMailHover, newMailFocus]) => {
 .bottom-net:focus {
   outline: 2px solid #ffc459;
 }
-.bottom-mail {
+.bottom-mail, .bottom-beian {
   display: block;
 }
 .mail-icon {
