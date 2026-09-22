@@ -58,6 +58,11 @@ const routes = [
         path: '/blog/:pathMatch(.*)*',
         name: 'Blog',
         component: () => import("../views/blog/index.vue")
+    },
+    {
+        path: '/ai',
+        name: 'ai',
+        component: () => import("../views/ai/index.vue")
     }
 ]
 
