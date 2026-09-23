@@ -211,16 +211,22 @@
 		</dependency>
 
         <!-- 1. 云端 API：Qwen3-VL-Flash（百炼 OpenAI 兼容接口） -->
+        <!-- 云端 Qwen-VL -->
         <dependency>
-            <groupId>org.springframework.ai</groupId>
-            <artifactId>spring-ai-starter-model-openai</artifactId>
-            <version>1.0.0</version>
+            <groupId>com.alibaba.cloud.ai</groupId>
+            <artifactId>spring-ai-alibaba-starter-dashscope</artifactId>
+            <version>1.0.0.2</version>
         </dependency>
 
         <!-- 2. 本地模型：GLM-4.6V-Flash（Ollama） -->
         <dependency>
             <groupId>org.springframework.ai</groupId>
             <artifactId>spring-ai-starter-model-ollama</artifactId>
+            <version>1.0.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.ai</groupId>
+            <artifactId>spring-ai-starter-model-openai</artifactId>
             <version>1.0.0</version>
         </dependency>
 

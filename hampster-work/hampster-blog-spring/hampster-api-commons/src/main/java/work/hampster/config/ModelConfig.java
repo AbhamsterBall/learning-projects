@@ -1,5 +1,8 @@
 package work.hampster.config;
 
+import com.alibaba.cloud.ai.dashscope.api.DashScopeApi;
+import com.alibaba.cloud.ai.dashscope.chat.DashScopeChatModel;
+import com.alibaba.cloud.ai.dashscope.chat.DashScopeChatOptions;
 import org.springframework.ai.openai.OpenAiChatModel;
 import org.springframework.ai.openai.OpenAiChatOptions;
 import org.springframework.ai.openai.api.OpenAiApi;
@@ -18,9 +21,9 @@ public class ModelConfig {
     @Value("${local.llama.model-name}")
     private String localModelName;
 
-    @Value("${spring.ai.openai.base-url}")
-    private String url;
-    @Value("${spring.ai.openai.api-key}")
+//    @Value("${spring.ai.openai.base-url}")
+//    private String url;
+    @Value("${spring.ai.dashscope.api-key}")
     private String apiKey;
 
     // 本地模型 Bean
@@ -33,7 +36,7 @@ public class ModelConfig {
         return OpenAiChatModel.builder()
                 .openAiApi(api)
                 .defaultOptions(OpenAiChatOptions.builder()
-                        .maxTokens(1536)      // 关键，单据 JSON 够用
+                        .maxTokens(Integer.valueOf(1536))      // 关键，单据 JSON 够用
                         .model(localModelName)
                         .build())
                 .build();
@@ -43,14 +46,17 @@ public class ModelConfig {
     @Bean("cloudChatModel")
     @Primary
     public ChatModel cloudChatModel() {
-        OpenAiApi api = OpenAiApi.builder()
-                .baseUrl(url)
-                .apiKey(apiKey)
-                .build();
-        return OpenAiChatModel.builder()
-                .openAiApi(api)
-                .defaultOptions(OpenAiChatOptions.builder()
-                        .model("qwen3-vl-flash")
+        DashScopeApi api = DashScopeApi.builder()
+                .apiKey(apiKey)                    // 原来的 apiKey 还在
+                .build();                          // baseUrl 不用了，DashScope 有默认端点
+
+        return DashScopeChatModel.builder()
+                .dashScopeApi(api)
+                .defaultOptions(DashScopeChatOptions.builder()
+                        .withModel("qwen3-vl-flash")   // 原来 model 参数
+                        .withMultiModel(Boolean.valueOf("true"))          // 新增：开启多模态
+                        .withMaxToken(Integer.valueOf(2048))            // 原来 maxTokens
+                        .withTemperature(Double.valueOf(0.1))         // 原来 temperature
                         .build())
                 .build();
     }
