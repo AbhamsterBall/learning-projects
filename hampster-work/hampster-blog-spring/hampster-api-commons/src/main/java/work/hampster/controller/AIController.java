@@ -48,8 +48,18 @@ public class AIController {
 
             ObjectMapper mapper = new ObjectMapper();
             String re = processService.process(prompt);
-            JsonNode jsonNode = mapper.readTree(re);
-            return AjaxResult.success(jsonNode);
+            Object data;
+            if (re != null && !re.isBlank()) {
+                String trimmed = re.trim();
+                if (trimmed.startsWith("{") || trimmed.startsWith("[")) {
+                    data = mapper.readTree(re);   // 对象/数组
+                } else {
+                    data = trimmed;               // 纯字符串
+                }
+            } else {
+                data = null;
+            }
+            return AjaxResult.success(data);
         } else {
             ObjectMapper mapper = new ObjectMapper();
             String re = processService.process(prompt, aiDTO.getFile());
